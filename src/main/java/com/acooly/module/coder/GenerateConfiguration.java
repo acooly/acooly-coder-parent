@@ -1,7 +1,7 @@
 package com.acooly.module.coder;
 
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class GenerateConfiguration {
 
@@ -88,6 +88,7 @@ public class GenerateConfiguration {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
+		return ReflectionToStringBuilder.toString(this,
+				ToStringStyle.MULTI_LINE_STYLE);
 	}
 }
