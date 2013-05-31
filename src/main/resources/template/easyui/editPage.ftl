@@ -26,6 +26,9 @@
 				<#else>
 				<input type="text" name="${entity.propertyName}" class="easyui-numberbox" <#if !entity.nullable>data-options="required:true"</#if> validType="length[1,${entity.length}]"/>	
 				</#if>
+			<#else if entity.dataType == 2>
+				<input type="text" name="${entity.propertyName}" class="easyui-validatebox" size="15" value="<fmt:formatDate value="${r"${"}${entityVariable}.${entity.propertyName}}" pattern="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" 
+					<#if !entity.nullable>data-options="required:true"</#if> />
 			<#else>	
 				<input type="text" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="length[1,${entity.length}]"/>
 			</#if>
