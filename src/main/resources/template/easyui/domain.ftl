@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.feinno.framework.common.domain.AbstractEntity;
+import com.acooly.core.common.domain.AbstractEntity;
 
 /**
  * ${table.comment} Entity

@@ -1,6 +1,6 @@
 package ${names.servicePackage};
 
-import com.feinno.framework.common.service.EntityService;
+import com.acooly.core.common.service.EntityService;
 import ${names.domainPackage}.${names.domainClassName};
 
 /**

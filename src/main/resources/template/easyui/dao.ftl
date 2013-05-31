@@ -1,6 +1,6 @@
 package ${names.daoPackage};
 
-import com.feinno.framework.common.dao.jpa.EntityJpaDao;
+import com.acooly.core.common.dao.jpa.EntityJpaDao;
 import ${names.domainPackage}.${names.domainClassName};
 
 /**

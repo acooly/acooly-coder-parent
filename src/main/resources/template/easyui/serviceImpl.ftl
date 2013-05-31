@@ -2,7 +2,7 @@ package ${names.serviceImplPackage};
 
 import org.springframework.stereotype.Service;
 
-import com.feinno.framework.common.service.EntityServiceImpl;
+import com.acooly.core.common.service.EntityServiceImpl;
 import ${names.servicePackage}.${names.serviceClassName};
 import ${names.daoPackage}.${names.daoClassName};
 import ${names.domainPackage}.${names.domainClassName};

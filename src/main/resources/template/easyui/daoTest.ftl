@@ -12,7 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.feinno.framework.common.test.SpringTransactionalTests;
+import com.acooly.core.common.test.SpringTransactionalTests;
 import ${names.domainPackage}.${names.domainClassName};
 
 @ActiveProfiles("development")
