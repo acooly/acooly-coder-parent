@@ -30,8 +30,7 @@ import com.acooly.core.common.domain.AbstractEntity;
 public class ${names.domainClassName} extends AbstractEntity {
 <#list table.columnMetadatas as entity>
 	/** ${entity.common} */
-	private ${entity.javaDataType} ${entity.propertyName};
-	
+	private ${entity.javaDataType} ${entity.propertyName}<#if (entity.defaultValue)??> = <#if entity.dataType = 1>${entity.defaultValue}<#elseif entity.dataType = 2>new Date()<#else>"${entity.defaultValue}"</#if></#if>;
 </#list>
 	
 <#list table.columnMetadatas as entity>

@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/manage/common/taglibs.jsp"%>
 <#assign entityVariable="${names.domainClassName?uncap_first}" />
 <#assign entityContextPath="${configuration.pagePath}/${names.domainClassName?uncap_first}" />
-<div align="center">
+<div>
     <form id="manage_${entityVariable}_editform" action="${r"${"}pageContext.request.contextPath}${entityContextPath}/${r"${"}action=='create'?'saveJson':'updateJson'}.html" method="post">
       <jodd:form bean="${entityVariable}" scope="request">
         <input name="id" type="hidden" />
@@ -11,11 +10,10 @@
 		<#list table.columnMetadatas as entity>
 			<#if entity.name?lower_case != 'id'>
 			<tr>
-				<th width="30%">${entity.common}：</th>
+				<th width="20%">${entity.common}：</th>
 				<td>
 			<#if entity.dataType == 2>
-				<input type="text" name="${entity.propertyName}" size="15" value="<fmt:formatDate value="${r"${"}${entityVariable}.${entity.propertyName}}" pattern="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" 
-					<#if !entity.nullable>data-options="required:true"</#if> />
+				<input type="text" name="${entity.propertyName}" size="15" value="<fmt:formatDate value="${r"${"}${entityVariable}.${entity.propertyName}}" pattern="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" <#if !entity.nullable>data-options="required:true"</#if> />
 			<#elseif entity.dataType == 1>
 				<#if entity.options??>
 				<select name="${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox" <#if !entity.nullable>data-options="required:true"</#if>>
