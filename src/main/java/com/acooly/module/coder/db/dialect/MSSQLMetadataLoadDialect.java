@@ -94,7 +94,7 @@ public class MSSQLMetadataLoadDialect implements MetadataLoadDialect {
 	private int transformDataType(String xtype) {
 
 		if (StringUtils.containsIgnoreCase(xtype, "int")) {
-			return ColumnMetadata.DATATYPE_NUMBER;
+			return ColumnMetadata.DATATYPE_LONG;
 		} else if (xtype.equalsIgnoreCase("DATE")
 				|| xtype.equalsIgnoreCase("DATETIME")) {
 			return ColumnMetadata.DATATYPE_DATE;

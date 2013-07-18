@@ -13,6 +13,14 @@
 
 	<description>代码生成器</description>
 
+	<!-- 
+	<bean id="domainNameHolder" class="com.acooly.module.coder.names.ClassNameHolder">
+		<property name="packageName" value="domain" />
+		<property name="className" value="#{className(tableName)}" />
+		<property name="variableName" value="#{variableName(tableName)}">
+	</bean>
+	 -->
+	
 	<bean id="generateConfiguration" class="com.acooly.module.coder.GenerateConfiguration">
 		<property name="workspace" value="${generator.workspace}" />
 		<property name="rootPackage" value="${generator.rootPackage}" />

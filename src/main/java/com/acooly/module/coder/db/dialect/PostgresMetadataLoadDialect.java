@@ -75,7 +75,7 @@ public class PostgresMetadataLoadDialect implements MetadataLoadDialect {
 	private int transformDataType(String xtype) {
 
 		if (xtype.equals("NUMBER")) {
-			return ColumnMetadata.DATATYPE_NUMBER;
+			return ColumnMetadata.DATATYPE_LONG;
 		} else if (xtype.equals("DATE")) {
 			return ColumnMetadata.DATATYPE_DATE;
 		} else {

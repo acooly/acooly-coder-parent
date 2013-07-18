@@ -39,7 +39,11 @@
 			<artifactId>swt</artifactId>
 			<version>3.5.2-x86_64</version>
 		</dependency>
-
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.21</version>
+		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -68,13 +72,12 @@
 		</profile>
 	</profiles>
 
-	<!-- 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.2.1</version>
+				<version>2.0</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -82,9 +85,27 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<artifactSet>
+								<includes>
+									<include>com.acooly:acooly-module-coder</include>
+									<!-- <include>commons-cli:commons-cli</include> <include>commons-dbcp:commons-dbcp</include> <include>commons-pool:commons-pool</include> <include>commons-io:commons-io</include> <include>org.apache.commons:commons-lang3</include> 
+										<include>commons-logging:commons-logging</include> <include>log4j:log4j</include> <include>org.slf4j:slf4j-api</include> <include>org.slf4j:slf4j-log4j12</include> <include>org.springframework:*</include> 
+										<include>com.acooly:acooly-core</include> <include>com.oracle:ojdbc14</include> <include>org.eclipse:swt</include> -->
+								</includes>
+							</artifactSet>
+							<filters>
+								<filter>
+									<artifact>com.acooly:acooly-module-coder</artifact>
+									<excludes>
+										<exclude>*.properties</exclude>
+									</excludes>
+								</filter>
+							</filters>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.feinno.codegenerator.ui.Generator</mainClass>
+									<manifestEntries>
+										<Main-Class>com.acooly.module.coder.ui.Generator</Main-Class>
+									</manifestEntries>
 								</transformer>
 							</transformers>
 						</configuration>
@@ -93,7 +114,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	 -->
 
 
 </project>

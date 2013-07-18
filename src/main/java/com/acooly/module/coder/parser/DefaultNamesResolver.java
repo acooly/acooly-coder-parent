@@ -72,7 +72,9 @@ public class DefaultNamesResolver implements NamesResolver {
 
 		if (StringUtils.isNotBlank(tableToEntityIgnorPrefix)) {
 			String ignorPrefix = tableToEntityIgnorPrefix.toLowerCase();
-			baseName = StringUtils.substringAfter(baseName, ignorPrefix);
+			if(baseName.startsWith(ignorPrefix)){
+				baseName = StringUtils.substringAfter(baseName, ignorPrefix);
+			}
 		}
 
 		if (baseName.startsWith(WORD_SEPARATOR)) {

@@ -14,7 +14,7 @@
 				<td>
 			<#if entity.dataType == 2>
 				<input type="text" name="${entity.propertyName}" size="15" value="<fmt:formatDate value="${r"${"}${entityVariable}.${entity.propertyName}}" pattern="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" <#if !entity.nullable>data-options="required:true"</#if> />
-			<#elseif entity.dataType == 1>
+			<#elseif entity.dataType == 1 || entity.dataType == 4>
 				<#if entity.options??>
 				<select name="${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox" <#if !entity.nullable>data-options="required:true"</#if>>
 					<c:forEach items="${r"${"}all${entity.propertyName?cap_first}s}" var="e">
@@ -22,10 +22,10 @@
 					</c:forEach>
 				</select>
 				<#else>
-				<input type="text" name="${entity.propertyName}" class="easyui-numberbox" <#if !entity.nullable>data-options="required:true"</#if> validType="length[1,${entity.length}]"/>	
+				<input type="text" name="${entity.propertyName}" class="easyui-numberbox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"/>	
 				</#if>
 			<#else>	
-				<input type="text" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="length[1,${entity.length}]"/>
+				<input type="text" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"/>
 			</#if>
 				</td>
 			</tr>					

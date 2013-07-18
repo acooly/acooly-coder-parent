@@ -20,8 +20,9 @@ import com.acooly.module.coder.db.metadata.TableMetadata;
 
 /**
  * Oracle 实现
+ * 
  * @author zhangpu
- *
+ * 
  */
 public class MySQLMetadataLoadDialect implements MetadataLoadDialect {
 	private static final Logger logger = LoggerFactory
@@ -67,7 +68,7 @@ public class MySQLMetadataLoadDialect implements MetadataLoadDialect {
 			String comment = rs.getString("comments");
 			Map<String, String> options = parseJsonComment(comment);
 			columnMetadata.setOptions(options);
-			//comment = getCanonicalComment(comment);
+			comment = getCanonicalComment(comment);
 			columnMetadata.setCommon(StringUtils.isBlank(comment) ? name
 					: comment);
 			Object defaultValue = rs.getObject("defaultValue");
@@ -85,17 +86,18 @@ public class MySQLMetadataLoadDialect implements MetadataLoadDialect {
 
 	@Override
 	public String getEntityIdDeclare(String tableName) {
-		String declare = "@GeneratedValue(generator = \"sequence\")\n"
-				+ "	@GenericGenerator(name = \"sequence\", strategy = \"sequence\", parameters = { @Parameter(name = \"sequence\", value = \"SEQ_"
-				+ tableName + "\") })";
+		String declare = "@GeneratedValue";
 		return declare;
 	}
-	
 
 	private int transformDataType(String xtype) {
 
-		if (StringUtils.containsIgnoreCase(xtype, "int")) {
-			return ColumnMetadata.DATATYPE_NUMBER;
+		if (StringUtils.equalsIgnoreCase(xtype, "int")) {
+			return ColumnMetadata.DATATYPE_INT;
+		} else if (StringUtils.containsIgnoreCase(xtype, "bigint")
+				|| StringUtils.containsIgnoreCase(xtype, "numeric")
+				|| StringUtils.containsIgnoreCase(xtype, "decimal")) {
+			return ColumnMetadata.DATATYPE_LONG;
 		} else if (xtype.equalsIgnoreCase("DATE")
 				|| xtype.equalsIgnoreCase("DATETIME")) {
 			return ColumnMetadata.DATATYPE_DATE;

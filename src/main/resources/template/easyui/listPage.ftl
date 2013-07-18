@@ -21,7 +21,7 @@ $(function() {
 				<#if entity.dataType == 2>
 					${entity.common}:<input id="search_GTE_${entity.propertyName}" name="search_GTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
 					至<input id="search_LTE_${entity.propertyName}" name="search_LTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 			
-				<#elseif entity.dataType == 1>
+				<#elseif entity.dataType == 1 || entity.dataType == 4>
 					<#if entity.options??>
 					${entity.common}:<select name="search_EQ_${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${r"${"}all${entity.propertyName?cap_first}s}"><option value="${r"${"}e.key}" ${r"${"}param.search_EQ_${entity.propertyName} == e.key?'selected':''}>${r"${"}e.value}</option></c:forEach></select>
 					<#else>
@@ -49,7 +49,7 @@ $(function() {
 		<#list table.columnMetadatas as entity>
 		<#if entity.dataType == 2>
 		    <th field="${entity.propertyName}" formatter="formatDate">${entity.common}</th>
-		<#elseif entity.dataType == 1>
+		<#elseif entity.dataType == 1 || entity.dataType == 4>
 			<#if entity.options??>
 			<th field="${entity.propertyName}" data-options="formatter:function(value){ return formatRefrence('manage_${entityVariable}_datagrid','all${entity.propertyName?cap_first}s',value);} ">${entity.common}</th>
 			<#else>
@@ -66,8 +66,8 @@ $(function() {
     
     <!-- 每行的Action动作模板 -->
     <div id="manage_${entityVariable}_action" style="display: none;">
-      <a onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:{0},entity:'${entityVariable}',height:300});" href="#"><img title="编辑" style="width:16px;height:16px;vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/plugin/jquery-easyui-1.3.1/themes/icons/edit.png" border="0"/></a>&nbsp
-      <a onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html',{0},'manage_${entityVariable}_datagrid');" href="#"><img title="删除" style="width:16px;height:16px;vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/plugin/jquery-easyui-1.3.1/themes/icons/delete.png" border="0"/></a>
+      <a onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',height:300});" href="#"><img title="编辑" style="width:16px;height:16px;vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/plugin/jquery-easyui-1.3.1/themes/icons/edit.png" border="0"/></a>&nbsp
+      <a onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" href="#"><img title="删除" style="width:16px;height:16px;vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/plugin/jquery-easyui-1.3.1/themes/icons/delete.png" border="0"/></a>
     </div>
     
     <!-- 表格的工具栏 -->

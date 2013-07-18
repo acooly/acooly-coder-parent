@@ -11,7 +11,9 @@ public class ColumnMetadata {
 	/** 字符类型 */
 	public static final int DATATYPE_STRING = 0;
 	/** 数字类型 */
-	public static final int DATATYPE_NUMBER = 1;
+	public static final int DATATYPE_LONG = 1;
+
+	public static final int DATATYPE_INT = 4;
 	/** 日期时间类型 */
 	public static final int DATATYPE_DATE = 2;
 	/** 对象类型 */
@@ -50,20 +52,22 @@ public class ColumnMetadata {
 
 	public String getJavaDataType() {
 		switch (dataType) {
-			case DATATYPE_STRING :
-				return "String";
-			case DATATYPE_NUMBER :
-				if (getLength() > 4) {
-					return "Long";
-				} else {
-					return "int";
-				}
-			case DATATYPE_DATE :
-				return "Date";
-			case DATATYPE_LOB :
-				return "String";
-			default :
-				return "String";
+		case DATATYPE_STRING:
+			return "String";
+		case DATATYPE_LONG:
+			if (getLength() > 4) {
+				return "Long";
+			} else {
+				return "int";
+			}
+		case DATATYPE_INT:
+			return "int";
+		case DATATYPE_DATE:
+			return "Date";
+		case DATATYPE_LOB:
+			return "String";
+		default:
+			return "String";
 		}
 	}
 

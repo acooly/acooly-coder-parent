@@ -22,17 +22,6 @@ public class PagesModuleGenerator extends FreeMarkerModuleGenerator {
 	protected void onGenerate(GenerateContext generateContext) {
 		List<ColumnMetadata> columns = generateContext.getTable()
 				.getColumnMetadatas();
-		for (ColumnMetadata column : columns) {
-			if (StringUtils.isBlank(column.getCommon())) {
-				continue;
-			}
-			Map<Integer, String> options = parseCommentToOptionMap(column
-					.getCommon());
-			if (options != null && options.size() > 0) {
-				generateContext.appendData("all" + column.getPropertyName()
-						+ "s", options);
-			}
-		}
 	}
 
 	@Override
