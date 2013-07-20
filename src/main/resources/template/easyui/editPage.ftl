@@ -24,7 +24,7 @@
 				<td><input type="text" name="${entity.propertyName}" class="easyui-numberbox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"/></td>
 				</#if>
 			<#else>
-				<#if entity.length >= 128>
+				<#if entity.length gte 128>
 				<td><textarea rows="3" cols="40" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"></textarea></td>
 				<#else>
 				<td><input type="text" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"/></td>
