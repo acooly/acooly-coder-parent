@@ -19,16 +19,16 @@ $(function() {
 			<#list table.columnMetadatas as entity>
 				<#if entity.name?lower_case != 'id'>
 				<#if entity.dataType == 2>
-					${entity.common}:<input id="search_GTE_${entity.propertyName}" name="search_GTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
-					至<input id="search_LTE_${entity.propertyName}" name="search_LTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 			
+					${entity.common}:<input size="15" id="search_GTE_${entity.propertyName}" name="search_GTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+					至<input size="15" id="search_LTE_${entity.propertyName}" name="search_LTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 			
 				<#elseif entity.dataType == 1 || entity.dataType == 4>
 					<#if entity.options??>
-					${entity.common}:<select name="search_EQ_${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${r"${"}all${entity.propertyName?cap_first}s}"><option value="${r"${"}e.key}" ${r"${"}param.search_EQ_${entity.propertyName} == e.key?'selected':''}>${r"${"}e.value}</option></c:forEach></select>
+					${entity.common}:<select style="width:80px;" name="search_EQ_${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${r"${"}all${entity.propertyName?cap_first}s}"><option value="${r"${"}e.key}" ${r"${"}param.search_EQ_${entity.propertyName} == e.key?'selected':''}>${r"${"}e.value}</option></c:forEach></select>
 					<#else>
-					${entity.common}:<input type="text" name="search_EQ_${entity.propertyName}" value="${r"${"}param.search_EQ_${entity.propertyName}}"  />
+					${entity.common}:<input type="text" size="15" name="search_EQ_${entity.propertyName}" value="${r"${"}param.search_EQ_${entity.propertyName}}"  />
 					</#if>
 				<#else>	
-					${entity.common}:<input type="text" name="search_LIKE_${entity.propertyName}" value="${r"${"}param.search_LIKE_${entity.propertyName}}"  />
+					${entity.common}:<input type="text" size="15" name="search_LIKE_${entity.propertyName}" value="${r"${"}param.search_LIKE_${entity.propertyName}}"  />
 				</#if>								
 				</#if>
 			</#list>
