@@ -61,8 +61,9 @@ public class OracleMetadataLoadDialect implements MetadataLoadDialect {
 			columnMetadata = new ColumnMetadata();
 			String name = rs.getString("NAME");
 			columnMetadata.setName(name);
-			columnMetadata.setDataType(transformDataType(rs.getString("TYPE")));
 			columnMetadata.setLength(rs.getInt("LENGTH"));
+			columnMetadata.setDataType(transformDataType(rs.getString("TYPE"),
+					columnMetadata.getLength()));
 			columnMetadata.setNullable(rs.getString("nullable")
 					.equalsIgnoreCase("Y"));
 			String comment = rs.getString("comments");
@@ -90,10 +91,11 @@ public class OracleMetadataLoadDialect implements MetadataLoadDialect {
 		return declare;
 	}
 
-	private int transformDataType(String xtype) {
+	private int transformDataType(String xtype, int length) {
 
 		if (xtype.equals("NUMBER")) {
-			return ColumnMetadata.DATATYPE_LONG;
+			return length <= 4 ? ColumnMetadata.DATATYPE_INT
+					: ColumnMetadata.DATATYPE_LONG;
 		} else if (xtype.equals("DATE")) {
 			return ColumnMetadata.DATATYPE_DATE;
 		} else {
@@ -112,10 +114,10 @@ public class OracleMetadataLoadDialect implements MetadataLoadDialect {
 			if (StringUtils.isBlank(json)) {
 				return null;
 			}
-			Map<String,String> data = new LinkedHashMap<String, String>();
-			json = StringUtils.substring(json,1, json.length()-1);
-			for(String item : StringUtils.split(json,",")){
-				String[] fields = StringUtils.split(item,":");
+			Map<String, String> data = new LinkedHashMap<String, String>();
+			json = StringUtils.substring(json, 1, json.length() - 1);
+			for (String item : StringUtils.split(json, ",")) {
+				String[] fields = StringUtils.split(item, ":");
 				data.put(fields[0], fields[1]);
 			}
 			return data;
