@@ -85,7 +85,7 @@
 
 	<bean id="pagesModuleGenerator" class="com.acooly.module.coder.module.PagesModuleGenerator">
 		<property name="generateConfiguration" ref="generateConfiguration" />
-		<property name="templateName" value="listPage.ftl,editPage.ftl,importPage.ftl" />
+		<property name="templateName" value="listPage.ftl,editPage.ftl,showPage.ftl,importPage.ftl" />
 	</bean>
 
 

@@ -66,13 +66,14 @@ $(function() {
     
     <!-- 每行的Action动作模板 -->
     <div id="manage_${entityVariable}_action" style="display: none;">
-      <a onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',height:300});" href="#"><img title="编辑" style="width:16px;height:16px;vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/plugin/jquery-easyui-1.3.1/themes/icons/edit.png" border="0"/></a>&nbsp
-      <a onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" href="#"><img title="删除" style="width:16px;height:16px;vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/plugin/jquery-easyui-1.3.1/themes/icons/delete.png" border="0"/></a>
+      <a onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:400});" href="#"><img title="编辑" style="width:vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/style/icons/action/edit.png" border="0"/></a>&nbsp
+      <a onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,400);" href="#"><img title="查看" style="width:vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/style/icons/action/show.png" border="0"/></a>&nbsp
+      <a onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" href="#"><img title="删除" style="width:vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/style/icons/action/delete.png" border="0"/></a>
     </div>
     
     <!-- 表格的工具栏 -->
     <div id="manage_${entityVariable}_toolbar">
-      <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="$.acooly.framework.create({url:'${entityContextPath}/create.html',entity:'${entityVariable}',height:300})">添加</a> 
+      <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="$.acooly.framework.create({url:'${entityContextPath}/create.html',entity:'${entityVariable}',width:500,height:400})">添加</a> 
       <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="$.acooly.framework.removes('${entityContextPath}/deleteJson.html','manage_${entityVariable}_datagrid')">批量删除</a>
       <a href="#" class="easyui-menubutton" data-options="menu:'#manage_${entityVariable}_exports_menu',iconCls:'icon-export'">批量导出</a>
       <div id="manage_${entityVariable}_exports_menu" style="width:150px;">

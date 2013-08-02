@@ -50,6 +50,7 @@ src/main/resources/template/easyui/importPage.ftl -text
 src/main/resources/template/easyui/listPage.ftl -text
 src/main/resources/template/easyui/service.ftl -text
 src/main/resources/template/easyui/serviceImpl.ftl -text
+src/main/resources/template/easyui/showPage.ftl -text
 src/main/resources/template/extreme/JpaDao.ftl -text
 src/main/resources/template/extreme/controller.ftl -text
 src/main/resources/template/extreme/dao.ftl -text

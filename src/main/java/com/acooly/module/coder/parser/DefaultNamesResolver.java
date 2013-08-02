@@ -22,6 +22,7 @@ public class DefaultNamesResolver implements NamesResolver {
 	private String controllerPostfit = "ManagerController";
 	private String listPagePostfit = "List.jsp";
 	private String editPagePostfit = "Edit.jsp";
+	private String showPagePostfit = "Show.jsp";
 	private String importPagePostfit = "Import.jsp";
 	
 	@Override
@@ -57,6 +58,7 @@ public class DefaultNamesResolver implements NamesResolver {
 				+ getGenerateConfiguration().getWebappPath() + "/" + getGenerateConfiguration().getPagePath());
 		namesHold.setListPageName(baseName + listPagePostfit);
 		namesHold.setEditPageName(baseName + editPagePostfit);
+		namesHold.setShowPageName(baseName + showPagePostfit);
 		namesHold.setImportPageName(baseName + importPagePostfit);
 		return namesHold;
 	}

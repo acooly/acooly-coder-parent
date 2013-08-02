@@ -10,7 +10,7 @@
 		<#list table.columnMetadatas as entity>
 			<#if entity.name?lower_case != 'id'>
 			<tr>
-				<th width="30%">${entity.common}：</th>
+				<th<#if entity_index == 1> width="25%"</#if>>${entity.common}：</th>
 			<#if entity.dataType == 2>
 				<td><input type="text" name="${entity.propertyName}" size="15" value="<fmt:formatDate value="${r"${"}${entityVariable}.${entity.propertyName}}" pattern="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" <#if !entity.nullable>data-options="required:true"</#if> /></td>
 			<#elseif entity.dataType == 1 || entity.dataType == 4>
@@ -24,7 +24,7 @@
 				<td><input type="text" name="${entity.propertyName}" class="easyui-numberbox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"/></td>
 				</#if>
 			<#else>
-				<#if entity.length gte 128>
+				<#if entity.length gt 128>
 				<td><textarea rows="3" cols="40" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"></textarea></td>
 				<#else>
 				<td><input type="text" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"/></td>

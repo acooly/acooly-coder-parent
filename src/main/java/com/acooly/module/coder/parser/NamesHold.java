@@ -39,6 +39,15 @@ public class NamesHold {
 
 	private String editPageName;
 	private String ImportPageName;
+	private String showPageName;
+
+	public String getShowPageName() {
+		return showPageName;
+	}
+
+	public void setShowPageName(String showPageName) {
+		this.showPageName = showPageName;
+	}
 
 	public String getDomainClassName() {
 		return domainClassName;
@@ -202,8 +211,7 @@ public class NamesHold {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this,
-				ToStringStyle.SHORT_PREFIX_STYLE);
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }
