@@ -13,7 +13,7 @@ $(function() {
   <!-- 查询条件 -->
   <div data-options="region:'north',border:false" style="padding:5px; overflow: hidden;" align="left">
     <form id="manage_${entityVariable}_searchform" onsubmit="return false">
-      <table class="tableForm">
+      <table class="tableForm" width="100%">
         <tr>
           <td align="left">
 			<#list table.columnMetadatas as entity>
@@ -32,7 +32,7 @@ $(function() {
 				</#if>								
 				</#if>
 			</#list>
-          	<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="$.acooly.framework.search('manage_${entityVariable}_searchform','manage_${entityVariable}_datagrid');">查询</a> 
+          	<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:false" onclick="$.acooly.framework.search('manage_${entityVariable}_searchform','manage_${entityVariable}_datagrid');">查询</a> 
           </td>
         </tr>
       </table>
