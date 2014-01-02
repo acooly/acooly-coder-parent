@@ -36,6 +36,8 @@ src/main/java/com/acooly/module/coder/test/CodeGeneratorMain.java -text
 src/main/java/com/acooly/module/coder/ui/AcoolyCodeGeneratorGui.java -text
 src/main/java/com/acooly/module/coder/ui/ConfigFileHelper.java -text
 src/main/java/com/acooly/module/coder/ui/Generator.java -text
+src/main/resources/application.mysql.properties -text
+src/main/resources/application.oracle.properties -text
 src/main/resources/application.properties -text
 src/main/resources/log4j.properties -text
 src/main/resources/spring/applicationContext-coder.xml -text
