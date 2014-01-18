@@ -66,9 +66,9 @@ $(function() {
     
     <!-- 每行的Action动作模板 -->
     <div id="manage_${entityVariable}_action" style="display: none;">
-      <a onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:400});" href="#"><img title="编辑" style="width:vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/style/icons/action/edit.png" border="0"/></a>&nbsp
-      <a onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,400);" href="#"><img title="查看" style="width:vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/style/icons/action/show.png" border="0"/></a>&nbsp
-      <a onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" href="#"><img title="删除" style="width:vertical-align:middle;" src="${r"${"}pageContext.request.contextPath}/manage/style/icons/action/delete.png" border="0"/></a>
+      <a class="line-action icon-edit" onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:400});" href="#" title="编辑"></a>&nbsp
+      <a class="line-action icon-show" onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,400);" href="#" title="查看"></a>&nbsp
+      <a class="line-action icon-delete" onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" href="#" title="删除"></a>
     </div>
     
     <!-- 表格的工具栏 -->
