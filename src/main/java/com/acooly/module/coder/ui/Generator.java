@@ -104,7 +104,7 @@ public class Generator {
 	protected void createContents() {
 		shell = new Shell(SWT.MIN);
 		shell.setSize(587, 453);
-		shell.setText("Feinno-SSH代码生成器1.0.0");
+		shell.setText("Acooly代码生成器2.0.0");
 		shell.setLayout(new GridLayout());
 
 		compositeMain = new Composite(shell, SWT.BORDER);
