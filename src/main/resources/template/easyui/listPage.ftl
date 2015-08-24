@@ -66,8 +66,8 @@ $(function() {
     
     <!-- 每行的Action动作模板 -->
     <div id="manage_${entityVariable}_action" style="display: none;">
-      <a class="line-action icon-edit" onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:400});" href="#" title="编辑"></a>&nbsp
-      <a class="line-action icon-show" onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,400);" href="#" title="查看"></a>&nbsp
+      <a class="line-action icon-edit" onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:400});" href="#" title="编辑"></a>
+      <a class="line-action icon-show" onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,400);" href="#" title="查看"></a>
       <a class="line-action icon-delete" onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" href="#" title="删除"></a>
     </div>
     
