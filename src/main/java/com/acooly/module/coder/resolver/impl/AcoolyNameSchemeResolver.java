@@ -16,10 +16,7 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 
 	/** 表或列名单词分割符，每个分割符后的单词首字母大写（驼峰规则） */
 	private static final String WORD_SEPARATOR = "_";
-
 	private GenerateConfiguration generateConfiguration;
-
-	private String tableToEntityIgnorPrefix;
 
 	private String daoPostfit = "Dao";
 	private String daoImplPostfit = "DaoImpl";
@@ -28,10 +25,10 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 	private String serviceImplPostfit = "ServiceImpl";
 	private String serviceTestPostfit = "ServiceTest";
 	private String controllerPostfit = "ManagerController";
-	private String listPagePostfit = "List.jsp";
-	private String editPagePostfit = "Edit.jsp";
-	private String showPagePostfit = "Show.jsp";
-	private String importPagePostfit = "Import.jsp";
+	private String listPagePostfit = "List";
+	private String editPagePostfit = "Edit";
+	private String showPagePostfit = "Show";
+	private String importPagePostfit = "Import";
 
 	@Override
 	public NameScheme resolve(String tableName) {
@@ -64,10 +61,10 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 
 		namesHold.setPagePath(getGenerateConfiguration().getWorkspace() + "/"
 				+ getGenerateConfiguration().getWebappPath() + "/" + getGenerateConfiguration().getPagePath());
-		namesHold.setListPageName(baseName + listPagePostfit);
-		namesHold.setEditPageName(baseName + editPagePostfit);
-		namesHold.setShowPageName(baseName + showPagePostfit);
-		namesHold.setImportPageName(baseName + importPagePostfit);
+		namesHold.setListPageName(baseName + listPagePostfit + getGenerateConfiguration().getViewSuffix());
+		namesHold.setEditPageName(baseName + editPagePostfit + getGenerateConfiguration().getViewSuffix());
+		namesHold.setShowPageName(baseName + showPagePostfit + getGenerateConfiguration().getViewSuffix());
+		namesHold.setImportPageName(baseName + importPagePostfit + getGenerateConfiguration().getViewSuffix());
 		return namesHold;
 	}
 
@@ -80,8 +77,8 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 	private String convertBaseName(String tableName) {
 		String baseName = tableName.toLowerCase();
 
-		if (StringUtils.isNotBlank(tableToEntityIgnorPrefix)) {
-			String ignorPrefix = tableToEntityIgnorPrefix.toLowerCase();
+		if (StringUtils.isNotBlank(generateConfiguration.getTableToEntityIgnorPrefix())) {
+			String ignorPrefix = generateConfiguration.getTableToEntityIgnorPrefix().toLowerCase();
 			if (baseName.startsWith(ignorPrefix)) {
 				baseName = StringUtils.substringAfter(baseName, ignorPrefix);
 			}
@@ -177,16 +174,20 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 		this.serviceTestPostfit = serviceTestPostfit;
 	}
 
-	public void setTableToEntityIgnorPrefix(String tableToEntityIgnorPrefix) {
-		this.tableToEntityIgnorPrefix = tableToEntityIgnorPrefix;
-	}
-
 	public String getImportPagePostfit() {
 		return importPagePostfit;
 	}
 
 	public void setImportPagePostfit(String importPagePostfit) {
 		this.importPagePostfit = importPagePostfit;
+	}
+
+	public String getShowPagePostfit() {
+		return showPagePostfit;
+	}
+
+	public void setShowPagePostfit(String showPagePostfit) {
+		this.showPagePostfit = showPagePostfit;
 	}
 
 }

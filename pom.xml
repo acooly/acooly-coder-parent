@@ -104,7 +104,7 @@
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
-										<Main-Class>com.acooly.module.coder.ui.Generator</Main-Class>
+										<Main-Class>com.acooly.module.coder.Generate</Main-Class>
 									</manifestEntries>
 								</transformer>
 							</transformers>

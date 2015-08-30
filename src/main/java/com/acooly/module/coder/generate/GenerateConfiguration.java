@@ -22,6 +22,12 @@ public class GenerateConfiguration {
 
 	private String templatePath;
 
+	/** 表名转实体名忽略前缀 */
+	private String tableToEntityIgnorPrefix;
+
+	/** 输出视图扩展名 */
+	private String viewSuffix = ".jsp";
+
 	public String getWorkspace() {
 		return workspace;
 	}
@@ -86,9 +92,24 @@ public class GenerateConfiguration {
 		this.testPath = testPath;
 	}
 
+	public String getTableToEntityIgnorPrefix() {
+		return tableToEntityIgnorPrefix;
+	}
+
+	public void setTableToEntityIgnorPrefix(String tableToEntityIgnorPrefix) {
+		this.tableToEntityIgnorPrefix = tableToEntityIgnorPrefix;
+	}
+
+	public String getViewSuffix() {
+		return viewSuffix;
+	}
+
+	public void setViewSuffix(String viewSuffix) {
+		this.viewSuffix = viewSuffix;
+	}
+
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this,
-				ToStringStyle.MULTI_LINE_STYLE);
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
 }

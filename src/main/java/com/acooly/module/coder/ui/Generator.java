@@ -32,8 +32,8 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.acooly.module.coder.db.TableLoaderService;
 import com.acooly.module.coder.generate.impl.DefaultCodeGeneratorFactory;
+import com.google.common.collect.Lists;
 
 public class Generator {
 
@@ -273,22 +273,12 @@ public class Generator {
 		txtRootPackage.setText(p.getProperty("generator.rootPackage"));
 		txtTableToEntityIgnorPrefix.setText(p.getProperty("generator.tableToEntityIgnorPrefix"));
 
-		//loadAllTables();
+		// loadAllTables();
 
 		((GridData) compositeGenerate.getLayoutData()).exclude = false;
 		compositeGenerate.setVisible(true);
 		compositeGenerate.getParent().layout();
 
-	}
-
-	private void loadAllTables() {
-		TableLoaderService diglect = (TableLoaderService) getContext().getBean("metadataLoadDialect");
-		List<String> tableNames = diglect.getTableNames();
-		txtTables.setText(tableNames.toString());
-	}
-
-	private String[] getTargetTables() {
-		return new String[]{};
 	}
 
 	private void hideGenerateView() {
@@ -573,13 +563,23 @@ public class Generator {
 		String tables = txtTables.getText();
 		if (StringUtils.isBlank(tables)) {
 			MessageBox messageBox = new MessageBox(shell, SWT.ICON_WARNING | SWT.YES);
-			messageBox.setMessage("请先选择被生成的表，多个表使用空格分隔");
+			messageBox.setMessage("请先选择被生成的表，多个表使用空格或逗号分隔");
 			messageBox.open();
 			return;
 		}
+		List<String> listTbs = Lists.newArrayList();
+		for (String tb : StringUtils.split(tables)) {
+			if (!StringUtils.contains(tb, ",")) {
+				listTbs.add(tb);
+				continue;
+			}
+			for (String t : StringUtils.split(tb, ",")) {
+				listTbs.add(t);
+			}
+		}
 		DefaultCodeGeneratorFactory codeGeneratorFactory = (DefaultCodeGeneratorFactory) getContext().getBean(
 				"codeGeneratorFactory");
-		codeGeneratorFactory.generateTables(StringUtils.split(tables));
+		codeGeneratorFactory.generateTables(listTbs.toArray(new String[0]));
 	}
 
 	private Properties loadSetting() {

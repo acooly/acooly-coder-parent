@@ -33,6 +33,8 @@
 		<property name="webappPath" value="${generator.webappPath}" />
 		<property name="pagePath" value="${generator.pagePath}" />
 		<property name="templatePath" value="${generator.templatePath}" />
+		<property name="tableToEntityIgnorPrefix" value="${generator.tableToEntityIgnorPrefix}" />
+		<property name="viewSuffix" value="${generator.viewSuffix}" />
 	</bean>
 
 	<!-- 自动根据数据源，选择数据库表加载的数据库方言 -->
@@ -45,8 +47,6 @@
 	<bean id="nameSchemeResolver"
 		class="com.acooly.module.coder.resolver.impl.AcoolyNameSchemeResolver">
 		<property name="generateConfiguration" ref="generateConfiguration" />
-		<property name="tableToEntityIgnorPrefix" value="${generator.tableToEntityIgnorPrefix}" />
-		<property name="listPagePostfit" value=".jsp" />
 	</bean>
 
 	<bean id="entityIdDeclareResolver"
