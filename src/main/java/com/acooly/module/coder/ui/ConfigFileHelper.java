@@ -9,13 +9,13 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class ConfigFileHelper {
 
-	private static final String FILENAME = "application.properties";
+	private static final String FILENAME = "/application.properties";
 
 	public static Properties loadProperty() {
 		Properties p = new Properties();
 		InputStream in = null;
 		try {
-			in = ConfigFileHelper.class.getClassLoader().getResourceAsStream(
+			in = System.class.getResourceAsStream(
 					FILENAME);
 			if (in != null)
 				p.load(in);

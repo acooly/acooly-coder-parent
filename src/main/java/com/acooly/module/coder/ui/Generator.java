@@ -269,6 +269,8 @@ public class Generator {
 		// }
 
 		Properties p = loadSetting();
+		System.out.println(p);
+		System.out.println(p.getProperty("generator.workspace"));
 		txtWorkspace.setText(p.getProperty("generator.workspace"));
 		txtRootPackage.setText(p.getProperty("generator.rootPackage"));
 		txtTableToEntityIgnorPrefix.setText(p.getProperty("generator.tableToEntityIgnorPrefix"));
