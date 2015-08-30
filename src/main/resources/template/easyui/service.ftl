@@ -1,7 +1,7 @@
-package ${names.servicePackage};
+package ${nameScheme.servicePackage};
 
 import com.acooly.core.common.service.EntityService;
-import ${names.domainPackage}.${names.domainClassName};
+import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
 
 /**
  * ${table.comment} Service
@@ -11,6 +11,6 @@ import ${names.domainPackage}.${names.domainClassName};
  * @author Acooly Code Generator
  *
  */
-public interface ${names.serviceClassName} extends EntityService<${names.domainClassName}> {
+public interface ${nameScheme.serviceClassName} extends EntityService<${nameScheme.domainClassName}> {
 
 }

@@ -32,8 +32,8 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.acooly.module.coder.DefaultCodeGeneratorFactory;
-import com.acooly.module.coder.db.dialect.MetadataLoadDialect;
+import com.acooly.module.coder.db.TableLoaderService;
+import com.acooly.module.coder.generate.impl.DefaultCodeGeneratorFactory;
 
 public class Generator {
 
@@ -282,8 +282,8 @@ public class Generator {
 	}
 
 	private void loadAllTables() {
-		MetadataLoadDialect diglect = (MetadataLoadDialect) getContext().getBean("metadataLoadDialect");
-		List<String> tableNames = diglect.loadTables();
+		TableLoaderService diglect = (TableLoaderService) getContext().getBean("metadataLoadDialect");
+		List<String> tableNames = diglect.getTableNames();
 		txtTables.setText(tableNames.toString());
 	}
 

@@ -9,13 +9,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.acooly.module.coder.generate.impl.DefaultCodeGeneratorFactory;
+
 public class Generate {
 
 	public static void main(String[] args) {
-
-		// create the command line parser
 		CommandLineParser parser = new PosixParser();
-		// create the Options
 		Options options = new Options();
 		options.addOption("W", "workspace", true,
 				"Code generation target main directory. you can also be configured in application.properties");

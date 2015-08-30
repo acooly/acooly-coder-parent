@@ -1,4 +1,4 @@
-package ${names.domainPackage};
+package ${nameScheme.domainPackage};
 
 
 import java.util.Date;
@@ -20,14 +20,15 @@ import com.acooly.core.common.domain.AbstractEntity;
 /**
  * ${table.comment} Entity
  *
- * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
- *
  * @author Acooly Code Generator
+ * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
  */
 @Entity
 @Table(name = "${table.name}")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ${names.domainClassName} extends AbstractEntity {
+public class ${nameScheme.domainClassName} extends AbstractEntity {
+	/** serialVersionUID */
+	private static final long serialVersionUID = 1L;
 <#list table.columnMetadatas as entity>
 	/** ${entity.common} */
 	private ${entity.javaDataType} ${entity.propertyName}<#if (entity.defaultValue)??> = <#if entity.dataType = 1>${entity.defaultValue}l<#elseif entity.dataType = 4>${entity.defaultValue}<#elseif entity.dataType = 2>new Date()<#else>"${entity.defaultValue}"</#if></#if>;

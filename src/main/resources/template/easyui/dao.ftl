@@ -1,7 +1,7 @@
-package ${names.daoPackage};
+package ${nameScheme.daoPackage};
 
 import com.acooly.core.common.dao.jpa.EntityJpaDao;
-import ${names.domainPackage}.${names.domainClassName};
+import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
 
 /**
  * ${table.comment} JPA Dao
@@ -11,6 +11,6 @@ import ${names.domainPackage}.${names.domainClassName};
  * @author Acooly Code Generator
  *
  */
-public interface ${names.daoClassName} extends EntityJpaDao<${names.domainClassName}, Long> {
+public interface ${nameScheme.daoClassName} extends EntityJpaDao<${nameScheme.domainClassName}, Long> {
 
 }

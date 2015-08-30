@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
@@ -13,79 +15,85 @@
 
 	<description>代码生成器</description>
 
-	<!-- 
-	<bean id="domainNameHolder" class="com.acooly.module.coder.names.ClassNameHolder">
-		<property name="packageName" value="domain" />
-		<property name="className" value="#{className(tableName)}" />
-		<property name="variableName" value="#{variableName(tableName)}">
+	<!-- 代码生成工厂 -->
+	<bean id="codeGeneratorFactory"
+		class="com.acooly.module.coder.generate.impl.DefaultCodeGeneratorFactory">
+		<property name="generateConfiguration" ref="generateConfiguration" />
+		<property name="tableLoaderService" ref="tableLoaderService" />
+		<property name="nameSchemeResolver" ref="nameSchemeResolver" />
+		<property name="entityIdDeclareResolver" ref="entityIdDeclareResolver" />
 	</bean>
-	 -->
-	
-	<bean id="generateConfiguration" class="com.acooly.module.coder.GenerateConfiguration">
+
+	<bean id="generateConfiguration" class="com.acooly.module.coder.generate.GenerateConfiguration">
 		<property name="workspace" value="${generator.workspace}" />
 		<property name="rootPackage" value="${generator.rootPackage}" />
 		<property name="codePath" value="${generator.codePath}" />
 		<property name="testPath" value="${generator.testPath}" />
 		<property name="resourcePath" value="${generator.resourcePath}" />
 		<property name="webappPath" value="${generator.webappPath}" />
-		<property name="pagePath" value="${generator.pagePath}"/>
+		<property name="pagePath" value="${generator.pagePath}" />
 		<property name="templatePath" value="${generator.templatePath}" />
 	</bean>
 
 	<!-- 自动根据数据源，选择数据库表加载的数据库方言 -->
-	<bean id="metadataLoadDialect" factory-method="getMetadataLoadDialect" class="com.acooly.module.coder.db.MetadataLoadDialectFactory">
+	<bean id="tableLoaderService" factory-method="getTableLoaderDialect"
+		class="com.acooly.module.coder.db.TableLoaderDialectFactory">
 		<constructor-arg ref="jdbcTemplate" />
 	</bean>
 
 	<!-- 类/package/文件/页面 名称规则 -->
-	<bean id="namesResolver" class="com.acooly.module.coder.parser.DefaultNamesResolver">
+	<bean id="nameSchemeResolver"
+		class="com.acooly.module.coder.resolver.impl.AcoolyNameSchemeResolver">
 		<property name="generateConfiguration" ref="generateConfiguration" />
 		<property name="tableToEntityIgnorPrefix" value="${generator.tableToEntityIgnorPrefix}" />
 		<property name="listPagePostfit" value=".jsp" />
 	</bean>
 
-	<!-- 代码生成工厂 -->
-	<bean id="codeGeneratorFactory" class="com.acooly.module.coder.DefaultCodeGeneratorFactory">
-		<property name="generateConfiguration" ref="generateConfiguration" />
-		<property name="metadataLoadDialect" ref="metadataLoadDialect" />
-		<property name="namesResolver" ref="namesResolver" />
-	</bean>
-
+	<bean id="entityIdDeclareResolver"
+		class="com.acooly.module.coder.resolver.impl.DefaultEntityIdDeclareResolver" />
 
 	<!-- 各模块生成实现 -->
-	<bean id="domainModuleGenerator" class="com.acooly.module.coder.module.DomainModuleGenerator">
+	<bean id="domainModuleGenerator"
+		class="com.acooly.module.coder.module.impl.DomainModuleGenerator">
 		<property name="generateConfiguration" ref="generateConfiguration" />
 		<property name="templateName" value="domain.ftl" />
 	</bean>
 
-	<bean id="jpaDaoModuleGenerator" class="com.acooly.module.coder.module.JpaDaoModuleGenerator">
+	<bean id="jpaDaoModuleGenerator"
+		class="com.acooly.module.coder.module.impl.JpaDaoModuleGenerator">
 		<property name="generateConfiguration" ref="generateConfiguration" />
 		<property name="templateName" value="dao.ftl" />
 	</bean>
 
-	<bean id="daoTestModuleGenerator" class="com.acooly.module.coder.module.DaoTestModuleGenerator">
+	<bean id="daoTestModuleGenerator"
+		class="com.acooly.module.coder.module.impl.DaoTestModuleGenerator">
 		<property name="generateConfiguration" ref="generateConfiguration" />
 		<property name="templateName" value="daoTest.ftl" />
 	</bean>
 
-	<bean id="serviceInterfaceModuleGenerator" class="com.acooly.module.coder.module.ServiceInterfaceModuleGenerator">
+	<bean id="serviceInterfaceModuleGenerator"
+		class="com.acooly.module.coder.module.impl.ServiceInterfaceModuleGenerator">
 		<property name="generateConfiguration" ref="generateConfiguration" />
 		<property name="templateName" value="service.ftl" />
 	</bean>
 
-	<bean id="serviceImplModuleGenerator" class="com.acooly.module.coder.module.ServiceImplModuleGenerator">
+	<bean id="serviceImplModuleGenerator"
+		class="com.acooly.module.coder.module.impl.ServiceImplModuleGenerator">
 		<property name="generateConfiguration" ref="generateConfiguration" />
 		<property name="templateName" value="serviceImpl.ftl" />
 	</bean>
 
-	<bean id="managerControllerModuleGenerator" class="com.acooly.module.coder.module.ManagerControllerModuleGenerator">
+	<bean id="managerControllerModuleGenerator"
+		class="com.acooly.module.coder.module.impl.ManagerControllerModuleGenerator">
 		<property name="generateConfiguration" ref="generateConfiguration" />
 		<property name="templateName" value="controller.ftl" />
 	</bean>
 
-	<bean id="pagesModuleGenerator" class="com.acooly.module.coder.module.PagesModuleGenerator">
+	<bean id="pagesModuleGenerator"
+		class="com.acooly.module.coder.module.impl.PagesModuleGenerator">
 		<property name="generateConfiguration" ref="generateConfiguration" />
-		<property name="templateName" value="listPage.ftl,editPage.ftl,showPage.ftl,importPage.ftl" />
+		<property name="templateName"
+			value="listPage.ftl,editPage.ftl,showPage.ftl,importPage.ftl" />
 	</bean>
 
 

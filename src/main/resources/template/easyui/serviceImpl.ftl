@@ -1,13 +1,13 @@
-package ${names.serviceImplPackage};
+package ${nameScheme.serviceImplPackage};
 
 import org.springframework.stereotype.Service;
 
 import com.acooly.core.common.service.EntityServiceImpl;
-import ${names.servicePackage}.${names.serviceClassName};
-import ${names.daoPackage}.${names.daoClassName};
-import ${names.domainPackage}.${names.domainClassName};
+import ${nameScheme.servicePackage}.${nameScheme.serviceClassName};
+import ${nameScheme.daoPackage}.${nameScheme.daoClassName};
+import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
 
-@Service("${names.serviceClassName?uncap_first}")
-public class ${names.serviceImplClassName} extends EntityServiceImpl<${names.domainClassName}, ${names.daoClassName}> implements ${names.serviceClassName} {
+@Service("${nameScheme.serviceClassName?uncap_first}")
+public class ${nameScheme.serviceImplClassName} extends EntityServiceImpl<${nameScheme.domainClassName}, ${nameScheme.daoClassName}> implements ${nameScheme.serviceClassName} {
 
 }

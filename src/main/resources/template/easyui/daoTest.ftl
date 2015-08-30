@@ -1,4 +1,4 @@
-package ${names.daoTestPackage};
+package ${nameScheme.daoTestPackage};
 
 import javax.annotation.Resource;
 
@@ -13,68 +13,68 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.acooly.core.common.test.SpringTransactionalTests;
-import ${names.domainPackage}.${names.domainClassName};
+import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
 
 @ActiveProfiles("development")
 @ContextConfiguration(locations = "classpath:applicationContext-test-main.xml")
 @TransactionConfiguration(defaultRollback = true)
-public class ${names.daoTestClassName} extends SpringTransactionalTests {
+public class ${nameScheme.daoTestClassName} extends SpringTransactionalTests {
 
-	private static final Logger logger = LoggerFactory.getLogger(${names.daoTestClassName}.class);
+	private static final Logger logger = LoggerFactory.getLogger(${nameScheme.daoTestClassName}.class);
 	private static final String TABLE_NAME = "${table.name}";
 	
 	@Resource
-	${names.daoClassName} ${names.daoClassName?uncap_first};
+	${nameScheme.daoClassName} ${nameScheme.daoClassName?uncap_first};
 
 	@Test
 	public void testCreate() {
-		${names.domainClassName} ${names.domainClassName?uncap_first} = generateNewEntity();
+		${nameScheme.domainClassName} ${nameScheme.domainClassName?uncap_first} = generateNewEntity();
 		try {
-			${names.daoClassName?uncap_first}.create(${names.domainClassName?uncap_first});
+			${nameScheme.daoClassName?uncap_first}.create(${nameScheme.domainClassName?uncap_first});
 		} catch (Exception e) {
 			Assert.fail("testCreate fail. --> " + e.getMessage());
 		}
-		Assert.assertNotNull("testCreate fail. saved Id is null", ${names.domainClassName?uncap_first}.getId());
-		logger.info("test ${names.domainClassName} Create Successful.");
+		Assert.assertNotNull("testCreate fail. saved Id is null", ${nameScheme.domainClassName?uncap_first}.getId());
+		logger.info("test ${nameScheme.domainClassName} Create Successful.");
 	}
 
 	@Test
 	public void testUpdate() {
-		${names.domainClassName} ${names.domainClassName?uncap_first} = generateNewEntity();
+		${nameScheme.domainClassName} ${nameScheme.domainClassName?uncap_first} = generateNewEntity();
 		try {
 			// 先创建一个对象，再修改
-			${names.daoClassName?uncap_first}.create(${names.domainClassName?uncap_first});
-			${names.daoClassName?uncap_first}.update(${names.domainClassName?uncap_first});
+			${nameScheme.daoClassName?uncap_first}.create(${nameScheme.domainClassName?uncap_first});
+			${nameScheme.daoClassName?uncap_first}.update(${nameScheme.domainClassName?uncap_first});
 		} catch (Exception e) {
 			Assert.fail("testUpdate fail. --> " + e.getMessage());
 		}
-		logger.info("test ${names.daoClassName?uncap_first} Update Successful.");
+		logger.info("test ${nameScheme.daoClassName?uncap_first} Update Successful.");
 	}
 
 	@Test
 	public void testDelete() {
-		${names.domainClassName} ${names.domainClassName?uncap_first} = generateNewEntity();
+		${nameScheme.domainClassName} ${nameScheme.domainClassName?uncap_first} = generateNewEntity();
 		try {
-			${names.daoClassName?uncap_first}.save(${names.domainClassName?uncap_first});
-			Long savedId = ${names.domainClassName?uncap_first}.getId();
-			${names.daoClassName?uncap_first}.delete(savedId);
+			${nameScheme.daoClassName?uncap_first}.save(${nameScheme.domainClassName?uncap_first});
+			Long savedId = ${nameScheme.domainClassName?uncap_first}.getId();
+			${nameScheme.daoClassName?uncap_first}.delete(savedId);
 		} catch (Exception e) {
 			Assert.fail("testDelete fail. --> " + e.getMessage());
 		}
-		logger.info("test ${names.daoClassName?uncap_first} Delete Successful.");
+		logger.info("test ${nameScheme.daoClassName?uncap_first} Delete Successful.");
 	}
 
 	@Test
 	public void testGet() {
-		${names.domainClassName} ${names.domainClassName?uncap_first} = generateNewEntity();
+		${nameScheme.domainClassName} ${nameScheme.domainClassName?uncap_first} = generateNewEntity();
 		try {
-			${names.daoClassName?uncap_first}.save(${names.domainClassName?uncap_first});
-			${names.domainClassName} get${names.domainClassName} = ${names.daoClassName?uncap_first}.get(${names.domainClassName?uncap_first}.getId());
-			Assert.assertNotNull(get${names.domainClassName});
+			${nameScheme.daoClassName?uncap_first}.save(${nameScheme.domainClassName?uncap_first});
+			${nameScheme.domainClassName} get${nameScheme.domainClassName} = ${nameScheme.daoClassName?uncap_first}.get(${nameScheme.domainClassName?uncap_first}.getId());
+			Assert.assertNotNull(get${nameScheme.domainClassName});
 		} catch (Exception e) {
 			Assert.fail("testGet fail. --> " + e.getMessage());
 		}
-		logger.info("test ${names.daoClassName?uncap_first} Get Successful.");
+		logger.info("test ${nameScheme.daoClassName?uncap_first} Get Successful.");
 	}
 
 	
@@ -84,11 +84,11 @@ public class ${names.daoTestClassName} extends SpringTransactionalTests {
 		deleteFromTables(TABLE_NAME);
 	}
 
-	private ${names.domainClassName} generateNewEntity() {
-		${names.domainClassName} ${names.domainClassName?uncap_first} = new ${names.domainClassName}();
-		simpleFillEntity(${names.domainClassName?uncap_first});
-		${names.domainClassName?uncap_first}.setId(null);
-		return ${names.domainClassName?uncap_first};
+	private ${nameScheme.domainClassName} generateNewEntity() {
+		${nameScheme.domainClassName} ${nameScheme.domainClassName?uncap_first} = new ${nameScheme.domainClassName}();
+		simpleFillEntity(${nameScheme.domainClassName?uncap_first});
+		${nameScheme.domainClassName?uncap_first}.setId(null);
+		return ${nameScheme.domainClassName?uncap_first};
 	}
 
 }

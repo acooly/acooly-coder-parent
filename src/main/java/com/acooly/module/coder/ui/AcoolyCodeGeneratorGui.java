@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Text;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.acooly.module.coder.DefaultCodeGeneratorFactory;
+import com.acooly.module.coder.generate.impl.DefaultCodeGeneratorFactory;
 
 public class AcoolyCodeGeneratorGui {
 

@@ -1,4 +1,4 @@
-package ${names.controllerPackage};
+package ${nameScheme.controllerPackage};
 
 import java.util.Map;
 
@@ -9,13 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.acooly.core.common.web.AbstractJQueryEntityController;
-import ${names.domainPackage}.${names.domainClassName};
-import ${names.servicePackage}.${names.serviceClassName};
+import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
+import ${nameScheme.servicePackage}.${nameScheme.serviceClassName};
 import com.google.common.collect.Maps;
 
 @Controller
-@RequestMapping(value = "${configuration.pagePath}/${names.domainClassName?uncap_first}")
-public class ${names.controllerClassName} extends AbstractJQueryEntityController<${names.domainClassName}, ${names.serviceClassName}> {
+@RequestMapping(value = "${configuration.pagePath}/${nameScheme.domainClassName?uncap_first}")
+public class ${nameScheme.controllerClassName} extends AbstractJQueryEntityController<${nameScheme.domainClassName}, ${nameScheme.serviceClassName}> {
 
 <#assign existOptions=false>
 <#list table.columnMetadatas as entity>
@@ -32,7 +32,7 @@ public class ${names.controllerClassName} extends AbstractJQueryEntityController
 
 	@SuppressWarnings("unused")
 	@Autowired
-	private ${names.serviceClassName} ${names.serviceClassName?uncap_first};
+	private ${nameScheme.serviceClassName} ${nameScheme.serviceClassName?uncap_first};
 
 	
 <#if existOptions>

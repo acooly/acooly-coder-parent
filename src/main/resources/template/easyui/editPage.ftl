@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/manage/common/taglibs.jsp"%>
-<#assign entityVariable="${names.domainClassName?uncap_first}" />
-<#assign entityContextPath="${configuration.pagePath}/${names.domainClassName?uncap_first}" />
+<#assign entityVariable="${nameScheme.domainClassName?uncap_first}" />
+<#assign entityContextPath="${configuration.pagePath}/${nameScheme.domainClassName?uncap_first}" />
 <div>
     <form id="manage_${entityVariable}_editform" action="${r"${"}pageContext.request.contextPath}${entityContextPath}/${r"${"}action=='create'?'saveJson':'updateJson'}.html" method="post">
       <jodd:form bean="${entityVariable}" scope="request">

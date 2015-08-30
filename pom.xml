@@ -2,11 +2,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>acooly-module-coder</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<packaging>jar</packaging>
 
 	<name>acooly code generator</name>
-	<url>http://www.feinno.com/framework/coder</url>
+	<url>http://www.acooly.com</url>
 
 	<parent>
 		<groupId>com.acooly</groupId>

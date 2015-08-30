@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 
-import com.acooly.module.coder.GenerateConfiguration;
-import com.acooly.module.coder.GenerateContext;
-import com.acooly.module.coder.freemarker.DatetimeMethod;
+import com.acooly.module.coder.generate.GenerateConfiguration;
+import com.acooly.module.coder.generate.GenerateContext;
+import com.acooly.module.coder.support.DatetimeMethod;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -32,18 +32,16 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 
 		try {
 			onGenerate(generateContext);
-
 			String[] templates = StringUtils.split(templateName, ",");
 			for (String temp : templates) {
 				Template template = getTemplate(temp);
 				doGenerate(template, generateContext, getOutputPath(generateContext, temp));
-				logger.debug("Generate Module Success. -- > " + getClass().getName());
+				logger.debug("Generate Module Success. -- > {}", getClass().getSimpleName());
 			}
 
 		} catch (Exception e) {
 			logger.warn("Generate Module fail.", e);
 		}
-
 	}
 
 	protected void onGenerate(GenerateContext generateContext) {
@@ -65,10 +63,10 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 			out = new OutputStreamWriter(new FileOutputStream(distFile, false), "UTF-8");
 			template.process(generateContext, out);
 			out.flush();
-			logger.debug("generate module with template(" + template.getName() + ") to " + distFile.getPath());
+			logger.debug("generate module with template({}) to {}", template.getName(), distFile.getPath());
 		} catch (Exception e) {
-			logger.warn("generate module fail. template --> " + template.getName() + "; table --> "
-					+ generateContext.getNames().getDomainClassName() + "; outputDir --> " + outputPath, e);
+			logger.warn("generate module fail. template --> {} table --> {} ; outputDir --> {}" + template.getName(),
+					generateContext.getNameScheme().getDomainClassName(), outputPath, e);
 		} finally {
 			IOUtils.closeQuietly(out);
 		}
