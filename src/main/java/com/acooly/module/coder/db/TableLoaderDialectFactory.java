@@ -27,13 +27,21 @@ public class TableLoaderDialectFactory {
 		if (StringUtils.contains(jdbcUrl, ":sqlserver:")) {
 			dialect = new MSSQLTableLoaderDialect(jdbcTemplate);
 		} else if (StringUtils.contains(jdbcUrl, ":mysql:")) {
-			dialect = new MySQLTableLoaderDialect(jdbcTemplate);
+			dialect = new MySQLTableLoaderDialect(jdbcTemplate, getMysqlschema(jdbcUrl));
 		} else if (StringUtils.contains(jdbcUrl, ":oracle:")) {
 			dialect = new OracleTableLoaderDialect(jdbcTemplate);
 		} else {
 			throw new IllegalArgumentException("Unknown Database of " + jdbcUrl);
 		}
 		return dialect;
+	}
+
+	private static String getMysqlschema(String jdbcUrl) {
+		String scheme = StringUtils.substringAfterLast(jdbcUrl, "/");
+		if (StringUtils.contains(scheme, "?")) {
+			scheme = StringUtils.substringBefore(scheme, "?");
+		}
+		return scheme;
 	}
 
 	private static String getJdbcUrlFromDataSource(DataSource dataSource) {

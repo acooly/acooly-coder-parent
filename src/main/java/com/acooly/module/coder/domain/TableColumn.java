@@ -27,8 +27,6 @@ public class TableColumn {
 	private String name;
 	/** 列类型 */
 	private int dataType;
-	
-	private String javaType;
 	/** 列精度 */
 	private int length;
 	/** 是否可以为空 */

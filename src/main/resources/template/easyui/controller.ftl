@@ -21,16 +21,24 @@ public class ${nameScheme.controllerClassName} extends AbstractJQueryEntityContr
 <#list table.columnMetadatas as entity>
 <#if entity.options??>
 	<#assign existOptions=true>
-	private static Map<Integer, String> all${entity.propertyName?cap_first}s = Maps.newTreeMap();
+	<#if entity.dataType == 1 || entity.dataType == 4>
+	private static Map<Integer, String> all${entity.propertyName?cap_first}s = Maps.newLinkedHashMap();
 	static {
 	<#list entity.options?keys as key>
 		all${entity.propertyName?cap_first}s.put(${key}, "${entity.options[key]}");
 	</#list>
 	}
+	<#else>
+	private static Map<String, String> all${entity.propertyName?cap_first}s = Maps.newLinkedHashMap();
+	static {
+	<#list entity.options?keys as key>
+		all${entity.propertyName?cap_first}s.put("${key}", "${entity.options[key]}");
+	</#list>
+	}	
+	</#if>
 </#if>
 </#list>
 
-	@SuppressWarnings("unused")
 	@Autowired
 	private ${nameScheme.serviceClassName} ${nameScheme.serviceClassName?uncap_first};
 

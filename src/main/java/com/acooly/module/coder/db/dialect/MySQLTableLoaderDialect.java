@@ -25,25 +25,31 @@ import com.acooly.module.coder.domain.TableColumn;
  * 
  */
 public class MySQLTableLoaderDialect implements TableLoaderService {
-	private static final Logger logger = LoggerFactory.getLogger(OracleTableLoaderDialect.class);
+	private static final Logger logger = LoggerFactory.getLogger(MySQLTableLoaderDialect.class);
 
 	/** 列相关元数据SQL */
-	protected final static String COLUMN_METADATA_SQL = "select COLUMN_NAME as name,DATA_TYPE as type,(case when data_type='varchar' then CHARACTER_MAXIMUM_LENGTH else NUMERIC_PRECISION end)as length, IS_NULLABLE AS nullable,COLUMN_COMMENT AS comments,COLUMN_DEFAULT AS defaultValue from information_schema.COLUMNS where table_name=?";
+	protected final static String COLUMN_METADATA_SQL = "select COLUMN_NAME as name,DATA_TYPE as type,(case when data_type='varchar' then CHARACTER_MAXIMUM_LENGTH else NUMERIC_PRECISION end)as length, IS_NULLABLE AS nullable,COLUMN_COMMENT AS comments,COLUMN_DEFAULT AS defaultValue from information_schema.COLUMNS where table_schema=? and table_name=? order by ORDINAL_POSITION";
 	/** 表备注元数据SQL */
-	protected final static String TABLE_METADATA_SQL = "select TABLE_COMMENT from information_schema.tables where table_name = ?";
+	protected final static String TABLE_METADATA_SQL = "select TABLE_COMMENT from information_schema.tables where table_schema=? and table_name = ?";
 
 	protected final static String SELECT_ALL_TABLES = "select TABLE_NAME from information_schema.tables where table_schema=? ORDER BY TABLE_NAME";
 
 	private JdbcTemplate jdbcTemplate;
 
+	private String schema;
+
 	public MySQLTableLoaderDialect(JdbcTemplate jdbcTemplate) {
-		super();
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	public MySQLTableLoaderDialect(JdbcTemplate jdbcTemplate, String schema) {
+		this.jdbcTemplate = jdbcTemplate;
+		this.schema = schema;
 	}
 
 	@Override
 	public List<String> getTableNames() {
-		List<String> tables = jdbcTemplate.queryForList(SELECT_ALL_TABLES, String.class);
+		List<String> tables = jdbcTemplate.queryForList(SELECT_ALL_TABLES, String.class, schema);
 		return tables;
 	}
 
@@ -51,7 +57,7 @@ public class MySQLTableLoaderDialect implements TableLoaderService {
 	public Table loadTable(String tableName) {
 		Table tableMetadata = new Table();
 		tableMetadata.setName(tableName);
-		SqlRowSet rs = jdbcTemplate.queryForRowSet(COLUMN_METADATA_SQL, tableName);
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(COLUMN_METADATA_SQL, schema, tableName);
 		List<TableColumn> columnMetadatas = new LinkedList<TableColumn>();
 		TableColumn columnMetadata = null;
 		while (rs.next()) {
@@ -71,25 +77,20 @@ public class MySQLTableLoaderDialect implements TableLoaderService {
 			columnMetadatas.add(columnMetadata);
 		}
 		tableMetadata.setColumnMetadatas(columnMetadatas);
-		String tableComment = jdbcTemplate.queryForObject(TABLE_METADATA_SQL, String.class, tableName);
+		String tableComment = jdbcTemplate.queryForObject(TABLE_METADATA_SQL, String.class, schema, tableName);
 		tableMetadata.setComment(StringUtils.isBlank(tableComment) ? tableName : tableComment);
 		logger.debug("Load metadata success--> " + tableName);
 		return tableMetadata;
 	}
 
-	public String getEntityIdDeclare(String tableName) {
-		String declare = "@GeneratedValue";
-		return declare;
-	}
-
 	private int transformDataType(String xtype) {
-
 		if (StringUtils.equalsIgnoreCase(xtype, "int")) {
 			return TableColumn.DATATYPE_INT;
 		} else if (StringUtils.containsIgnoreCase(xtype, "bigint") || StringUtils.containsIgnoreCase(xtype, "numeric")
 				|| StringUtils.containsIgnoreCase(xtype, "decimal")) {
 			return TableColumn.DATATYPE_LONG;
-		} else if (xtype.equalsIgnoreCase("DATE") || xtype.equalsIgnoreCase("DATETIME")) {
+		} else if (xtype.equalsIgnoreCase("DATE") || xtype.equalsIgnoreCase("DATETIME")
+				|| xtype.equalsIgnoreCase("timestamp")) {
 			return TableColumn.DATATYPE_DATE;
 		} else {
 			return TableColumn.DATATYPE_STRING;

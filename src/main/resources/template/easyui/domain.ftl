@@ -1,8 +1,15 @@
 package ${nameScheme.domainPackage};
 
-
+<#assign existJavaDate=false>
+<#list table.columnMetadatas as entity>
+	<#if entity.dataType == 2>
+		<#assign existJavaDate=true>
+		<#break>
+	</#if>
+</#list>
+<#if existJavaDate>
 import java.util.Date;
-
+</#if>
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,8 +19,6 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 import com.acooly.core.common.domain.AbstractEntity;
 

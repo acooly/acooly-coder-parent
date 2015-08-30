@@ -18,18 +18,18 @@ $(function() {
           <td align="left">
 			<#list table.columnMetadatas as entity>
 				<#if entity.name?lower_case != 'id'>
+				<#if entity.options??>
+				${entity.common}:<select style="width:80px;" name="search_EQ_${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${r"${"}all${entity.propertyName?cap_first}s}"><option value="${r"${"}e.key}" ${r"${"}param.search_EQ_${entity.propertyName} == e.key?'selected':''}>${r"${"}e.value}</option></c:forEach></select>
+				<#else>
 				<#if entity.dataType == 2>
 					${entity.common}:<input size="15" id="search_GTE_${entity.propertyName}" name="search_GTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
 					至<input size="15" id="search_LTE_${entity.propertyName}" name="search_LTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 			
 				<#elseif entity.dataType == 1 || entity.dataType == 4>
-					<#if entity.options??>
-					${entity.common}:<select style="width:80px;" name="search_EQ_${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${r"${"}all${entity.propertyName?cap_first}s}"><option value="${r"${"}e.key}" ${r"${"}param.search_EQ_${entity.propertyName} == e.key?'selected':''}>${r"${"}e.value}</option></c:forEach></select>
-					<#else>
 					${entity.common}:<input type="text" size="15" name="search_EQ_${entity.propertyName}" value="${r"${"}param.search_EQ_${entity.propertyName}}"  />
-					</#if>
 				<#else>	
 					${entity.common}:<input type="text" size="15" name="search_LIKE_${entity.propertyName}" value="${r"${"}param.search_LIKE_${entity.propertyName}}"  />
-				</#if>								
+				</#if>	
+				</#if>							
 				</#if>
 			</#list>
           	<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:false" onclick="$.acooly.framework.search('manage_${entityVariable}_searchform','manage_${entityVariable}_datagrid');">查询</a> 
@@ -47,17 +47,17 @@ $(function() {
         <tr>
         	<th field="showCheckboxWithId" checkbox="true" data-options="formatter:function(value, row, index){ return row.id }">编号</th>
 		<#list table.columnMetadatas as entity>
+		<#if entity.options??>
+			<th field="${entity.propertyName}" data-options="formatter:function(value){ return formatRefrence('manage_${entityVariable}_datagrid','all${entity.propertyName?cap_first}s',value);} ">${entity.common}</th>
+		<#else>
 		<#if entity.dataType == 2>
 		    <th field="${entity.propertyName}" formatter="formatDate">${entity.common}</th>
 		<#elseif entity.dataType == 1 || entity.dataType == 4>
-			<#if entity.options??>
-			<th field="${entity.propertyName}" data-options="formatter:function(value){ return formatRefrence('manage_${entityVariable}_datagrid','all${entity.propertyName?cap_first}s',value);} ">${entity.common}</th>
-			<#else>
 			<th field="${entity.propertyName}">${entity.common}</th>
-			</#if>
 		<#else>	
 			<th field="${entity.propertyName}">${entity.common}</th>
-		</#if>					
+		</#if>	
+		</#if>				
 		</#list>        
           	<th field="rowActions" data-options="formatter:function(value, row, index){return formatAction('manage_${entityVariable}_action',value,row)}">动作</th>
         </tr>

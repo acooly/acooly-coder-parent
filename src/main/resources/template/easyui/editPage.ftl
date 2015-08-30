@@ -11,9 +11,6 @@
 			<#if entity.name?lower_case != 'id'>
 			<tr>
 				<th<#if entity_index == 1> width="25%"</#if>>${entity.common}：</th>
-			<#if entity.dataType == 2>
-				<td><input type="text" name="${entity.propertyName}" size="15" value="<fmt:formatDate value="${r"${"}${entityVariable}.${entity.propertyName}}" pattern="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" <#if !entity.nullable>data-options="required:true"</#if> /></td>
-			<#elseif entity.dataType == 1 || entity.dataType == 4>
 				<#if entity.options??>
 				<td><select name="${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox" <#if !entity.nullable>data-options="required:true"</#if>>
 					<c:forEach items="${r"${"}all${entity.propertyName?cap_first}s}" var="e">
@@ -21,15 +18,18 @@
 					</c:forEach>
 				</select></td>
 				<#else>
+				<#if entity.dataType == 2>
+				<td><input type="text" name="${entity.propertyName}" size="15" value="<fmt:formatDate value="${r"${"}${entityVariable}.${entity.propertyName}}" pattern="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" <#if !entity.nullable>data-options="required:true"</#if> /></td>
+				<#elseif entity.dataType == 1 || entity.dataType == 4>
 				<td><input type="text" name="${entity.propertyName}" class="easyui-numberbox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"/></td>
-				</#if>
-			<#else>
-				<#if entity.length gte 128>
+				<#else>
+				<#if entity.length gt 128>
 				<td><textarea rows="3" cols="40" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"></textarea></td>
 				<#else>
-				<td><input type="text" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"/></td>
+				<td><input type="text" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> <#if entity.length gt 0>validType="byteLength[1,${entity.length}]"</#if>/></td>
 				</#if>
-			</#if>
+				</#if>
+				</#if>
 			</tr>					
 			</#if>
 		</#list>        
