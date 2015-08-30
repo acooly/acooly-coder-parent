@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.PosixParser;
 import org.apache.commons.lang3.StringUtils;
@@ -16,17 +18,45 @@ import com.google.common.collect.Lists;
 
 public class Generate {
 
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		CommandLineParser parser = new PosixParser();
 		Options options = new Options();
-		options.addOption("i", "ignorePrefix", true,
-				"Ignore prefix that the table name convert to entity name. you can also be configured in application.properties");
-		options.addOption("v", "viewPath", true,
-				"The views relative path in your webapp. you can also be configured in application.properties");
-		options.addOption("P", "package", true,
-				"The root of the package of the generated code. you can also be configured in application.properties");
-		options.addOption("W", "workspace", true,
-				"Code generation target main directory. you can also be configured in application.properties");
+		Option o = OptionBuilder
+				.withArgName("ignorePrefix")
+				.hasArg()
+				.withDescription(
+						"Ignore prefix that the table name convert to entity name. you can also be configured in application.properties")
+				.create("i");
+		o.setOptionalArg(true);
+		options.addOption(o);
+
+		o = OptionBuilder
+				.withArgName("viewPath")
+				.hasArg()
+				.withDescription(
+						"The views relative path in your webapp. you can also be configured in application.properties")
+				.create("v");
+		o.setOptionalArg(true);
+		options.addOption(o);
+
+		o = OptionBuilder
+				.withArgName("package")
+				.hasArg()
+				.withDescription(
+						"The root of the package of the generated code. you can also be configured in application.properties")
+				.create("p");
+		o.setOptionalArg(true);
+		options.addOption(o);
+
+		o = OptionBuilder
+				.withArgName("workspace")
+				.hasArg()
+				.withDescription(
+						"Code generation target main directory. you can also be configured in application.properties")
+				.create("w");
+		o.setOptionalArg(true);
+		options.addOption(o);
 
 		String workspace = null;
 		String rootPackage = null;
@@ -36,17 +66,17 @@ public class Generate {
 		try {
 			// parse the command line arguments
 			CommandLine line = parser.parse(options, args);
-			if (line.hasOption("workspace")) {
-				workspace = StringUtils.trimToEmpty(line.getOptionValue("workspace"));
+			if (line.hasOption("w")) {
+				workspace = StringUtils.trimToEmpty(line.getOptionValue("w"));
 			}
-			if (line.hasOption("package")) {
-				rootPackage = StringUtils.trimToEmpty(line.getOptionValue("package"));
+			if (line.hasOption("p")) {
+				rootPackage = StringUtils.trimToEmpty(line.getOptionValue("p"));
 			}
-			if (line.hasOption("viewPath")) {
-				viewPath = StringUtils.trimToEmpty(line.getOptionValue("viewPath"));
+			if (line.hasOption("v")) {
+				viewPath = StringUtils.trimToEmpty(line.getOptionValue("v"));
 			}
-			if (line.hasOption("ignorePrefix")) {
-				ignorePrefix = StringUtils.trimToEmpty(line.getOptionValue("ignorePrefix"));
+			if (line.hasOption("i")) {
+				ignorePrefix = StringUtils.trimToEmpty(line.getOptionValue("i"));
 			}
 			String[] tbs = line.getArgs();
 			if (tbs == null || tbs.length == 0) {
@@ -88,5 +118,4 @@ public class Generate {
 		codeGeneratorFactory.generateTables(tables);
 
 	}
-
 }
