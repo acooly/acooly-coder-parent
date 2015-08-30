@@ -58,10 +58,20 @@ public class Generate {
 		o.setOptionalArg(true);
 		options.addOption(o);
 
+		o = OptionBuilder
+				.withArgName("tableViews")
+				.hasArg()
+				.withDescription(
+						"target tables or views in your database.")
+				.create("t");
+		o.setOptionalArg(false);
+		options.addOption(o);
+
 		String workspace = null;
 		String rootPackage = null;
 		String viewPath = null;
 		String ignorePrefix = null;
+		String tableViews = null;
 		String[] tables = null;
 		try {
 			// parse the command line arguments
@@ -78,7 +88,10 @@ public class Generate {
 			if (line.hasOption("i")) {
 				ignorePrefix = StringUtils.trimToEmpty(line.getOptionValue("i"));
 			}
-			String[] tbs = line.getArgs();
+			if (line.hasOption("t")) {
+				tableViews = StringUtils.trimToEmpty(line.getOptionValue("t"));
+			}
+			String[] tbs = StringUtils.split(tableViews);
 			if (tbs == null || tbs.length == 0) {
 				throw new RuntimeException();
 			}
