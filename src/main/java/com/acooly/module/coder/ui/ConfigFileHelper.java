@@ -9,17 +9,16 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class ConfigFileHelper {
 
-	private static final String FILENAME = "/application.properties";
+	private static final String FILENAME = "application.properties";
 
 	public static Properties loadProperty() {
 		Properties p = new Properties();
 		InputStream in = null;
 		try {
-			in = System.class.getResourceAsStream(
-					FILENAME);
+			in = ConfigFileHelper.class.getClassLoader().getResourceAsStream(FILENAME);
 			if (in != null)
 				p.load(in);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.out.println("load " + FILENAME + " int Properties error!");
 		} finally {
 			if (in != null) {
@@ -36,8 +35,7 @@ public class ConfigFileHelper {
 	public static void saveProperties(Map<String, String> data) {
 
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(
-					FILENAME);
+			PropertiesConfiguration config = new PropertiesConfiguration(FILENAME);
 			for (Map.Entry<String, String> entry : data.entrySet()) {
 				config.setProperty(entry.getKey(), entry.getValue());
 			}
@@ -61,8 +59,7 @@ public class ConfigFileHelper {
 	}
 
 	public static void main(String[] args) throws Exception {
-		PropertiesConfiguration config = new PropertiesConfiguration(
-				"application.properties");
+		PropertiesConfiguration config = new PropertiesConfiguration("application.properties");
 		config.setProperty("generator.pagePath", "/admin/business");
 		config.save();
 		// System.out.println(config.getString("generator.pagePath"));
