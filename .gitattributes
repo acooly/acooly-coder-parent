@@ -3,7 +3,6 @@ deploy/acooly-module-coder-1.1.0.jar -text
 deploy/application.properties -text
 deploy/generate.bat -text
 deploy/libs/acooly-core-2.0.0.jar -text
-deploy/libs/acooly-module-coder-1.1.0.jar -text
 deploy/libs/commons-cli-1.2.jar -text
 deploy/libs/commons-configuration-1.9.jar -text
 deploy/libs/commons-dbcp-1.4.jar -text
