@@ -6,7 +6,7 @@
 $(function() {
 	$.acooly.framework.createUploadify({
 				/** 上传导入的URL */
-				url:'${entityContextPath}/importJson.html',
+				url:'${entityContextPath}/importJson.html?_csrf=${requestScope["org.springframework.security.web.csrf.CsrfToken"].token}&splitKey=v',
 				/** 导入操作消息容器 */
 				messager:'manage_${entityVariable}_import_uploader_message',
 				/** 上传导入文件表单ID */
