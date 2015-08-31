@@ -1,7 +1,6 @@
 * text=auto !eol
 deploy/acooly-module-coder-1.1.0.jar -text
 deploy/application.properties -text
-deploy/generate.bat -text
 deploy/libs/acooly-core-2.0.0.jar -text
 deploy/libs/commons-cli-1.2.jar -text
 deploy/libs/commons-configuration-1.9.jar -text
@@ -30,7 +29,6 @@ deploy/libs/swt-3.5.2-x86_64.jar -text
 deploy/log4j.properties -text
 deploy/start-ui64.bat -text
 deploy/start.bat -text
-deploy/ui64.bat -text
 /package.bat -text
 /pom.xml -text
 src/main/java/com/acooly/module/coder/Generate.java -text
