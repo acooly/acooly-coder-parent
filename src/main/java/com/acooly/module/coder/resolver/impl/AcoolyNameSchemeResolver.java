@@ -25,7 +25,7 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 	private String serviceImplPostfit = "ServiceImpl";
 	private String serviceTestPostfit = "ServiceTest";
 	private String controllerPostfit = "ManagerController";
-	private String listPagePostfit = "List";
+	private String listPagePostfit = "";
 	private String editPagePostfit = "Edit";
 	private String showPagePostfit = "Show";
 	private String importPagePostfit = "Import";
