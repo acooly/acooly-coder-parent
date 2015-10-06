@@ -84,7 +84,8 @@ public class MySQLTableLoaderDialect implements TableLoaderService {
 	}
 
 	private int transformDataType(String xtype) {
-		if (StringUtils.equalsIgnoreCase(xtype, "int")) {
+		if (StringUtils.equalsIgnoreCase(xtype, "int") || StringUtils.equalsIgnoreCase(xtype, "tinyint")
+				|| StringUtils.equalsIgnoreCase(xtype, "smallint")) {
 			return TableColumn.DATATYPE_INT;
 		} else if (StringUtils.containsIgnoreCase(xtype, "bigint") || StringUtils.containsIgnoreCase(xtype, "numeric")
 				|| StringUtils.containsIgnoreCase(xtype, "decimal")) {
