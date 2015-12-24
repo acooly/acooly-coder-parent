@@ -22,8 +22,8 @@ $(function() {
 				${entity.common}:<select style="width:80px;" name="search_EQ_${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${r"${"}all${entity.propertyName?cap_first}s}"><option value="${r"${"}e.key}" ${r"${"}param.search_EQ_${entity.propertyName} == e.key?'selected':''}>${r"${"}e.value}</option></c:forEach></select>
 				<#else>
 				<#if entity.dataType == 2>
-					${entity.common}:<input size="15" id="search_GTE_${entity.propertyName}" name="search_GTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
-					至<input size="15" id="search_LTE_${entity.propertyName}" name="search_LTE_${entity.propertyName}" size="15" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 			
+					${entity.common}:<input size="15" id="search_GTE_${entity.propertyName}" name="search_GTE_${entity.propertyName}" datePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
+					至<input size="15" id="search_LTE_${entity.propertyName}" name="search_LTE_${entity.propertyName}" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" /> 			
 				<#elseif entity.dataType == 1 || entity.dataType == 4>
 					${entity.common}:<input type="text" size="15" name="search_EQ_${entity.propertyName}" value="${r"${"}param.search_EQ_${entity.propertyName}}"  />
 				<#else>	
@@ -41,8 +41,8 @@ $(function() {
 
   <!-- 列表和工具栏 -->
   <div data-options="region:'center',border:false">
-    <table id="manage_${entityVariable}_datagrid" class="easyui-datagrid" url="${r"${"}pageContext.request.contextPath}${entityContextPath}/listJson.html" toolbar="#manage_${entityVariable}_toolbar" fit="true" border="false" fitColumns="true"
-      pagination="true" idField="id" pageSize="20" pageList="[ 10, 20, 30, 40, 50 ]" sortName="id" sortOrder="desc" checkOnSelect="true" selectOnCheck="true">
+    <table id="manage_${entityVariable}_datagrid" class="easyui-datagrid" url="${r"${"}pageContext.request.contextPath}${entityContextPath}/listJson.html" toolbar="#manage_${entityVariable}_toolbar" fit="true" border="false" fitColumns="false"
+      pagination="true" idField="id" pageSize="20" pageList="[ 10, 20, 30, 40, 50 ]" sortName="id" sortOrder="desc" checkOnSelect="true" selectOnCheck="true" singleSelect="true">
       <thead>
         <tr>
         	<th field="showCheckboxWithId" checkbox="true" data-options="formatter:function(value, row, index){ return row.id }">编号</th>
