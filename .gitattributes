@@ -29,6 +29,7 @@ deploy/libs/swt-3.5.2-x86_64.jar -text
 deploy/log4j.properties -text
 deploy/start-ui64.bat -text
 deploy/start.bat -text
+deploy/start.sh -text
 /package.bat -text
 /pom.xml -text
 src/main/java/com/acooly/module/coder/Generate.java -text
