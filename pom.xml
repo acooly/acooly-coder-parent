@@ -34,20 +34,19 @@
 			<version>1.9</version>
 		</dependency>
 
-		<!-- swt for windows -->
+		<!-- swt for windows 
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>swt</artifactId>
 			<version>3.5.2-x86_64</version>
 		</dependency>
-		
-		<!-- swt for mac 
+		-->
+		<!-- swt for mac -->
 		<dependency>
 			<groupId>org.eclipse.swt</groupId>
 			<artifactId>org.eclipse.swt.cocoa.macosx.x86_64</artifactId>
 			<version>4.3</version>
 		</dependency>
-		-->
 
 		<dependency>
 			<groupId>mysql</groupId>
