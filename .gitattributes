@@ -71,12 +71,12 @@ src/main/resources/application.properties -text
 src/main/resources/spring/applicationContext-coder.xml -text
 src/main/resources/spring/applicationContext-database.xml -text
 src/main/resources/spring/applicationContext-main.xml -text
-src/main/resources/template/easyui/Enum.ftl -text
 src/main/resources/template/easyui/controller.ftl -text
 src/main/resources/template/easyui/dao.ftl -text
 src/main/resources/template/easyui/daoTest.ftl -text
 src/main/resources/template/easyui/domain.ftl -text
 src/main/resources/template/easyui/editPage.ftl -text
+src/main/resources/template/easyui/enum.ftl -text
 src/main/resources/template/easyui/importPage.ftl -text
 src/main/resources/template/easyui/listPage.ftl -text
 src/main/resources/template/easyui/service.ftl -text
