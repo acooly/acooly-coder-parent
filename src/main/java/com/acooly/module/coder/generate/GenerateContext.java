@@ -3,6 +3,7 @@ package com.acooly.module.coder.generate;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.acooly.module.coder.config.GenerateConfig;
 import com.acooly.module.coder.domain.Table;
 import com.acooly.module.coder.resolver.NameScheme;
 
@@ -14,17 +15,17 @@ import com.acooly.module.coder.resolver.NameScheme;
  */
 public class GenerateContext {
 
-	private GenerateConfiguration configuration;
+	private GenerateConfig configuration;
 	private Table table;
 	private String entityIdDeclare;
 	private NameScheme nameScheme;
 	private Map<String, Object> data = new HashMap<String, Object>();
 
-	public GenerateConfiguration getConfiguration() {
+	public GenerateConfig getConfiguration() {
 		return configuration;
 	}
 
-	public void setConfiguration(GenerateConfiguration configuration) {
+	public void setConfiguration(GenerateConfig configuration) {
 		this.configuration = configuration;
 	}
 

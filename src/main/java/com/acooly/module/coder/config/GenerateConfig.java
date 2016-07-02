@@ -1,32 +1,42 @@
-package com.acooly.module.coder.generate;
+package com.acooly.module.coder.config;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class GenerateConfiguration {
+import com.acooly.module.coder.GenerateConstants;
+
+public class GenerateConfig {
 
 	/** 工作目录 */
-	private String workspace;
+	private String workspace = GenerateConstants.GENERATOR_WORKSPACE;
 	/** 目标根package */
-	private String rootPackage;
+	private String rootPackage = GenerateConstants.GENERATOR_ROOT_PACKAGE;
 
-	private String codePath = "java";
+	private String codePath = GenerateConstants.GENERATOR_CODE_PATH;
 
-	private String resourcePath = "resources";
+	private String resourcePath = GenerateConstants.GENERATOR_RESOURCE_PATH;
 
-	private String webappPath = "webapp";
+	private String webappPath = GenerateConstants.GENERATOR_WEBAPP_PATH;
 
-	private String pagePath = "/admin/";
+	private String pagePath = GenerateConstants.GENERATOR_PAGE_PATH;
 
-	private String testPath = "test";
+	private String testPath = GenerateConstants.GENERATOR_TEST_PATH;
 
-	private String templatePath;
+	private String templatePath = GenerateConstants.GENERATOR_TEMPLATE_PATH;
 
 	/** 表名转实体名忽略前缀 */
-	private String tableToEntityIgnorPrefix;
+	private String tableToEntityIgnorPrefix = GenerateConstants.GENERATOR_IGNOR_PREFIX;
 
 	/** 输出视图扩展名 */
-	private String viewSuffix = ".jsp";
+	private String viewSuffix = GenerateConstants.GENERATOR_VIEW_SUFFIX;
+
+	private DatabaseConfig databaseConfig = new DatabaseConfig();
+
+	private static GenerateConfig generateConfiguration = new GenerateConfig();
+
+	public static GenerateConfig INSTANCE() {
+		return generateConfiguration;
+	}
 
 	public String getWorkspace() {
 		return workspace;
@@ -106,6 +116,14 @@ public class GenerateConfiguration {
 
 	public void setViewSuffix(String viewSuffix) {
 		this.viewSuffix = viewSuffix;
+	}
+
+	public DatabaseConfig getDatabaseConfig() {
+		return databaseConfig;
+	}
+
+	public void setDatabaseConfig(DatabaseConfig databaseConfig) {
+		this.databaseConfig = databaseConfig;
 	}
 
 	@Override

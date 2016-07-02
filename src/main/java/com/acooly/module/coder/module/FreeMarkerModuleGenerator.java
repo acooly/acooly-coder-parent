@@ -4,15 +4,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.logging.Logger;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.core.io.Resource;
 
-import com.acooly.module.coder.generate.GenerateConfiguration;
+import com.acooly.module.coder.config.GenerateConfig;
 import com.acooly.module.coder.generate.GenerateContext;
 import com.acooly.module.coder.support.DatetimeMethod;
 
@@ -21,11 +17,11 @@ import freemarker.template.Template;
 
 public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 
-	private static final Logger logger = LoggerFactory.getLogger(FreeMarkerModuleGenerator.class);
+	protected static Logger logger = Logger.getLogger(FreeMarkerModuleGenerator.class.getSimpleName());
 
-	private GenerateConfiguration generateConfiguration;
+	protected GenerateConfig generateConfiguration = GenerateConfig.INSTANCE();
 
-	private String templateName;
+	protected String templateName;
 
 	@Override
 	public void generate(GenerateContext generateContext) {
@@ -36,11 +32,10 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 			for (String temp : templates) {
 				Template template = getTemplate(temp);
 				doGenerate(template, generateContext, getOutputPath(generateContext, temp));
-				logger.debug("Generate Module Success. -- > {}", getClass().getSimpleName());
 			}
 
 		} catch (Exception e) {
-			logger.warn("Generate Module fail.", e);
+			logger.warning("Generate Module fail: " + e.getMessage());
 		}
 	}
 
@@ -53,22 +48,35 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 	protected abstract String getOutputFile(GenerateContext generateContext, String template);
 
 	protected void doGenerate(Template template, GenerateContext generateContext, String outputPath) {
+		doGenerate(template, generateContext, outputPath, getOutputFile(generateContext, template.getName()));
+	}
+
+	protected void doGenerate(Template template, GenerateContext generateContext, String outputPath,
+			String outputFile) {
 		Writer out = null;
 		try {
 			File distPath = new File(outputPath);
 			if (!distPath.exists()) {
 				distPath.mkdirs();
 			}
-			File distFile = new File(distPath, getOutputFile(generateContext, template.getName()));
+			File distFile = new File(distPath, outputFile);
 			out = new OutputStreamWriter(new FileOutputStream(distFile, false), "UTF-8");
 			template.process(generateContext, out);
 			out.flush();
-			logger.debug("generate module with template({}) to {}", template.getName(), distFile.getPath());
+			logger.info("generate :" + this.getClass().getSimpleName() + "[" + template.getName() + "], file: "
+					+ distFile.getPath());
 		} catch (Exception e) {
-			logger.warn("generate module fail. template --> {} table --> {} ; outputDir --> {}" + template.getName(),
-					generateContext.getNameScheme().getDomainClassName(), outputPath, e);
+			logger.warning("generate module fail. template " + template.getName() + " table "
+					+ generateContext.getNameScheme().getDomainClassName() + " ; outputDir: " + outputPath + ", error:"
+					+ e.getMessage());
 		} finally {
-			IOUtils.closeQuietly(out);
+			if (out != null) {
+				try {
+					out.close();
+				} catch (Exception e2) {
+					// ig
+				}
+			}
 		}
 
 	}
@@ -85,7 +93,7 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 		try {
 			return getConfiguration().getTemplate(templateName);
 		} catch (Exception e) {
-			logger.error("template file (" + templateName + ") load fail.", e);
+			logger.warning("template file (" + templateName + ") load fail: " + e.getMessage());
 			throw new RuntimeException("template file (" + templateName + ") load fail.");
 		}
 
@@ -105,12 +113,12 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 				}
 				cfg.setClassForTemplateLoading(getClass(), templatePath);
 			} else {
-				Resource path = new DefaultResourceLoader().getResource(templatePath);
-				cfg.setDirectoryForTemplateLoading(path.getFile());
+				cfg.setDirectoryForTemplateLoading(new File(templatePath));
 			}
 			return cfg;
 		} catch (Exception e) {
-			logger.error("create freemarker configuration fail. templateDirectory: " + templatePath, e);
+			logger.warning("create freemarker configuration fail. templateDirectory: " + templatePath + ", message: "
+					+ e.getMessage());
 			return null;
 		}
 	}
@@ -120,7 +128,7 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 		return getClass().getName();
 	}
 
-	public void setGenerateConfiguration(GenerateConfiguration generateConfiguration) {
+	public void setGenerateConfiguration(GenerateConfig generateConfiguration) {
 		this.generateConfiguration = generateConfiguration;
 	}
 
@@ -132,7 +140,7 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 		this.templateName = templateName;
 	}
 
-	public GenerateConfiguration getGenerateConfiguration() {
+	public GenerateConfig getGenerateConfiguration() {
 		return generateConfiguration;
 	}
 

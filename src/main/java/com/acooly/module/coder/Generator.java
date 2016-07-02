@@ -1,5 +1,6 @@
 package com.acooly.module.coder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
@@ -10,61 +11,46 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.PosixParser;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.acooly.module.coder.generate.impl.DefaultCodeGeneratorFactory;
-import com.google.common.collect.Lists;
+import com.acooly.module.coder.generate.impl.DefaultCodeGenerateService;
 
-public class Generate {
+public class Generator {
 
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		CommandLineParser parser = new PosixParser();
 		Options options = new Options();
-		Option o = OptionBuilder
-				.withArgName("ignorePrefix")
-				.hasArg()
-				.withDescription(
-						"Ignore prefix that the table name convert to entity name. you can also be configured in application.properties")
-				.create("i");
-		o.setOptionalArg(true);
-		options.addOption(o);
-
-		o = OptionBuilder
-				.withArgName("viewPath")
-				.hasArg()
+		Option o = OptionBuilder.withArgName("viewPath").hasArg()
 				.withDescription(
 						"The views relative path in your webapp. you can also be configured in application.properties")
 				.create("v");
 		o.setOptionalArg(true);
 		options.addOption(o);
 
-		o = OptionBuilder
-				.withArgName("package")
-				.hasArg()
+		o = OptionBuilder.withArgName("package").hasArg()
 				.withDescription(
 						"The root of the package of the generated code. you can also be configured in application.properties")
 				.create("p");
 		o.setOptionalArg(true);
 		options.addOption(o);
 
-		o = OptionBuilder
-				.withArgName("workspace")
-				.hasArg()
+		o = OptionBuilder.withArgName("workspace").hasArg()
 				.withDescription(
 						"Code generation target main directory. you can also be configured in application.properties")
 				.create("w");
 		o.setOptionalArg(true);
 		options.addOption(o);
 
-		o = OptionBuilder
-				.withArgName("tableViews")
-				.hasArg()
-				.withDescription(
-						"target tables or views in your database.")
-				.create("t");
+		o = OptionBuilder.withArgName("tables").hasArg()
+				.withDescription("target tables or views separated by space in your database.").create("t");
 		o.setOptionalArg(false);
+		options.addOption(o);
+
+		o = OptionBuilder.withArgName("ignorePrefix").hasArg()
+				.withDescription(
+						"Ignore prefix that the table name convert to entity name. you can also be configured in application.properties")
+				.create("i");
+		o.setOptionalArg(true);
 		options.addOption(o);
 
 		String workspace = null;
@@ -95,7 +81,7 @@ public class Generate {
 			if (tbs == null || tbs.length == 0) {
 				throw new RuntimeException();
 			}
-			List<String> listTbs = Lists.newArrayList();
+			List<String> listTbs = new ArrayList<String>();
 			for (String tb : tbs) {
 				if (!StringUtils.contains(tb, ",")) {
 					listTbs.add(tb);
@@ -112,9 +98,7 @@ public class Generate {
 			return;
 		}
 
-		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-main.xml");
-		DefaultCodeGeneratorFactory codeGeneratorFactory = (DefaultCodeGeneratorFactory) context
-				.getBean("codeGeneratorFactory");
+		DefaultCodeGenerateService codeGeneratorFactory = new DefaultCodeGenerateService();
 
 		if (StringUtils.isNotBlank(workspace)) {
 			codeGeneratorFactory.getGenerateConfiguration().setWorkspace(workspace);

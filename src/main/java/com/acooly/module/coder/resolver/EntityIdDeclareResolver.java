@@ -4,7 +4,7 @@
  */
 package com.acooly.module.coder.resolver;
 
-import com.acooly.module.coder.db.Database;
+import com.acooly.module.coder.config.Database;
 import com.acooly.module.coder.domain.Table;
 
 /**

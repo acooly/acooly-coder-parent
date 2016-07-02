@@ -2,7 +2,7 @@ package com.acooly.module.coder.resolver.impl;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.acooly.module.coder.generate.GenerateConfiguration;
+import com.acooly.module.coder.config.GenerateConfig;
 import com.acooly.module.coder.resolver.NameScheme;
 import com.acooly.module.coder.resolver.NameSchemeResolver;
 
@@ -16,7 +16,7 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 
 	/** 表或列名单词分割符，每个分割符后的单词首字母大写（驼峰规则） */
 	private static final String WORD_SEPARATOR = "_";
-	private GenerateConfiguration generateConfiguration;
+	private GenerateConfig generateConfiguration = GenerateConfig.INSTANCE();
 
 	private String daoPostfit = "Dao";
 	private String daoImplPostfit = "DaoImpl";
@@ -38,6 +38,7 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 		String rootPackage = getGenerateConfiguration().getRootPackage();
 		namesHold.setDomainClassName(StringUtils.capitalize(baseName));
 		namesHold.setDomainPackage(rootPackage + ".domain");
+		namesHold.setEnumPackage(rootPackage + ".enums");
 
 		namesHold.setDaoPackage(rootPackage + ".dao");
 		namesHold.setDaoClassName(namesHold.getDomainClassName() + daoPostfit);
@@ -158,11 +159,11 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 		this.editPagePostfit = editPagePostfit;
 	}
 
-	public GenerateConfiguration getGenerateConfiguration() {
+	public GenerateConfig getGenerateConfiguration() {
 		return generateConfiguration;
 	}
 
-	public void setGenerateConfiguration(GenerateConfiguration generateConfiguration) {
+	public void setGenerateConfiguration(GenerateConfig generateConfiguration) {
 		this.generateConfiguration = generateConfiguration;
 	}
 

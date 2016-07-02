@@ -6,11 +6,12 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.acooly.module.coder.db.dialect.MSSQLTableLoaderDialect;
-import com.acooly.module.coder.db.dialect.MySQLTableLoaderDialect;
-import com.acooly.module.coder.db.dialect.OracleTableLoaderDialect;
+import com.acooly.module.coder.config.DatabaseConfig;
+import com.acooly.module.coder.config.GenerateConfig;
+import com.acooly.module.coder.db.dialect.MySQLTableLoaderService;
+import com.acooly.module.coder.db.dialect.OracleTableLoaderService;
+import com.acooly.module.coder.support.SimpleDataSource;
 
 /**
  * 数据库库元数据loader工厂
@@ -18,22 +19,26 @@ import com.acooly.module.coder.db.dialect.OracleTableLoaderDialect;
  * @author zhangpu
  * @date 2015年8月30日
  */
-public class TableLoaderDialectFactory {
+public class TableLoaderServiceFactory {
 
-	public static TableLoaderService getTableLoaderDialect(JdbcTemplate jdbcTemplate) {
-		String jdbcUrl = getJdbcUrlFromDataSource(jdbcTemplate.getDataSource());
+	public static TableLoaderService getTableLoaderDialect() {
+		DataSource dataSource = getDataSource();
+		String jdbcUrl = getJdbcUrlFromDataSource(dataSource);
 		// 根据jdbc url判断dialect
 		TableLoaderService dialect = null;
-		if (StringUtils.contains(jdbcUrl, ":sqlserver:")) {
-			dialect = new MSSQLTableLoaderDialect(jdbcTemplate);
-		} else if (StringUtils.contains(jdbcUrl, ":mysql:")) {
-			dialect = new MySQLTableLoaderDialect(jdbcTemplate, getMysqlschema(jdbcUrl));
+		if (StringUtils.contains(jdbcUrl, ":mysql:")) {
+			dialect = new MySQLTableLoaderService(dataSource, getMysqlschema(jdbcUrl));
 		} else if (StringUtils.contains(jdbcUrl, ":oracle:")) {
-			dialect = new OracleTableLoaderDialect(jdbcTemplate);
+			dialect = new OracleTableLoaderService(dataSource);
 		} else {
 			throw new IllegalArgumentException("Unknown Database of " + jdbcUrl);
 		}
 		return dialect;
+	}
+
+	private static DataSource getDataSource() {
+		DatabaseConfig config = GenerateConfig.INSTANCE().getDatabaseConfig();
+		return new SimpleDataSource(config.getDriver(), config.getUrl(), config.getUsername(), config.getPassword());
 	}
 
 	private static String getMysqlschema(String jdbcUrl) {

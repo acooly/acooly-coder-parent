@@ -1,6 +1,6 @@
 package com.acooly.module.coder.generate;
 
-public interface CodeGeneratorFactory {
+public interface CodeGenerateService {
 
 	void generateTable(String tableName);
 

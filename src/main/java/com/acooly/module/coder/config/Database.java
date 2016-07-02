@@ -1,4 +1,4 @@
-package com.acooly.module.coder.db;
+package com.acooly.module.coder.config;
 
 public enum Database {
 

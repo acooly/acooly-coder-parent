@@ -1,13 +1,15 @@
 package com.acooly.module.coder.resolver;
 
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class NameScheme {
 
 	private String domainClassName;
 
 	private String domainPackage;
+
+	private String enumPackage;
 
 	private String daoClassName;
 
@@ -207,6 +209,14 @@ public class NameScheme {
 
 	public void setImportPageName(String importPageName) {
 		ImportPageName = importPageName;
+	}
+
+	public String getEnumPackage() {
+		return enumPackage;
+	}
+
+	public void setEnumPackage(String enumPackage) {
+		this.enumPackage = enumPackage;
 	}
 
 	@Override

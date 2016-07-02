@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.acooly.module.coder.support.GenerateUtils;
+
 /**
  * 列元数据
  * 
@@ -22,11 +24,16 @@ public class TableColumn {
 	/** 对象类型 */
 	public static final int DATATYPE_LOB = 3;
 	public static final int DATATYPE_INT = 4;
+	/** 枚举类型 */
+	public static final int DATATYPE_ENUM = 10;
 
 	/** 列名称 */
 	private String name;
 	/** 列类型 */
 	private int dataType;
+
+	private String javaType;
+
 	/** 列精度 */
 	private int length;
 	/** 是否可以为空 */
@@ -66,6 +73,8 @@ public class TableColumn {
 			return "Date";
 		case DATATYPE_LOB:
 			return "String";
+		case DATATYPE_ENUM:
+			return GenerateUtils.getCanonicalClassName(this.name);
 		default:
 			return "String";
 		}
@@ -117,6 +126,14 @@ public class TableColumn {
 
 	public void setCommon(String common) {
 		this.common = common;
+	}
+
+	public String getJavaType() {
+		return javaType;
+	}
+
+	public void setJavaType(String javaType) {
+		this.javaType = javaType;
 	}
 
 	public Map<String, String> getOptions() {

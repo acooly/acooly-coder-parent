@@ -1,10 +1,9 @@
 package com.acooly.module.coder.domain;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.collect.Maps;
 
 /**
  * 表元数据
@@ -19,7 +18,7 @@ public class Table {
 	/** 表备注 */
 	private String comment;
 	/** 扩展信息 */
-	private Map<String, Object> properties = Maps.newHashMap();
+	private Map<String, Object> properties = new HashMap<String, Object>();
 	/** 列信息 */
 	private List<TableColumn> columnMetadatas = new LinkedList<TableColumn>();
 

@@ -3,9 +3,12 @@ package com.acooly.module.coder.module.impl;
 import com.acooly.module.coder.generate.GenerateContext;
 import com.acooly.module.coder.module.FreeMarkerModuleGenerator;
 
-public class PagesModuleGenerator extends FreeMarkerModuleGenerator {
+public class ManagerViewsModuleGenerator extends FreeMarkerModuleGenerator {
 
-
+	{
+		templateName = "listPage.ftl,editPage.ftl,showPage.ftl,importPage.ftl";
+	}
+	
 	@Override
 	protected String getOutputPath(GenerateContext generateContext, String template) {
 		return generateContext.getNameScheme().getPagePath();

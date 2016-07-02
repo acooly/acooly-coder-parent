@@ -1,6 +1,6 @@
 package com.acooly.module.coder.module.impl;
 
-import com.acooly.module.coder.generate.GenerateConfiguration;
+import com.acooly.module.coder.config.GenerateConfig;
 import com.acooly.module.coder.generate.GenerateContext;
 import com.acooly.module.coder.module.FreeMarkerModuleGenerator;
 
@@ -12,9 +12,13 @@ import com.acooly.module.coder.module.FreeMarkerModuleGenerator;
  */
 public class DaoTestModuleGenerator extends FreeMarkerModuleGenerator {
 
+	{
+		templateName = "daoTest.ftl";
+	}
+
 	@Override
 	protected String getOutputPath(GenerateContext generateContext, String template) {
-		GenerateConfiguration cfg = getGenerateConfiguration();
+		GenerateConfig cfg = getGenerateConfiguration();
 		String packagePath = getPackagePath(generateContext.getNameScheme().getDaoTestPackage());
 		return cfg.getWorkspace() + "/" + cfg.getTestPath() + "/" + packagePath;
 	}
