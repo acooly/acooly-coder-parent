@@ -67,13 +67,11 @@ src/main/java/com/acooly/module/coder/support/ConfigurableConstants.java -text
 src/main/java/com/acooly/module/coder/support/DatetimeMethod.java -text
 src/main/java/com/acooly/module/coder/support/GenerateUtils.java -text
 src/main/java/com/acooly/module/coder/support/SimpleDataSource.java -text
-src/main/resources/application.mysql.properties -text
-src/main/resources/application.oracle.properties -text
 src/main/resources/application.properties -text
-src/main/resources/log4j.properties -text
 src/main/resources/spring/applicationContext-coder.xml -text
 src/main/resources/spring/applicationContext-database.xml -text
 src/main/resources/spring/applicationContext-main.xml -text
+src/main/resources/template/easyui/Enum.ftl -text
 src/main/resources/template/easyui/controller.ftl -text
 src/main/resources/template/easyui/dao.ftl -text
 src/main/resources/template/easyui/daoTest.ftl -text

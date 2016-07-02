@@ -1,3 +1,10 @@
+/*
+ * acooly.cn Inc.
+ * Copyright (c) ${datetime("yyyy")} All Rights Reserved.
+ * create by zhangpu 
+ * date:${datetime("yyyy-MM-dd")}
+ *
+ */
 package ${nameScheme.serviceImplPackage};
 
 import org.springframework.stereotype.Service;

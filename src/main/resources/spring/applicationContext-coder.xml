@@ -17,7 +17,7 @@
 
 	<!-- 代码生成工厂 -->
 	<bean id="codeGeneratorFactory"
-		class="com.acooly.module.coder.generate.impl.DefaultCodeGeneratorFactory">
+		class="com.acooly.module.coder.generate.impl.DefaultCodeGenerateService">
 		<property name="generateConfiguration" ref="generateConfiguration" />
 		<property name="tableLoaderService" ref="tableLoaderService" />
 		<property name="nameSchemeResolver" ref="nameSchemeResolver" />

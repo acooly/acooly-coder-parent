@@ -25,9 +25,9 @@ $(function() {
 					${entity.common}:<input size="15" id="search_GTE_${entity.propertyName}" name="search_GTE_${entity.propertyName}" datePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
 					至<input size="15" id="search_LTE_${entity.propertyName}" name="search_LTE_${entity.propertyName}" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" /> 			
 				<#elseif entity.dataType == 1 || entity.dataType == 4>
-					${entity.common}:<input type="text" size="15" name="search_EQ_${entity.propertyName}" value="${r"${"}param.search_EQ_${entity.propertyName}}"  />
+					${entity.common}:<input type="text" size="15" name="search_EQ_${entity.propertyName}"/>
 				<#else>	
-					${entity.common}:<input type="text" size="15" name="search_LIKE_${entity.propertyName}" value="${r"${"}param.search_LIKE_${entity.propertyName}}"  />
+					${entity.common}:<input type="text" size="15" name="search_LIKE_${entity.propertyName}"/>
 				</#if>	
 				</#if>							
 				</#if>
