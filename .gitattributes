@@ -1,10 +1,5 @@
 * text=auto !eol
 /README.md -text
-deploy/README.md -text svneol=unset#application/octet-stream
-deploy/acooly-coder-allinone.jar -text
-deploy/application.properties -text
-deploy/start.bat -text
-deploy/start.sh -text
 /package.bat -text
 /pom.xml -text
 src/main/java/com/acooly/module/coder/GenerateConstants.java -text
@@ -67,4 +62,6 @@ src/main/resources/template/extreme/listPage.ftl -text
 src/main/resources/template/extreme/listPage_old.ftl -text
 src/main/resources/template/extreme/service.ftl -text
 src/main/resources/template/extreme/serviceImpl.ftl -text
+src/main/site/index.html -text
+src/main/site/release/v1.2.0.zip -text
 src/test/java/com/acooly/module/coder/test/CodeGeneratorMain.java -text
