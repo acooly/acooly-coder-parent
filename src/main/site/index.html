@@ -289,7 +289,7 @@ sup {
 }
 @media screen and (min-width: 914px) {
     body {
-        /*width: 854px;*/
+        width: 854px;
         margin:0 auto;
     }
 }
@@ -507,7 +507,7 @@ pre.line-numbers > code {
 <li>每个表必须有以id命名的物理主键，且为数字类型，如：mysql为bigint, oracle为number。</li>
 <li>列名称全部小写，不能以数字开头；如果存在多个自然单词的组合，使用下划线分隔(_)。如：<q>user_type</q></li>
 <li>列定义必须添加备注 （这个备注则为生成的页面及表单的label）</li>
-<li>每个表必须添加create<u>time和update</u>time两个日期时间类型的字段，但无需手动管理 （在save/update时，框架会自己维护创建时间和最后修改时间）。</li>
+<li>每个表必须添加create_time和update_time两个日期时间类型的字段，但无需手动管理 （在save/update时，框架会自己维护创建时间和最后修改时间）。</li>
 <li>如果有选项类型的字段，其选项值使用类json格式写入列备注字段，自动生成工具会自动为该列对应的属性和页面生成选项。如：表列为：user_type ,备注可以为：用户类型 {normal:普通,vip:高级}</li>
 <li>特别注意，强烈要求选项类（自动生成枚举类的）字段项目全局唯一名称，否则会生成enum名称相同的枚举相互覆盖。</li>
 </ul>
@@ -526,7 +526,9 @@ pre.line-numbers > code {
 
 <h4 id="toc_5">工具的获取</h4>
 
-<p>请联系我~</p>
+<ul>
+<li><a href="http://acooly.cn/acooly/acoolycoder/release/v1.2.0/zip">v1.2.0</a></li>
+</ul>
 
 <p>下面以一个案例来简单说明这个开发过程。</p>
 
