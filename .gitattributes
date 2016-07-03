@@ -1,4 +1,5 @@
 * text=auto !eol
+deploy/README.md -text svneol=unset#application/octet-stream
 deploy/acooly-coder-allinone.jar -text
 deploy/application.properties -text
 deploy/start.bat -text
