@@ -1,5 +1,7 @@
 package com.acooly.module.coder.config;
 
+import java.beans.Transient;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -54,6 +56,7 @@ public class GenerateConfig {
 		this.rootPackage = rootPackage;
 	}
 
+	@Transient
 	public String getCodePath() {
 		return codePath;
 	}
@@ -62,6 +65,7 @@ public class GenerateConfig {
 		this.codePath = codePath;
 	}
 
+	@Transient
 	public String getResourcePath() {
 		return resourcePath;
 	}
@@ -70,6 +74,7 @@ public class GenerateConfig {
 		this.resourcePath = resourcePath;
 	}
 
+	@Transient
 	public String getWebappPath() {
 		return webappPath;
 	}
@@ -78,6 +83,7 @@ public class GenerateConfig {
 		this.webappPath = webappPath;
 	}
 
+	@Transient
 	public String getTemplatePath() {
 		return templatePath;
 	}
@@ -86,6 +92,7 @@ public class GenerateConfig {
 		this.templatePath = templatePath;
 	}
 
+	@Transient
 	public String getPagePath() {
 		return pagePath;
 	}
@@ -94,6 +101,7 @@ public class GenerateConfig {
 		this.pagePath = pagePath;
 	}
 
+	@Transient
 	public String getTestPath() {
 		return testPath;
 	}
@@ -110,6 +118,7 @@ public class GenerateConfig {
 		this.tableToEntityIgnorPrefix = tableToEntityIgnorPrefix;
 	}
 
+	@Transient
 	public String getViewSuffix() {
 		return viewSuffix;
 	}
@@ -128,6 +137,8 @@ public class GenerateConfig {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
+		return String.format("{\n  workspace:%s, \n  rootPackage:%s, \n  tableToEntityIgnorPrefix:%s, \n  databaseConfig:%s\n}",
+				workspace, rootPackage, tableToEntityIgnorPrefix, databaseConfig);
 	}
+
 }

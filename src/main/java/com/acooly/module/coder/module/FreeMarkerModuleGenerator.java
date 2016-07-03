@@ -63,8 +63,9 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 			out = new OutputStreamWriter(new FileOutputStream(distFile, false), "UTF-8");
 			template.process(generateContext, out);
 			out.flush();
-			logger.info("generate :" + this.getClass().getSimpleName() + "[" + template.getName() + "], file: "
-					+ distFile.getPath());
+			// logger.info("generate :" + this.getClass().getSimpleName() + "["
+			// + template.getName() + "], file: "
+			// + distFile.getPath());
 		} catch (Exception e) {
 			logger.warning("generate module fail. template " + template.getName() + " table "
 					+ generateContext.getNameScheme().getDomainClassName() + " ; outputDir: " + outputPath + ", error:"

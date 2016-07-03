@@ -16,42 +16,32 @@ import com.acooly.module.coder.generate.impl.DefaultCodeGenerateService;
 
 public class Generator {
 
-	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		CommandLineParser parser = new PosixParser();
 		Options options = new Options();
-		Option o = OptionBuilder.withArgName("viewPath").hasArg()
-				.withDescription(
-						"The views relative path in your webapp. you can also be configured in application.properties")
-				.create("v");
-		o.setOptionalArg(true);
-		options.addOption(o);
+		Option viewPathOption = buildOption("v",
+				"The views relative path in your webapp. you can also be configured in application.properties",
+				"viewPath");
 
-		o = OptionBuilder.withArgName("package").hasArg()
-				.withDescription(
-						"The root of the package of the generated code. you can also be configured in application.properties")
-				.create("p");
-		o.setOptionalArg(true);
-		options.addOption(o);
+		Option packageOption = buildOption("p",
+				"The root of the package of the generated code. you can also be configured in application.properties",
+				"package");
 
-		o = OptionBuilder.withArgName("workspace").hasArg()
-				.withDescription(
-						"Code generation target main directory. you can also be configured in application.properties")
-				.create("w");
-		o.setOptionalArg(true);
-		options.addOption(o);
+		Option workspaceOption = buildOption("w",
+				"Code generation target main directory. you can also be configured in application.properties",
+				"workspace");
 
-		o = OptionBuilder.withArgName("tables").hasArg()
-				.withDescription("target tables or views separated by space in your database.").create("t");
-		o.setOptionalArg(false);
-		options.addOption(o);
+		Option ignorePrefixOption = buildOption("i",
+				"Ignore prefix that the table name convert to entity name. you can also be configured in application.properties",
+				"ignorePrefix");
 
-		o = OptionBuilder.withArgName("ignorePrefix").hasArg()
-				.withDescription(
-						"Ignore prefix that the table name convert to entity name. you can also be configured in application.properties")
-				.create("i");
-		o.setOptionalArg(true);
-		options.addOption(o);
+		Option tableOption = buildOption("t", "target tables or views separated by space in your database.", "table");
+
+		options.addOption(tableOption);
+		options.addOption(viewPathOption);
+		options.addOption(packageOption);
+		options.addOption(workspaceOption);
+		options.addOption(ignorePrefixOption);
 
 		String workspace = null;
 		String rootPackage = null;
@@ -94,7 +84,7 @@ public class Generator {
 			tables = listTbs.toArray(new String[0]);
 		} catch (Exception exp) {
 			HelpFormatter formatter = new HelpFormatter();
-			formatter.printHelp("generate [options] tableName1 tableName2 tableNameN ...", options);
+			formatter.printHelp("generate [options] -t tableName1 tableName2 tableNameN ...", options);
 			return;
 		}
 
@@ -113,6 +103,12 @@ public class Generator {
 			codeGeneratorFactory.getGenerateConfiguration().setTableToEntityIgnorPrefix(ignorePrefix);
 		}
 		codeGeneratorFactory.generateTables(tables);
+	}
 
+	@SuppressWarnings("static-access")
+	private static Option buildOption(String arg, String desc, String argName) {
+		Option viewPathOption = OptionBuilder.withArgName(argName).hasArg().withDescription(desc).create(arg);
+		viewPathOption.setOptionalArg(true);
+		return viewPathOption;
 	}
 }

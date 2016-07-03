@@ -53,7 +53,7 @@ public class DatabaseConfig {
 
 	@Override
 	public String toString() {
-		return "DatabaseConfig {url:" + url + ", username: " + username + ",password: " + password + "}";
+		return String.format("{driver:%s, url:%s, username:%s}", driver, url, username);
 	}
 
 }
