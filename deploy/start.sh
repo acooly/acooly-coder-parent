@@ -1,11 +1,17 @@
 #!/bin/bash
-echo acooly coder cli
+echo acooly coder 自动代码生成工具
+
+if [ ! -f 'application.properties' ]; then
+	echo "配置文件application.properties不存在，请先根据文档说明，在根目录建立配置文件，并配置数据库等基础配置"
+	exit
+fi
+
 echo application.properties配置参数:
 cat application.properties 
 echo ==============================
 read -p "请输入需要生成的表名(多个表使用空格分隔):" -t 30 tables
 if [ "$tables" == "" ]; then
-	java -classpath .:acooly-module-coder-1.1.0.jar -Djava.ext.dirs=libs com.acooly.module.coder.Generate
+	java -classpath .:acooly-coder-allinone.jar com.acooly.module.coder.Generator
 else
-	java -classpath .:acooly-module-coder-1.1.0.jar -Djava.ext.dirs=libs com.acooly.module.coder.Generate -t $tables
+	java -classpath .:acooly-coder-allinone.jar com.acooly.module.coder.Generator -t $tables
 fi
