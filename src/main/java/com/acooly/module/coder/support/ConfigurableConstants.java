@@ -17,8 +17,10 @@ public class ConfigurableConstants {
 			in = ConfigurableConstants.class.getClassLoader().getResourceAsStream(propertyFileName);
 			if (in != null) {
 				p.load(in);
+				logger.info("load success:" + propertyFileName);
+			} else {
+				throw new RuntimeException("加载配置文件失败");
 			}
-			logger.info("load:" + propertyFileName);
 		} catch (IOException e) {
 			logger.warning("load " + propertyFileName + " into Constants error!");
 		} finally {

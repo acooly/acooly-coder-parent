@@ -74,6 +74,7 @@ public class SimpleDataSource implements DataSource {
 		try {
 			Class.forName(this.driver);
 		} catch (Exception e) {
+			e.printStackTrace(System.out);
 			// ig
 		}
 		return DriverManager.getConnection(url, username, password);

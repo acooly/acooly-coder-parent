@@ -20,9 +20,8 @@ public class GenerateConstants extends ConfigurableConstants {
 
 	// database configurations
 	public static final String JDBC_DRIVER = getProperty("jdbc.driver", "com.mysql.jdbc.Driver");
-	public static final String JDBC_URL = getProperty("jdbc.url",
-			"jdbc:mysql://localhost:3306/acooly?useUnicode=true&amp;characterEncoding=UTF-8");
-	public static final String JDBC_USERNAME = getProperty("jdbc.username", "acooly");
+	public static final String JDBC_URL = getProperty("jdbc.url", "");
+	public static final String JDBC_USERNAME = getProperty("jdbc.username", "");
 	public static final String JDBC_PASSWORD = getProperty("jdbc.password", "***");
 
 	// maven project struction

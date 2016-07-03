@@ -38,6 +38,7 @@ public class TableLoaderServiceFactory {
 
 	private static DataSource getDataSource() {
 		DatabaseConfig config = GenerateConfig.INSTANCE().getDatabaseConfig();
+		System.out.println("database config: " + config);
 		return new SimpleDataSource(config.getDriver(), config.getUrl(), config.getUsername(), config.getPassword());
 	}
 

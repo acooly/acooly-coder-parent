@@ -130,6 +130,8 @@
 						<artifactId>maven-assembly-plugin</artifactId>
 						<version>2.4.1</version>
 						<configuration>
+							<appendAssemblyId>false</appendAssemblyId>
+							<finalName>acooly-coder-allinone</finalName>
 							<!-- get all project dependencies -->
 							<descriptorRefs>
 								<descriptorRef>jar-with-dependencies</descriptorRef>
@@ -140,7 +142,6 @@
 									<mainClass>com.acooly.module.coder.Generator</mainClass>
 								</manifest>
 							</archive>
-
 						</configuration>
 						<executions>
 							<execution>
@@ -168,7 +169,7 @@
 			<name>Central Repository</name>
 			<url>http://www.acooly.com/nexus/content/repositories/releases/</url>
 			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 	</repositories>

@@ -61,7 +61,8 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
-			throw new RuntimeException("获取表名失败：" + e.getMessage());
+			e.printStackTrace(System.out);
+			throw new RuntimeException("获取表名失败：" + e.getMessage(), e);
 		} finally {
 			if (conn != null) {
 				try {
