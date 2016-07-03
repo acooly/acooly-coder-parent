@@ -113,8 +113,10 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
 				columnMetadata.setDefaultValue(defaultValue);
 				columnMetadatas.add(columnMetadata);
 			}
+			if (columnMetadatas == null || columnMetadatas.size() == 0) {
+				throw new RuntimeException("表不存在或没有正确定义");
+			}
 			tableMetadata.setColumnMetadatas(columnMetadatas);
-
 			String tableComment = getTableComment(tableName);
 			tableMetadata.setComment(StringUtils.isBlank(tableComment) ? tableName : tableComment);
 			logger.info("Load table metadata: " + tableName);
