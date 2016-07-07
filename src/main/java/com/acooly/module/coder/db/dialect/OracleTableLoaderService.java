@@ -1,20 +1,13 @@
 package com.acooly.module.coder.db.dialect;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
-
-import org.apache.commons.lang3.StringUtils;
 
 import com.acooly.module.coder.config.Database;
 import com.acooly.module.coder.db.TableLoaderService;
 import com.acooly.module.coder.domain.Table;
-import com.acooly.module.coder.domain.TableColumn;
 
 /**
  * Oracle 实现
@@ -85,50 +78,16 @@ public class OracleTableLoaderService implements TableLoaderService {
 		return declare;
 	}
 
-	private int transformDataType(String xtype, int length) {
-
-		if (xtype.equals("NUMBER")) {
-			return length <= 4 ? TableColumn.DATATYPE_INT : TableColumn.DATATYPE_LONG;
-		} else if (xtype.equals("DATE")) {
-			return TableColumn.DATATYPE_DATE;
-		} else {
-			return TableColumn.DATATYPE_STRING;
-		}
-
-	}
-
-	private Map<String, String> parseJsonComment(String comment) {
-		try {
-			String json = null;
-			Matcher m = Pattern.compile("\\{.+\\}").matcher(comment);
-			if (m.find()) {
-				json = m.group();
-			}
-			if (StringUtils.isBlank(json)) {
-				return null;
-			}
-			Map<String, String> data = new LinkedHashMap<String, String>();
-			json = StringUtils.substring(json, 1, json.length() - 1);
-			for (String item : StringUtils.split(json, ",")) {
-				String[] fields = StringUtils.split(item, ":");
-				data.put(fields[0], fields[1]);
-			}
-			return data;
-		} catch (Exception e) {
-			// logger.warn("parse property comment to options Map fail. ", e);
-			return null;
-		}
-	}
-
-	private String getCanonicalComment(String comment) {
-		if (StringUtils.contains(comment, "{")) {
-			comment = StringUtils.trimToEmpty(StringUtils.substringBefore(comment, "{"));
-		}
-		if (StringUtils.contains(comment, "(")) {
-			comment = StringUtils.trimToEmpty(StringUtils.substringBefore(comment, "("));
-		}
-		return comment;
-	}
+	// @Override
+	// protected JavaType doConvertJavaType(String databaseType, int length) {
+	// if (databaseType.equals("NUMBER")) {
+	// return length <= 4 ? JavaType.Integer : JavaType.Long;
+	// } else if (databaseType.equals("DATE")) {
+	// return JavaType.Date;
+	// } else {
+	// return JavaType.String;
+	// }
+	// }
 
 	@Override
 	public Database getDatabase() {

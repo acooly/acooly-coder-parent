@@ -7,6 +7,8 @@ import com.acooly.module.coder.config.Database;
 import com.acooly.module.coder.config.GenerateConfig;
 import com.acooly.module.coder.db.TableLoaderService;
 import com.acooly.module.coder.db.TableLoaderServiceFactory;
+import com.acooly.module.coder.domain.Column;
+import com.acooly.module.coder.domain.JavaType;
 import com.acooly.module.coder.domain.Table;
 import com.acooly.module.coder.generate.CodeGenerateService;
 import com.acooly.module.coder.generate.GenerateContext;
@@ -17,6 +19,7 @@ import com.acooly.module.coder.resolver.NameScheme;
 import com.acooly.module.coder.resolver.NameSchemeResolver;
 import com.acooly.module.coder.resolver.impl.AcoolyNameSchemeResolver;
 import com.acooly.module.coder.resolver.impl.DefaultEntityIdDeclareResolver;
+import com.acooly.module.coder.support.GenerateUtils;
 
 /**
  * 代码生成 默认实现
@@ -41,13 +44,12 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 		try {
 			GenerateContext generateContext = loadGenerateContext(tableName);
 			Map<String, ModuleGenerator> moduleGeneratorMaps = ModuleGeneratorFactory.getModuleGenerators();
-			//logger.info("Find reigstered ModuleGenerator: " + moduleGeneratorMaps.size() + " --> " + moduleGeneratorMaps);
 			for (Map.Entry<String, ModuleGenerator> entry : moduleGeneratorMaps.entrySet()) {
 				entry.getValue().generate(generateContext);
 			}
 			logger.info("Generate table success: " + tableName);
 		} catch (Exception e) {
-			logger.warning("Generate Table fail. --> tableName: " + tableName + ", e:" + e.getMessage());
+			logger.warning("Generate Table fail. tableName: " + tableName + ", e:" + e.getMessage());
 		}
 
 	}
@@ -65,12 +67,22 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 		String entityIdDeclare = entityIdDeclareResolver.getEntityIdDeclare(database, table);
 		NameScheme nameScheme = nameSchemeResolver.resolve(tableName);
 		GenerateContext generateContext = new GenerateContext();
-		logger.info("Configurations:\n" + getGenerateConfiguration());
 		generateContext.setConfiguration(getGenerateConfiguration());
 		generateContext.setTable(table);
 		generateContext.setEntityIdDeclare(entityIdDeclare);
 		generateContext.setNameScheme(nameScheme);
+		onLoadGenerateContext(generateContext);
 		return generateContext;
+	}
+
+	protected void onLoadGenerateContext(GenerateContext generateContext) {
+		// 对枚举类型，rebuild package declare
+		for (Column column : generateContext.getTable().getColumns()) {
+			if (column.getDataType().getJavaType() == JavaType.Enum) {
+				column.getDataType().setJavaDeclare(generateContext.getNameScheme().getEnumPackage() + "."
+						+ GenerateUtils.getCanonicalClassName(column.getPropertyName()));
+			}
+		}
 	}
 
 	public GenerateConfig getGenerateConfiguration() {

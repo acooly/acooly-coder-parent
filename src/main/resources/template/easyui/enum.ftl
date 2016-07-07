@@ -1,7 +1,7 @@
 /*
- * acooly.cn Inc.
+ * ${configuration.codeCopyright} Inc.
  * Copyright (c) ${datetime("yyyy")} All Rights Reserved.
- * create by zhangpu 
+ * create by ${configuration.codeAuthor}
  * date:${datetime("yyyy-MM-dd")}
  *
  */
@@ -18,7 +18,7 @@ import com.acooly.core.utils.enums.Messageable;
 /**
  * ${table.comment} ${enumName} 枚举定义
  * 
- * @author Acooly Code Generator
+ * @author ${configuration.codeAuthor}
  * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
  */
 public enum ${enumName} implements Messageable {

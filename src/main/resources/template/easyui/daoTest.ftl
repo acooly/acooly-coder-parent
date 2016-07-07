@@ -1,7 +1,7 @@
 /*
- * acooly.cn Inc.
+ * ${configuration.codeCopyright} Inc.
  * Copyright (c) ${datetime("yyyy")} All Rights Reserved.
- * create by zhangpu 
+ * create by ${configuration.codeAuthor}
  * date:${datetime("yyyy-MM-dd")}
  *
  */
@@ -22,6 +22,13 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import com.acooly.core.common.test.SpringTransactionalTests;
 import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
 
+
+/**
+ * ${table.comment} DAO单元测试
+ * 
+ * @author ${configuration.codeAuthor}
+ * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
+ */
 @ActiveProfiles("development")
 @ContextConfiguration(locations = "classpath:applicationContext-test-main.xml")
 @TransactionConfiguration(defaultRollback = true)

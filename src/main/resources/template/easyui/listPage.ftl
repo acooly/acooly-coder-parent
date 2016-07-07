@@ -16,15 +16,15 @@ $(function() {
       <table class="tableForm" width="100%">
         <tr>
           <td align="left">
-			<#list table.columnMetadatas as entity>
+			<#list table.columns as entity>
 				<#if entity.name?lower_case != 'id'>
 				<#if entity.options??>
 				${entity.common}:<select style="width:80px;" name="search_EQ_${entity.propertyName}" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${r"${"}all${entity.propertyName?cap_first}s}"><option value="${r"${"}e.key}" ${r"${"}param.search_EQ_${entity.propertyName} == e.key?'selected':''}>${r"${"}e.value}</option></c:forEach></select>
 				<#else>
-				<#if entity.dataType == 2>
+				<#if entity.dataType.date>
 					${entity.common}:<input size="15" id="search_GTE_${entity.propertyName}" name="search_GTE_${entity.propertyName}" datePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
 					至<input size="15" id="search_LTE_${entity.propertyName}" name="search_LTE_${entity.propertyName}" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" /> 			
-				<#elseif entity.dataType == 1 || entity.dataType == 4>
+				<#elseif entity.dataType.number>
 					${entity.common}:<input type="text" size="15" name="search_EQ_${entity.propertyName}"/>
 				<#else>	
 					${entity.common}:<input type="text" size="15" name="search_LIKE_${entity.propertyName}"/>
@@ -46,13 +46,13 @@ $(function() {
       <thead>
         <tr>
         	<th field="showCheckboxWithId" checkbox="true" data-options="formatter:function(value, row, index){ return row.id }">编号</th>
-		<#list table.columnMetadatas as entity>
+		<#list table.columns as entity>
 		<#if entity.options??>
 			<th field="${entity.propertyName}" data-options="formatter:function(value){ return formatRefrence('manage_${entityVariable}_datagrid','all${entity.propertyName?cap_first}s',value);} ">${entity.common}</th>
 		<#else>
-		<#if entity.dataType == 2>
+		<#if entity.dataType.date>
 		    <th field="${entity.propertyName}" formatter="formatDate">${entity.common}</th>
-		<#elseif entity.dataType == 1 || entity.dataType == 4>
+		<#elseif entity.dataType.number>
 			<th field="${entity.propertyName}">${entity.common}</th>
 		<#else>	
 			<th field="${entity.propertyName}">${entity.common}</th>

@@ -5,15 +5,13 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.acooly.module.coder.support.GenerateUtils;
-
 /**
  * 列元数据
  * 
  * @author zhangpu
  * @date 2012年6月21日
  */
-public class TableColumn {
+public class Column {
 
 	/** 字符类型 */
 	public static final int DATATYPE_STRING = 0;
@@ -24,16 +22,17 @@ public class TableColumn {
 	/** 对象类型 */
 	public static final int DATATYPE_LOB = 3;
 	public static final int DATATYPE_INT = 4;
+
+	/** 精确小数 */
+	public static final int BIG_DECIMAL = 7;
+
 	/** 枚举类型 */
 	public static final int DATATYPE_ENUM = 10;
 
 	/** 列名称 */
 	private String name;
 	/** 列类型 */
-	private int dataType;
-
-	private String javaType;
-
+	private ColumnDataType dataType;
 	/** 列精度 */
 	private int length;
 	/** 是否可以为空 */
@@ -44,6 +43,8 @@ public class TableColumn {
 	private String common;
 	/** 常用数字分类字段可选值 */
 	private Map<String, String> options;
+
+	private String validations;
 
 	public String getPropertyName() {
 
@@ -57,28 +58,28 @@ public class TableColumn {
 		return propertyName;
 	}
 
-	public String getJavaDataType() {
-		switch (dataType) {
-		case DATATYPE_STRING:
-			return "String";
-		case DATATYPE_LONG:
-			if (getLength() > 4) {
-				return "Long";
-			} else {
-				return "int";
-			}
-		case DATATYPE_INT:
-			return "int";
-		case DATATYPE_DATE:
-			return "Date";
-		case DATATYPE_LOB:
-			return "String";
-		case DATATYPE_ENUM:
-			return GenerateUtils.getCanonicalClassName(this.name);
-		default:
-			return "String";
-		}
-	}
+	// public String getJavaDataType() {
+	// switch (dataType) {
+	// case DATATYPE_STRING:
+	// return "String";
+	// case DATATYPE_LONG:
+	// if (getLength() > 4) {
+	// return "Long";
+	// } else {
+	// return "int";
+	// }
+	// case DATATYPE_INT:
+	// return "int";
+	// case DATATYPE_DATE:
+	// return "Date";
+	// case DATATYPE_LOB:
+	// return "String";
+	// case DATATYPE_ENUM:
+	// return GenerateUtils.getCanonicalClassName(this.name);
+	// default:
+	// return "String";
+	// }
+	// }
 
 	public String getName() {
 		return name;
@@ -88,11 +89,11 @@ public class TableColumn {
 		this.name = name;
 	}
 
-	public int getDataType() {
+	public ColumnDataType getDataType() {
 		return dataType;
 	}
 
-	public void setDataType(int dataType) {
+	public void setDataType(ColumnDataType dataType) {
 		this.dataType = dataType;
 	}
 
@@ -128,20 +129,20 @@ public class TableColumn {
 		this.common = common;
 	}
 
-	public String getJavaType() {
-		return javaType;
-	}
-
-	public void setJavaType(String javaType) {
-		this.javaType = javaType;
-	}
-
 	public Map<String, String> getOptions() {
 		return options;
 	}
 
 	public void setOptions(Map<String, String> options) {
 		this.options = options;
+	}
+
+	public String getValidations() {
+		return validations;
+	}
+
+	public void setValidations(String validations) {
+		this.validations = validations;
 	}
 
 	public void appendOption(String key, String value) {

@@ -5,7 +5,8 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.acooly.module.coder.config.GenerateConfig;
-import com.acooly.module.coder.domain.TableColumn;
+import com.acooly.module.coder.domain.Column;
+import com.acooly.module.coder.domain.JavaType;
 import com.acooly.module.coder.generate.GenerateContext;
 import com.acooly.module.coder.module.FreeMarkerModuleGenerator;
 import com.acooly.module.coder.support.GenerateUtils;
@@ -31,17 +32,17 @@ public class EnumModuleGenerator extends FreeMarkerModuleGenerator {
 			for (String temp : templates) {
 				Template template = getTemplate(temp);
 
-				List<TableColumn> columns = generateContext.getTable().getColumnMetadatas();
-				for (TableColumn column : columns) {
-					if (column.getDataType() != TableColumn.DATATYPE_ENUM) {
-						continue;
+				List<Column> columns = generateContext.getTable().getColumns();
+				for (Column column : columns) {
+					if (column.getDataType().isEnum()) {
+						generateContext.appendData("enumColumn", column);
+						doGenerate(template, generateContext, getOutputPath(generateContext, temp),
+								GenerateUtils.getCanonicalClassFileName(column.getPropertyName()));
 					}
-					generateContext.appendData("enumColumn", column);
-					doGenerate(template, generateContext, getOutputPath(generateContext, temp),
-							GenerateUtils.getCanonicalClassFileName(column.getPropertyName()));
 				}
 			}
 
+			
 		} catch (Exception e) {
 			logger.warning("Generate Module fail: " + e.getMessage());
 		}

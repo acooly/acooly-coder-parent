@@ -12,8 +12,10 @@ src/main/java/com/acooly/module/coder/db/TableLoaderService.java -text
 src/main/java/com/acooly/module/coder/db/TableLoaderServiceFactory.java -text
 src/main/java/com/acooly/module/coder/db/dialect/MySQLTableLoaderService.java -text
 src/main/java/com/acooly/module/coder/db/dialect/OracleTableLoaderService.java -text
+src/main/java/com/acooly/module/coder/domain/Column.java -text
+src/main/java/com/acooly/module/coder/domain/ColumnDataType.java -text
+src/main/java/com/acooly/module/coder/domain/JavaType.java -text
 src/main/java/com/acooly/module/coder/domain/Table.java -text
-src/main/java/com/acooly/module/coder/domain/TableColumn.java -text
 src/main/java/com/acooly/module/coder/generate/CodeGenerateService.java -text
 src/main/java/com/acooly/module/coder/generate/GenerateContext.java -text
 src/main/java/com/acooly/module/coder/generate/impl/DefaultCodeGenerateService.java -text

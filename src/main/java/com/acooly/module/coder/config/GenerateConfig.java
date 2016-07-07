@@ -2,9 +2,6 @@ package com.acooly.module.coder.config;
 
 import java.beans.Transient;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 import com.acooly.module.coder.GenerateConstants;
 
 public class GenerateConfig {
@@ -33,6 +30,13 @@ public class GenerateConfig {
 	private String viewSuffix = GenerateConstants.GENERATOR_VIEW_SUFFIX;
 
 	private DatabaseConfig databaseConfig = new DatabaseConfig();
+
+	/** 代码版权 */
+	private String codeCopyright = GenerateConstants.GENERATOR_CODE_COPYRIGHT;
+	/** 代码作者 */
+	private String codeAuthor = GenerateConstants.GENERATOR_CODE_AUTHOR;
+	/** 自定义数据类型转换 */
+	private String dateTypeDeclare = GenerateConstants.GENERATOR_DATATYPE_DECLARE;
 
 	private static GenerateConfig generateConfiguration = new GenerateConfig();
 
@@ -135,9 +139,34 @@ public class GenerateConfig {
 		this.databaseConfig = databaseConfig;
 	}
 
+	public String getCodeCopyright() {
+		return codeCopyright;
+	}
+
+	public void setCodeCopyright(String codeCopyright) {
+		this.codeCopyright = codeCopyright;
+	}
+
+	public String getCodeAuthor() {
+		return codeAuthor;
+	}
+
+	public void setCodeAuthor(String codeAuthor) {
+		this.codeAuthor = codeAuthor;
+	}
+
+	public String getDateTypeDeclare() {
+		return dateTypeDeclare;
+	}
+
+	public void setDateTypeDeclare(String dateTypeDeclare) {
+		this.dateTypeDeclare = dateTypeDeclare;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("{\n  workspace:%s, \n  rootPackage:%s, \n  tableToEntityIgnorPrefix:%s, \n  databaseConfig:%s\n}",
+		return String.format(
+				"{\n  workspace:%s, \n  rootPackage:%s, \n  tableToEntityIgnorPrefix:%s, \n  databaseConfig:%s\n}",
 				workspace, rootPackage, tableToEntityIgnorPrefix, databaseConfig);
 	}
 

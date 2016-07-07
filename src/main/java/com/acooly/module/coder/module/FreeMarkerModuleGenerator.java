@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +34,7 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 				Template template = getTemplate(temp);
 				doGenerate(template, generateContext, getOutputPath(generateContext, temp));
 			}
-
+			logger.info("success gen " + this.getClass().getSimpleName() + " for " + Arrays.toString(templates));
 		} catch (Exception e) {
 			logger.warning("Generate Module fail: " + e.getMessage());
 		}

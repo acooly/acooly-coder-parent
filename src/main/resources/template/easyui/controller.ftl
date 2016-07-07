@@ -1,7 +1,7 @@
 /*
- * acooly.cn Inc.
+ * ${configuration.codeCopyright} Inc.
  * Copyright (c) ${datetime("yyyy")} All Rights Reserved.
- * create by zhangpu 
+ * create by ${configuration.codeAuthor}
  * date:${datetime("yyyy-MM-dd")}
  *
  */
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.acooly.core.common.web.AbstractJQueryEntityController;
 import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
 import ${nameScheme.servicePackage}.${nameScheme.serviceClassName};
-<#list table.columnMetadatas as entity>
-<#if entity.dataType == 10>
-import ${nameScheme.enumPackage}.${entity.propertyName?cap_first};
+<#list table.columns as column>
+<#if column.dataType.enum>
+import ${column.dataType.javaDeclare};
 </#if>
 </#list>
 
@@ -29,18 +29,18 @@ import com.google.common.collect.Maps;
 /**
  * ${table.comment} 管理控制器
  * 
- * @author Acooly Code Generator
+ * @author ${configuration.codeAuthor}
  * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
  */
 @Controller
 @RequestMapping(value = "${configuration.pagePath}/${nameScheme.domainClassName?uncap_first}")
 public class ${nameScheme.controllerClassName} extends AbstractJQueryEntityController<${nameScheme.domainClassName}, ${nameScheme.serviceClassName}> {
-
+	
 <#assign existOptions=false>
-<#list table.columnMetadatas as entity>
+<#list table.columns as entity>
 <#if entity.options??>
 	<#assign existOptions=true>
-	<#if entity.dataType == 1 || entity.dataType == 4>
+	<#if entity.dataType.number>
 	private static Map<Integer, String> all${entity.propertyName?cap_first}s = Maps.newLinkedHashMap();
 	static {
 	<#list entity.options?keys as key>
@@ -51,6 +51,11 @@ public class ${nameScheme.controllerClassName} extends AbstractJQueryEntityContr
 </#if>
 </#list>
 
+	{
+		allowMapping = "*";
+	}
+
+	@SuppressWarnings("unused")
 	@Autowired
 	private ${nameScheme.serviceClassName} ${nameScheme.serviceClassName?uncap_first};
 
@@ -58,9 +63,9 @@ public class ${nameScheme.controllerClassName} extends AbstractJQueryEntityContr
 <#if existOptions>
 	@Override
 	protected void referenceData(HttpServletRequest request, Map<String, Object> model) {
-	<#list table.columnMetadatas as entity>
+	<#list table.columns as entity>
 	<#if entity.options??>
-		<#if entity.dataType == 1 || entity.dataType == 4>
+		<#if entity.dataType.number>
 		model.put("all${entity.propertyName?cap_first}s", all${entity.propertyName?cap_first}s);
 		<#else>
 		model.put("all${entity.propertyName?cap_first}s", ${entity.propertyName?cap_first}.mapping());

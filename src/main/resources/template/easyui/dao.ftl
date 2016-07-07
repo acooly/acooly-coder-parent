@@ -5,6 +5,7 @@
  * date:${datetime("yyyy-MM-dd")}
  *
  */
+ package ${nameScheme.daoPackage};
 
 import com.acooly.core.common.dao.jpa.EntityJpaDao;
 import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
