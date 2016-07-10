@@ -84,7 +84,7 @@ public class Generator {
 			tables = listTbs.toArray(new String[0]);
 		} catch (Exception exp) {
 			HelpFormatter formatter = new HelpFormatter();
-			formatter.printHelp("generate [options] -t tableName1 tableName2 tableNameN ...", options);
+			formatter.printHelp("generator [options] -t tableName1 tableName2 tableNameN ...", options);
 			return;
 		}
 

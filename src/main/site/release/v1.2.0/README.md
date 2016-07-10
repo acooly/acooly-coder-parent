@@ -1,49 +1,6 @@
 acooly coder自动代码生成工具
 ====
 
-## 简介
-acooly coder是为acooly框架配套的专用代码生成工具，设计目的为跟进acooly框架封装的最佳代码实践，快速生成业务程序的骨架代码和基本功能，最大程度的减少程序员的重复劳动及规范统一代码风格和规范~
-
-## 版本说明
-
-### 工具的获取
-
-acooly coder的发布包采用maven方式发布，目前只提供cli工具。
-仓库地址：http://${host}/nexus/content/repositories/releases/
->host可以是35开发服务器，如果有外部需求，请联系我获取。
-
-工具包maven坐标：
-
-```xml
-<dependency>
-  <groupId>com.acooly</groupId>
-  <artifactId>acooly-module-coder</artifactId>
-  <version>1.2.1</version>
-  <classifier>distribution</classifier>
-  <type>zip</type>
-</dependency>
-```
->使用说明：拉取发布包后直接解压，application.properties为配置文件，请跟进生成的需求配置，然后运行start.sh/start.bat生成代码。
-
-
-### v1.2.1
-
-* 2016-07-10 20:37:29  zhangpu  [add] 更新图标和样式为最新的acooly样式,同时支持awesom-font图标和easyui图标，默认采用橙色的awesome-font图标。
-* 2016-07-08 02:47:32  zhangpu  [fix] 优化showPage模板，正确显示枚举，列表和ID数据~
-* 2016-07-08 01:09:40  zhangpu  [add] 增强选项类型的自动生成规则，同时支持基于枚举(key为字符串)和静态常量(key为数字)的选项数据生成。
-* 2016-07-08 01:09:40  zhangpu  [add] 重构数据类型映射，支持配置方式增加数据库与JAVA类型的映射。
-* 2016-07-03 16:13:41  zhangpu  [del] 暂时删除UI(swt)界面,计划后面开发插件。
-* 2016-07-03 16:13:41  zhangpu  [add] 精简工具依赖（只依赖freemarker,mysql-jdbc驱动和apache-commons-lang）并打包为all-in-one包，整理新的发布包，完成工具和文档整理。
-
-> 建议使用新版生成器后，升级acooly-module-security版本为3.4.6（向下兼容）
-
-### v1.2.1之前
-请按原有的发布包继续使用！~
-
-
-
-## 使用手册
-
 ### 框架约定
 acooly框架为了方便开发和设计，以开发经验为基础，对使用acooly进行了部分设计上的约定，通过约定降低设计和开发难度，提高效率。当然，这也符合流行的约定大于配置的设计理念。
 
@@ -61,7 +18,7 @@ acooly框架为了方便开发和设计，以开发经验为基础，对使用ac
 * 每个表必须有以id命名的物理主键，且为数字类型，如：mysql为bigint, oracle为number。
 * 列名称全部小写，不能以数字开头；如果存在多个自然单词的组合，使用下划线分隔(\_)。如："user\_type"
 * 列定义必须添加备注 （这个备注则为生成的页面及表单的label）
-* 每个表必须添加create\_time和update\_time两个日期时间类型的字段，但无需手动管理 （在save/update时，框架会自己维护创建时间和最后修改时间）。
+* 每个表必须添加create_time和update_time两个日期时间类型的字段，但无需手动管理 （在save/update时，框架会自己维护创建时间和最后修改时间）。
 * 如果有选项类型的字段，其选项值使用类json格式写入列备注字段，自动生成工具会自动为该列对应的属性和页面生成选项。如：表列为：user\_type ,备注可以为：用户类型 {normal:普通,vip:高级}
 * 特别注意，强烈要求选项类（自动生成枚举类的）字段项目全局唯一名称，否则会生成enum名称相同的枚举相互覆盖。
 
@@ -74,6 +31,10 @@ acooly框架为了方便开发和设计，以开发经验为基础，对使用ac
 * 工具化自动生成目标代码，作为业务开发的start...
 
 目前的工具，形态只有cil和swt的简单界面（太懒，忘记开发插件）。 主要通过配置文件驱动工具行为，主配置文件为application.properties.
+
+#### 工具的获取
+
+请联系我~
 
 下面以一个案例来简单说明这个开发过程。
 
@@ -130,15 +91,6 @@ generator.pagePath=/manage/demo
 generator.tableToEntityIgnorPrefix=dm_
 # 模板方案路径，默认设置为easyui
 generator.templatePath=classpath:/template/easyui
-
-# 自定义数据类型映射,类JSON格式。格式{数据库数据类型1:java数据类型1（如果需要imports则需要完整包路径,...}
-# 这里设置了映射后，会覆盖生成器默认的数据类型映射规则
-generator.dataType.declare={decimal:java.math.BigDecimal}
-# 代码作者
-generator.code.author=acooly
-# 代码版权声明主体
-generator.code.copyright=acooly.cn
-
 ```
 
 完成配置后，请保持退出，准备运行工具生成代码

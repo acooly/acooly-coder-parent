@@ -93,13 +93,19 @@
 
 	<profiles>
 		<profile>
-			<id>develop</id>
+			<id>ide-eclipse</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 		</profile>
 		<profile>
 			<id>deploy</id>
+			<activation>
+				<property>
+					<name>opt</name>
+					<value>deploy</value>
+				</property>
+			</activation>
 			<build>
 				<resources>
 					<resource>
@@ -119,12 +125,11 @@
 						<artifactId>maven-assembly-plugin</artifactId>
 						<version>2.4.1</version>
 						<configuration>
-							<appendAssemblyId>false</appendAssemblyId>
-							<finalName>acooly-coder-allinone</finalName>
+							<!-- <appendAssemblyId>false</appendAssemblyId> <finalName>acooly-coder-allinone</finalName> -->
 							<!-- get all project dependencies -->
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
+							<descriptors>
+								<descriptor>src/main/assembly.xml</descriptor>
+							</descriptors>
 							<!-- MainClass in mainfest make a executable jar -->
 							<archive>
 								<manifest>
@@ -135,7 +140,6 @@
 						<executions>
 							<execution>
 								<id>make-assembly</id>
-								<!-- bind to the packaging phase -->
 								<phase>package</phase>
 								<goals>
 									<goal>single</goal>
@@ -144,23 +148,60 @@
 						</executions>
 					</plugin>
 				</plugins>
-
-
 			</build>
 		</profile>
-	</profiles>
+		
+		<!-- 发布仓库定义 -->
+		<profile>
+			<id>acooly</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<distributionManagement>
+				<!-- use the following if you're not using a snapshot version. -->
+				<repository>
+					<id>acooly-releases</id>
+					<name>acooly Internal Releases</name>
+					<url>http://acooly.cn/nexus/content/repositories/releases/</url>
+				</repository>
+				<snapshotRepository>
+					<id>acooly-snapshot</id>
+					<name>acooly Internal snapshot</name>
+					<url>http://acooly.cn/nexus/content/repositories/snapshots/</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
 
-	<!-- 设定除中央仓库 -->
-	<repositories>
-		<!-- 公司Nexus私服 -->
-		<repository>
-			<id>central</id>
-			<name>Central Repository</name>
-			<url>http://www.acooly.com/nexus/content/repositories/releases/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+		<profile>
+			<id>yiji_dev</id>
+			<distributionManagement>
+				<repository>
+					<id>thirdparty</id>
+					<url>http://192.168.45.35:8081/nexus/content/repositories/thirdparty</url>
+				</repository>
+				<snapshotRepository>
+					<id>yiji-snapshots</id>
+					<name>yiji 3rd-party realease</name>
+					<url>http://192.168.45.35:8081/nexus/content/repositories/snapshots/</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>yiji_online</id>
+			<distributionManagement>
+				<repository>
+					<id>thirdparty</id>
+					<url>http://192.168.45.199:8081/nexus/content/repositories/thirdparty</url>
+				</repository>
+				<snapshotRepository>
+					<id>yiji-snapshots</id>
+					<name>yiji 3rd-party realease</name>
+					<url>http://192.168.45.199:8081/nexus/content/repositories/snapshots/</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>		
+		
+	</profiles>
 
 </project>

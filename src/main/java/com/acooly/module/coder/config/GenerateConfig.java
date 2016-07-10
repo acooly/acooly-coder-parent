@@ -166,8 +166,8 @@ public class GenerateConfig {
 	@Override
 	public String toString() {
 		return String.format(
-				"{\n  workspace:%s, \n  rootPackage:%s, \n  tableToEntityIgnorPrefix:%s, \n  databaseConfig:%s\n}",
-				workspace, rootPackage, tableToEntityIgnorPrefix, databaseConfig);
+				"{\n  workspace:%s, \n  rootPackage:%s, \n  pagePath:%s, \n  tableToEntityIgnorPrefix:%s, \n  databaseConfig:%s\n}",
+				workspace, rootPackage, pagePath, tableToEntityIgnorPrefix, databaseConfig);
 	}
 
 }

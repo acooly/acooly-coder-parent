@@ -17,9 +17,9 @@ public class ConfigurableConstants {
 			in = ConfigurableConstants.class.getClassLoader().getResourceAsStream(propertyFileName);
 			if (in != null) {
 				p.load(in);
-				logger.info("load success:" + propertyFileName);
+				System.out.println("load success:" + propertyFileName);
 			} else {
-				throw new RuntimeException("加载配置文件失败");
+				throw new RuntimeException("加载配置文件失败. file: " + propertyFileName);
 			}
 		} catch (IOException e) {
 			logger.warning("load " + propertyFileName + " into Constants error!");
@@ -44,7 +44,7 @@ public class ConfigurableConstants {
 		String configFile = propertyFileName;
 		if (StringUtils.isNotBlank(activeProfile)) {
 			configFile = StringUtils.substringBeforeLast(configFile, ".") + "." + activeProfile + "."
-					+ StringUtils.substringAfterLast(configFile, ".");
+			        + StringUtils.substringAfterLast(configFile, ".");
 		}
 		init(configFile);
 	}

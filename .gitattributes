@@ -1,7 +1,11 @@
 * text=auto !eol
 /README.md -text
-/package.bat -text
 /pom.xml -text
+src/main/assembly.xml -text
+src/main/bin/application.properties -text
+src/main/bin/generator.sh -text
+src/main/bin/start.bat -text
+src/main/bin/start.sh -text
 src/main/java/com/acooly/module/coder/GenerateConstants.java -text
 src/main/java/com/acooly/module/coder/Generator.java -text
 src/main/java/com/acooly/module/coder/config/Database.java -text
@@ -66,4 +70,9 @@ src/main/resources/template/extreme/service.ftl -text
 src/main/resources/template/extreme/serviceImpl.ftl -text
 src/main/site/index.html -text
 src/main/site/release/v1.2.0.zip -text
+src/main/site/release/v1.2.0/README.md -text
+src/main/site/release/v1.2.0/acooly-coder-allinone.jar -text
+src/main/site/release/v1.2.0/application.properties -text
+src/main/site/release/v1.2.0/start.bat -text
+src/main/site/release/v1.2.0/start.sh -text
 src/test/java/com/acooly/module/coder/test/CodeGeneratorMain.java -text

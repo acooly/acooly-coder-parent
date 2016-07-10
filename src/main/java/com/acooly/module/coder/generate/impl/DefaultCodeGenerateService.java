@@ -1,5 +1,6 @@
 package com.acooly.module.coder.generate.impl;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -51,11 +52,12 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 		} catch (Exception e) {
 			logger.warning("Generate Table fail. tableName: " + tableName + ", e:" + e.getMessage());
 		}
-
 	}
 
 	@Override
 	public void generateTables(String... tableNames) {
+		System.out.println("GenerateConfig:\n" + generateConfig);
+		System.out.println("GenerateTables:" + Arrays.toString(tableNames));
 		for (String tableName : tableNames) {
 			generateTable(tableName);
 		}
@@ -80,7 +82,7 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 		for (Column column : generateContext.getTable().getColumns()) {
 			if (column.getDataType().getJavaType() == JavaType.Enum) {
 				column.getDataType().setJavaDeclare(generateContext.getNameScheme().getEnumPackage() + "."
-						+ GenerateUtils.getCanonicalClassName(column.getPropertyName()));
+				        + GenerateUtils.getCanonicalClassName(column.getPropertyName()));
 			}
 		}
 	}
