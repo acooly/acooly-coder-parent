@@ -35,7 +35,7 @@ acooly框架为了方便开发和设计，以开发经验为基础，对使用ac
 #### 工具的获取
 
 * [v1.2.0](http://acooly.cn/acooly/acoolycoder/release/v1.2.0.zip)
-
+* [v1.2.1](http://acooly.cn/acooly/acoolycoder/release/v1.2.1.zip)
 
 下面以一个案例来简单说明这个开发过程。
 

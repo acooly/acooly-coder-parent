@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.acooly</groupId>
 	<artifactId>acooly-module-coder</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 	<packaging>jar</packaging>
 
 	<name>acooly code generator</name>
@@ -14,14 +14,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.6</jdk.version>
 
-		<spring.version>3.1.2.RELEASE</spring.version>
 		<freemarker.version>2.3.14</freemarker.version>
 		<commons-lang3.version>3.1</commons-lang3.version>
-		<commons-logging.version>1.2</commons-logging.version>
-
-		<slf4j.version>1.7.7</slf4j.version>
-		<logback.version>1.1.2</logback.version>
-
 	</properties>
 
 	<dependencies>
@@ -33,11 +27,6 @@
 			<version>${freemarker.version}</version>
 		</dependency>
 
-		<!-- slf4j <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
-			<version>${slf4j.version}</version> </dependency> <dependency> <groupId>ch.qos.logback</groupId> 
-			<artifactId>logback-core</artifactId> <version>${logback.version}</version> 
-			</dependency> <dependency> <groupId>ch.qos.logback</groupId> <artifactId>logback-classic</artifactId> 
-			<version>${logback.version}</version> </dependency> -->
 		<!-- Apache Common -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
