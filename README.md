@@ -28,14 +28,14 @@ acooly coder的发布包采用maven方式发布，目前只提供cli工具。
 
 ### v1.2.1
 
-* 2016-07-10 20:37:29  zhangpu  [add] 更新图标和样式为最新的acooly样式,同时支持awesom-font图标和easyui图标，默认采用橙色的awesome-font图标。
-* 2016-07-08 02:47:32  zhangpu  [fix] 优化showPage模板，正确显示枚举，列表和ID数据~
+* 2016-07-10 20:37:29  zhangpu  [add] 更新图标和样式为最新的acooly样式,同时支持awesom-font图标和easyui图标，默认采用橙色的awesome-font图标。（需acooly-module-security-3.4.6支持）
+* 2016-07-08 02:47:32  zhangpu  [fix] 一系列的试图层模板优化，生成的代码更准确和人性化
 * 2016-07-08 01:09:40  zhangpu  [add] 增强选项类型的自动生成规则，同时支持基于枚举(key为字符串)和静态常量(key为数字)的选项数据生成。
-* 2016-07-08 01:09:40  zhangpu  [add] 重构数据类型映射，支持配置方式增加数据库与JAVA类型的映射。
+* 2016-07-08 01:09:40  zhangpu  [add] 重构数据类型映射，支持配置方式增加数据库与JAVA类型的映射,不如，你想让数据库的decimal类型生成为Money或BigDecimal。
 * 2016-07-03 16:13:41  zhangpu  [del] 暂时删除UI(swt)界面,计划后面开发插件。
-* 2016-07-03 16:13:41  zhangpu  [add] 精简工具依赖（只依赖freemarker,mysql-jdbc驱动和apache-commons-lang）并打包为all-in-one包，整理新的发布包，完成工具和文档整理。
+* 2016-07-03 16:13:41  zhangpu  [add] 精简工具依赖（只依赖freemarker,mysql-jdbc驱动和apache-commons-lang），整理新的发布包,通过nexus发布，完成工具和文档整理。
 
-> 建议使用新版生成器后，升级acooly-module-security版本为3.4.6（向下兼容）
+> 建议使用新版生成器后，升级acooly-module-security版本为3.4.6为最佳效果（向下兼容）
 
 ### v1.2.1之前
 请按原有的发布包继续使用！~
