@@ -7,7 +7,14 @@
 <script type="text/javascript">
 $(function() {
 	$.acooly.framework.registerKeydown('manage_${entityVariable}_searchform','manage_${entityVariable}_datagrid');
+	$('#manage_${entityVariable}_datagrid').datagrid({
+		showFooter:true,
+		onLoadSuccess : function() {
+        	$('#manage_${entityVariable}_datagrid').datagrid('statistics');
+    	}
+	});
 });
+
 </script>
 <div class="easyui-layout" data-options="fit : true,border : false">
   <!-- 查询条件 -->
@@ -55,7 +62,7 @@ $(function() {
 		<#if entity.dataType.date>
 		    <th field="${entity.propertyName}" formatter="formatDate">${entity.common}</th>
 		<#elseif entity.dataType.number>
-			<th field="${entity.propertyName}">${entity.common}</th>
+			<th field="${entity.propertyName}" <#if entity.dataType.long>sum="true"</#if>>${entity.common}</th>
 		<#else>
 			<th field="${entity.propertyName}">${entity.common}</th>
 		</#if>
