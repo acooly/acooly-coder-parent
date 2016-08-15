@@ -18,12 +18,21 @@ acooly coder的发布包采用maven方式发布，目前只提供cli工具。
 <dependency>
   <groupId>com.acooly</groupId>
   <artifactId>acooly-module-coder</artifactId>
-  <version>1.2.1</version>
+  <version>1.2.2</version>
   <classifier>distribution</classifier>
   <type>zip</type>
 </dependency>
 ```
 >使用说明：拉取发布包后直接解压，application.properties为配置文件，请跟进生成的需求配置，然后运行start.sh/start.bat生成代码。
+
+
+
+### v1.2.2
+
+* 2016-08-15 16:54:29  cuifuq  [add] 列表页面更新：bigint 类型数据自动添加统计求和功能，使用方式 sum="true"   
+* 统计功能：sum:求和；avg:平均；max：最大值；min：最小值
+
+> 使用统计功能需acooly-module-security版本升级为3.4.4以上
 
 
 ### v1.2.1
