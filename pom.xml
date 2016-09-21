@@ -49,7 +49,16 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.21</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.4.0</version>
+		</dependency>
+
 	</dependencies>
+
+
 
 	<build>
 		<!-- 插件默认配置, 子项目可以覆盖 -->
@@ -150,7 +159,7 @@
 				</plugins>
 			</build>
 		</profile>
-		
+
 		<!-- 发布仓库定义 -->
 		<profile>
 			<id>acooly</id>
@@ -200,8 +209,8 @@
 					<url>http://192.168.45.199:8081/nexus/content/repositories/snapshots/</url>
 				</snapshotRepository>
 			</distributionManagement>
-		</profile>		
-		
+		</profile>
+
 	</profiles>
 
 </project>
