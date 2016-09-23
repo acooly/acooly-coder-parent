@@ -26,6 +26,12 @@ acooly coder的发布包采用maven方式发布，目前只提供cli工具。
 >使用说明：拉取发布包后直接解压，application.properties为配置文件，请跟进生成的需求配置，然后运行start.sh/start.bat生成代码。
 
 
+### v1.2.3
+
+* 2016-09-23 - 提交mysql和oracle的测试表dm_customer的ddl,增加主配置文件oracle的配置 - [zhangpu] f988688
+* 2016-09-23 - 新增ORACLE自动代码生成支持 - [zhangpu] bb2bf4a
+* 2016-09-21 - 添加oracle的驱动依赖 - [zhangpu] 9b73dca
+
 
 ### v1.2.2
 
