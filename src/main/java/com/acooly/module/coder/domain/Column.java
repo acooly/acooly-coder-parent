@@ -33,8 +33,10 @@ public class Column {
 	private String name;
 	/** 列类型 */
 	private ColumnDataType dataType;
-	/** 列精度 */
+	/** 列长度 */
 	private int length;
+	/** 列小数长度 */
+	private int scale = 0;
 	/** 是否可以为空 */
 	private boolean nullable;
 	/** 默认值 */
@@ -143,6 +145,14 @@ public class Column {
 
 	public void setValidations(String validations) {
 		this.validations = validations;
+	}
+
+	public int getScale() {
+		return scale;
+	}
+
+	public void setScale(int scale) {
+		this.scale = scale;
 	}
 
 	public void appendOption(String key, String value) {

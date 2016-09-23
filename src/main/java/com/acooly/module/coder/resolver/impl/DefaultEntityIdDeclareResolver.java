@@ -16,6 +16,13 @@ public class DefaultEntityIdDeclareResolver implements EntityIdDeclareResolver {
 
 	@Override
 	public String getEntityIdDeclare(Database database, Table table) {
+
+		if (database == Database.ORACLE) {
+			String declare = "@GeneratedValue(generator = \"sequence\")\n"
+			        + "	@GenericGenerator(name = \"sequence\", strategy = \"sequence\", parameters = { @Parameter(name = \"sequence\", value = \"SEQ_"
+			        + table.getName() + "\") })";
+			return declare;
+		}
 		return "@GeneratedValue";
 	}
 

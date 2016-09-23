@@ -16,6 +16,8 @@ public enum JavaType {
 
 	Date("Date"),
 
+	pDouble("double"),
+
 	Enum("Enum"),
 
 	Object("Object");
@@ -32,7 +34,7 @@ public enum JavaType {
 
 	public static JavaType of(String value) {
 		for (JavaType t : values()) {
-			if(StringUtils.equals(t.getValue(), value)){
+			if (StringUtils.equals(t.getValue(), value)) {
 				return t;
 			}
 		}

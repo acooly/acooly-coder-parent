@@ -159,13 +159,6 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
 
 	@Override
 	protected ColumnDataType doConvertJavaType(String databaseType, Column column) {
-		if (column.getOptions() != null && column.getOptions().size() > 0) {
-			// 存在选项值
-			if (!StringUtils.isNumeric(column.getOptions().keySet().iterator().next())) {
-				// 非数字，采用枚举
-				return new ColumnDataType(databaseType, JavaType.Enum, column.getName());
-			}
-		}
 
 		if (StringUtils.equalsIgnoreCase(databaseType, "int") || StringUtils.equalsIgnoreCase(databaseType, "tinyint")
 				|| StringUtils.equalsIgnoreCase(databaseType, "smallint")) {

@@ -26,6 +26,13 @@ public abstract class AbstractTableLoaderService implements TableLoaderService {
 	protected static Logger logger = Logger.getLogger(AbstractTableLoaderService.class.getSimpleName());
 
 	protected ColumnDataType convertJavaType(String databaseType, Column column) {
+		if (column.getOptions() != null && column.getOptions().size() > 0) {
+			// 存在选项值
+			if (!StringUtils.isNumeric(column.getOptions().keySet().iterator().next())) {
+				// 非数字，采用枚举
+				return new ColumnDataType(databaseType, JavaType.Enum, column.getName());
+			}
+		}
 		// 根据数据库的实现
 		ColumnDataType dataType = doConvertJavaType(databaseType, column);
 		// 用户自定义配置实现？
@@ -36,7 +43,7 @@ public abstract class AbstractTableLoaderService implements TableLoaderService {
 	protected ColumnDataType convertCustomeType(String databaseType, Column column) {
 
 		Map<String, String> dataTypeMapping = GenerateUtils
-				.parseLikeJson(GenerateConfig.INSTANCE().getDateTypeDeclare());
+		        .parseLikeJson(GenerateConfig.INSTANCE().getDateTypeDeclare());
 		if (dataTypeMapping == null || dataTypeMapping.size() == 0) {
 			return null;
 		}

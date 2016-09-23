@@ -30,7 +30,7 @@ public class ColumnDataType {
 
 	public boolean isNumber() {
 		return javaType == JavaType.Int || javaType == JavaType.Integer || javaType == JavaType.Long
-				|| javaType == JavaType.pLong;
+		        || javaType == JavaType.pLong;
 	}
 
 	public boolean isInteger() {
@@ -51,6 +51,10 @@ public class ColumnDataType {
 
 	public boolean isDate() {
 		return javaType == JavaType.Date;
+	}
+
+	public boolean isDouble() {
+		return javaType == JavaType.pDouble;
 	}
 
 	public String getJavaTypeName() {

@@ -31,7 +31,7 @@ public class EnumModuleGenerator extends FreeMarkerModuleGenerator {
 			String[] templates = StringUtils.split(templateName, ",");
 			for (String temp : templates) {
 				Template template = getTemplate(temp);
-
+				
 				List<Column> columns = generateContext.getTable().getColumns();
 				for (Column column : columns) {
 					if (column.getDataType().isEnum()) {

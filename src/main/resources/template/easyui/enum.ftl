@@ -21,7 +21,7 @@ import com.acooly.core.utils.enums.Messageable;
  * @author ${configuration.codeAuthor}
  * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
  */
-public enum ${enumName} implements Messageable {
+public enum ${nameScheme.domainClassName}${enumName} implements Messageable {
 
 	<#list data.enumColumn.options?keys as key>
 		${key}("${key}", "${data.enumColumn.options[key]}"),

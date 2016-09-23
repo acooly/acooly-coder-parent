@@ -54,17 +54,18 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	<#if entity.dataType.enum>
 	@Enumerated(EnumType.STRING)
 	</#if>	
-	private ${javaDataType} ${entity.propertyName}<#if (entity.defaultValue)??> = <#if entity.dataType.long>${entity.defaultValue}l<#elseif entity.dataType.integer>1<#elseif entity.dataType.date>new Date()<#else>"${entity.defaultValue}"</#if></#if>;
+	private ${javaDataType} ${entity.propertyName}<#if (entity.defaultValue)??> = <#if entity.dataType.long>${entity.defaultValue}l<#elseif entity.dataType.integer>${entity.defaultValue}<#elseif entity.dataType.double>${entity.defaultValue}d<#elseif entity.dataType.date>new Date()<#else>"${entity.defaultValue}"</#if></#if>;
 </#list>
 	
 <#list table.columns as entity>
 	<#assign javaDataType="${entity.dataType.javaTypeName}">
-	<#if entity.dataType.enum><#assign javaDataType="${entity.propertyName?cap_first}"></#if>
-	public ${javaDataType} get${entity.propertyName?cap_first}(){
+	<#assign accesserMethodName="${entity.propertyName?cap_first}">
+	<#if entity.dataType.enum><#assign javaDataType="${accesserMethodName}"></#if>
+	public ${javaDataType} get${accesserMethodName}(){
 		return this.${entity.propertyName};
 	}
 	
-	public void set${entity.propertyName?cap_first}(${javaDataType} ${entity.propertyName}){
+	public void set${accesserMethodName}(${javaDataType} ${entity.propertyName}){
 		this.${entity.propertyName} = ${entity.propertyName};
 	}
 </#list>	
