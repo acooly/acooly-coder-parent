@@ -25,6 +25,10 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+<#if entityIdDeclare?index_of('GenericGenerator') != -1>
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+</#if>
 
 import com.acooly.core.common.domain.AbstractEntity;
 <#list table.importDeclares as declare>
