@@ -7,41 +7,58 @@
  */
 package com.acooly.module.coder.module;
 
+import com.acooly.module.coder.config.GenerateConfig;
+import com.acooly.module.coder.module.impl.*;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.acooly.module.coder.module.impl.DaoTestModuleGenerator;
-import com.acooly.module.coder.module.impl.DomainModuleGenerator;
-import com.acooly.module.coder.module.impl.EnumModuleGenerator;
-import com.acooly.module.coder.module.impl.JpaDaoModuleGenerator;
-import com.acooly.module.coder.module.impl.ManagerControllerModuleGenerator;
-import com.acooly.module.coder.module.impl.ManagerViewsModuleGenerator;
-import com.acooly.module.coder.module.impl.ServiceImplModuleGenerator;
-import com.acooly.module.coder.module.impl.ServiceInterfaceModuleGenerator;
 
 /**
  * @author zhangpu
  */
 public class ModuleGeneratorFactory {
 
-	static Map<String, ModuleGenerator> modules = new HashMap<String, ModuleGenerator>();
+    static Map<String, ModuleGenerator> modules = new HashMap<String, ModuleGenerator>();
 
-	static {
-		register("domain", new DomainModuleGenerator());
-		register("enum", new EnumModuleGenerator());
-		register("dao", new JpaDaoModuleGenerator());
-		register("daoTest", new DaoTestModuleGenerator());
-		register("service", new ServiceInterfaceModuleGenerator());
-		register("serviceImpl", new ServiceImplModuleGenerator());
-		register("managerController", new ManagerControllerModuleGenerator());
-		register("managerViews", new ManagerViewsModuleGenerator());
-	}
+    static {
+        registryDefault();
+    }
 
-	public static void register(String name, ModuleGenerator moduleGenerator) {
-		modules.put(name, moduleGenerator);
-	}
+    public static void registryDefault() {
+        register("domain", new DomainModuleGenerator());
+        register("enum", new EnumModuleGenerator());
+        register("dao", new JpaDaoModuleGenerator());
+        //register("daoTest", new DaoTestModuleGenerator());
+        register("service", new ServiceInterfaceModuleGenerator());
+        register("serviceImpl", new ServiceImplModuleGenerator());
+        register("managerController", new ManagerControllerModuleGenerator());
+        register("managerViews", new ManagerViewsModuleGenerator());
+    }
 
-	public static Map<String, ModuleGenerator> getModuleGenerators() {
-		return modules;
-	}
+
+    public static Map<String, ModuleGenerator> registies(GenerateConfig config) {
+        modules.clear();
+        register("domain", new DomainModuleGenerator());
+        register("enum", new EnumModuleGenerator());
+        if ("jpa".equalsIgnoreCase(config.getPersistentSolution())) {
+            register("dao", new JpaDaoModuleGenerator());
+        } else {
+            register("mybatisDao", new MyBatisDaoModuleGenerator());
+        }
+        //register("daoTest", new DaoTestModuleGenerator());
+        register("service", new ServiceInterfaceModuleGenerator());
+        register("serviceImpl", new ServiceImplModuleGenerator());
+        register("managerController", new ManagerControllerModuleGenerator());
+        register("managerViews", new ManagerViewsModuleGenerator());
+        return modules;
+    }
+
+
+    public static void register(String name, ModuleGenerator moduleGenerator) {
+        modules.put(name, moduleGenerator);
+    }
+
+    public static Map<String, ModuleGenerator> getModuleGenerators() {
+        return modules;
+    }
 }

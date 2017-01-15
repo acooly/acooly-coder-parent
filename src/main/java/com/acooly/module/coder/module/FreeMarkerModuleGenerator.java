@@ -83,6 +83,8 @@ public abstract class FreeMarkerModuleGenerator implements ModuleGenerator {
 
 	}
 
+
+
 	protected String getPackage(String name) {
 		return generateConfiguration.getRootPackage() + "." + name;
 	}

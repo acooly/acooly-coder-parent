@@ -3,7 +3,6 @@
  * Copyright (c) ${datetime("yyyy")} All Rights Reserved.
  * create by ${configuration.codeAuthor}
  * date:${datetime("yyyy-MM-dd")}
- *
  */
 package ${nameScheme.serviceImplPackage};
 

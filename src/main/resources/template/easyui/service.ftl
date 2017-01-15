@@ -14,7 +14,6 @@ import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
  * ${table.comment} Service接口
  *
  * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
- *
  * @author ${configuration.codeAuthor}
  *
  */

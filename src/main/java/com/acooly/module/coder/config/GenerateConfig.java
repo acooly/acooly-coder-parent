@@ -38,6 +38,9 @@ public class GenerateConfig {
 	/** 自定义数据类型转换 */
 	private String dateTypeDeclare = GenerateConstants.GENERATOR_DATATYPE_DECLARE;
 
+	private String persistentSolution = GenerateConstants.GENERATOR_PERSISTENT_SOLUTION;
+
+
 	private static GenerateConfig generateConfiguration = new GenerateConfig();
 
 	public static GenerateConfig INSTANCE() {
@@ -161,6 +164,14 @@ public class GenerateConfig {
 
 	public void setDateTypeDeclare(String dateTypeDeclare) {
 		this.dateTypeDeclare = dateTypeDeclare;
+	}
+
+	public String getPersistentSolution() {
+		return persistentSolution;
+	}
+
+	public void setPersistentSolution(String persistentSolution) {
+		this.persistentSolution = persistentSolution;
 	}
 
 	@Override

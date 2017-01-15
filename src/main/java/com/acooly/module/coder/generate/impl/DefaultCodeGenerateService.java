@@ -44,7 +44,7 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 	public void generateTable(String tableName) {
 		try {
 			GenerateContext generateContext = loadGenerateContext(tableName);
-			Map<String, ModuleGenerator> moduleGeneratorMaps = ModuleGeneratorFactory.getModuleGenerators();
+			Map<String, ModuleGenerator> moduleGeneratorMaps = ModuleGeneratorFactory.registies(generateConfig);
 			for (Map.Entry<String, ModuleGenerator> entry : moduleGeneratorMaps.entrySet()) {
 				entry.getValue().generate(generateContext);
 			}

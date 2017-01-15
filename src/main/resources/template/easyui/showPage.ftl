@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/manage/common/taglibs.jsp"%>
+<%@ include file="/WEB-INF/jsp/manage/common/taglibs.jsp"%>
 <#assign entityVariable="${nameScheme.domainClassName?uncap_first}" />
 <#assign entityContextPath="${configuration.pagePath}/${nameScheme.domainClassName?uncap_first}" />
 <div style="padding: 5px;font-family:微软雅黑;">

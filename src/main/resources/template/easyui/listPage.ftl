@@ -1,18 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/manage/common/taglibs.jsp"%>
-
+<%@ include file="/WEB-INF/jsp/manage/common/taglibs.jsp"%>
 <#assign entityVariable="${nameScheme.domainClassName?uncap_first}" />
 <#assign entityContextPath="${configuration.pagePath}/${nameScheme.domainClassName?uncap_first}" />
 
 <script type="text/javascript">
 $(function() {
 	$.acooly.framework.registerKeydown('manage_${entityVariable}_searchform','manage_${entityVariable}_datagrid');
-	$('#manage_${entityVariable}_datagrid').datagrid({
-		showFooter:true,
-		onLoadSuccess : function() {
-        	$('#manage_${entityVariable}_datagrid').datagrid('statistics');
-    	}
-	});
 });
 
 </script>
@@ -51,7 +44,7 @@ $(function() {
   <!-- 列表和工具栏 -->
   <div data-options="region:'center',border:false">
     <table id="manage_${entityVariable}_datagrid" class="easyui-datagrid" url="${r"${"}pageContext.request.contextPath}${entityContextPath}/listJson.html" toolbar="#manage_${entityVariable}_toolbar" fit="true" border="false" fitColumns="false"
-      pagination="true" idField="id" pageSize="20" pageList="[ 10, 20, 30, 40, 50 ]" sortName="id" sortOrder="desc" checkOnSelect="true" selectOnCheck="true" singleSelect="true" nowrap="false">
+      pagination="true" idField="id" pageSize="20" pageList="[ 10, 20, 30, 40, 50 ]" sortName="id" sortOrder="desc" checkOnSelect="true" selectOnCheck="true" singleSelect="true">
       <thead>
         <tr>
         	<th field="showCheckboxWithId" checkbox="true" data-options="formatter:function(value, row, index){ return row.id }">编号</th>

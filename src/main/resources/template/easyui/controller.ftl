@@ -1,10 +1,9 @@
 /*
- * ${configuration.codeCopyright} Inc.
- * Copyright (c) ${datetime("yyyy")} All Rights Reserved.
- * create by ${configuration.codeAuthor}
- * date:${datetime("yyyy-MM-dd")}
- *
- */
+* ${configuration.codeCopyright} Inc.
+* Copyright (c) ${datetime("yyyy")} All Rights Reserved.
+* create by ${configuration.codeAuthor}
+* date:${datetime("yyyy-MM-dd")}
+*/
 package ${nameScheme.controllerPackage};
 
 import java.util.Map;

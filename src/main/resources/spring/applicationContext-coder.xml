@@ -65,6 +65,12 @@
 		<property name="templateName" value="dao.ftl" />
 	</bean>
 
+	<bean id="myBatisDaoModuleGenerator"
+		  class="com.acooly.module.coder.module.impl.MyBatisDaoModuleGenerator">
+		<property name="generateConfiguration" ref="generateConfiguration" />
+		<property name="templateName" value="mybatisDao.ftl" />
+	</bean>
+
 	<bean id="daoTestModuleGenerator"
 		class="com.acooly.module.coder.module.impl.DaoTestModuleGenerator">
 		<property name="generateConfiguration" ref="generateConfiguration" />
