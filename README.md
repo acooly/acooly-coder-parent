@@ -4,58 +4,39 @@ acooly coder自动代码生成工具
 ## 简介
 acooly coder是为acooly框架配套的专用代码生成工具，设计目的为跟进acooly框架封装的最佳代码实践，快速生成业务程序的骨架代码和基本功能，最大程度的减少程序员的重复劳动及规范统一代码风格和规范~
 
-## 版本说明
+## 工具获取
 
-### 工具的获取
+### cli工具
 
 acooly coder的发布包采用maven方式发布，目前只提供cli工具。
 仓库地址：http://${host}/nexus/content/repositories/releases/
->host可以是35开发服务器，如果有外部需求，请联系我获取。
 
-工具包maven坐标：
+工具包maven坐标（请根据需要更新对应的版本,当前版本：4.0.0-SNAPSHOT）：
+
+v1.x坐标：
 
 ```xml
 <dependency>
   <groupId>com.acooly</groupId>
   <artifactId>acooly-module-coder</artifactId>
-  <version>1.2.2</version>
+  <version>${acooly.coder.version}</version>
   <classifier>distribution</classifier>
   <type>zip</type>
 </dependency>
 ```
+v4.x坐标：
+
+```xml
+<dependency>
+  <groupId>com.acooly</groupId>
+  <artifactId>acooly-coder</artifactId>
+  <version>${acooly.coder.version}</version>
+  <classifier>distribution</classifier>
+  <type>zip</type>
+</dependency>
+```
+
 >使用说明：拉取发布包后直接解压，application.properties为配置文件，请跟进生成的需求配置，然后运行start.sh/start.bat生成代码。
-
-
-### v1.2.3
-
-* 2016-09-23 - 提交mysql和oracle的测试表dm_customer的ddl,增加主配置文件oracle的配置 - [zhangpu] f988688
-* 2016-09-23 - 新增ORACLE自动代码生成支持 - [zhangpu] bb2bf4a
-* 2016-09-21 - 添加oracle的驱动依赖 - [zhangpu] 9b73dca
-
-
-### v1.2.2
-
-* 2016-08-15 16:54:29  cuifuq  [add] 列表页面更新：bigint 类型数据自动添加统计求和功能，使用方式 sum="true"   
-* 统计功能：sum:求和；avg:平均；max：最大值；min：最小值
-
-> 使用统计功能需acooly-module-security版本升级为3.4.4以上
-
-
-### v1.2.1
-
-* 2016-07-10 20:37:29  zhangpu  [add] 更新图标和样式为最新的acooly样式,同时支持awesom-font图标和easyui图标，默认采用橙色的awesome-font图标。（需acooly-module-security-3.4.6支持）
-* 2016-07-08 02:47:32  zhangpu  [fix] 一系列的试图层模板优化，生成的代码更准确和人性化
-* 2016-07-08 01:09:40  zhangpu  [add] 增强选项类型的自动生成规则，同时支持基于枚举(key为字符串)和静态常量(key为数字)的选项数据生成。
-* 2016-07-08 01:09:40  zhangpu  [add] 重构数据类型映射，支持配置方式增加数据库与JAVA类型的映射,不如，你想让数据库的decimal类型生成为Money或BigDecimal。
-* 2016-07-03 16:13:41  zhangpu  [del] 暂时删除UI(swt)界面,计划后面开发插件。
-* 2016-07-03 16:13:41  zhangpu  [add] 精简工具依赖（只依赖freemarker,mysql-jdbc驱动和apache-commons-lang），整理新的发布包,通过nexus发布，完成工具和文档整理。
-
-> 建议使用新版生成器后，升级acooly-module-security版本为3.4.6为最佳效果（向下兼容）
-
-### v1.2.1之前
-请按原有的发布包继续使用！~
-
-
 
 ## 使用手册
 
@@ -149,18 +130,19 @@ generator.templatePath=classpath:/template/easyui
 # 自定义数据类型映射,类JSON格式。格式{数据库数据类型1:java数据类型1（如果需要imports则需要完整包路径,...}
 # 这里设置了映射后，会覆盖生成器默认的数据类型映射规则
 generator.dataType.declare={decimal:java.math.BigDecimal}
+# 持久化方案(可选: jpa,mybatis)
+generator.persistent.solution=mybatis
 # 代码作者
 generator.code.author=acooly
 # 代码版权声明主体
 generator.code.copyright=acooly.cn
-
 ```
 
 完成配置后，请保持退出，准备运行工具生成代码
 
 #### 生成代码
 
-运行环境基础要求JDK1.6，本工具支持同时生成多张表到同一个模块。
+运行环境基础要求JDK1.8，本工具支持同时生成多张表到同一个模块。
 
 解压开自动生成工具，根目录下存在start.bat,start.sh等启动文件，如果你的windows，则可以直接cmd进入到当前目录，运行start.bat，根据提示输入需要自动生成的表名称，回车即可。
 
@@ -187,7 +169,7 @@ com.acooly.module.coder.generate.GenerateConfiguration@38294acb[
 
 ### 运行查看效果
 
-OK，如果上步成功，请回到你的IDE，刷新工程，你应该看到在原来空的 src/main/java目录下存在了新生成的代码，并编译通过。同时在src/main/webapp/manage/demo下存在了该模块的管理界面。工程如图：
+OK，如果上步成功，请回到你的IDE，刷新工程，你应该看到在原来空的 src/main/java目录下存在了新生成的代码，并编译通过。同时在src/main/resources/META-INF/resource/jsp/manage/demo下存在了该模块的管理界面。工程如图：
 
 ![](https://github.com/acooly/acooly.github.io/blob/master/_posts/resource/images/acooly/coder_module.png?raw=true)
 
@@ -280,5 +262,41 @@ OK，界面调整完成，我们刷新界面，新的界面就要人性化多了
 ### 进阶
 
 以上完成了一个acooly框架基础开发的案例，基本展示了acooly框架开发的模式。但在实际业务开发中这些远还不够，程序员根据实际业务的需求，还需要做很多工作，包括：多实体关联关系配置，业务逻辑服务编写和调用，页面的特殊定制等，但这些本应是程序员的职责，acooly框架提供的是把大量重复的工作自动化和工具化~，后续将逐步发布各种业务开发场景在前端和服务器端的开发说明，大量的组件能力说明~
+
+
+## 版本说明
+
+### 4.0.0-SNAPSHOT
+
+升级支持acooly4.x版本支持，增加mybatis的自动代码生成功能。
+
+### v1.2.3
+
+* 2016-09-23 - 提交mysql和oracle的测试表dm_customer的ddl,增加主配置文件oracle的配置 - [zhangpu] f988688
+* 2016-09-23 - 新增ORACLE自动代码生成支持 - [zhangpu] bb2bf4a
+* 2016-09-21 - 添加oracle的驱动依赖 - [zhangpu] 9b73dca
+
+
+### v1.2.2
+
+* 2016-08-15 16:54:29  cuifuq  [add] 列表页面更新：bigint 类型数据自动添加统计求和功能，使用方式 sum="true"   
+* 统计功能：sum:求和；avg:平均；max：最大值；min：最小值
+
+> 使用统计功能需acooly-module-security版本升级为3.4.4以上
+
+
+### v1.2.1
+
+* 2016-07-10 20:37:29  zhangpu  [add] 更新图标和样式为最新的acooly样式,同时支持awesom-font图标和easyui图标，默认采用橙色的awesome-font图标。（需acooly-module-security-3.4.6支持）
+* 2016-07-08 02:47:32  zhangpu  [fix] 一系列的试图层模板优化，生成的代码更准确和人性化
+* 2016-07-08 01:09:40  zhangpu  [add] 增强选项类型的自动生成规则，同时支持基于枚举(key为字符串)和静态常量(key为数字)的选项数据生成。
+* 2016-07-08 01:09:40  zhangpu  [add] 重构数据类型映射，支持配置方式增加数据库与JAVA类型的映射,不如，你想让数据库的decimal类型生成为Money或BigDecimal。
+* 2016-07-03 16:13:41  zhangpu  [del] 暂时删除UI(swt)界面,计划后面开发插件。
+* 2016-07-03 16:13:41  zhangpu  [add] 精简工具依赖（只依赖freemarker,mysql-jdbc驱动和apache-commons-lang），整理新的发布包,通过nexus发布，完成工具和文档整理。
+
+> 建议使用新版生成器后，升级acooly-module-security版本为3.4.6为最佳效果（向下兼容）
+
+### v1.2.1之前
+请按原有的发布包继续使用！~
 
 
