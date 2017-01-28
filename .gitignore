@@ -4,3 +4,5 @@
 /deploy
 /target
 /temp
+/*.iml
+/.idea

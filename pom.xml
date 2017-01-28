@@ -9,6 +9,7 @@
 	<name>acooly code generator</name>
 	<url>http://www.acooly.com</url>
 
+
 	<properties>
 		<!-- 编译属性 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
