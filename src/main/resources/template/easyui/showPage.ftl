@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/jsp/manage/common/taglibs.jsp"%>
 <#assign entityVariable="${nameScheme.domainClassName?uncap_first}" />
-<#assign entityContextPath="${configuration.pagePath}/${nameScheme.domainClassName?uncap_first}" />
+<#assign entityContextPath="${configuration.managePath}/${nameScheme.domainClassName?uncap_first}" />
 <div style="padding: 5px;font-family:微软雅黑;">
 <table class="tableForm" width="100%">
 <#list table.columns as entity>

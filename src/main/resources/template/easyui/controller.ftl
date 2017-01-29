@@ -32,7 +32,7 @@ import com.google.common.collect.Maps;
  * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
  */
 @Controller
-@RequestMapping(value = "${configuration.pagePath}/${nameScheme.domainClassName?uncap_first}")
+@RequestMapping(value = "${configuration.managePath}/${nameScheme.domainClassName?uncap_first}")
 public class ${nameScheme.controllerClassName} extends AbstractJQueryEntityController<${nameScheme.domainClassName}, ${nameScheme.serviceClassName}> {
 	
 <#assign existOptions=false>

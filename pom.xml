@@ -142,7 +142,7 @@
 							<!-- MainClass in mainfest make a executable jar -->
 							<archive>
 								<manifest>
-									<mainClass>com.acooly.module.coder.Generator</mainClass>
+									<mainClass>com.acooly.coder.Generator</mainClass>
 								</manifest>
 							</archive>
 						</configuration>
