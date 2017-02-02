@@ -37,7 +37,7 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 
 		String rootPackage = getGenerateConfiguration().getRootPackage();
 		namesHold.setDomainClassName(StringUtils.capitalize(baseName));
-		namesHold.setDomainPackage(rootPackage + ".domain");
+		namesHold.setDomainPackage(rootPackage + ".entity");
 		namesHold.setEnumPackage(rootPackage + ".enums");
 
 		namesHold.setDaoPackage(rootPackage + ".dao");

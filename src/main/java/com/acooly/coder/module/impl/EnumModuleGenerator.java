@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 
 /**
- * Domain generator
+ * enum property generator
  *
  * @author zhangpu
  */
