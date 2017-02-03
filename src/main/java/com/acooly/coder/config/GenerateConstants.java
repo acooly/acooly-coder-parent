@@ -20,7 +20,7 @@ import java.util.Set;
 public class GenerateConstants extends ConfigurableConstants {
 
     static {
-        initWithProfile("application.properties");
+        initWithProfile("acoolycoder.properties");
     }
 
     // database configurations

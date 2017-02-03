@@ -12,8 +12,7 @@ public class CodeGeneratorMain {
 
     public static void main(String[] args) {
 
-        String[] tables = {"dm_customer"};
-        Generator.getGenerator().generateTables(tables);
+        Generator.getGenerator().generateTable(new String[]{"dm_customer"});
 
     }
 

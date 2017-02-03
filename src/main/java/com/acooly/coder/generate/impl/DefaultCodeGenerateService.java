@@ -43,26 +43,32 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 
 	@Override
 	public void generateTable(String tableName) {
-		try {
-			GenerateContext generateContext = loadGenerateContext(tableName);
-			Map<String, ModuleGenerator> moduleGeneratorMaps = ModuleGeneratorFactory.registies(generateConfig);
-			for (Map.Entry<String, ModuleGenerator> entry : moduleGeneratorMaps.entrySet()) {
-				entry.getValue().generate(generateContext);
-			}
-			logger.info("success generate table: " + tableName);
-		} catch (Exception e) {
-			logger.warning("Generate Table fail. tableName: " + tableName + ", e:" + e.getMessage());
-		}
+        logger.info("Generate Config:\n" + generateConfig);
+        logger.info("Generate Table:" + tableName);
+        doGenerate(tableName);
 	}
 
 	@Override
-	public void generateTables(String... tableNames) {
-		System.out.println("GenerateConfig:\n" + generateConfig);
-		System.out.println("GenerateTables:" + Arrays.toString(tableNames));
+	public void generateTable(String... tableNames) {
+		logger.info("Generate Config:\n" + generateConfig);
+		logger.info("Generate Tables:" + Arrays.toString(tableNames));
 		for (String tableName : tableNames) {
-			generateTable(tableName);
+            doGenerate(tableName);
 		}
 	}
+
+    protected void doGenerate(String tableName){
+        try {
+            GenerateContext generateContext = loadGenerateContext(tableName);
+            Map<String, ModuleGenerator> moduleGeneratorMaps = ModuleGeneratorFactory.registies(generateConfig);
+            for (Map.Entry<String, ModuleGenerator> entry : moduleGeneratorMaps.entrySet()) {
+                entry.getValue().generate(generateContext);
+            }
+            logger.info("success generate table: " + tableName);
+        } catch (Exception e) {
+            logger.warning("Generate Table fail. tableName: " + tableName + ", e:" + e.getMessage());
+        }
+    }
 
 	protected GenerateContext loadGenerateContext(String tableName) {
 		Table table = tableLoaderService.loadTable(tableName);

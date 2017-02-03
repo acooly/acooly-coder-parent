@@ -103,7 +103,7 @@ public class Generator {
 		if (StringUtils.isNotBlank(ignorePrefix)) {
 			codeGeneratorFactory.getGenerateConfiguration().setTableToEntityIgnorPrefix(ignorePrefix);
 		}
-		codeGeneratorFactory.generateTables(tables);
+		codeGeneratorFactory.generateTable(tables);
 	}
 
 	@SuppressWarnings("static-access")

@@ -121,25 +121,21 @@
 						<directory>src/main/resources</directory>
 						<includes>
 							<include>template/**/*.ftl</include>
+							<include>log.properties</include>
+							<include>acoolycoder.demo.properties</include>
 						</includes>
-						<excludes>
-							<exclude>*.properties</exclude>
-						</excludes>
 					</resource>
 				</resources>
 				<plugins>
-					<!-- Maven Assembly Plugin -->
+					<!-- Maven Assembly Plugin-->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-assembly-plugin</artifactId>
 						<version>2.4.1</version>
 						<configuration>
-							<!-- <appendAssemblyId>false</appendAssemblyId> <finalName>acooly-coder-allinone</finalName> -->
-							<!-- get all project dependencies -->
 							<descriptors>
 								<descriptor>src/main/assembly.xml</descriptor>
 							</descriptors>
-							<!-- MainClass in mainfest make a executable jar -->
 							<archive>
 								<manifest>
 									<mainClass>com.acooly.coder.Generator</mainClass>
