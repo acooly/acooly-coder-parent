@@ -6,3 +6,4 @@
 /temp
 .idea
 *.iml
+.DS_Store
