@@ -75,7 +75,7 @@ public enum ${enumName} implements Messageable {
 				return status;
 			}
 		}
-		throw new IllegalArgumentException("${enumName} not legal:" + code);
+		return null;
 	}
 
 	/**
@@ -102,11 +102,6 @@ public enum ${enumName} implements Messageable {
 			list.add(status.code());
 		}
 		return list;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("%s:%s", this.code, this.message);
 	}
 
 }
