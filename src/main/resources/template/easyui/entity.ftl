@@ -73,10 +73,5 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	}
     </#if>
 </#list>	
-	
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
 
 }
