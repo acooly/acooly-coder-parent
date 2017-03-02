@@ -46,10 +46,11 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	/** serialVersionUID */
 	private static final long serialVersionUID = 1L;
 <#list table.columns as entity>
-	/** ${entity.common} */
+
 	<#assign javaDataType="${entity.dataType.javaTypeName}">
 	<#if entity.dataType.enum><#assign javaDataType="${entity.propertyName?cap_first}"></#if>
 	<#if entity.name?lower_case != 'id'>
+    	/** ${entity.common} */
         <#if entity.dataType.enum>
         @Enumerated(EnumType.STRING)
         </#if>
