@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.acooly</groupId>
 	<artifactId>acooly-coder</artifactId>
@@ -39,9 +38,9 @@
 			<version>1.2</version>
 		</dependency>
 
-		<!-- swt for windows <dependency> <groupId>org.eclipse</groupId> <artifactId>swt</artifactId> 
+		<!-- swt for windows <dependency> <groupId>org.eclipse</groupId> <artifactId>swt</artifactId>
 			<version>3.5.2-x86_64</version> </dependency> -->
-		<!-- swt for mac <dependency> <groupId>org.eclipse.swt</groupId> <artifactId>org.eclipse.swt.cocoa.macosx.x86_64</artifactId> 
+		<!-- swt for mac <dependency> <groupId>org.eclipse.swt</groupId> <artifactId>org.eclipse.swt.cocoa.macosx.x86_64</artifactId>
 			<version>4.3</version> </dependency> -->
 
 		<dependency>
@@ -57,8 +56,6 @@
 		</dependency>
 
 	</dependencies>
-
-
 
 	<build>
 		<!-- 插件默认配置, 子项目可以覆盖 -->
@@ -98,7 +95,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 	<profiles>
 		<profile>
@@ -158,72 +154,114 @@
 		</profile>
 
 		<!-- 发布仓库定义 -->
+
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<distributionManagement>
+				<repository>
+					<id>yiji-releases</id>
+					<url>
+						http://192.168.45.35:8081/nexus/content/repositories/releases/
+					</url>
+				</repository>
+				<snapshotRepository>
+					<id>yiji-snapshots</id>
+					<url>
+						http://192.168.45.35:8081/nexus/content/repositories/snapshots/
+					</url>
+				</snapshotRepository>
+			</distributionManagement>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>online</id>
+			<distributionManagement>
+				<repository>
+					<id>yiji-releases</id>
+					<url>
+						http://192.168.45.199:8081/nexus/content/repositories/releases/
+					</url>
+				</repository>
+				<snapshotRepository>
+					<id>yiji-snapshots</id>
+					<url>
+						http://192.168.45.199:8081/nexus/content/repositories/snapshots/
+					</url>
+				</snapshotRepository>
+			</distributionManagement>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 		<profile>
 			<id>acooly</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<distributionManagement>
-				<!-- use the following if you're not using a snapshot version. -->
 				<repository>
 					<id>acooly-releases</id>
 					<name>acooly Internal Releases</name>
-					<url>http://acooly.cn/nexus/content/repositories/releases/</url>
+					<url>
+						http://acooly.cn/nexus/content/repositories/releases/
+					</url>
 				</repository>
 				<snapshotRepository>
-					<id>acooly-snapshot</id>
+					<id>acooly-snapshots</id>
 					<name>acooly Internal snapshot</name>
-					<url>http://acooly.cn/nexus/content/repositories/snapshots/</url>
+					<url>
+						http://acooly.cn/nexus/content/repositories/snapshots/
+					</url>
 				</snapshotRepository>
 			</distributionManagement>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
-
-		<profile>
-			<id>pccb-dev</id>
-			<distributionManagement>
-				<repository>
-					<id>pccb-releases-dev</id>
-					<name>pccb realease dev</name>
-					<url>http://192.168.2.114:8081/nexus/content/repositories/releases/</url>
-				</repository>
-				<snapshotRepository>
-					<id>pccb-snapshots-dev</id>
-					<name>pccb snapshots dev</name>
-					<url>http://192.168.2.114:8081/nexus/content/repositories/snapshots/</url>
-				</snapshotRepository>
-			</distributionManagement>
-		</profile>
-
-		<profile>
-			<id>yiji_dev</id>
-			<distributionManagement>
-				<repository>
-					<id>thirdparty</id>
-					<url>http://192.168.45.35:8081/nexus/content/repositories/thirdparty</url>
-				</repository>
-				<snapshotRepository>
-					<id>yiji-snapshots</id>
-					<name>yiji 3rd-party realease</name>
-					<url>http://192.168.45.35:8081/nexus/content/repositories/snapshots/</url>
-				</snapshotRepository>
-			</distributionManagement>
-		</profile>
-
-		<profile>
-			<id>yiji_online</id>
-			<distributionManagement>
-				<repository>
-					<id>thirdparty</id>
-					<url>http://192.168.45.199:8081/nexus/content/repositories/thirdparty</url>
-				</repository>
-				<snapshotRepository>
-					<id>yiji-snapshots</id>
-					<name>yiji 3rd-party realease</name>
-					<url>http://192.168.45.199:8081/nexus/content/repositories/snapshots/</url>
-				</snapshotRepository>
-			</distributionManagement>
-		</profile>
-
 	</profiles>
 
 </project>
