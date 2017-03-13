@@ -128,8 +128,10 @@ generator.modules=manage
 generator.persistent.solution=mybatis
 # [可选]表名转换为实体名称时，需要忽略的表的前缀。如:表明为dm_customer,配置该值为dm_ ,则生成的实体名称为Customer
 generator.tableToEntityIgnorPrefix=dm_
+# [可选]枚举名称采用组合Entity名称+属性名称
+generator.enumName.assemble=false
 # [可选]生成的模块的业务根路径，如果不填写，且配置了生成manage模块，则默认为/manage
-generator.pagePath=/manage/demo
+generator.manage.path=/manage/demo
 # [可选]生成的模块的前端页面根路径(依赖generator.modules中有portal)，默认/portal
 generator.portal.path=/portal/demo
 # [可选]代码作者，默认:acooly
@@ -286,10 +288,12 @@ OK，界面调整完成，我们刷新界面，新的界面就要人性化多了
 
 ### 4.0.0-SNAPSHOT
 
+* 2017-03-13 zhangpu 增加配置参数generator.enumName.assemble，默认为false，如果为true时，生成的enum类名称为：entityClassName+propertypeName
 * 支持acooly4.x版本支持，要求JDK1.8，增加mybatis的自动代码生成功能。
 * 调整JDK日志为单行自动以日志
 * 重构为模块化生成，目前支持service(默认)和manage两种模块，后续补充facade,portal和openapi的自动生成。
 * 可以直接集成到archetype的test模块，直接调用生成。
+
 
 ### v1.2.3
 
