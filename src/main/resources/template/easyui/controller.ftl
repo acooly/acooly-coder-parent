@@ -67,7 +67,7 @@ public class ${nameScheme.controllerClassName} extends AbstractJQueryEntityContr
 		<#if entity.dataType.number>
 		model.put("all${entity.propertyName?cap_first}s", all${entity.propertyName?cap_first}s);
 		<#else>
-		model.put("all${entity.propertyName?cap_first}s", ${entity.propertyName?cap_first}.mapping());
+		model.put("all${entity.propertyName?cap_first}s", ${entity.dataType.javaName}.mapping());
 		</#if>
 	</#if>
 	</#list>	

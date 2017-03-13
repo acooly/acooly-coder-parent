@@ -7,8 +7,8 @@
  */
 package com.acooly.coder.config;
 
-import com.acooly.coder.support.ConfigurableConstants;
 import com.acooly.coder.module.GenerateModule;
+import com.acooly.coder.support.ConfigurableConstants;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashSet;
@@ -51,6 +51,7 @@ public class GenerateConstants extends ConfigurableConstants {
     public static final String GENERATOR_DATATYPE_DECLARE = getProperty("generator.dataType.declare", "");
 
     public static final String GENERATOR_PERSISTENT_SOLUTION = getProperty("generator.persistent.solution", "jpa");
+    public static final boolean GENERATOR_ENUM_NAME_ASSEMBLE = Boolean.valueOf(getProperty("generator.enumName.assemble", "false"));
 
 
     public static Set<GenerateModule> getConfigGeneratorModules() {

@@ -48,7 +48,7 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 <#list table.columns as entity>
 
 	<#assign javaDataType="${entity.dataType.javaTypeName}">
-	<#if entity.dataType.enum><#assign javaDataType="${entity.propertyName?cap_first}"></#if>
+	<#if entity.dataType.enum><#assign javaDataType="${entity.dataType.javaName}"></#if>
 	<#if entity.name?lower_case != 'id'>
     	/** ${entity.common} */
         <#if entity.dataType.enum>
@@ -61,7 +61,7 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 <#list table.columns as entity>
 	<#assign javaDataType="${entity.dataType.javaTypeName}">
 	<#assign accesserMethodName="${entity.propertyName?cap_first}">
-	<#if entity.dataType.enum><#assign javaDataType="${accesserMethodName}"></#if>
+	<#if entity.dataType.enum><#assign javaDataType="${entity.dataType.javaName}"></#if>
 
     <#if entity.name?lower_case != 'id'>
 	public ${javaDataType} get${accesserMethodName}(){

@@ -8,8 +8,11 @@ public class ColumnDataType {
 	private String databaseType;
 	/** java类型 */
 	private JavaType javaType;
-	/** java声明 */
+	/** java声明（带Package） */
 	private String javaDeclare;
+	/** java类型名 */
+	private String javaName;
+
 
 	public ColumnDataType() {
 		super();
@@ -89,4 +92,11 @@ public class ColumnDataType {
 		this.javaDeclare = javaDeclare;
 	}
 
+	public String getJavaName() {
+		return javaName;
+	}
+
+	public void setJavaName(String javaName) {
+		this.javaName = javaName;
+	}
 }

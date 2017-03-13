@@ -22,6 +22,7 @@ import com.acooly.coder.resolver.NameScheme;
 import com.acooly.coder.resolver.impl.AcoolyNameSchemeResolver;
 import com.acooly.coder.support.GenerateUtils;
 import com.acooly.coder.support.LogManager;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 代码生成 默认实现
@@ -86,10 +87,16 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 
 	protected void onLoadGenerateContext(GenerateContext generateContext) {
 		// 对枚举类型，rebuild package declare
+		String enumName = null;
 		for (Column column : generateContext.getTable().getColumns()) {
 			if (column.getDataType().getJavaType() == JavaType.Enum) {
+				enumName = StringUtils.capitalize(column.getPropertyName());
+				if (generateContext.getConfiguration().isEnumNameAssemble()) {
+					enumName = generateContext.getNameScheme().getDomainClassName() + enumName;
+				}
+				column.getDataType().setJavaName(GenerateUtils.getCanonicalClassName(enumName));
 				column.getDataType().setJavaDeclare(generateContext.getNameScheme().getEnumPackage() + "."
-				        + GenerateUtils.getCanonicalClassName(column.getPropertyName()));
+				        + GenerateUtils.getCanonicalClassName(enumName));
 			}
 		}
 	}
