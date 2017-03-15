@@ -21,12 +21,12 @@
 				<#if entity.dataType.date>
 				<td><input type="text" name="${entity.propertyName}" size="20" class="easyui-validatebox text" value="<fmt:formatDate value="${r"${"}${entityVariable}.${entity.propertyName}}" pattern="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" <#if !entity.nullable>data-options="required:true"</#if> /></td>
 				<#elseif entity.dataType.number>
-				<td><input type="text" name="${entity.propertyName}" size="48" class="easyui-numberbox text" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"/></td>
+				<td><input type="text" name="${entity.propertyName}" size="48" class="easyui-numberbox text" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length?c}]"/></td>
 				<#else>
 				<#if entity.length gt 128>
-				<td><textarea rows="3" cols="40" style="width:300px;" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length}]"></textarea></td>
+				<td><textarea rows="3" cols="40" style="width:300px;" name="${entity.propertyName}" class="easyui-validatebox" <#if !entity.nullable>data-options="required:true"</#if> validType="byteLength[1,${entity.length?c}]"></textarea></td>
 				<#else>
-				<td><input type="text" name="${entity.propertyName}" size="48" class="easyui-validatebox text" <#if !entity.nullable>data-options="required:true"</#if> <#if entity.length gt 0>validType="byteLength[1,${entity.length}]"</#if>/></td>
+				<td><input type="text" name="${entity.propertyName}" size="48" class="easyui-validatebox text" <#if !entity.nullable>data-options="required:true"</#if> <#if entity.length gt 0>validType="byteLength[1,${entity.length?c}]"</#if>/></td>
 				</#if>
 				</#if>
 				</#if>
