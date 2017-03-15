@@ -14,7 +14,7 @@ import java.util.Map;
 
 import com.acooly.core.utils.enums.Messageable;
 
-<#assign enumName=data.enumColumn.propertyName?cap_first>
+<#assign enumName=data.enumColumn.dataType.javaName?cap_first>
 /**
  * ${table.comment} ${enumName} 枚举定义
  * 

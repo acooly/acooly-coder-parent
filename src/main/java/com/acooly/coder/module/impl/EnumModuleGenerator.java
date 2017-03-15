@@ -34,7 +34,7 @@ public class EnumModuleGenerator extends AbstractModuleGenerator {
                     if (column.getDataType().isEnum()) {
                         generateContext.appendData("enumColumn", column);
                         doGenerate(template, generateContext, getOutputPath(generateContext, temp),
-                                GenerateUtils.getCanonicalClassFileName(column.getPropertyName()));
+                                GenerateUtils.getCanonicalClassFileName(column.getDataType().getJavaName()));
                     }
                 }
             }
