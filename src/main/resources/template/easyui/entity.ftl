@@ -12,18 +12,12 @@ package ${nameScheme.domainPackage};
 </#list>
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 <#if existJavaEnum>
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 </#if>
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 <#if entityIdDeclare?index_of('GenericGenerator') != -1>
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
