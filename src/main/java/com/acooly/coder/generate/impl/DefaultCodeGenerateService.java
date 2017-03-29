@@ -1,6 +1,7 @@
 package com.acooly.coder.generate.impl;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -22,6 +23,7 @@ import com.acooly.coder.resolver.NameScheme;
 import com.acooly.coder.resolver.impl.AcoolyNameSchemeResolver;
 import com.acooly.coder.support.GenerateUtils;
 import com.acooly.coder.support.LogManager;
+import javafx.scene.input.InputMethodTextRun;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -43,21 +45,39 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 	private EntityIdDeclareResolver entityIdDeclareResolver = new DefaultEntityIdDeclareResolver();
 
 	@Override
-	public void generateTable(String tableName) {
-        logger.info("Generate Config:\n" + generateConfig);
-        logger.info("Generate Table:" + tableName);
-        doGenerate(tableName);
-	}
-
-	@Override
 	public void generateTable(String... tableNames) {
 		logger.info("Generate Config:\n" + generateConfig);
-		logger.info("Generate Tables:" + Arrays.toString(tableNames));
+		logger.info("Generate Table:" + Arrays.toString(tableNames));
 		for (String tableName : tableNames) {
-            doGenerate(tableName);
+			generate(tableName);
 		}
 	}
 
+	private void generate(String tableName){
+		if(tableName==null || "".equals(tableName.trim())){
+			throw new RuntimeException("tableName不能为空,支持*");
+		}
+
+		if(tableName.contains("*")){
+			List<String> tableNames = tableLoaderService.getTableNames();
+			if(tableName.equals("*")){
+				for (String name : tableNames) {
+					doGenerate(name);
+				}
+				return;
+			}else if(tableName.endsWith("*")){
+				String tb=tableName.replace("*","");
+				for (String name : tableNames) {
+					if(name.startsWith(tb)){
+						doGenerate(name);
+					}
+				}
+				return;
+			}
+
+		}
+		doGenerate(tableName);
+	}
     protected void doGenerate(String tableName){
         try {
             GenerateContext generateContext = loadGenerateContext(tableName);
