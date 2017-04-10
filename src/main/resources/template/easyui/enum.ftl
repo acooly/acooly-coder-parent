@@ -24,7 +24,8 @@ import com.acooly.core.utils.enums.Messageable;
 public enum ${enumName} implements Messageable {
 
 	<#list data.enumColumn.options?keys as key>
-		${key}("${key}", "${data.enumColumn.options[key]}"),
+	${key}("${key}", "${data.enumColumn.options[key]}"),
+
 	</#list>
 	;
 

@@ -39,16 +39,16 @@ import ${declare};
 public class ${nameScheme.domainClassName} extends AbstractEntity {
 	/** serialVersionUID */
 	private static final long serialVersionUID = 1L;
-<#list table.columns as entity>
 
+<#list table.columns as entity>
 	<#assign javaDataType="${entity.dataType.javaTypeName}">
 	<#if entity.dataType.enum><#assign javaDataType="${entity.dataType.javaName}"></#if>
-	<#if entity.name?lower_case != 'id'>
-    	/** ${entity.common} */
-        <#if entity.dataType.enum>
-        @Enumerated(EnumType.STRING)
-        </#if>
-        private ${javaDataType} ${entity.propertyName}<#if (entity.defaultValue)??> = <#if entity.dataType.long>${entity.defaultValue}l<#elseif entity.dataType.integer>${entity.defaultValue}<#elseif entity.dataType.double>${entity.defaultValue}d<#elseif entity.dataType.date>new Date()<#else>"${entity.defaultValue}"</#if></#if>;
+	<#if entity.name?lower_case != 'id' && entity.name?lower_case != 'create_time' && entity.name?lower_case != 'update_time'>
+	/** ${entity.common} */
+	<#if entity.dataType.enum>
+    @Enumerated(EnumType.STRING)
+    </#if>
+    private ${javaDataType} ${entity.propertyName}<#if (entity.defaultValue)??> = <#if entity.dataType.long>${entity.defaultValue}l<#elseif entity.dataType.integer>${entity.defaultValue}<#elseif entity.dataType.double>${entity.defaultValue}d<#elseif entity.dataType.date>new Date()<#else>"${entity.defaultValue}"</#if></#if>;
 	</#if>
 </#list>
 	
@@ -57,7 +57,7 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	<#assign accesserMethodName="${entity.propertyName?cap_first}">
 	<#if entity.dataType.enum><#assign javaDataType="${entity.dataType.javaName}"></#if>
 
-    <#if entity.name?lower_case != 'id'>
+	<#if entity.name?lower_case != 'id' && entity.name?lower_case != 'create_time' && entity.name?lower_case != 'update_time'>
 	public ${javaDataType} get${accesserMethodName}(){
 		return this.${entity.propertyName};
 	}
