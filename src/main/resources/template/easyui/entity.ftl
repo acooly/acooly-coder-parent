@@ -22,6 +22,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 </#if>
+import org.hibernate.validator.constraints.*;
+import javax.validation.constraints.NotNull;
 
 import com.acooly.core.common.domain.AbstractEntity;
 <#list table.importDeclares as declare>
@@ -48,8 +50,15 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	<#if entity.dataType.enum>
     @Enumerated(EnumType.STRING)
     </#if>
+	<#if entity.nullable>
+	<#if entity.dataType.string>@NotEmpty<#else>@NotNull</#if>
+	</#if>
+	<#if entity.dataType.string>
+	@Size(max=${entity.length?c})
+	</#if>
     private ${javaDataType} ${entity.propertyName}<#if (entity.defaultValue)??> = <#if entity.dataType.long>${entity.defaultValue}l<#elseif entity.dataType.integer>${entity.defaultValue}<#elseif entity.dataType.double>${entity.defaultValue}d<#elseif entity.dataType.date>new Date()<#else>"${entity.defaultValue}"</#if></#if>;
 	</#if>
+
 </#list>
 	
 <#list table.columns as entity>
