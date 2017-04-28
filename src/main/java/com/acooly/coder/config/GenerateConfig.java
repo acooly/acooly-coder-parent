@@ -62,6 +62,8 @@ public class GenerateConfig {
      */
     private boolean enumNameAssemble = GenerateConstants.GENERATOR_ENUM_NAME_ASSEMBLE;
 
+    private boolean enumEnable = GenerateConstants.GENERATOR_ENUM_ENABLE;
+
     private Set<GenerateModule> generatorModules = GenerateConstants.getConfigGeneratorModules();
 
     private static GenerateConfig generateConfiguration = new GenerateConfig();
@@ -221,6 +223,14 @@ public class GenerateConfig {
 
     public void setEnumNameAssemble(boolean enumNameAssemble) {
         this.enumNameAssemble = enumNameAssemble;
+    }
+
+    public boolean isEnumEnable() {
+        return enumEnable;
+    }
+
+    public void setEnumEnable(boolean enumEnable) {
+        this.enumEnable = enumEnable;
     }
 
     @Override

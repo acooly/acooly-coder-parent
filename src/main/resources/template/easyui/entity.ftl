@@ -23,7 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 </#if>
 import org.hibernate.validator.constraints.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 import com.acooly.core.common.domain.AbstractEntity;
 <#list table.importDeclares as declare>

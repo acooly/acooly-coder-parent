@@ -24,6 +24,10 @@ public class EnumModuleGenerator extends AbstractModuleGenerator {
 
     @Override
     public void generate(GenerateContext generateContext) {
+        if (!generateContext.getConfiguration().isEnumEnable()) {
+            //logger.info("ignore generate [" + this.getGenerateKey() + "]，配置参数generator.enum.enable=false，不生成枚举方案");
+            return;
+        }
         try {
             String[] templates = StringUtils.split(templateName, ",");
             for (String temp : templates) {
