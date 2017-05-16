@@ -2,7 +2,9 @@
 <%@ include file="/WEB-INF/jsp/manage/common/taglibs.jsp"%>
 <#assign entityVariable="${nameScheme.domainClassName?uncap_first}" />
 <#assign entityContextPath="${configuration.managePath}/${nameScheme.domainClassName?uncap_first}" />
-
+<c:if test="${r"${initParam['ssoEnable']=='true'}"}">
+    <%@ include file="/WEB-INF/jsp/manage/common/ssoInclude.jsp" %>
+</c:if>
 <script type="text/javascript">
 $(function() {
 	$.acooly.framework.registerKeydown('manage_${entityVariable}_searchform','manage_${entityVariable}_datagrid');
