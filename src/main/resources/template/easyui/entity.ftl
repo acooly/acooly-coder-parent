@@ -56,7 +56,7 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	<#if entity.dataType.string>
 	@Size(max=${entity.length?c})
 	</#if>
-    private ${javaDataType} ${entity.propertyName}<#if (entity.defaultValue)??> = <#if entity.dataType.long>${entity.defaultValue}l<#elseif entity.dataType.integer>${entity.defaultValue}<#elseif entity.dataType.double>${entity.defaultValue}d<#elseif entity.dataType.date>new Date()<#else>"${entity.defaultValue}"</#if></#if>;
+    private ${javaDataType} ${entity.propertyName}<#if (entity.defaultValue)??> = <#if entity.dataType.long>${entity.defaultValue}l<#elseif entity.dataType.integer>${entity.defaultValue}<#elseif entity.dataType.double>${entity.defaultValue}d<#elseif entity.dataType.date>new Date()<#elseif entity.dataType.enum>${javaDataType}.${entity.defaultValue}<#else>"${entity.defaultValue}"</#if></#if>;
 	</#if>
 
 </#list>
