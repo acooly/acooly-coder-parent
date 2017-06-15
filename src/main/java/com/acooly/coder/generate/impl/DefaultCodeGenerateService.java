@@ -124,7 +124,7 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
         String enumName = null;
         for (Column column : generateContext.getTable().getColumns()) {
             if (column.getDataType().getJavaType() == JavaType.Enum) {
-                enumName = StringUtils.capitalize(column.getPropertyName());
+                enumName = StringUtils.capitalize(column.getPropertyName())+"Enum";
                 if (generateContext.getConfiguration().isEnumNameAssemble()) {
                     enumName = generateContext.getNameScheme().getDomainClassName() + enumName;
                 }
