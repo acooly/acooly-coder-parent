@@ -50,7 +50,7 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	<#if entity.dataType.enum>
     @Enumerated(EnumType.STRING)
     </#if>
-	<#if entity.nullable>
+	<#if !entity.nullable>
 	<#if entity.dataType.string>@NotEmpty<#else>@NotNull</#if>
 	</#if>
 	<#if entity.dataType.string>
