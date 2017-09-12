@@ -52,7 +52,7 @@ public class GenerateConstants extends ConfigurableConstants {
 
     public static final String GENERATOR_PERSISTENT_SOLUTION = getProperty("generator.persistent.solution", "jpa");
     public static final boolean GENERATOR_ENUM_NAME_ASSEMBLE = Boolean.valueOf(getProperty("generator.enumName.assemble", "false"));
-    public static final boolean GENERATOR_ENUM_ENABLE = Boolean.valueOf(getProperty("generator.enum.enable", ""));
+    public static final boolean GENERATOR_ENUM_ENABLE = Boolean.valueOf(getProperty("generator.enum.enable", "true"));
 
 
     public static Set<GenerateModule> getConfigGeneratorModules() {
