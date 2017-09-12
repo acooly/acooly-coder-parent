@@ -52,10 +52,10 @@ $(function() {
         	<th field="showCheckboxWithId" checkbox="true" data-options="formatter:function(value, row, index){ return row.id }">编号</th>
 		<#list table.columns as entity>
 		<#if entity.options??>
-			<th field="${entity.propertyName}" data-options="formatter:function(value){ return formatRefrence('manage_${entityVariable}_datagrid','all${entity.propertyName?cap_first}s',value);} ">${entity.common}</th>
+			<th field="${entity.propertyName}" formatter="mappingFormatter">${entity.common}</th>
 		<#else>
 		<#if entity.dataType.date>
-		    <th field="${entity.propertyName}" formatter="formatDate">${entity.common}</th>
+		    <th field="${entity.propertyName}" formatter="dateTimeFormatter">${entity.common}</th>
 		<#elseif entity.dataType.number>
 			<th field="${entity.propertyName}" <#if entity.dataType.long>sum="true"</#if>>${entity.common}</th>
 		<#else>
