@@ -15,7 +15,7 @@ import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
 
 /**
  * ${table.comment} Service实现
- *
+ * <p><b>注意:此类所有的方法都在事务中执行。<b/>
  * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
  *
  * @author ${configuration.codeAuthor}
