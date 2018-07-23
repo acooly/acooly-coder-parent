@@ -15,5 +15,4 @@ public class CodeGeneratorMain {
         Generator.getGenerator().generateTable("city");
 
     }
-
 }

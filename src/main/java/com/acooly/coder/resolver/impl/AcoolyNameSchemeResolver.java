@@ -21,8 +21,8 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 	private String daoPostfit = "Dao";
 	private String daoImplPostfit = "DaoImpl";
 	private String daoTestPostfit = "DaoTest";
-	private String servicePostfit = "EntityService";
-	private String serviceImplPostfit = "EntityServiceImpl";
+	private String servicePostfit = "Service";
+	private String serviceImplPostfit = "ServiceImpl";
 	private String serviceTestPostfit = "ServiceTest";
 	private String controllerPostfit = "ManagerController";
 	private String listPagePostfit = "";
