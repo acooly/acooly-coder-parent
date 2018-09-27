@@ -33,7 +33,13 @@ public class MyBatisDaoModuleGenerator extends AbstractModuleGenerator {
 
     @Override
     protected String getOutputFile(GenerateContext generateContext, String temp) {
-        return generateContext.getNameScheme().getDomainClassName() + "Mapper.xml";
+        if ("mybatisDao.ftl".equals(temp)) {
+            return generateContext.getNameScheme().getDaoClassName() + ".java";
+        }
+        if ("mybatisMapper.ftl".equals(temp)) {
+            return generateContext.getNameScheme().getDomainClassName() + "Mapper.xml";
+        }
+        throw new UnsupportedOperationException("x");
     }
 
     @Override
