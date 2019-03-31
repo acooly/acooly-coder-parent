@@ -24,8 +24,7 @@ import com.acooly.core.utils.enums.Messageable;
 public enum ${enumName} implements Messageable {
 
 	<#list data.enumColumn.options?keys as key>
-	${key}("${key}", "${data.enumColumn.options[key]}"),
-
+	${key}("${key}", "${data.enumColumn.options[key]}")<#if key_index < data.enumColumn.options?size>,</#if>
 	</#list>
 	;
 
@@ -37,10 +36,12 @@ public enum ${enumName} implements Messageable {
 		this.message = message;
 	}
 
+	@Override
 	public String getCode() {
 		return code;
 	}
 
+	@Override
 	public String getMessage() {
 		return message;
 	}
