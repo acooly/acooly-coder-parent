@@ -1,5 +1,6 @@
 package com.acooly.coder.config;
 
+import com.acooly.coder.enums.ViewType;
 import com.acooly.coder.module.GenerateModule;
 
 import java.beans.Transient;
@@ -11,6 +12,9 @@ public class GenerateConfig {
      * 工作目录
      */
     private String workspace = GenerateConstants.GENERATOR_WORKSPACE;
+
+    private String viewType = GenerateConstants.GENERATOR_VIEW_TYPE;
+
     /**
      * 目标根package
      */
@@ -70,6 +74,16 @@ public class GenerateConfig {
 
     public static GenerateConfig INSTANCE() {
         return generateConfiguration;
+    }
+
+    private GenerateConfig() {
+        ViewType viewTypeEnum = ViewType.find(viewType);
+        if (viewTypeEnum == null) {
+            viewTypeEnum = ViewType.freemarker;
+        }
+        this.viewSuffix = viewTypeEnum.getSuffix();
+        this.templatePath = "classpath:/template/" + viewTypeEnum.getTemplatePath();
+        this.webappPath = viewTypeEnum.getWebappPath();
     }
 
     public String getWorkspace() {
@@ -236,8 +250,8 @@ public class GenerateConfig {
     @Override
     public String toString() {
         return String.format(
-                "{\n  workspace: %s \n  rootPackage: %s \n  persistent: %s \n  modules: %s  \n  tableToEntityIgnorPrefix: %s \n  databaseConfig: %s\n}",
-                workspace, rootPackage, persistentSolution, generatorModules, tableToEntityIgnorPrefix, databaseConfig);
+                "{\n  workspace: %s \n  rootPackage: %s \n  manageViewPath %s \n    persistent: %s \n  modules: %s  \n  tableToEntityIgnorPrefix: %s \n  databaseConfig: %s\n  templatePath: %s\n}",
+                workspace, rootPackage, this.managePath, persistentSolution, generatorModules, tableToEntityIgnorPrefix, databaseConfig, templatePath);
     }
 
 }

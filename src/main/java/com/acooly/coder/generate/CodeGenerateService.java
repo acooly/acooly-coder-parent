@@ -5,4 +5,5 @@ public interface CodeGenerateService {
 
 	void generateTable(String... tableNames);
 
+
 }

@@ -1,7 +1,7 @@
 /*
  * acooly.cn Inc.
  * Copyright (c) 2016 All Rights Reserved.
- * create by zhangpu 
+ * create by zhangpu
  * date:2016年7月1日
  *
  */
@@ -33,6 +33,9 @@ public class GenerateConstants extends ConfigurableConstants {
     public static final String GENERATOR_CODE_PATH = getProperty("generator.codePath", "src/main/java");
     public static final String GENERATOR_TEST_PATH = getProperty("generator.testPath", "src/test/java");
     public static final String GENERATOR_RESOURCE_PATH = getProperty("generator.resourcePath", "src/main/resources");
+    //视图渲染类型：jsp(默认)/freemarker
+    public static final String GENERATOR_VIEW_TYPE = getProperty("generator.viewType", "freemaker");
+
     public static final String GENERATOR_WEBAPP_PATH = getProperty("generator.webappPath", "src/main/resources/META-INF/resources/WEB-INF/jsp");
     public static final String GENERATOR_VIEW_SUFFIX = getProperty("generator.viewSuffix", ".jsp");
     public static final String GENERATOR_TEMPLATE_PATH = getProperty("generator.templatePath",
@@ -53,6 +56,8 @@ public class GenerateConstants extends ConfigurableConstants {
     public static final String GENERATOR_PERSISTENT_SOLUTION = getProperty("generator.persistent.solution", "jpa");
     public static final boolean GENERATOR_ENUM_NAME_ASSEMBLE = Boolean.valueOf(getProperty("generator.enumName.assemble", "false"));
     public static final boolean GENERATOR_ENUM_ENABLE = Boolean.valueOf(getProperty("generator.enum.enable", "true"));
+
+
 
 
     public static Set<GenerateModule> getConfigGeneratorModules() {

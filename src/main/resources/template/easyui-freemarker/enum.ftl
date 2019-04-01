@@ -29,11 +29,11 @@ public enum ${enumName} implements Messageable {
 	;
 
 	private final String code;
-	private final String message;
+	private final String suffix;
 
-	private ${enumName}(String code, String message) {
+	private ${enumName}(String code, String suffix) {
 		this.code = code;
-		this.message = message;
+		this.suffix = suffix;
 	}
 
 	@Override
@@ -43,15 +43,15 @@ public enum ${enumName} implements Messageable {
 
 	@Override
 	public String getMessage() {
-		return message;
+		return suffix;
 	}
 
 	public String code() {
 		return code;
 	}
 
-	public String message() {
-		return message;
+	public String suffix() {
+		return suffix;
 	}
 
 	public static Map<String, String> mapping() {

@@ -12,7 +12,7 @@ public class CodeGeneratorMain {
 
     public static void main(String[] args) {
 
-        Generator.getGenerator().generateTable("b_member","b_member_profile");
+        Generator.getGenerator().generateTable("dm_customer");
 
     }
 }
