@@ -1,7 +1,7 @@
 /*
-* acooly.cn Inc.
+* qiudot.com Inc.
 * Copyright (c) 2019 All Rights Reserved.
-* create by acooly
+* create by qiudot
 * date:2019-04-02
 */
 package com.acooly.coder.test.entity;
@@ -17,6 +17,7 @@ import javax.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import com.acooly.core.common.domain.AbstractEntity;
+import java.math.BigDecimal;
 import com.acooly.coder.test.enums.IdcardTypeEnum;
 import java.util.Date;
 import com.acooly.coder.test.enums.CustomerTypeEnum;
@@ -24,8 +25,8 @@ import com.acooly.coder.test.enums.CustomerTypeEnum;
 /**
  * dm_customer Entity
  *
- * @author acooly
- * Date: 2019-04-02 02:38:25
+ * @author qiudot
+ * Date: 2019-04-02 22:43:58
  */
 @Entity
 @Table(name = "dm_customer")
@@ -81,7 +82,7 @@ public class Customer extends AbstractEntity {
     private CustomerTypeEnum customerType;
 
 	/** 手续费 */
-    private Long fee;
+    private BigDecimal fee;
 
 	/** 状态 */
 	@NotNull

@@ -1,7 +1,7 @@
 /*
- * acooly.cn Inc.
+ * qiudot.com Inc.
  * Copyright (c) 2019 All Rights Reserved.
- * create by acooly
+ * create by qiudot
  * date:2019-04-02
  *
  */
@@ -17,8 +17,8 @@ import com.acooly.core.utils.enums.Messageable;
 /**
  * dm_customer IdcardTypeEnum 枚举定义
  * 
- * @author acooly
- * Date: 2019-04-02 02:38:25
+ * @author qiudot
+ * Date: 2019-04-02 22:43:58
  */
 public enum IdcardTypeEnum implements Messageable {
 

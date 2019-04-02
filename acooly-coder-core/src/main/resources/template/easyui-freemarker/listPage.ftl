@@ -52,9 +52,9 @@ $(function() {
 		<#if entity.dataType.date>
 		    <th field="${entity.propertyName}" formatter="dateTimeFormatter">${entity.common}</th>
 		<#elseif entity.dataType.number>
-			<th field="${entity.propertyName}" <#if entity.dataType.long>sum="true"</#if>>${entity.common}</th>
+			<th field="${entity.propertyName}" sortable="true"<#if entity.dataType.long> sum="true"</#if>>${entity.common}</th>
 		<#else>
-			<th field="${entity.propertyName}">${entity.common}</th>
+			<th field="${entity.propertyName}"<#if entity.length gte 128> formatter="contentFormatter"</#if>>${entity.common}</th>
 		</#if>
 		</#if>
 		</#list>
@@ -65,14 +65,14 @@ $(function() {
 
     <!-- 每行的Action动作模板 -->
     <div id="manage_${entityVariable}_action" style="display: none;">
-      <a onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:400});" href="#" title="编辑"><i class="fa fa-pencil fa-lg fa-fw fa-col"></i></a>
-      <a onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,400);" href="#" title="查看"><i class="fa fa-file-o fa-lg fa-fw fa-col"></i></a>
+      <a onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:500});" href="#" title="编辑"><i class="fa fa-pencil fa-lg fa-fw fa-col"></i></a>
+      <a onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,500);" href="#" title="查看"><i class="fa fa-file-o fa-lg fa-fw fa-col"></i></a>
       <a onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" href="#" title="删除"><i class="fa fa-trash-o fa-lg fa-fw fa-col"></i></a>
     </div>
 
     <!-- 表格的工具栏 -->
     <div id="manage_${entityVariable}_toolbar">
-      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'${entityContextPath}/create.html',entity:'${entityVariable}',width:500,height:400})"><i class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>添加</a>
+      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'${entityContextPath}/create.html',entity:'${entityVariable}',width:500,height:500})"><i class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>添加</a>
       <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.removes('${entityContextPath}/deleteJson.html','manage_${entityVariable}_datagrid')"><i class="fa fa-trash-o fa-lg fa-fw fa-col"></i>批量删除</a>
       <a href="#" class="easyui-menubutton" data-options="menu:'#manage_${entityVariable}_exports_menu'"><i class="fa fa-arrow-circle-o-down fa-lg fa-fw fa-col"></i>批量导出</a>
       <div id="manage_${entityVariable}_exports_menu" style="width:150px;">

@@ -1,7 +1,7 @@
 /*
-* acooly.cn Inc.
+* qiudot.com Inc.
 * Copyright (c) 2019 All Rights Reserved.
-* create by acooly
+* create by qiudot
 * date:2019-04-02
 */
 package com.acooly.coder.test.web;
@@ -25,11 +25,11 @@ import com.google.common.collect.Maps;
 /**
  * dm_customer 管理控制器
  * 
- * @author acooly
- * Date: 2019-04-02 02:38:25
+ * @author qiudot
+ * Date: 2019-04-02 22:43:58
  */
 @Controller
-@RequestMapping(value = "/manage/coder/test/customer")
+@RequestMapping(value = "/manage/demo/customer")
 public class CustomerManagerController extends AbstractJQueryEntityController<Customer, CustomerService> {
 	
 	private static Map<Integer, String> allGenders = Maps.newLinkedHashMap();

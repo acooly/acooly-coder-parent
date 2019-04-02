@@ -250,8 +250,8 @@ public class GenerateConfig {
     @Override
     public String toString() {
         return String.format(
-                "{\n  workspace: %s \n  rootPackage: %s \n  manageViewPath %s \n    persistent: %s \n  modules: %s  \n  tableToEntityIgnorPrefix: %s \n  databaseConfig: %s\n  templatePath: %s\n}",
-                workspace, rootPackage, this.managePath, persistentSolution, generatorModules, tableToEntityIgnorPrefix, databaseConfig, templatePath);
+                "{\n  workspace: %s \n  rootPackage: %s \n  webappPath %s \n  manageViewPath %s \n  persistent: %s \n  modules: %s  \n  tableToEntityIgnorPrefix: %s \n  databaseConfig: %s\n  templatePath: %s\n}",
+                workspace, rootPackage, this.webappPath,this.managePath, persistentSolution, generatorModules, tableToEntityIgnorPrefix, databaseConfig, templatePath);
     }
 
 }
