@@ -4,7 +4,6 @@ acooly coder自动代码生成工具
 ## 简介
 acooly coder是为acooly框架配套的专用代码生成工具，设计目的为跟进acooly框架封装的最佳代码实践，快速生成业务程序的骨架代码和基本功能，最大程度的减少程序员的重复劳动及规范统一代码风格和规范~
 
-
 ## 工具获取
 
 ### cli工具
@@ -123,6 +122,8 @@ generator.workspace=/Users/zhangpu/workspace/eclipse/acooly-demo
 # [必选]生成的模块代码的根包
 generator.rootPackage=com.acooly.demo
 
+# [可选]视图类型，可选：freemarker(默认)，jsp
+generator.viewType=freemarker
 # [可选]需要生成的可选模块(entity,dao和service是默认的) 可选: manage,portal,facade,api. 目前portal,facade和openapi在开发中不可用，多个模块采用逗号分隔。如：manage,facade
 generator.modules=manage
 # [可选]持久化方案(可选: jpa,mybatis，默认jpa)
@@ -288,6 +289,10 @@ OK，界面调整完成，我们刷新界面，新的界面就要人性化多了
 
 
 ## 版本说明
+
+### 4.2.0-SNAPSHOT
+
+* 支持freemarker和jsp两种视图，通过generator.viewType参数控制。
 
 ### 4.0.0-SNAPSHOT
 
