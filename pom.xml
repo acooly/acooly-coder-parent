@@ -14,7 +14,7 @@
     <name>acooly-coder Projects</name>
     <packaging>pom</packaging>
     <modules>
-        <module>acooly-coder-core</module>
+        <module>acooly-coder</module>
         <module>acooly-coder-test</module>
     </modules>
 </project>

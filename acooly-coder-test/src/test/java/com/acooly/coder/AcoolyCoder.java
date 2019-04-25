@@ -11,7 +11,7 @@ public class AcoolyCoder {
 
     static String MODULE_NAME = "acooly-coder-test";
     static String ROOT_PACKAGE = "com.acooly.coder.test";
-    static String[] TABLES = {"dm_customer"};
+    static String[] TABLES = {"shop_goods_order_info"};
 
     public static void main(String[] args) {
         DefaultCodeGenerateService service = (DefaultCodeGenerateService) Generator.getGenerator();
