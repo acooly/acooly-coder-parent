@@ -31,7 +31,7 @@
         </dependency>
         <dependency>
             <groupId>com.acooly</groupId>
-            <artifactId>acooly-coder-core</artifactId>
+            <artifactId>acooly-coder</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

@@ -1,8 +1,8 @@
 /*
- * qiudot.com Inc.
+ * acooly.cn Inc.
  * Copyright (c) 2019 All Rights Reserved.
- * create by qiudot
- * date:2019-04-02
+ * create by acooly
+ * date:2019-05-25
  *
  */
 package com.acooly.coder.test.service;
@@ -11,10 +11,10 @@ import com.acooly.core.common.service.EntityService;
 import com.acooly.coder.test.entity.Customer;
 
 /**
- * dm_customer Service接口
+ * acoolycoder测试 Service接口
  *
- * Date: 2019-04-02 22:43:58
- * @author qiudot
+ * Date: 2019-05-25 16:08:47
+ * @author acooly
  *
  */
 public interface CustomerService extends EntityService<Customer> {

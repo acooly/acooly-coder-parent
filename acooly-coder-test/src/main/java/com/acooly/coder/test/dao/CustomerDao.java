@@ -1,8 +1,8 @@
 /*
- * qiudot.com Inc.
+ * acooly.cn Inc.
  * Copyright (c) 2019 All Rights Reserved.
- * create by qiudot
- * date:2019-04-02
+ * create by acooly
+ * date:2019-05-25
  */
  package com.acooly.coder.test.dao;
 
@@ -10,10 +10,10 @@ import com.acooly.module.mybatis.EntityMybatisDao;
 import com.acooly.coder.test.entity.Customer;
 
 /**
- * dm_customer Mybatis Dao
+ * acoolycoder测试 Mybatis Dao
  *
- * Date: 2019-04-02 22:43:58
- * @author qiudot
+ * Date: 2019-05-25 16:08:47
+ * @author acooly
  */
 public interface CustomerDao extends EntityMybatisDao<Customer> {
 

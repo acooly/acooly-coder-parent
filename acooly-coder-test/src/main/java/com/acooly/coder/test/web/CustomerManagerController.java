@@ -1,8 +1,8 @@
 /*
-* qiudot.com Inc.
+* acooly.cn Inc.
 * Copyright (c) 2019 All Rights Reserved.
-* create by qiudot
-* date:2019-04-02
+* create by acooly
+* date:2019-05-25
 */
 package com.acooly.coder.test.web;
 
@@ -23,10 +23,10 @@ import com.acooly.coder.test.enums.CustomerTypeEnum;
 import com.google.common.collect.Maps;
 
 /**
- * dm_customer 管理控制器
+ * acoolycoder测试 管理控制器
  * 
- * @author qiudot
- * Date: 2019-04-02 22:43:58
+ * @author acooly
+ * Date: 2019-05-25 16:08:47
  */
 @Controller
 @RequestMapping(value = "/manage/demo/customer")

@@ -18,10 +18,11 @@
         <result property="customerType" column="customer_customer_type"/>
         <result property="fee" column="customer_fee"/>
         <result property="status" column="customer_status"/>
-        <result property="createTime" column="customer_create_time"/>
-        <result property="comments" column="customer_comments"/>
+        <result property="content" column="customer_content"/>
         <result property="salary" column="customer_salary"/>
+        <result property="createTime" column="customer_create_time"/>
         <result property="updateTime" column="customer_update_time"/>
+        <result property="comments" column="customer_comments"/>
     </resultMap>
 
     <sql id="customerSqlSelect">
@@ -39,10 +40,11 @@
             customer.customer_type as customer_customer_type,
             customer.fee as customer_fee,
             customer.status as customer_status,
-            customer.create_time as customer_create_time,
-            customer.comments as customer_comments,
+            customer.content as customer_content,
             customer.salary as customer_salary,
-            customer.update_time as customer_update_time
+            customer.create_time as customer_create_time,
+            customer.update_time as customer_update_time,
+            customer.comments as customer_comments
     </sql>
 
 </mapper>

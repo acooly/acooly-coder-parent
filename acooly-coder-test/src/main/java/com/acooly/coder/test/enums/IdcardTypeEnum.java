@@ -1,8 +1,8 @@
 /*
- * qiudot.com Inc.
+ * acooly.cn Inc.
  * Copyright (c) 2019 All Rights Reserved.
- * create by qiudot
- * date:2019-04-02
+ * create by acooly
+ * date:2019-05-25
  *
  */
 package com.acooly.coder.test.enums;
@@ -15,10 +15,10 @@ import java.util.Map;
 import com.acooly.core.utils.enums.Messageable;
 
 /**
- * dm_customer IdcardTypeEnum 枚举定义
+ * acoolycoder测试 IdcardTypeEnum 枚举定义
  * 
- * @author qiudot
- * Date: 2019-04-02 22:43:58
+ * @author acooly
+ * Date: 2019-05-25 16:08:47
  */
 public enum IdcardTypeEnum implements Messageable {
 

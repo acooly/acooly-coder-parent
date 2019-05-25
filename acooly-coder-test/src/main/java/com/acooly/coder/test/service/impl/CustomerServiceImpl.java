@@ -1,8 +1,8 @@
 /*
- * qiudot.com Inc.
+ * acooly.cn Inc.
  * Copyright (c) 2019 All Rights Reserved.
- * create by qiudot
- * date:2019-04-02
+ * create by acooly
+ * date:2019-05-25
  */
 package com.acooly.coder.test.service.impl;
 
@@ -14,11 +14,11 @@ import com.acooly.coder.test.dao.CustomerDao;
 import com.acooly.coder.test.entity.Customer;
 
 /**
- * dm_customer Service实现
+ * acoolycoder测试 Service实现
  *
- * Date: 2019-04-02 22:43:58
+ * Date: 2019-05-25 16:08:47
  *
- * @author qiudot
+ * @author acooly
  *
  */
 @Service("customerService")
