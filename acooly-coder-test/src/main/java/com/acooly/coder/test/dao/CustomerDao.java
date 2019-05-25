@@ -12,7 +12,7 @@ import com.acooly.coder.test.entity.Customer;
 /**
  * acoolycoder测试 Mybatis Dao
  *
- * Date: 2019-05-25 21:19:36
+ * Date: 2019-05-25 22:03:58
  * @author acooly
  */
 public interface CustomerDao extends EntityMybatisDao<Customer> {

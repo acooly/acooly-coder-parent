@@ -1,227 +1,248 @@
 package com.acooly.coder.resolver;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class NameScheme {
 
-	private String domainClassName;
+    private String domainClassName;
 
-	private String domainPackage;
+    private String domainPackage;
 
-	private String enumPackage;
+    private String enumPackage;
 
-	private String daoClassName;
+    private String daoClassName;
 
-	private String daoPackage;
+    private String daoPackage;
 
-	private String daoImplClassName;
+    private String daoImplClassName;
 
-	private String daoImplPackage;
+    private String daoImplPackage;
 
-	private String daoTestPackage;
+    private String daoTestPackage;
 
-	private String daoTestClassName;
+    private String daoTestClassName;
 
-	private String servicePackage;
+    private String servicePackage;
 
-	private String serviceClassName;
+    private String serviceClassName;
 
-	private String serviceImplPackage;
-	private String serviceImplClassName;
+    private String serviceImplPackage;
+    private String serviceImplClassName;
 
-	private String serviceTestPackage;
-	private String serviceTestClassName;
+    private String serviceTestPackage;
+    private String serviceTestClassName;
 
-	private String controllerPackage;
-	private String controllerClassName;
+    private String controllerPackage;
+    private String controllerClassName;
 
-	private String pagePath;
-	private String listPageName;
+    private String pagePath;
+    private String listPageName;
 
-	private String editPageName;
-	private String ImportPageName;
-	private String showPageName;
+    private String editPageName;
+    private String ImportPageName;
+    private String showPageName;
 
-	public String getShowPageName() {
-		return showPageName;
-	}
+    private String openApiMessageClassName;
+    private String openApiMessagePackage;
 
-	public void setShowPageName(String showPageName) {
-		this.showPageName = showPageName;
-	}
+    public String getShowPageName() {
+        return showPageName;
+    }
 
-	public String getDomainClassName() {
-		return domainClassName;
-	}
+    public void setShowPageName(String showPageName) {
+        this.showPageName = showPageName;
+    }
 
-	public void setDomainClassName(String domainClassName) {
-		this.domainClassName = domainClassName;
-	}
+    public String getDomainClassName() {
+        return domainClassName;
+    }
 
-	public String getDaoClassName() {
-		return daoClassName;
-	}
+    public void setDomainClassName(String domainClassName) {
+        this.domainClassName = domainClassName;
+    }
 
-	public void setDaoClassName(String daoClassName) {
-		this.daoClassName = daoClassName;
-	}
+    public String getDaoClassName() {
+        return daoClassName;
+    }
 
-	public String getDaoImplClassName() {
-		return daoImplClassName;
-	}
+    public void setDaoClassName(String daoClassName) {
+        this.daoClassName = daoClassName;
+    }
 
-	public void setDaoImplClassName(String daoImplClassName) {
-		this.daoImplClassName = daoImplClassName;
-	}
+    public String getDaoImplClassName() {
+        return daoImplClassName;
+    }
 
-	public String getDaoTestClassName() {
-		return daoTestClassName;
-	}
+    public void setDaoImplClassName(String daoImplClassName) {
+        this.daoImplClassName = daoImplClassName;
+    }
 
-	public void setDaoTestClassName(String daoTestClassName) {
-		this.daoTestClassName = daoTestClassName;
-	}
+    public String getDaoTestClassName() {
+        return daoTestClassName;
+    }
 
-	public String getServiceClassName() {
-		return serviceClassName;
-	}
+    public void setDaoTestClassName(String daoTestClassName) {
+        this.daoTestClassName = daoTestClassName;
+    }
 
-	public void setServiceClassName(String serviceClassName) {
-		this.serviceClassName = serviceClassName;
-	}
+    public String getServiceClassName() {
+        return serviceClassName;
+    }
 
-	public String getServiceImplClassName() {
-		return serviceImplClassName;
-	}
+    public void setServiceClassName(String serviceClassName) {
+        this.serviceClassName = serviceClassName;
+    }
 
-	public void setServiceImplClassName(String serviceImplClassName) {
-		this.serviceImplClassName = serviceImplClassName;
-	}
+    public String getServiceImplClassName() {
+        return serviceImplClassName;
+    }
 
-	public String getServiceTestClassName() {
-		return serviceTestClassName;
-	}
+    public void setServiceImplClassName(String serviceImplClassName) {
+        this.serviceImplClassName = serviceImplClassName;
+    }
 
-	public void setServiceTestClassName(String serviceTestClassName) {
-		this.serviceTestClassName = serviceTestClassName;
-	}
+    public String getServiceTestClassName() {
+        return serviceTestClassName;
+    }
 
-	public String getControllerClassName() {
-		return controllerClassName;
-	}
+    public void setServiceTestClassName(String serviceTestClassName) {
+        this.serviceTestClassName = serviceTestClassName;
+    }
 
-	public void setControllerClassName(String controllerClassName) {
-		this.controllerClassName = controllerClassName;
-	}
+    public String getControllerClassName() {
+        return controllerClassName;
+    }
 
-	public String getListPageName() {
-		return listPageName;
-	}
+    public void setControllerClassName(String controllerClassName) {
+        this.controllerClassName = controllerClassName;
+    }
 
-	public void setListPageName(String listPageName) {
-		this.listPageName = listPageName;
-	}
+    public String getListPageName() {
+        return listPageName;
+    }
 
-	public String getEditPageName() {
-		return editPageName;
-	}
+    public void setListPageName(String listPageName) {
+        this.listPageName = listPageName;
+    }
 
-	public void setEditPageName(String editPageName) {
-		this.editPageName = editPageName;
-	}
+    public String getEditPageName() {
+        return editPageName;
+    }
 
-	public String getDomainPackage() {
-		return domainPackage;
-	}
+    public void setEditPageName(String editPageName) {
+        this.editPageName = editPageName;
+    }
 
-	public void setDomainPackage(String domainPackage) {
-		this.domainPackage = domainPackage;
-	}
+    public String getDomainPackage() {
+        return domainPackage;
+    }
 
-	public String getDaoPackage() {
-		return daoPackage;
-	}
+    public void setDomainPackage(String domainPackage) {
+        this.domainPackage = domainPackage;
+    }
 
-	public void setDaoPackage(String daoPackage) {
-		this.daoPackage = daoPackage;
-	}
+    public String getDaoPackage() {
+        return daoPackage;
+    }
 
-	public String getDaoImplPackage() {
-		return daoImplPackage;
-	}
+    public void setDaoPackage(String daoPackage) {
+        this.daoPackage = daoPackage;
+    }
 
-	public void setDaoImplPackage(String daoImplPackage) {
-		this.daoImplPackage = daoImplPackage;
-	}
+    public String getDaoImplPackage() {
+        return daoImplPackage;
+    }
 
-	public String getDaoTestPackage() {
-		return daoTestPackage;
-	}
+    public void setDaoImplPackage(String daoImplPackage) {
+        this.daoImplPackage = daoImplPackage;
+    }
 
-	public void setDaoTestPackage(String daoTestPackage) {
-		this.daoTestPackage = daoTestPackage;
-	}
+    public String getDaoTestPackage() {
+        return daoTestPackage;
+    }
 
-	public String getServicePackage() {
-		return servicePackage;
-	}
+    public void setDaoTestPackage(String daoTestPackage) {
+        this.daoTestPackage = daoTestPackage;
+    }
 
-	public void setServicePackage(String servicePackage) {
-		this.servicePackage = servicePackage;
-	}
+    public String getServicePackage() {
+        return servicePackage;
+    }
 
-	public String getServiceImplPackage() {
-		return serviceImplPackage;
-	}
+    public void setServicePackage(String servicePackage) {
+        this.servicePackage = servicePackage;
+    }
 
-	public void setServiceImplPackage(String serviceImplPackage) {
-		this.serviceImplPackage = serviceImplPackage;
-	}
+    public String getServiceImplPackage() {
+        return serviceImplPackage;
+    }
 
-	public String getServiceTestPackage() {
-		return serviceTestPackage;
-	}
+    public void setServiceImplPackage(String serviceImplPackage) {
+        this.serviceImplPackage = serviceImplPackage;
+    }
 
-	public void setServiceTestPackage(String serviceTestPackage) {
-		this.serviceTestPackage = serviceTestPackage;
-	}
+    public String getServiceTestPackage() {
+        return serviceTestPackage;
+    }
 
-	public String getControllerPackage() {
-		return controllerPackage;
-	}
+    public void setServiceTestPackage(String serviceTestPackage) {
+        this.serviceTestPackage = serviceTestPackage;
+    }
 
-	public void setControllerPackage(String controllerPackage) {
-		this.controllerPackage = controllerPackage;
-	}
+    public String getControllerPackage() {
+        return controllerPackage;
+    }
 
-	public String getPagePath() {
-		return pagePath;
-	}
+    public void setControllerPackage(String controllerPackage) {
+        this.controllerPackage = controllerPackage;
+    }
 
-	public void setPagePath(String pagePath) {
-		this.pagePath = pagePath;
-	}
+    public String getPagePath() {
+        return pagePath;
+    }
 
-	public String getImportPageName() {
-		return ImportPageName;
-	}
+    public void setPagePath(String pagePath) {
+        this.pagePath = pagePath;
+    }
 
-	public void setImportPageName(String importPageName) {
-		ImportPageName = importPageName;
-	}
+    public String getImportPageName() {
+        return ImportPageName;
+    }
 
-	public String getEnumPackage() {
-		return enumPackage;
-	}
+    public void setImportPageName(String importPageName) {
+        ImportPageName = importPageName;
+    }
 
-	public void setEnumPackage(String enumPackage) {
-		this.enumPackage = enumPackage;
-	}
+    public String getEnumPackage() {
+        return enumPackage;
+    }
 
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
+    public void setEnumPackage(String enumPackage) {
+        this.enumPackage = enumPackage;
+    }
+
+    public String getOpenApiMessagePackage() {
+        return openApiMessagePackage;
+    }
+
+    public void setOpenApiMessagePackage(String openApiMessagePackage) {
+        this.openApiMessagePackage = openApiMessagePackage;
+    }
+
+    public String getOpenApiMessageClassName() {
+        return openApiMessageClassName;
+    }
+
+    public void setOpenApiMessageClassName(String openApiMessageClassName) {
+        this.openApiMessageClassName = openApiMessageClassName;
+    }
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 
 }

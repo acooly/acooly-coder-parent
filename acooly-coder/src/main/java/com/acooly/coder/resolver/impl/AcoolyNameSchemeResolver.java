@@ -7,187 +7,192 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * acooly 命名解析器
- * 
+ *
  * @author zhangpu
  * @date 2015年8月30日
  */
 public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 
-	/** 表或列名单词分割符，每个分割符后的单词首字母大写（驼峰规则） */
-	private static final String WORD_SEPARATOR = "_";
-	private GenerateConfig generateConfiguration = GenerateConfig.INSTANCE();
+    /**
+     * 表或列名单词分割符，每个分割符后的单词首字母大写（驼峰规则）
+     */
+    private static final String WORD_SEPARATOR = "_";
+    private GenerateConfig generateConfiguration = GenerateConfig.INSTANCE();
 
-	private String daoPostfit = "Dao";
-	private String daoImplPostfit = "DaoImpl";
-	private String daoTestPostfit = "DaoTest";
-	private String servicePostfit = "Service";
-	private String serviceImplPostfit = "ServiceImpl";
-	private String serviceTestPostfit = "ServiceTest";
-	private String controllerPostfit = "ManagerController";
-	private String listPagePostfit = "";
-	private String editPagePostfit = "Edit";
-	private String showPagePostfit = "Show";
-	private String importPagePostfit = "Import";
+    private String daoPostfit = "Dao";
+    private String daoImplPostfit = "DaoImpl";
+    private String daoTestPostfit = "DaoTest";
+    private String servicePostfit = "Service";
+    private String serviceImplPostfit = "ServiceImpl";
+    private String serviceTestPostfit = "ServiceTest";
+    private String controllerPostfit = "ManagerController";
+    private String listPagePostfit = "";
+    private String editPagePostfit = "Edit";
+    private String showPagePostfit = "Show";
+    private String importPagePostfit = "Import";
 
-	@Override
-	public NameScheme resolve(String tableName) {
-		NameScheme namesHold = new NameScheme();
-		String baseName = convertBaseName(tableName);
+    @Override
+    public NameScheme resolve(String tableName) {
+        NameScheme namesHold = new NameScheme();
+        String baseName = convertBaseName(tableName);
 
-		String rootPackage = getGenerateConfiguration().getRootPackage();
-		namesHold.setDomainClassName(StringUtils.capitalize(baseName));
-		namesHold.setDomainPackage(rootPackage + ".entity");
-		namesHold.setEnumPackage(rootPackage + ".enums");
+        String rootPackage = getGenerateConfiguration().getRootPackage();
+        namesHold.setDomainClassName(StringUtils.capitalize(baseName));
+        namesHold.setDomainPackage(rootPackage + ".entity");
+        namesHold.setEnumPackage(rootPackage + ".enums");
 
-		namesHold.setDaoPackage(rootPackage + ".dao");
-		namesHold.setDaoClassName(namesHold.getDomainClassName() + daoPostfit);
+        namesHold.setOpenApiMessagePackage(rootPackage + ".message");
+        namesHold.setOpenApiMessageClassName(StringUtils.capitalize(baseName) + "ApiRequest");
 
-		namesHold.setDaoImplPackage(rootPackage + ".dao.impl");
-		namesHold.setDaoImplClassName(namesHold.getDomainClassName() + daoImplPostfit);
+        namesHold.setDaoPackage(rootPackage + ".dao");
+        namesHold.setDaoClassName(namesHold.getDomainClassName() + daoPostfit);
 
-		namesHold.setDaoTestPackage(namesHold.getDaoPackage());
-		namesHold.setDaoTestClassName(namesHold.getDomainClassName() + daoTestPostfit);
+        namesHold.setDaoImplPackage(rootPackage + ".dao.impl");
+        namesHold.setDaoImplClassName(namesHold.getDomainClassName() + daoImplPostfit);
 
-		namesHold.setServicePackage(rootPackage + ".service");
-		namesHold.setServiceClassName(namesHold.getDomainClassName() + servicePostfit);
-		namesHold.setServiceImplPackage(rootPackage + ".service.impl");
-		namesHold.setServiceImplClassName(namesHold.getDomainClassName() + serviceImplPostfit);
+        namesHold.setDaoTestPackage(namesHold.getDaoPackage());
+        namesHold.setDaoTestClassName(namesHold.getDomainClassName() + daoTestPostfit);
 
-		namesHold.setServiceTestPackage(namesHold.getServicePackage());
-		namesHold.setServiceTestClassName(namesHold.getDomainClassName() + serviceTestPostfit);
+        namesHold.setServicePackage(rootPackage + ".service");
+        namesHold.setServiceClassName(namesHold.getDomainClassName() + servicePostfit);
+        namesHold.setServiceImplPackage(rootPackage + ".service.impl");
+        namesHold.setServiceImplClassName(namesHold.getDomainClassName() + serviceImplPostfit);
 
-		namesHold.setControllerPackage(rootPackage + ".web");
-		namesHold.setControllerClassName(namesHold.getDomainClassName() + controllerPostfit);
+        namesHold.setServiceTestPackage(namesHold.getServicePackage());
+        namesHold.setServiceTestClassName(namesHold.getDomainClassName() + serviceTestPostfit);
 
-		namesHold.setPagePath(getGenerateConfiguration().getWorkspace() + "/"
-				+ getGenerateConfiguration().getWebappPath() + "/" + getGenerateConfiguration().getManagePath());
-		namesHold.setListPageName(baseName + listPagePostfit + getGenerateConfiguration().getViewSuffix());
-		namesHold.setEditPageName(baseName + editPagePostfit + getGenerateConfiguration().getViewSuffix());
-		namesHold.setShowPageName(baseName + showPagePostfit + getGenerateConfiguration().getViewSuffix());
-		namesHold.setImportPageName(baseName + importPagePostfit + getGenerateConfiguration().getViewSuffix());
-		return namesHold;
-	}
+        namesHold.setControllerPackage(rootPackage + ".web");
+        namesHold.setControllerClassName(namesHold.getDomainClassName() + controllerPostfit);
 
-	/**
-	 * 表名转换为基础变量名称
-	 * 
-	 * @param tableName
-	 * @return
-	 */
-	private String convertBaseName(String tableName) {
-		String baseName = tableName.toLowerCase();
+        namesHold.setPagePath(getGenerateConfiguration().getWorkspace() + "/"
+                + getGenerateConfiguration().getWebappPath() + "/" + getGenerateConfiguration().getManagePath());
+        namesHold.setListPageName(baseName + listPagePostfit + getGenerateConfiguration().getViewSuffix());
+        namesHold.setEditPageName(baseName + editPagePostfit + getGenerateConfiguration().getViewSuffix());
+        namesHold.setShowPageName(baseName + showPagePostfit + getGenerateConfiguration().getViewSuffix());
+        namesHold.setImportPageName(baseName + importPagePostfit + getGenerateConfiguration().getViewSuffix());
+        return namesHold;
+    }
 
-		if (StringUtils.isNotBlank(generateConfiguration.getTableToEntityIgnorPrefix())) {
-			String ignorPrefix = generateConfiguration.getTableToEntityIgnorPrefix().toLowerCase();
-			if (baseName.startsWith(ignorPrefix)) {
-				baseName = StringUtils.substringAfter(baseName, ignorPrefix);
-			}
-		}
+    /**
+     * 表名转换为基础变量名称
+     *
+     * @param tableName
+     * @return
+     */
+    private String convertBaseName(String tableName) {
+        String baseName = tableName.toLowerCase();
 
-		if (baseName.startsWith(WORD_SEPARATOR)) {
-			baseName = StringUtils.substringAfter(baseName, WORD_SEPARATOR);
-		}
-		while (baseName.contains(WORD_SEPARATOR)) {
-			baseName = StringUtils.substringBefore(baseName, WORD_SEPARATOR)
-					+ StringUtils.capitalize(StringUtils.substringAfter(baseName, WORD_SEPARATOR));
-		}
-		return baseName;
-	}
+        if (StringUtils.isNotBlank(generateConfiguration.getTableToEntityIgnorPrefix())) {
+            String ignorPrefix = generateConfiguration.getTableToEntityIgnorPrefix().toLowerCase();
+            if (baseName.startsWith(ignorPrefix)) {
+                baseName = StringUtils.substringAfter(baseName, ignorPrefix);
+            }
+        }
 
-	public String getDaoPostfit() {
-		return daoPostfit;
-	}
+        if (baseName.startsWith(WORD_SEPARATOR)) {
+            baseName = StringUtils.substringAfter(baseName, WORD_SEPARATOR);
+        }
+        while (baseName.contains(WORD_SEPARATOR)) {
+            baseName = StringUtils.substringBefore(baseName, WORD_SEPARATOR)
+                    + StringUtils.capitalize(StringUtils.substringAfter(baseName, WORD_SEPARATOR));
+        }
+        return baseName;
+    }
 
-	public void setDaoPostfit(String daoPostfit) {
-		this.daoPostfit = daoPostfit;
-	}
+    public String getDaoPostfit() {
+        return daoPostfit;
+    }
 
-	public String getDaoImplPostfit() {
-		return daoImplPostfit;
-	}
+    public void setDaoPostfit(String daoPostfit) {
+        this.daoPostfit = daoPostfit;
+    }
 
-	public void setDaoImplPostfit(String daoImplPostfit) {
-		this.daoImplPostfit = daoImplPostfit;
-	}
+    public String getDaoImplPostfit() {
+        return daoImplPostfit;
+    }
 
-	public String getDaoTestPostfit() {
-		return daoTestPostfit;
-	}
+    public void setDaoImplPostfit(String daoImplPostfit) {
+        this.daoImplPostfit = daoImplPostfit;
+    }
 
-	public void setDaoTestPostfit(String daoTestPostfit) {
-		this.daoTestPostfit = daoTestPostfit;
-	}
+    public String getDaoTestPostfit() {
+        return daoTestPostfit;
+    }
 
-	public String getServicePostfit() {
-		return servicePostfit;
-	}
+    public void setDaoTestPostfit(String daoTestPostfit) {
+        this.daoTestPostfit = daoTestPostfit;
+    }
 
-	public void setServicePostfit(String servicePostfit) {
-		this.servicePostfit = servicePostfit;
-	}
+    public String getServicePostfit() {
+        return servicePostfit;
+    }
 
-	public String getServiceImplPostfit() {
-		return serviceImplPostfit;
-	}
+    public void setServicePostfit(String servicePostfit) {
+        this.servicePostfit = servicePostfit;
+    }
 
-	public void setServiceImplPostfit(String serviceImplPostfit) {
-		this.serviceImplPostfit = serviceImplPostfit;
-	}
+    public String getServiceImplPostfit() {
+        return serviceImplPostfit;
+    }
 
-	public String getControllerPostfit() {
-		return controllerPostfit;
-	}
+    public void setServiceImplPostfit(String serviceImplPostfit) {
+        this.serviceImplPostfit = serviceImplPostfit;
+    }
 
-	public void setControllerPostfit(String controllerPostfit) {
-		this.controllerPostfit = controllerPostfit;
-	}
+    public String getControllerPostfit() {
+        return controllerPostfit;
+    }
 
-	public String getListPagePostfit() {
-		return listPagePostfit;
-	}
+    public void setControllerPostfit(String controllerPostfit) {
+        this.controllerPostfit = controllerPostfit;
+    }
 
-	public void setListPagePostfit(String listPagePostfit) {
-		this.listPagePostfit = listPagePostfit;
-	}
+    public String getListPagePostfit() {
+        return listPagePostfit;
+    }
 
-	public String getEditPagePostfit() {
-		return editPagePostfit;
-	}
+    public void setListPagePostfit(String listPagePostfit) {
+        this.listPagePostfit = listPagePostfit;
+    }
 
-	public void setEditPagePostfit(String editPagePostfit) {
-		this.editPagePostfit = editPagePostfit;
-	}
+    public String getEditPagePostfit() {
+        return editPagePostfit;
+    }
 
-	public GenerateConfig getGenerateConfiguration() {
-		return generateConfiguration;
-	}
+    public void setEditPagePostfit(String editPagePostfit) {
+        this.editPagePostfit = editPagePostfit;
+    }
 
-	public void setGenerateConfiguration(GenerateConfig generateConfiguration) {
-		this.generateConfiguration = generateConfiguration;
-	}
+    public GenerateConfig getGenerateConfiguration() {
+        return generateConfiguration;
+    }
 
-	public String getServiceTestPostfit() {
-		return serviceTestPostfit;
-	}
+    public void setGenerateConfiguration(GenerateConfig generateConfiguration) {
+        this.generateConfiguration = generateConfiguration;
+    }
 
-	public void setServiceTestPostfit(String serviceTestPostfit) {
-		this.serviceTestPostfit = serviceTestPostfit;
-	}
+    public String getServiceTestPostfit() {
+        return serviceTestPostfit;
+    }
 
-	public String getImportPagePostfit() {
-		return importPagePostfit;
-	}
+    public void setServiceTestPostfit(String serviceTestPostfit) {
+        this.serviceTestPostfit = serviceTestPostfit;
+    }
 
-	public void setImportPagePostfit(String importPagePostfit) {
-		this.importPagePostfit = importPagePostfit;
-	}
+    public String getImportPagePostfit() {
+        return importPagePostfit;
+    }
 
-	public String getShowPagePostfit() {
-		return showPagePostfit;
-	}
+    public void setImportPagePostfit(String importPagePostfit) {
+        this.importPagePostfit = importPagePostfit;
+    }
 
-	public void setShowPagePostfit(String showPagePostfit) {
-		this.showPagePostfit = showPagePostfit;
-	}
+    public String getShowPagePostfit() {
+        return showPagePostfit;
+    }
+
+    public void setShowPagePostfit(String showPagePostfit) {
+        this.showPagePostfit = showPagePostfit;
+    }
 
 }

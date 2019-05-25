@@ -7,8 +7,8 @@
  */
 package com.acooly.coder.module;
 
-import com.acooly.coder.module.impl.*;
 import com.acooly.coder.config.GenerateConfig;
+import com.acooly.coder.module.impl.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,6 +73,7 @@ public class ModuleGeneratorFactory {
     }
 
     private static void registerOpenApi() {
+        register(GenerateKeys.openapi.name(), new OpenApiModuleGenerator());
     }
 
 

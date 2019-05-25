@@ -26,7 +26,7 @@ import com.acooly.coder.test.enums.CustomerTypeEnum;
  * acoolycoder测试 Entity
  *
  * @author acooly
- * Date: 2019-05-25 21:19:36
+ * Date: 2019-05-25 22:03:58
  */
 @Entity
 @Table(name = "acooly_coder_customer")
@@ -44,6 +44,7 @@ public class Customer extends AbstractEntity {
     /**
      * 年龄
      */
+	@Max(127)
     private Integer age;
 
     /**
@@ -56,6 +57,7 @@ public class Customer extends AbstractEntity {
      * 性别
      */
 	@NotNull
+	@Max(127)
     private Integer gender;
 
     /**
@@ -112,6 +114,7 @@ public class Customer extends AbstractEntity {
      * 状态
      */
 	@NotNull
+	@Max(999999999)
     private Integer status;
 
     /**
@@ -123,6 +126,7 @@ public class Customer extends AbstractEntity {
     /**
      * 薪水
      */
+	@Max(999999999)
     private Integer salary;
 
     /**
