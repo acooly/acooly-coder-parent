@@ -68,6 +68,10 @@ public class ColumnDataType {
         return javaType == JavaType.Date;
     }
 
+    public boolean isDateTime() {
+        return javaType == JavaType.DateTime;
+    }
+
     public boolean isDouble() {
         return javaType == JavaType.pDouble;
     }

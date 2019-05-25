@@ -15,10 +15,10 @@
 					<${r"#"}list all${entity.propertyName?cap_first}s as k,v><option value="${r"${"}k}">${r"${"}v}</option></${r"#"}list>
 				</select></td>
 				<#else>
-				<#if entity.dataType.date>
-				<td><input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-validatebox" value="<${r"#"}if ${entityVariable}.${entity.propertyName}??>${r"${"}${entityVariable}.${entity.propertyName}?string('yyyy-MM-dd HH:mm:ss')}</${r"#"}if>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" <#if !entity.nullable>data-options="required:true"</#if> /></td>
+				<#if entity.dataType.date || entity.dataType.dateTime>
+				<td><input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-validatebox" value="<${r"#"}if ${entityVariable}.${entity.propertyName}??>${r"${"}${entityVariable}.${entity.propertyName}?string('yyyy-MM-dd<#if entity.dataType.dateTime> HH:mm:ss</#if>')}</${r"#"}if>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd<#if entity.dataType.dateTime> HH:mm:ss</#if>'})" <#if !entity.nullable>data-options="required:true"</#if> /></td>
 				<#elseif entity.dataType.number>
-				<td><input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-numberbox" style="height: 30px;width: 260px;line-height: 1.3em;" data-options="validType:['length[1,${entity.length?c}]']<#if !entity.nullable>,required:true</#if>"/></td>
+				<td><input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-numberbox" style="height: 30px;width: 260px;line-height: 1.3em;" data-options="validType:['number[0,${entity.length?c}]']<#if !entity.nullable>,required:true</#if>"/></td>
 				<#else>
 				<#if entity.length gte 128>
 				<td><textarea rows="3" cols="40" placeholder="请输入${entity.common}..." name="${entity.propertyName}" class="easyui-validatebox" data-options="validType:['length[1,${entity.length?c}]']<#if !entity.nullable>,required:true</#if>"></textarea></td>

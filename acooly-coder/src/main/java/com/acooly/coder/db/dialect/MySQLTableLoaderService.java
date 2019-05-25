@@ -106,11 +106,7 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
                 databaseType = rs.getString("type");
                 ColumnDataType dataType = convertJavaType(databaseType, columnMetadata);
                 columnMetadata.setDataType(dataType);
-                if (StringUtils.contains(databaseType, "text")) {
-                    columnMetadata.setLength(100000);
-                } else {
-                    columnMetadata.setLength(rs.getInt("length"));
-                }
+                columnMetadata.setLength(doLength(dataType, rs.getInt("length")));
                 columnMetadatas.add(columnMetadata);
             }
             if (columnMetadatas == null || columnMetadatas.size() == 0) {
@@ -134,6 +130,24 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
                 }
             }
         }
+    }
+
+    protected int doLength(ColumnDataType dataType, int length) {
+        int size = length;
+        if (StringUtils.contains(dataType.getDatabaseType(), "text")) {
+            size = 100000;
+        }
+        if (dataType.isNumber()) {
+            if (StringUtils.equalsIgnoreCase(dataType.getDatabaseType(), "tinyint")) {
+                size = 127;
+            } else {
+                size = Double.valueOf(Math.pow(10, length - 1)).intValue() - 1;
+            }
+        }
+        if (size == 0) {
+            size = 1;
+        }
+        return size;
     }
 
     protected String getTableComment(String tableName) {
@@ -204,12 +218,6 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
     @Override
     public Database getDatabase() {
         return Database.MYSQL;
-    }
-
-    public static void main(String[] args) {
-        Logger logger = Logger.getLogger("adsfasdf");
-        logger.info("asdfasdf");
-
     }
 
 }

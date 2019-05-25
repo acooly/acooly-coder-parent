@@ -49,9 +49,11 @@ $(function() {
 		<#if entity.options??>
 			<th field="${entity.propertyName}" formatter="mappingFormatter">${entity.common}</th>
 		<#else>
-		<#if entity.dataType.date>
+		<#if entity.dataType.dateTime>
 		    <th field="${entity.propertyName}" formatter="dateTimeFormatter">${entity.common}</th>
-		<#elseif entity.dataType.number>
+        <#elseif entity.dataType.date>
+		    <th field="${entity.propertyName}" formatter="dateFormatter">${entity.common}</th>
+        <#elseif entity.dataType.number>
 			<th field="${entity.propertyName}" sortable="true"<#if entity.dataType.long> sum="true"</#if>>${entity.common}</th>
 		<#else>
 			<th field="${entity.propertyName}"<#if entity.length gte 128> formatter="contentFormatter"</#if>>${entity.common}</th>
