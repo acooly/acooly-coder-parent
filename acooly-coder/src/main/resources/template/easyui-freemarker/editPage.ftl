@@ -5,7 +5,7 @@
     <form id="manage_${entityVariable}_editform" action="${entityContextPath}/<${r"#"}if action=='create'>saveJson<${r"#"}else>updateJson</${r"#"}if>.html" method="post">
 		<${r"@"}jodd.form bean="${entityVariable}" scope="request">
         <input name="id" type="hidden" />
-        <table class="editForm" width="100%">
+        <table class="tableForm" width="100%">
 		<#list table.columns as entity>
 			<#if entity.name?lower_case != 'id' && entity.name?lower_case != 'create_time' && entity.name?lower_case != 'update_time'>
 			<tr>
