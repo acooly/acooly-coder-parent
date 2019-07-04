@@ -192,7 +192,7 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
             return new ColumnDataType(databaseType, JavaType.Date, "java.util.Date");
         } else if (databaseType.equalsIgnoreCase("DATETIME")
                 || databaseType.equalsIgnoreCase("timestamp")) {
-            return new ColumnDataType(databaseType, JavaType.DateTime, "java.util.Date");
+            return new ColumnDataType(databaseType, JavaType.Date, "java.util.Date");
         } else {
             return new ColumnDataType(databaseType, JavaType.String);
         }

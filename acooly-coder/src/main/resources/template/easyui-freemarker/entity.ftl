@@ -59,9 +59,6 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	<#if entity.dataType.string>
 	@Size(max = ${entity.length?c})
 	</#if>
-    <#if entity.dataType.number>
-	@Max(${entity.length?c})
-    </#if>
     private ${javaDataType} ${entity.propertyName};
 
 	</#if>
