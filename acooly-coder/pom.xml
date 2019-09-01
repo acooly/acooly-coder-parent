@@ -6,12 +6,11 @@
     <parent>
         <groupId>com.acooly</groupId>
         <artifactId>acooly-coder-parent</artifactId>
-        <version>4.2.0-SNAPSHOT</version>
+        <version>5.0.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.acooly</groupId>
     <artifactId>acooly-coder</artifactId>
-    <version>4.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>acooly-coder</name>
