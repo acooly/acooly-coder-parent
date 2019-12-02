@@ -42,7 +42,7 @@ public class GenerateConstants extends ConfigurableConstants {
             "classpath:/template/easyui");
 
     // code generator configurations
-    public static final String GENERATOR_MODULES = getProperty("generator.modules", "");
+    public static final String GENERATOR_MODULES = getProperty("generator.modules", "manage");
     public static final String GENERATOR_WORKSPACE = getProperty("generator.workspace", "");
     public static final String GENERATOR_ROOT_PACKAGE = getProperty("generator.rootPackage", "");
     public static final String GENERATOR_MANAGE_PATH = getProperty("generator.manage.path", "/manage/");
@@ -53,7 +53,7 @@ public class GenerateConstants extends ConfigurableConstants {
     public static final String GENERATOR_CODE_AUTHOR = getProperty("generator.code.author", "acooly");
     public static final String GENERATOR_DATATYPE_DECLARE = getProperty("generator.dataType.declare", "");
 
-    public static final String GENERATOR_PERSISTENT_SOLUTION = getProperty("generator.persistent.solution", "jpa");
+    public static final String GENERATOR_PERSISTENT_SOLUTION = getProperty("generator.persistent.solution", "mybatis");
     public static final boolean GENERATOR_ENUM_NAME_ASSEMBLE = Boolean.valueOf(getProperty("generator.enumName.assemble", "false"));
     public static final boolean GENERATOR_ENUM_ENABLE = Boolean.valueOf(getProperty("generator.enum.enable", "true"));
 

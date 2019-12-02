@@ -2,22 +2,23 @@ package com.acooly.coder.generate.impl;
 
 import com.acooly.coder.config.Database;
 import com.acooly.coder.config.GenerateConfig;
-import com.acooly.coder.db.TableLoaderServiceFactory;
-import com.acooly.coder.domain.JavaType;
-import com.acooly.coder.generate.GenerateContext;
-import com.acooly.coder.module.ModuleGeneratorFactory;
-import com.acooly.coder.resolver.EntityIdDeclareResolver;
-import com.acooly.coder.support.GenerateUtils;
-import com.acooly.coder.support.LogManager;
 import com.acooly.coder.db.TableLoaderService;
+import com.acooly.coder.db.TableLoaderServiceFactory;
 import com.acooly.coder.domain.Column;
+import com.acooly.coder.domain.JavaType;
 import com.acooly.coder.domain.Table;
 import com.acooly.coder.generate.CodeGenerateService;
+import com.acooly.coder.generate.GenerateContext;
 import com.acooly.coder.module.ModuleGenerator;
+import com.acooly.coder.module.ModuleGeneratorFactory;
+import com.acooly.coder.resolver.EntityIdDeclareResolver;
 import com.acooly.coder.resolver.NameScheme;
 import com.acooly.coder.resolver.NameSchemeResolver;
 import com.acooly.coder.resolver.impl.AcoolyNameSchemeResolver;
 import com.acooly.coder.resolver.impl.DefaultEntityIdDeclareResolver;
+import com.acooly.coder.support.GenerateUtils;
+import com.acooly.coder.support.LogManager;
+import com.acooly.core.utils.mapper.BeanCopier;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -44,12 +45,20 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
     private EntityIdDeclareResolver entityIdDeclareResolver = new DefaultEntityIdDeclareResolver();
 
     @Override
-    public void generateTable(String... tableNames) {
+    public void generateTable(GenerateConfig config, String... tableNames) {
+        if (config != null) {
+            BeanCopier.copy(config, generateConfig);
+        }
         logger.info("Generate Config:\n" + generateConfig);
         logger.info("Generate Table:" + Arrays.toString(tableNames));
         for (String tableName : tableNames) {
             generate(tableName);
         }
+    }
+
+    @Override
+    public void generateTable(String... tableNames) {
+        generateTable(null, tableNames);
     }
 
     private void generate(String tableName) {
@@ -124,7 +133,7 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
         String enumName = null;
         for (Column column : generateContext.getTable().getColumns()) {
             if (column.getDataType().getJavaType() == JavaType.Enum) {
-                enumName = StringUtils.capitalize(column.getPropertyName())+"Enum";
+                enumName = StringUtils.capitalize(column.getPropertyName()) + "Enum";
                 if (generateContext.getConfiguration().isEnumNameAssemble()) {
                     enumName = generateContext.getNameScheme().getDomainClassName() + enumName;
                 }
