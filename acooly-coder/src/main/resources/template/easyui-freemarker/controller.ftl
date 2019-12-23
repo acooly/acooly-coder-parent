@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
 import ${nameScheme.servicePackage}.${nameScheme.serviceClassName};
 <#list table.columns as column>
@@ -33,7 +33,7 @@ import com.google.common.collect.Maps;
  */
 @Controller
 @RequestMapping(value = "${configuration.managePath}/${nameScheme.domainClassName?uncap_first}")
-public class ${nameScheme.controllerClassName} extends AbstractJQueryEntityController<${nameScheme.domainClassName}, ${nameScheme.serviceClassName}> {
+public class ${nameScheme.controllerClassName} extends AbstractJsonEntityController<${nameScheme.domainClassName}, ${nameScheme.serviceClassName}> {
 	
 <#assign existOptions=false>
 <#list table.columns as entity>
