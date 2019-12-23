@@ -24,7 +24,7 @@ import org.hibernate.annotations.Parameter;
 </#if>
 import org.hibernate.validator.constraints.*;
 import javax.validation.constraints.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import com.acooly.core.common.domain.AbstractEntity;
@@ -55,7 +55,7 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     </#if>
 	<#if !entity.nullable>
-	<#if entity.dataType.string>@NotEmpty<#else>@NotNull</#if>
+	<#if entity.dataType.string>@NotBlank<#else>@NotNull</#if>
 	</#if>
 	<#if entity.dataType.string>
 	@Size(max = ${entity.length?c})
