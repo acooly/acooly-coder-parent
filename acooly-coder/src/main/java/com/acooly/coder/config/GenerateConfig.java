@@ -2,6 +2,7 @@ package com.acooly.coder.config;
 
 import com.acooly.coder.enums.ViewType;
 import com.acooly.coder.module.GenerateModule;
+import com.acooly.core.utils.Strings;
 
 import java.beans.Transient;
 import java.util.Set;
@@ -140,6 +141,9 @@ public class GenerateConfig {
 
     @Transient
     public String getManagePath() {
+        if (Strings.endsWith(managePath, "/")) {
+            managePath = Strings.removeEnd(managePath, "/");
+        }
         return managePath;
     }
 
@@ -251,7 +255,7 @@ public class GenerateConfig {
     public String toString() {
         return String.format(
                 "{\n  workspace: %s \n  rootPackage: %s \n  webappPath %s \n  manageViewPath %s \n  persistent: %s \n  modules: %s  \n  tableToEntityIgnorPrefix: %s \n  databaseConfig: %s\n  templatePath: %s\n}",
-                workspace, rootPackage, this.webappPath,this.managePath, persistentSolution, generatorModules, tableToEntityIgnorPrefix, databaseConfig, templatePath);
+                workspace, rootPackage, this.webappPath, this.managePath, persistentSolution, generatorModules, tableToEntityIgnorPrefix, databaseConfig, templatePath);
     }
 
 }
