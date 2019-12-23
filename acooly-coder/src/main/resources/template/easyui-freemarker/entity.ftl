@@ -36,7 +36,7 @@ import ${declare};
  * ${table.comment} Entity
  *
  * @author ${configuration.codeAuthor}
- * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
+ * @date ${datetime("yyyy-MM-dd HH:mm:ss")}
  */
 @Entity
 @Table(name = "${table.name}")

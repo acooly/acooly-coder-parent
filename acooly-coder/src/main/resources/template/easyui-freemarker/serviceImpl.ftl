@@ -16,10 +16,8 @@ import ${nameScheme.domainPackage}.${nameScheme.domainClassName};
 /**
  * ${table.comment} Service实现
  *
- * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
- *
  * @author ${configuration.codeAuthor}
- *
+ * @date ${datetime("yyyy-MM-dd HH:mm:ss")}
  */
 @Service("${nameScheme.serviceClassName?uncap_first}")
 public class ${nameScheme.serviceImplClassName} extends EntityServiceImpl<${nameScheme.domainClassName}, ${nameScheme.daoClassName}> implements ${nameScheme.serviceClassName} {

@@ -29,7 +29,7 @@ import com.google.common.collect.Maps;
  * ${table.comment} 管理控制器
  * 
  * @author ${configuration.codeAuthor}
- * Date: ${datetime("yyyy-MM-dd HH:mm:ss")}
+ * @date ${datetime("yyyy-MM-dd HH:mm:ss")}
  */
 @Controller
 @RequestMapping(value = "${configuration.managePath}/${nameScheme.domainClassName?uncap_first}")
