@@ -3,10 +3,19 @@ package com.acooly.coder.config;
 import com.acooly.coder.enums.ViewType;
 import com.acooly.coder.module.GenerateModule;
 import com.acooly.core.utils.Strings;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.beans.Transient;
 import java.util.Set;
 
+/**
+ * 代码生成器配置
+ *
+ * @author zhangpu
+ */
+@Getter
+@Setter
 public class GenerateConfig {
 
     /**
@@ -77,6 +86,10 @@ public class GenerateConfig {
         return generateConfiguration;
     }
 
+    public static GenerateConfig getGenerateConfiguration() {
+        return generateConfiguration;
+    }
+
     private GenerateConfig() {
         ViewType viewTypeEnum = ViewType.find(viewType);
         if (viewTypeEnum == null) {
@@ -87,57 +100,6 @@ public class GenerateConfig {
         this.webappPath = viewTypeEnum.getWebappPath();
     }
 
-    public String getWorkspace() {
-        return workspace;
-    }
-
-    public void setWorkspace(String workspace) {
-        this.workspace = workspace;
-    }
-
-    public String getRootPackage() {
-        return rootPackage;
-    }
-
-    public void setRootPackage(String rootPackage) {
-        this.rootPackage = rootPackage;
-    }
-
-    @Transient
-    public String getCodePath() {
-        return codePath;
-    }
-
-    public void setCodePath(String codePath) {
-        this.codePath = codePath;
-    }
-
-    @Transient
-    public String getResourcePath() {
-        return resourcePath;
-    }
-
-    public void setResourcePath(String resourcePath) {
-        this.resourcePath = resourcePath;
-    }
-
-    @Transient
-    public String getWebappPath() {
-        return webappPath;
-    }
-
-    public void setWebappPath(String webappPath) {
-        this.webappPath = webappPath;
-    }
-
-    @Transient
-    public String getTemplatePath() {
-        return templatePath;
-    }
-
-    public void setTemplatePath(String templatePath) {
-        this.templatePath = templatePath;
-    }
 
     @Transient
     public String getManagePath() {
@@ -147,109 +109,6 @@ public class GenerateConfig {
         return managePath;
     }
 
-    public void setManagePath(String managePath) {
-        this.managePath = managePath;
-    }
-
-    @Transient
-    public String getPortalPath() {
-        return portalPath;
-    }
-
-    public void setPortalPath(String portalPath) {
-        this.portalPath = portalPath;
-    }
-
-    @Transient
-    public String getTestPath() {
-        return testPath;
-    }
-
-    public void setTestPath(String testPath) {
-        this.testPath = testPath;
-    }
-
-    public String getTableToEntityIgnorPrefix() {
-        return tableToEntityIgnorPrefix;
-    }
-
-    public void setTableToEntityIgnorPrefix(String tableToEntityIgnorPrefix) {
-        this.tableToEntityIgnorPrefix = tableToEntityIgnorPrefix;
-    }
-
-    @Transient
-    public String getViewSuffix() {
-        return viewSuffix;
-    }
-
-    public void setViewSuffix(String viewSuffix) {
-        this.viewSuffix = viewSuffix;
-    }
-
-    public DatabaseConfig getDatabaseConfig() {
-        return databaseConfig;
-    }
-
-    public void setDatabaseConfig(DatabaseConfig databaseConfig) {
-        this.databaseConfig = databaseConfig;
-    }
-
-    public String getCodeCopyright() {
-        return codeCopyright;
-    }
-
-    public void setCodeCopyright(String codeCopyright) {
-        this.codeCopyright = codeCopyright;
-    }
-
-    public String getCodeAuthor() {
-        return codeAuthor;
-    }
-
-    public void setCodeAuthor(String codeAuthor) {
-        this.codeAuthor = codeAuthor;
-    }
-
-    public String getDateTypeDeclare() {
-        return dateTypeDeclare;
-    }
-
-    public void setDateTypeDeclare(String dateTypeDeclare) {
-        this.dateTypeDeclare = dateTypeDeclare;
-    }
-
-    public String getPersistentSolution() {
-        return persistentSolution;
-    }
-
-    public void setPersistentSolution(String persistentSolution) {
-        this.persistentSolution = persistentSolution;
-    }
-
-    public Set<GenerateModule> getGeneratorModules() {
-        return generatorModules;
-    }
-
-    public static GenerateConfig getGenerateConfiguration() {
-        return generateConfiguration;
-    }
-
-
-    public boolean isEnumNameAssemble() {
-        return enumNameAssemble;
-    }
-
-    public void setEnumNameAssemble(boolean enumNameAssemble) {
-        this.enumNameAssemble = enumNameAssemble;
-    }
-
-    public boolean isEnumEnable() {
-        return enumEnable;
-    }
-
-    public void setEnumEnable(boolean enumEnable) {
-        this.enumEnable = enumEnable;
-    }
 
     @Override
     public String toString() {
