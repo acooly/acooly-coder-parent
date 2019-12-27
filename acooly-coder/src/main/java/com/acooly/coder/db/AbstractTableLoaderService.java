@@ -24,7 +24,7 @@ public abstract class AbstractTableLoaderService implements TableLoaderService {
 
 	protected static Logger logger = Logger.getLogger(AbstractTableLoaderService.class.getSimpleName());
 
-	protected ColumnDataType convertJavaType(String databaseType, Column column) {
+	protected ColumnDataType doJavaType(String databaseType, Column column) {
 		if (column.getOptions() != null && column.getOptions().size() > 0) {
 			// 存在选项值
 			if (!StringUtils.isNumeric(column.getOptions().keySet().iterator().next())) {

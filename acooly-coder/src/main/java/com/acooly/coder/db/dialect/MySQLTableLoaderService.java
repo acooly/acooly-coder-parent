@@ -104,7 +104,7 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
                 columnMetadata.setDefaultValue(defaultValue);
                 // 最后处理数据类型
                 databaseType = rs.getString("type");
-                ColumnDataType dataType = convertJavaType(databaseType, columnMetadata);
+                ColumnDataType dataType = doJavaType(databaseType, columnMetadata);
                 columnMetadata.setDataType(dataType);
                 columnMetadata.setLength(doLength(dataType, rs.getInt("length")));
                 columnMetadatas.add(columnMetadata);
@@ -134,8 +134,9 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
 
     protected int doLength(ColumnDataType dataType, int length) {
         int size = length;
-        if (StringUtils.contains(dataType.getDatabaseType(), "text")) {
-            size = 100000;
+        // 如果是对象型或JSON型，则不设置长度
+        if (StringUtils.containsIgnoreCase("json,text", dataType.getDatabaseType())) {
+            size = 0;
         }
         if (dataType.isNumber()) {
             if (StringUtils.equalsIgnoreCase(dataType.getDatabaseType(), "tinyint")) {
@@ -143,9 +144,6 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
             } else {
                 size = Double.valueOf(Math.pow(10, length - 1)).intValue() - 1;
             }
-        }
-        if (size == 0) {
-            size = 1;
         }
         return size;
     }
