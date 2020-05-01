@@ -30,7 +30,7 @@ public class GenerateUtils {
 		return StringUtils.capitalize(name) + ".java";
 	}
 
-	public static Map<String, String> parseLikeJson(String comment) {
+	public static Map<String, String> parseSimilarJson(String comment) {
 		try {
 			String json = null;
 			Matcher m = Pattern.compile("\\{.+\\}").matcher(comment);

@@ -3,10 +3,7 @@ package com.acooly.coder.db.dialect;
 import com.acooly.coder.config.Database;
 import com.acooly.coder.db.AbstractTableLoaderService;
 import com.acooly.coder.db.TableLoaderService;
-import com.acooly.coder.domain.Column;
-import com.acooly.coder.domain.ColumnDataType;
-import com.acooly.coder.domain.JavaType;
-import com.acooly.coder.domain.Table;
+import com.acooly.coder.domain.*;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.sql.DataSource;
@@ -97,14 +94,18 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
                 columnMetadata.setName(name);
                 columnMetadata.setNullable(rs.getString("nullable").equalsIgnoreCase("YES"));
                 String comment = rs.getString("comments");
-                columnMetadata.setOptions(parseOptions(comment));
-                comment = parseCanonicalComment(comment);
+                ColumnComment columnComment = parseComment(comment);
+                columnMetadata.setColumnComment(columnComment);
+                columnMetadata.setColumnType(columnComment.getType());
+                columnMetadata.setColumnAlias(columnComment.getAlias());
+                columnMetadata.setOptions(columnComment.getOptions());
+                comment = columnComment.getTitle();
                 columnMetadata.setCommon(StringUtils.isBlank(comment) ? name : comment);
                 Object defaultValue = rs.getObject("defaultValue");
                 columnMetadata.setDefaultValue(defaultValue);
                 // 最后处理数据类型
                 databaseType = rs.getString("type");
-                ColumnDataType dataType = doJavaType(databaseType, columnMetadata);
+                ColumnDataType dataType = parseJavaType(databaseType, columnMetadata);
                 columnMetadata.setDataType(dataType);
                 columnMetadata.setLength(doLength(dataType, rs.getInt("length")));
                 columnMetadatas.add(columnMetadata);
@@ -136,7 +137,8 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
         int size = length;
         // 如果是对象型或JSON型，则不设置长度
         if (StringUtils.containsIgnoreCase("json,text", dataType.getDatabaseType())) {
-            size = 0;
+            //设置为足够大的值
+            size = 999999999;
         }
         if (dataType.isNumber()) {
             if (StringUtils.equalsIgnoreCase(dataType.getDatabaseType(), "tinyint")) {
@@ -190,7 +192,7 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
             return new ColumnDataType(databaseType, JavaType.Date, "java.util.Date");
         } else if (databaseType.equalsIgnoreCase("DATETIME")
                 || databaseType.equalsIgnoreCase("timestamp")) {
-            return new ColumnDataType(databaseType, JavaType.Date, "java.util.Date");
+            return new ColumnDataType(databaseType, JavaType.DateTime, "java.util.Date");
         } else {
             return new ColumnDataType(databaseType, JavaType.String);
         }

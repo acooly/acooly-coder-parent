@@ -7,161 +7,205 @@ import java.util.Map;
 
 /**
  * 列元数据
- * 
+ *
  * @author zhangpu
  * @date 2012年6月21日
  */
 public class Column {
 
-	/** 字符类型 */
-	public static final int DATATYPE_STRING = 0;
-	/** 数字类型 */
-	public static final int DATATYPE_LONG = 1;
-	/** 日期时间类型 */
-	public static final int DATATYPE_DATE = 2;
-	/** 对象类型 */
-	public static final int DATATYPE_LOB = 3;
-	public static final int DATATYPE_INT = 4;
+    /**
+     * 字符类型
+     */
+    public static final int DATATYPE_STRING = 0;
+    /**
+     * 数字类型
+     */
+    public static final int DATATYPE_LONG = 1;
+    /**
+     * 日期时间类型
+     */
+    public static final int DATATYPE_DATE = 2;
+    /**
+     * 对象类型
+     */
+    public static final int DATATYPE_LOB = 3;
+    public static final int DATATYPE_INT = 4;
 
-	/** 精确小数 */
-	public static final int BIG_DECIMAL = 7;
+    /**
+     * 精确小数
+     */
+    public static final int BIG_DECIMAL = 7;
 
-	/** 枚举类型 */
-	public static final int DATATYPE_ENUM = 10;
+    /**
+     * 枚举类型
+     */
+    public static final int DATATYPE_ENUM = 10;
 
-	/** 列名称 */
-	private String name;
-	/** 列类型 */
-	private ColumnDataType dataType;
-	/** 列长度 */
-	private int length;
-	/** 列小数长度 */
-	private int scale = 0;
-	/** 是否可以为空 */
-	private boolean nullable;
-	/** 默认值 */
-	private Object defaultValue;
-	/** 列备注 */
-	private String common;
-	/** 常用数字分类字段可选值 */
-	private Map<String, String> options;
+    /**
+     * 列名称
+     */
+    private String name;
+    /**
+     * 列类型
+     */
+    private ColumnDataType dataType;
+    /**
+     * 业务类型
+     */
+    private ColumnType columnType;
 
-	private String validations;
+    /**
+     * 业务类型别名
+     */
+    private ColumnAlias columnAlias;
 
-	public String getPropertyName() {
+    /**
+     * 列长度
+     */
+    private int length;
+    /**
+     * 列小数长度
+     */
+    private int scale = 0;
+    /**
+     * 是否可以为空
+     */
+    private boolean nullable;
+    /**
+     * 默认值
+     */
+    private Object defaultValue;
+    /**
+     * 列备注
+     */
+    private String common;
+    /**
+     * 常用数字分类字段可选值
+     */
+    private Map<String, String> options;
 
-		String segment[] = name.toLowerCase().split("_");
-		String propertyName = segment[0];
-		if (segment.length > 1) {
-			for (int i = 1; i < segment.length; i++) {
-				propertyName += StringUtils.capitalize(segment[i]);
-			}
-		}
-		return propertyName;
-	}
+    private String validations;
 
-	// public String getJavaDataType() {
-	// switch (dataType) {
-	// case DATATYPE_STRING:
-	// return "String";
-	// case DATATYPE_LONG:
-	// if (getLength() > 4) {
-	// return "Long";
-	// } else {
-	// return "int";
-	// }
-	// case DATATYPE_INT:
-	// return "int";
-	// case DATATYPE_DATE:
-	// return "Date";
-	// case DATATYPE_LOB:
-	// return "String";
-	// case DATATYPE_ENUM:
-	// return GenerateUtils.getCanonicalClassName(this.name);
-	// default:
-	// return "String";
-	// }
-	// }
+    private ColumnComment columnComment;
 
-	public String getName() {
-		return name;
-	}
+    public String getPropertyName() {
 
-	public void setName(String name) {
-		this.name = name;
-	}
+        String segment[] = name.toLowerCase().split("_");
+        String propertyName = segment[0];
+        if (segment.length > 1) {
+            for (int i = 1; i < segment.length; i++) {
+                propertyName += StringUtils.capitalize(segment[i]);
+            }
+        }
+        return propertyName;
+    }
 
-	public ColumnDataType getDataType() {
-		return dataType;
-	}
+    public Long getMax() {
+        return Double.valueOf(Math.pow(10d, getLength())).longValue();
+    }
 
-	public void setDataType(ColumnDataType dataType) {
-		this.dataType = dataType;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public int getLength() {
-		return length;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setLength(int length) {
-		this.length = length;
-	}
+    public ColumnDataType getDataType() {
+        return dataType;
+    }
 
-	public boolean isNullable() {
-		return nullable;
-	}
+    public void setDataType(ColumnDataType dataType) {
+        this.dataType = dataType;
+    }
 
-	public void setNullable(boolean nullable) {
-		this.nullable = nullable;
-	}
+    public int getLength() {
+        return length;
+    }
 
-	public Object getDefaultValue() {
-		return defaultValue;
-	}
+    public void setLength(int length) {
+        this.length = length;
+    }
 
-	public void setDefaultValue(Object defaultValue) {
-		this.defaultValue = defaultValue;
-	}
+    public boolean isNullable() {
+        return nullable;
+    }
 
-	public String getCommon() {
-		return common;
-	}
+    public void setNullable(boolean nullable) {
+        this.nullable = nullable;
+    }
 
-	public void setCommon(String common) {
-		this.common = common;
-	}
+    public Object getDefaultValue() {
+        return defaultValue;
+    }
 
-	public Map<String, String> getOptions() {
-		return options;
-	}
+    public void setDefaultValue(Object defaultValue) {
+        this.defaultValue = defaultValue;
+    }
 
-	public void setOptions(Map<String, String> options) {
-		this.options = options;
-	}
+    public String getCommon() {
+        return common;
+    }
 
-	public String getValidations() {
-		return validations;
-	}
+    public void setCommon(String common) {
+        this.common = common;
+    }
 
-	public void setValidations(String validations) {
-		this.validations = validations;
-	}
+    public Map<String, String> getOptions() {
+        return options;
+    }
 
-	public int getScale() {
-		return scale;
-	}
+    public void setOptions(Map<String, String> options) {
+        this.options = options;
+    }
 
-	public void setScale(int scale) {
-		this.scale = scale;
-	}
+    public String getValidations() {
+        return validations;
+    }
 
-	public void appendOption(String key, String value) {
-		synchronized (this.options) {
-			if (this.options == null) {
-				this.options = new HashMap<String, String>();
-			}
-		}
-		this.options.put(key, value);
-	}
+    public void setValidations(String validations) {
+        this.validations = validations;
+    }
 
+    public int getScale() {
+        return scale;
+    }
+
+    public void setScale(int scale) {
+        this.scale = scale;
+    }
+
+    public void appendOption(String key, String value) {
+        synchronized (this.options) {
+            if (this.options == null) {
+                this.options = new HashMap<String, String>();
+            }
+        }
+        this.options.put(key, value);
+    }
+
+    public ColumnComment getColumnComment() {
+        return columnComment;
+    }
+
+    public void setColumnComment(ColumnComment columnComment) {
+        this.columnComment = columnComment;
+    }
+
+    public ColumnType getColumnType() {
+        return columnType;
+    }
+
+    public void setColumnType(ColumnType columnType) {
+        this.columnType = columnType;
+    }
+
+    public ColumnAlias getColumnAlias() {
+        return columnAlias;
+    }
+
+    public void setColumnAlias(ColumnAlias columnAlias) {
+        this.columnAlias = columnAlias;
+    }
 }

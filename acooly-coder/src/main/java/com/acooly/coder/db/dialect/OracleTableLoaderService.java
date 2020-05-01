@@ -99,7 +99,7 @@ public class OracleTableLoaderService extends AbstractTableLoaderService impleme
 				column.setDefaultValue(defaultValue);
 				// 最后处理数据类型
 				databaseType = rs.getString("type");
-				column.setDataType(doJavaType(databaseType, column));
+				column.setDataType(parseJavaType(databaseType, column));
 				columns.add(column);
 			}
 			if (columns == null || columns.size() == 0) {

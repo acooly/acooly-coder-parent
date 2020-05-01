@@ -16,11 +16,11 @@ public class AcoolyCoder {
     // 生成代码的根包
     static String ROOT_PACKAGE = "com.acooly.coder.test";
     // 生成代码的管理视图相对路径
-    static String MANAGE_VIEW_PATH = "/manage";
+    static String MANAGE_VIEW_PATH = "/manage/coder/";
     // 配置表名转换为实体名时，需要忽略的表前缀。例如配置：p_ 则表示p_customer(表名) -> Customer(实体类名)
-    static String TABLE_IGNOR_PREFIX = "a_acooly_";
+    static String TABLE_IGNOR_PREFIX = "acooly_coder_";
     // 生成代码的表
-    static String[] TABLES = {"a_acooly_project"};
+    static String[] TABLES = {"acooly_coder_customer"};
 
     /**
      * 代码方式配置关键参数

@@ -35,7 +35,7 @@ public class EnumModuleGenerator extends AbstractModuleGenerator {
 
                 List<Column> columns = generateContext.getTable().getColumns();
                 for (Column column : columns) {
-                    if (column.getDataType().isEnum()) {
+                    if (column.getDataType().isEnum() && column.getOptions() != null && column.getOptions().size() > 0) {
                         generateContext.appendData("enumColumn", column);
                         doGenerate(template, generateContext, getOutputPath(generateContext, temp),
                                 GenerateUtils.getCanonicalClassFileName(column.getDataType().getJavaName()));

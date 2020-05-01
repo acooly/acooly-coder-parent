@@ -14,6 +14,8 @@ public enum JavaType {
 
     Long("Long"),
 
+    Money("Money"),
+
     Date("Date"),
 
     DateTime("DateTime"),

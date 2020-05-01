@@ -39,13 +39,20 @@ public class ColumnDataType {
         this.javaDeclare = javaDeclare;
     }
 
+    public ColumnDataType(String databaseType, JavaType javaType, String javaDeclare, String javaName) {
+        this.databaseType = databaseType;
+        this.javaType = javaType;
+        this.javaDeclare = javaDeclare;
+        this.javaName = javaName;
+    }
+
     public boolean isString() {
         return javaType == JavaType.String;
     }
 
     public boolean isNumber() {
         return javaType == JavaType.Int || javaType == JavaType.Integer || javaType == JavaType.Long
-                || javaType == JavaType.pLong;
+                || javaType == JavaType.pLong || javaType == JavaType.Money;
     }
 
     public boolean isInteger() {

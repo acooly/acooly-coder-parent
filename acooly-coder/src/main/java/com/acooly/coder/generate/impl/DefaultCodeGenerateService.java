@@ -18,6 +18,7 @@ import com.acooly.coder.resolver.impl.AcoolyNameSchemeResolver;
 import com.acooly.coder.resolver.impl.DefaultEntityIdDeclareResolver;
 import com.acooly.coder.support.GenerateUtils;
 import com.acooly.coder.support.LogManager;
+import com.acooly.core.utils.Strings;
 import com.acooly.core.utils.mapper.BeanCopier;
 import org.apache.commons.lang3.StringUtils;
 
@@ -132,15 +133,19 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
         // 对枚举类型，rebuild package declare
         String enumName = null;
         for (Column column : generateContext.getTable().getColumns()) {
-            if (column.getDataType().getJavaType() == JavaType.Enum) {
-                enumName = StringUtils.capitalize(column.getPropertyName()) + "Enum";
-                if (generateContext.getConfiguration().isEnumNameAssemble()) {
-                    enumName = generateContext.getNameScheme().getDomainClassName() + enumName;
-                }
-                column.getDataType().setJavaName(GenerateUtils.getCanonicalClassName(enumName));
-                column.getDataType().setJavaDeclare(generateContext.getNameScheme().getEnumPackage() + "."
-                        + GenerateUtils.getCanonicalClassName(enumName));
+            if (column.getDataType().getJavaType() != JavaType.Enum) {
+                continue;
             }
+            if (Strings.isNotBlank(column.getDataType().getJavaName())) {
+                continue;
+            }
+            enumName = StringUtils.capitalize(column.getPropertyName()) + "Enum";
+            if (generateContext.getConfiguration().isEnumNameAssemble()) {
+                enumName = generateContext.getNameScheme().getDomainClassName() + enumName;
+            }
+            column.getDataType().setJavaName(GenerateUtils.getCanonicalClassName(enumName));
+            column.getDataType().setJavaDeclare(generateContext.getNameScheme().getEnumPackage() + "."
+                    + GenerateUtils.getCanonicalClassName(enumName));
         }
     }
 

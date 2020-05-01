@@ -20,8 +20,19 @@ import java.util.Map;
  */
 public enum ViewType {
 
+    /**
+     * ftl
+     */
+    ftlEasyboot("ftlEasyboot", ".ftl", "src/main/resources/templates", "easyui-bootstrap-freemarker"),
+
+    /**
+     * ftl
+     */
     freemarker("freemarker", ".ftl", "src/main/resources/templates", "easyui-freemarker"),
 
+    /**
+     * jsp
+     */
     jsp("jsp", ".jsp", "src/main/resources/META-INF/resources/WEB-INF/jsp", "easyui-jsp");
 
 
