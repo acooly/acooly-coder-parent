@@ -290,6 +290,10 @@ OK，界面调整完成，我们刷新界面，新的界面就要人性化多了
 
 ## 版本说明
 
+### 5.0.0-SNAPSHOT(2020-05-02)
+
+* 2020-05-02 - 完成新版（bootstrap）的自动代码生成升级 - [zhangpu] 9a8f505
+
 ### 4.2.0-SNAPSHOT
 
 * 支持freemarker和jsp两种视图，通过generator.viewType参数控制。
