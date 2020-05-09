@@ -89,6 +89,7 @@ public class ColumnDataType {
         } else {
             return javaType.getValue();
         }
+
     }
 
     public String getDatabaseType() {

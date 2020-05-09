@@ -18,7 +18,7 @@ public enum JavaType {
 
     Date("Date"),
 
-    DateTime("DateTime"),
+    DateTime("Date"),
 
     pDouble("double"),
 
