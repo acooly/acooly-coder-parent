@@ -10,7 +10,6 @@ package com.acooly.coder.db;
 import com.acooly.coder.config.GenerateConfig;
 import com.acooly.coder.domain.*;
 import com.acooly.coder.support.GenerateUtils;
-import com.acooly.core.utils.Strings;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 
@@ -99,11 +98,11 @@ public abstract class AbstractTableLoaderService implements TableLoaderService {
     }
 
     protected ColumnComment parseComment(String comment) {
-        String similarJson = Strings.trimToEmpty(comment);
+        String similarJson = StringUtils.trimToEmpty(comment);
         // JSON格式
         if (StringUtils.startsWith(comment, "{")) {
-            similarJson = Strings.replace(similarJson, "’", "'");
-            similarJson = Strings.replace(similarJson, "‘", "'");
+            similarJson = StringUtils.replace(similarJson, "’", "'");
+            similarJson = StringUtils.replace(similarJson, "‘", "'");
             try {
                 ColumnComment columnComment = JSON.parseObject(similarJson, ColumnComment.class);
                 if (columnComment.getAlias() != null) {

@@ -27,6 +27,11 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-common-type</artifactId>
+        </dependency>
+
         <!-- template engine -->
         <dependency>
             <groupId>org.freemarker</groupId>
@@ -57,11 +62,11 @@
             <version>5.1.21</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.3</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.oracle</groupId>-->
+        <!--            <artifactId>ojdbc6</artifactId>-->
+        <!--            <version>11.2.0.3</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>

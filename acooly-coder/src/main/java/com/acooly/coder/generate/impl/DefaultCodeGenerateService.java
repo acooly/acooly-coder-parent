@@ -18,8 +18,6 @@ import com.acooly.coder.resolver.impl.AcoolyNameSchemeResolver;
 import com.acooly.coder.resolver.impl.DefaultEntityIdDeclareResolver;
 import com.acooly.coder.support.GenerateUtils;
 import com.acooly.coder.support.LogManager;
-import com.acooly.core.utils.Strings;
-import com.acooly.core.utils.mapper.BeanCopier;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -47,9 +45,6 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 
     @Override
     public void generateTable(GenerateConfig config, String... tableNames) {
-        if (config != null) {
-            BeanCopier.copy(config, generateConfig);
-        }
         logger.info("Generate Config:\n" + generateConfig);
         logger.info("Generate Table:" + Arrays.toString(tableNames));
         for (String tableName : tableNames) {
@@ -136,7 +131,7 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
             if (column.getDataType().getJavaType() != JavaType.Enum) {
                 continue;
             }
-            if (Strings.isNotBlank(column.getDataType().getJavaName())) {
+            if (StringUtils.isNotBlank(column.getDataType().getJavaName())) {
                 continue;
             }
             enumName = StringUtils.capitalize(column.getPropertyName()) + "Enum";

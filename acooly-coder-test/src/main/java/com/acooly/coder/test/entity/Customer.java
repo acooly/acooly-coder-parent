@@ -2,7 +2,7 @@
 * acooly.cn Inc.
 * Copyright (c) 2020 All Rights Reserved.
 * create by acooly
-* date:2020-05-02
+* date:2020-06-07
 */
 package com.acooly.coder.test.entity;
 
@@ -32,7 +32,7 @@ import com.acooly.core.common.enums.Gender;
  * acoolycoder测试 Entity
  *
  * @author acooly
- * @date 2020-05-02 02:00:38
+ * @date 2020-06-07 14:53:19
  */
 @Entity
 @Table(name = "acooly_coder_customer")

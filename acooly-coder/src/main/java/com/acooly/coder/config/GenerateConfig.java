@@ -2,9 +2,9 @@ package com.acooly.coder.config;
 
 import com.acooly.coder.enums.ViewType;
 import com.acooly.coder.module.GenerateModule;
-import com.acooly.core.utils.Strings;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
 import java.beans.Transient;
 import java.util.Set;
@@ -103,12 +103,11 @@ public class GenerateConfig {
 
     @Transient
     public String getManagePath() {
-        if (Strings.endsWith(managePath, "/")) {
-            managePath = Strings.removeEnd(managePath, "/");
+        if (StringUtils.endsWith(managePath, "/")) {
+            managePath = StringUtils.removeEnd(managePath, "/");
         }
         return managePath;
     }
-
 
     @Override
     public String toString() {

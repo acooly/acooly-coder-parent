@@ -8,7 +8,6 @@
  */
 package com.acooly.coder.domain;
 
-import com.acooly.core.common.facade.InfoBase;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,12 +21,12 @@ import java.util.Map;
  */
 @Getter
 @Setter
-public class ColumnComment extends InfoBase {
+public class ColumnComment {
     private String title;
     private ColumnType type = ColumnType.text;
     private ColumnAlias alias;
     private Map<String, String> options;
-    
+
     public ColumnComment() {
     }
 
