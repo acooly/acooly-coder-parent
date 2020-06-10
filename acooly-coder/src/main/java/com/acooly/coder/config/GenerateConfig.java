@@ -48,6 +48,7 @@ public class GenerateConfig {
      * 表名转实体名忽略前缀
      */
     private String tableToEntityIgnorPrefix = GenerateConstants.GENERATOR_IGNOR_PREFIX;
+    private String entityPrefix = GenerateConstants.GENERATOR_ENTITY_PREFIX;
 
     /**
      * 输出视图扩展名

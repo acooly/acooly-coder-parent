@@ -96,6 +96,11 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
             baseName = StringUtils.substringBefore(baseName, WORD_SEPARATOR)
                     + StringUtils.capitalize(StringUtils.substringAfter(baseName, WORD_SEPARATOR));
         }
+
+        if (StringUtils.isNotBlank(generateConfiguration.getEntityPrefix())) {
+            baseName = StringUtils.capitalize(generateConfiguration.getEntityPrefix())
+                    + StringUtils.capitalize(baseName);
+        }
         return baseName;
     }
 

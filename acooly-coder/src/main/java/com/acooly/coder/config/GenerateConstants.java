@@ -48,6 +48,7 @@ public class GenerateConstants extends ConfigurableConstants {
     public static final String GENERATOR_MANAGE_PATH = getProperty("generator.manage.path", "/manage/");
     public static final String GENERATOR_PORTAL_PATH = getProperty("generator.portal.path", "/portal/");
     public static final String GENERATOR_IGNOR_PREFIX = getProperty("generator.tableToEntityIgnorPrefix", "");
+    public static final String GENERATOR_ENTITY_PREFIX = getProperty("generator.entityPrefix", "");
 
     public static final String GENERATOR_CODE_COPYRIGHT = getProperty("generator.code.copyright", "acooly.cn");
     public static final String GENERATOR_CODE_AUTHOR = getProperty("generator.code.author", "acooly");
