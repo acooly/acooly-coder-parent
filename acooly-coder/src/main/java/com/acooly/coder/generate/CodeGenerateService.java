@@ -1,6 +1,7 @@
 package com.acooly.coder.generate;
 
 import com.acooly.coder.config.GenerateConfig;
+import com.acooly.coder.generate.event.AcoolyCoderListener;
 
 /**
  * 代码生成服务接口
@@ -16,12 +17,7 @@ public interface CodeGenerateService {
      */
     void generateTable(String... tableNames);
 
-    /**
-     * 可覆盖配置文件参数生成代码
-     *
-     * @param config
-     * @param tableNames
-     */
-    void generateTable(GenerateConfig config, String... tableNames);
+    void generateTable(AcoolyCoderListener acoolyCoderListener, String... tableNames);
+
 
 }

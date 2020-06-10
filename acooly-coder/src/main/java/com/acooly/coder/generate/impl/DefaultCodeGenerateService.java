@@ -9,6 +9,8 @@ import com.acooly.coder.domain.JavaType;
 import com.acooly.coder.domain.Table;
 import com.acooly.coder.generate.CodeGenerateService;
 import com.acooly.coder.generate.GenerateContext;
+import com.acooly.coder.generate.event.AcoolyCoderEvent;
+import com.acooly.coder.generate.event.AcoolyCoderListener;
 import com.acooly.coder.module.ModuleGenerator;
 import com.acooly.coder.module.ModuleGeneratorFactory;
 import com.acooly.coder.resolver.EntityIdDeclareResolver;
@@ -20,10 +22,9 @@ import com.acooly.coder.support.GenerateUtils;
 import com.acooly.coder.support.LogManager;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * 代码生成 默认实现
@@ -44,56 +45,66 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
     private EntityIdDeclareResolver entityIdDeclareResolver = new DefaultEntityIdDeclareResolver();
 
     @Override
-    public void generateTable(GenerateConfig config, String... tableNames) {
-        logger.info("Generate Config:\n" + generateConfig);
-        logger.info("Generate Table:" + Arrays.toString(tableNames));
-        for (String tableName : tableNames) {
-            generate(tableName);
+    public void generateTable(AcoolyCoderListener listener, String... tableNames) {
+        Set<String> tables = getTables(tableNames);
+        for (String tableName : tables) {
+            doGenerate(tableName, tables, listener);
         }
     }
+
 
     @Override
     public void generateTable(String... tableNames) {
         generateTable(null, tableNames);
     }
 
-    private void generate(String tableName) {
-        if (tableName == null || "".equals(tableName.trim())) {
-            throw new RuntimeException("tableName不能为空,支持*");
-        }
 
-        if (tableName.contains("*")) {
-            List<String> tableNames = tableLoaderService.getTableNames();
-            if (tableName.equals("*")) {
-                for (String name : tableNames) {
-                    doGenerate(name);
-                }
-                return;
-            } else if (tableName.endsWith("*")) {
-                String tb = tableName.replace("*", "");
-                for (String name : tableNames) {
-                    if (name.startsWith(tb)) {
-                        doGenerate(name);
-                    }
-                }
-                return;
-            }
-
-        }
-        doGenerate(tableName);
-    }
-
-    protected void doGenerate(String tableName) {
+    protected void doGenerate(String tableName, Set<String> tables, AcoolyCoderListener acoolyCoderListener) {
         try {
             GenerateContext generateContext = loadGenerateContext(tableName);
             Map<String, ModuleGenerator> moduleGeneratorMaps = ModuleGeneratorFactory.registies(generateConfig);
+            List<String> steps = moduleGeneratorMaps.values().stream().map(ModuleGenerator::getGenerateKey).collect(Collectors.toList());
             for (Map.Entry<String, ModuleGenerator> entry : moduleGeneratorMaps.entrySet()) {
                 entry.getValue().generate(generateContext);
+                if (acoolyCoderListener != null) {
+                    AcoolyCoderEvent event = new AcoolyCoderEvent();
+                    event.setTables(new ArrayList<>(tables));
+                    event.setTable(tableName);
+                    event.setSteps(steps);
+                    event.setStep(entry.getValue().getGenerateKey());
+                    acoolyCoderListener.notice(event);
+                }
             }
             logger.info("success generate table: " + tableName);
         } catch (Exception e) {
             logger.warning("Generate Table fail. tableName: " + tableName + ", e:" + e.getMessage());
         }
+    }
+
+    protected Set<String> getTables(String... tableNames) {
+        Set<String> tables = new HashSet<>();
+        for (String tableName : tableNames) {
+            if (tableName.contains("*")) {
+                List<String> allTables = tableLoaderService.getTableNames();
+                if (tableName.equals("*")) {
+                    tables.addAll(allTables);
+                    break;
+                } else if (tableName.endsWith("*")) {
+                    String tb = tableName.replace("*", "");
+                    for (String name : tableNames) {
+                        if (name.startsWith(tb)) {
+                            tables.add(tb);
+                        }
+                    }
+                }
+            } else {
+                tables.add(tableName);
+            }
+        }
+        if (tables == null || tables.size() == 0) {
+            throw new RuntimeException("tableName不能为空,支持*");
+        }
+        return tables;
     }
 
     protected GenerateContext loadGenerateContext(String tableName) {
