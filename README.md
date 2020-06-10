@@ -290,6 +290,12 @@ OK，界面调整完成，我们刷新界面，新的界面就要人性化多了
 
 ## 版本说明
 
+### 5.0.0-SNAPSHOT(2020-05-03)
+
+* 2020-06-10 - 特性增加：增加entityPrefix参数，用于配置生成的实体增加统一前缀 - [zhangpu] a7a873c
+* 2020-06-10 - 新增特性：代码生成过程事件处理（AcoolyCoderEvent和AcoolyCoderListener），用于支持界面端生成进度条的有效展示。 - [zhangpu] 3d213de
+* 2020-06-07 - 清理acooly-coder的冗余依赖，精简部署包大小 - [zhangpu] 4d6846a
+
 ### 5.0.0-SNAPSHOT(2020-05-02)
 
 * 2020-05-02 - 完成新版（bootstrap）的自动代码生成升级 - [zhangpu] 9a8f505
