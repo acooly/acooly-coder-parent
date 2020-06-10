@@ -3,6 +3,7 @@ package com.acooly.coder;
 
 import com.acooly.coder.config.GenerateConfig;
 import com.acooly.coder.generate.CodeGenerateService;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 代码生成工具
@@ -10,6 +11,7 @@ import com.acooly.coder.generate.CodeGenerateService;
  * @author zhangpu
  * @date 2019-12-2
  */
+@Slf4j
 public class AcoolyCoder {
     // 生成代码的目标模块
     static String MODULE_NAME = "acooly-coder-test";
@@ -36,7 +38,10 @@ public class AcoolyCoder {
         config.setManagePath(MANAGE_VIEW_PATH);
         config.setTableToEntityIgnorPrefix(TABLE_IGNOR_PREFIX);
         config.setRootPackage(ROOT_PACKAGE);
-        service.generateTable(config, TABLES);
+//        service.generateTable(e -> {
+//            log.info("生成进度: {}", e.getProgress());
+//        }, TABLES);
+        service.generateTable(TABLES);
     }
 
     public static String getProjectPath() {
