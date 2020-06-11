@@ -6,6 +6,15 @@ acooly coder是为acooly框架配套的专用代码生成工具，设计目的�
 
 ## 工具获取
 
+### Idea插件
+
+当前插件为发布到Intellij Idea的marketplace，请直接下载后，拖动到你的idea中即可完成安装。目前支持的版本：idea2018.1及以上版本。
+
+点击这里下载IDEA的AcoolyCoder插件: [acooly-coder-plugin-1.0.0](http://acooly.cn/nexus/content/groups/public/cn/acooly/acooly-coder-plugin/1.0.0/acooly-coder-plugin-1.0.0.zip)
+
+安装并重新启动IDEA后，在你工程任何需要生成代码的包(package)上，右键菜单底部：Acooly -> AcoolyCoder
+
+
 ### cli工具
 
 acooly coder的发布包采用maven方式发布，目前只提供cli工具。
