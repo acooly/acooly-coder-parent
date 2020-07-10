@@ -30,15 +30,7 @@ public class LogFormatter extends Formatter {
         StringBuffer sb = new StringBuffer();
 
         date.setTime(record.getMillis());
-        String source;
-        if (record.getSourceClassName() != null) {
-            source = record.getSourceClassName();
-            if (record.getSourceMethodName() != null) {
-                source += "." + record.getSourceMethodName();
-            }
-        } else {
-            source = record.getLoggerName();
-        }
+        String source = record.getLoggerName();
         String message = formatMessage(record);
 
         sb.append(sdf.format(date)).append(" ");

@@ -4,6 +4,7 @@ import com.acooly.coder.config.Database;
 import com.acooly.coder.db.AbstractTableLoaderService;
 import com.acooly.coder.db.TableLoaderService;
 import com.acooly.coder.domain.*;
+import com.acooly.coder.support.LogManager;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.sql.DataSource;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
  * @author zhangpu
  */
 public class MySQLTableLoaderService extends AbstractTableLoaderService implements TableLoaderService {
-    protected static Logger logger = Logger.getLogger(MySQLTableLoaderService.class.getSimpleName());
+    protected static Logger logger = LogManager.getLogger(MySQLTableLoaderService.class);
     /**
      * 列相关元数据SQL
      */
@@ -116,7 +117,7 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
             tableMetadata.setColumns(columnMetadatas);
             String tableComment = getTableComment(tableName);
             tableMetadata.setComment(StringUtils.isBlank(tableComment) ? tableName : tableComment);
-            logger.info("Load table metadata: " + tableName);
+            logger.info("Load metadata of table : " + tableName);
             rs.close();
             stmt.close();
             return tableMetadata;

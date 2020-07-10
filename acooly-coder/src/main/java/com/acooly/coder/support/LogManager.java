@@ -49,7 +49,7 @@ public class LogManager {
      * @return
      */
     public static Logger getLogger(Class clazz) {
-        Logger logger = Logger.getLogger(clazz.getName());
+        Logger logger = Logger.getLogger("AcoolyCoder");
         return logger;
     }
 }

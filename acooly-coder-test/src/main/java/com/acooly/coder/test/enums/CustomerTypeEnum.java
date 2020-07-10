@@ -18,7 +18,7 @@ import com.acooly.core.utils.enums.Messageable;
  * acoolycoder测试 CustomerTypeEnum 枚举定义
  * 
  * @author acooly
- * @date 2020-07-10 11:24:52
+ * @date 2020-07-10 12:08:25
  */
 public enum CustomerTypeEnum implements Messageable {
 

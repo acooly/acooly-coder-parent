@@ -75,7 +75,7 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
                     acoolyCoderListener.notice(event);
                 }
             }
-            logger.info("success generate table: " + tableName);
+            logger.info("success generated table: " + tableName);
         } catch (Exception e) {
             logger.warning("Generate Table fail. tableName: " + tableName + ", e:" + e.getMessage());
         }

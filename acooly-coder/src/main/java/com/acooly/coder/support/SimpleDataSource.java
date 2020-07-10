@@ -86,6 +86,7 @@ public class SimpleDataSource implements DataSource {
 		return getConnection();
 	}
 
+	@Override
 	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
 		return Logger.getLogger(this.getClass().getName());
 	}

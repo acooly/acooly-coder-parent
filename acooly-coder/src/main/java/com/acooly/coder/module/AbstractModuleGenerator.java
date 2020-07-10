@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public abstract class AbstractModuleGenerator implements ModuleGenerator {
@@ -28,11 +30,17 @@ public abstract class AbstractModuleGenerator implements ModuleGenerator {
         try {
             onGenerate(generateContext);
             String[] templates = StringUtils.split(templateName, ",");
+            List<String> outputFiles = new ArrayList<>();
+            String outputFile = null;
             for (String temp : templates) {
                 Template template = getTemplate(temp);
-                doGenerate(template, generateContext, getOutputPath(generateContext, temp));
+                outputFile = doGenerate(template, generateContext, getOutputPath(generateContext, temp));
+                if (outputFile != null) {
+                    outputFiles.add(StringUtils.substringAfter(outputFile, GenerateConfig.INSTANCE().getWorkspace()));
+                }
+
             }
-            logger.info("success generate [" + this.getGenerateKey() + "]");
+            logger.info("success generated [" + this.getGenerateKey() + "] to " + outputFiles);
         } catch (Exception e) {
             logger.warning("Generate Module fail: " + e.getMessage());
         }
@@ -47,12 +55,12 @@ public abstract class AbstractModuleGenerator implements ModuleGenerator {
 
     protected abstract String getOutputFile(GenerateContext generateContext, String template);
 
-    protected void doGenerate(Template template, GenerateContext generateContext, String outputPath) {
-        doGenerate(template, generateContext, outputPath, getOutputFile(generateContext, template.getName()));
+    protected String doGenerate(Template template, GenerateContext generateContext, String outputPath) {
+        return doGenerate(template, generateContext, outputPath, getOutputFile(generateContext, template.getName()));
     }
 
-    protected void doGenerate(Template template, GenerateContext generateContext, String outputPath,
-                              String outputFile) {
+    protected String doGenerate(Template template, GenerateContext generateContext, String outputPath,
+                                String outputFile) {
         Writer out = null;
         try {
             File distPath = new File(outputPath);
@@ -63,9 +71,7 @@ public abstract class AbstractModuleGenerator implements ModuleGenerator {
             out = new OutputStreamWriter(new FileOutputStream(distFile, false), "UTF-8");
             template.process(generateContext, out);
             out.flush();
-            // logger.info("generate :" + this.getClass().getSimpleName() + "["
-            // + template.getName() + "], file: "
-            // + distFile.getPath());
+            return distFile.getPath();
         } catch (Exception e) {
             logger.warning("generate module fail. template " + template.getName() + " table "
                     + generateContext.getNameScheme().getDomainClassName() + " ; outputDir: " + outputPath + ", error:"
@@ -79,7 +85,7 @@ public abstract class AbstractModuleGenerator implements ModuleGenerator {
                 }
             }
         }
-
+        return null;
     }
 
 
