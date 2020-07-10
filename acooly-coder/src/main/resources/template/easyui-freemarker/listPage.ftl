@@ -1,3 +1,4 @@
+<#if configuration.sso><${r"#"}if ssoEnable><${r"#"}include "/manage/common/ssoInclude.ftl"></${r"#"}if></#if>
 <#assign entityVariable="${nameScheme.domainClassName?uncap_first}" />
 <#assign entityContextPath="${configuration.managePath}/${nameScheme.domainClassName?uncap_first}" />
 <script type="text/javascript">

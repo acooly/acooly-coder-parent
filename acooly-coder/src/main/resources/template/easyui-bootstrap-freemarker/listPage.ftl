@@ -1,3 +1,4 @@
+<#if configuration.sso><${r"#"}if ssoEnable><${r"#"}include "/manage/common/ssoInclude.ftl"></${r"#"}if></#if>
 <#assign entityVariable="${nameScheme.domainClassName?uncap_first}" />
 <#assign entityContextPath="${configuration.managePath}/${nameScheme.domainClassName?uncap_first}" />
 <div class="easyui-layout" data-options="fit : true,border : false">
@@ -83,7 +84,7 @@
   </div>
     <script type="text/javascript">
         $(function () {
-            $.acooly.framework.initPage('manage_customer_searchform', 'manage_customer_datagrid');
+            $.acooly.framework.initPage('manage_${entityVariable}_searchform', 'manage_${entityVariable}_datagrid');
         });
     </script>
 </div>

@@ -58,7 +58,10 @@ public class GenerateConstants extends ConfigurableConstants {
     public static final boolean GENERATOR_ENUM_NAME_ASSEMBLE = Boolean.valueOf(getProperty("generator.enumName.assemble", "false"));
     public static final boolean GENERATOR_ENUM_ENABLE = Boolean.valueOf(getProperty("generator.enum.enable", "true"));
 
-
+    /**
+     * 单点登录
+     */
+    public static final boolean GENERATOR_SSO_ENABLE = Boolean.valueOf(getProperty("generator.sso.enable", "true"));
 
 
     public static Set<GenerateModule> getConfigGeneratorModules() {

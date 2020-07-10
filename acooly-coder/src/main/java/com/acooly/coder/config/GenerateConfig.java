@@ -19,6 +19,11 @@ import java.util.Set;
 public class GenerateConfig {
 
     /**
+     * 单点登录支持
+     */
+    private boolean sso = GenerateConstants.GENERATOR_SSO_ENABLE;
+
+    /**
      * 工作目录
      */
     private String workspace = GenerateConstants.GENERATOR_WORKSPACE;
