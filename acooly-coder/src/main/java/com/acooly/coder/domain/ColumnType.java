@@ -32,8 +32,9 @@ public enum ColumnType implements Messageable {
     idcard("idcard", "身份证号码"),
     bankcard("bankcard", "银行卡"),
     url("url", "链接"),
-    chinese("chinese","中文"),
-    account("account","账号"),
+    chinese("chinese", "中文"),
+    account("account", "账号"),
+    file("file", "文件"),
 
     text("text", "文本"),
     option("option", "选项");

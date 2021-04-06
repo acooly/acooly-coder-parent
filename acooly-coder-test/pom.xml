@@ -22,7 +22,10 @@
             <groupId>com.acooly</groupId>
             <artifactId>acooly-component-mybatis</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-ofile</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-common</artifactId>

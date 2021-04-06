@@ -44,6 +44,7 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
 
     private EntityIdDeclareResolver entityIdDeclareResolver = new DefaultEntityIdDeclareResolver();
 
+
     @Override
     public void generateTable(AcoolyCoderListener listener, String... tableNames) {
         Set<String> tables = getTables(tableNames);
