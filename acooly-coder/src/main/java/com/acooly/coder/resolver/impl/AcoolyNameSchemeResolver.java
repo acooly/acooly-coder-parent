@@ -1,6 +1,7 @@
 package com.acooly.coder.resolver.impl;
 
 import com.acooly.coder.config.GenerateConfig;
+import com.acooly.coder.config.GenerateConstants;
 import com.acooly.coder.resolver.NameScheme;
 import com.acooly.coder.resolver.NameSchemeResolver;
 import org.apache.commons.lang3.StringUtils;
@@ -40,6 +41,14 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
         namesHold.setDomainClassName(StringUtils.capitalize(baseName));
         namesHold.setDomainPackage(rootPackage + ".entity");
         namesHold.setEnumPackage(rootPackage + ".enums");
+
+        // dto
+        namesHold.getDto().setModuleName(getGenerateConfiguration().getDtoModulePath());
+        namesHold.getDto().setPackageName(rootPackage + ".dto");
+        namesHold.getDto().add(GenerateConstants.DTO_INFO_POSTFIX,
+                namesHold.getDomainClassName() + GenerateConstants.DTO_INFO_POSTFIX);
+        namesHold.getDto().add(GenerateConstants.DTO_LIST_INFO_POSTFIX,
+                namesHold.getDomainClassName() + GenerateConstants.DTO_LIST_INFO_POSTFIX);
 
         namesHold.setOpenApiMessagePackage(rootPackage + ".message");
         namesHold.setOpenApiMessageClassName(StringUtils.capitalize(baseName) + "ApiRequest");

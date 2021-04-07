@@ -1,5 +1,6 @@
 package com.acooly.coder.domain;
 
+import com.acooly.coder.support.Demos;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
@@ -207,5 +208,14 @@ public class Column {
 
     public void setColumnAlias(ColumnAlias columnAlias) {
         this.columnAlias = columnAlias;
+    }
+
+
+    public String getDemo() {
+        return Demos.demo(this);
+    }
+
+    public String getOptionValueDemo() {
+        return Demos.firstEnumValue(this);
     }
 }

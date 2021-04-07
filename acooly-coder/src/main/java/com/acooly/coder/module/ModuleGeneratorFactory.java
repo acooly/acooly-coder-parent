@@ -70,6 +70,7 @@ public class ModuleGeneratorFactory {
     }
 
     private static void registerFacade() {
+        register(GenerateKeys.dto.name(), new DtoModuleGenerator());
     }
 
     private static void registerOpenApi() {

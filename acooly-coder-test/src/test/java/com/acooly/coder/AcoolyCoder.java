@@ -3,7 +3,11 @@ package com.acooly.coder;
 
 import com.acooly.coder.config.GenerateConfig;
 import com.acooly.coder.generate.CodeGenerateService;
+import com.acooly.coder.module.GenerateModule;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Sets;
+
+import java.util.Set;
 
 /**
  * 代码生成工具
@@ -38,6 +42,8 @@ public class AcoolyCoder {
         config.setManagePath(MANAGE_VIEW_PATH);
         config.setTableToEntityIgnorPrefix(TABLE_IGNOR_PREFIX);
         config.setRootPackage(ROOT_PACKAGE);
+        Set<GenerateModule> modules = Sets.newLinkedHashSet(GenerateModule.Manage, GenerateModule.Facade);
+        config.setGeneratorModules(modules);
 //        service.generateTable(e -> {
 //            log.info("生成进度: {}", e.getProgress());
 //        }, TABLES);

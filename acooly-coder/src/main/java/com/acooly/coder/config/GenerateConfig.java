@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.beans.Transient;
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.Set;
 
 /**
@@ -17,6 +19,11 @@ import java.util.Set;
 @Getter
 @Setter
 public class GenerateConfig {
+
+    /**
+     * dto
+     */
+    private String dtoModulePostfix = GenerateConstants.DTO_MODULE_POSTFIX_DEF;
 
     /**
      * 单点登录支持
@@ -113,6 +120,50 @@ public class GenerateConfig {
             managePath = StringUtils.removeEnd(managePath, "/");
         }
         return managePath;
+    }
+
+    /**
+     * 工程根路径
+     *
+     * @return
+     */
+    public String getProjectPath() {
+        File file = new File(this.getWorkspace());
+        if (file.exists()) {
+            File parent = file.getParentFile();
+            File[] poms = parent.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.equals("pom.xml");
+                }
+            });
+            if (poms != null && poms.length > 0) {
+                // 多模块工程
+                return parent.getPath();
+            }
+        }
+        return this.workspace;
+    }
+
+    public String getProjectName() {
+        File file = new File(this.getWorkspace());
+        String fileName = file.getName();
+        if (fileName != null && fileName.indexOf("-") != 0) {
+            return StringUtils.substringBeforeLast(fileName, "-");
+        }
+        return fileName;
+    }
+
+    public String getDtoModulePath() {
+        String dtoModulePath = getGenerateConfiguration().getProjectPath() + "/" +
+                getGenerateConfiguration().getProjectName() + "-" + getGenerateConfiguration().getDtoModulePostfix();
+        File file = new File(dtoModulePath);
+        if (file.exists()) {
+            return file.getPath();
+        } else {
+            return this.getWorkspace();
+        }
+
     }
 
     @Override

@@ -64,6 +64,16 @@ public class GenerateConstants extends ConfigurableConstants {
     public static final boolean GENERATOR_SSO_ENABLE = Boolean.valueOf(getProperty("generator.sso.enable", "true"));
 
 
+    /**
+     * DTO
+     */
+    public static final String DTO_LIST_INFO_POSTFIX = "ListInfo";
+    public static final String DTO_INFO_POSTFIX = "Info";
+
+    public static final String DTO_MODULE_POSTFIX_DEF = getProperty("generator.dto.module.postfix", "common");
+
+
+
     public static Set<GenerateModule> getConfigGeneratorModules() {
         Set<GenerateModule> moduleList = new HashSet<>();
         GenerateModule gm = null;

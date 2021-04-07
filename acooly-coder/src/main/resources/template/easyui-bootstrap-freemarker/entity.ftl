@@ -57,11 +57,9 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	<#if !entity.nullable>
 	<#if entity.dataType.string>@NotBlank<#else>@NotNull</#if>
 	</#if>
-    <#if entity.length != 0>
-	<#if entity.dataType.string>
+	<#if entity.length != 0 && !entity.dataType.bigObject && entity.dataType.string>
 	@Size(max = ${entity.length?c})
 	</#if>
-    </#if>
     private ${javaDataType} ${entity.propertyName};
 
 	</#if>

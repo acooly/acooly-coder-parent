@@ -23,9 +23,9 @@ public enum GenerateModule {
 
     Manage("Manage", "包括BOSS管理的controller和pages。"),
 
-    Portal("Portal", "包括基于JSTL的controller和pages。"),
+    Portal("Portal", "基于freemarker的controller和pages。"),
 
-    Facade("Facade", "内部系统通讯的接口服务,包括:Order,Result和Facade"),
+    Facade("Facade", "内部系统通讯的接口服务,包括:DTO,Order,Result和Facade"),
 
     OpenApi("OpenApi", "包括对外服务的OpenAPI的service,request,response");
 
@@ -55,14 +55,14 @@ public enum GenerateModule {
     }
 
     public static Map<String, String> mapping() {
-        Map<String, String> map = new LinkedHashMap<String,String>();
+        Map<String, String> map = new LinkedHashMap<String, String>();
         for (GenerateModule type : values()) {
             map.put(type.getCode(), type.getMessage());
         }
         return map;
     }
 
-    public static GenerateModule withOf(String code){
+    public static GenerateModule withOf(String code) {
         for (GenerateModule status : values()) {
             if (status.getCode().equalsIgnoreCase(code)) {
                 return status;

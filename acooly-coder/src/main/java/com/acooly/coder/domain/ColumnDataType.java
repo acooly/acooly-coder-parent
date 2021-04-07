@@ -46,6 +46,11 @@ public class ColumnDataType {
         this.javaName = javaName;
     }
 
+    public boolean isBigObject() {
+        return StringUtils.containsIgnoreCase(this.databaseType, "text") ||
+                StringUtils.containsIgnoreCase(this.databaseType, "blob");
+    }
+
     public boolean isString() {
         return javaType == JavaType.String;
     }

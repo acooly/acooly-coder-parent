@@ -30,6 +30,8 @@ public enum GenerateKeys {
 
     manageController,
 
+    dto,
+
     manageView,
 
     portalController,
