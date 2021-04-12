@@ -1,5 +1,6 @@
 package com.acooly.coder.config;
 
+import com.acooly.coder.enums.ProjectModule;
 import com.acooly.coder.enums.ViewType;
 import com.acooly.coder.module.GenerateModule;
 import lombok.Getter;
@@ -19,6 +20,11 @@ import java.util.Set;
 @Getter
 @Setter
 public class GenerateConfig {
+
+    /**
+     * 是否多模块工程
+     */
+    private boolean multiModule = GenerateConstants.GENERATOR_MULTI_MODULE_ENABLE;
 
     /**
      * dto
@@ -163,8 +169,14 @@ public class GenerateConfig {
         } else {
             return this.getWorkspace();
         }
-
     }
+
+    public File getModulePath(ProjectModule projectModule) {
+        String dtoModulePath = getGenerateConfiguration().getProjectPath() + "/" +
+                getGenerateConfiguration().getProjectName() + "-" + projectModule.code();
+        return new File(dtoModulePath);
+    }
+
 
     @Override
     public String toString() {

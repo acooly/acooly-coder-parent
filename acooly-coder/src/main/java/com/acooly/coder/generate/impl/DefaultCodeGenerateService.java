@@ -151,7 +151,7 @@ public class DefaultCodeGenerateService implements CodeGenerateService {
                 enumName = generateContext.getNameScheme().getDomainClassName() + enumName;
             }
             column.getDataType().setJavaName(GenerateUtils.getCanonicalClassName(enumName));
-            column.getDataType().setJavaDeclare(generateContext.getNameScheme().getEnumPackage() + "."
+            column.getDataType().setJavaDeclare(generateContext.getNameScheme().getEnums().getPackageName() + "."
                     + GenerateUtils.getCanonicalClassName(enumName));
         }
     }

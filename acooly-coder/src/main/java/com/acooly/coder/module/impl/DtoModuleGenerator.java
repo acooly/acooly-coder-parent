@@ -22,7 +22,7 @@ public class DtoModuleGenerator extends AbstractModuleGenerator {
     protected String getOutputPath(GenerateContext generateContext, String template) {
         GenerateConfig cfg = getGenerateConfiguration();
         NameBlock dto = generateContext.getNameScheme().getDto();
-        return dto.getModuleName() + "/" + cfg.getCodePath() + "/" + dto.getPackagePath();
+        return dto.getModule() + "/" + cfg.getCodePath() + "/" + dto.getPackagePath();
     }
 
     @Override

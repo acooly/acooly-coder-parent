@@ -36,9 +36,8 @@ public abstract class AbstractModuleGenerator implements ModuleGenerator {
                 Template template = getTemplate(temp);
                 outputFile = doGenerate(template, generateContext, getOutputPath(generateContext, temp));
                 if (outputFile != null) {
-                    outputFiles.add(StringUtils.substringAfter(outputFile, GenerateConfig.INSTANCE().getWorkspace()));
+                    outputFiles.add(StringUtils.substringAfter(outputFile, GenerateConfig.INSTANCE().getProjectPath()));
                 }
-
             }
             logger.info("success generated [" + this.getGenerateKey() + "] to " + outputFiles);
         } catch (Exception e) {

@@ -5,7 +5,7 @@
  * date:${datetime("yyyy-MM-dd")}
  *
  */
-package ${nameScheme.enumPackage};
+package ${nameScheme.enums.packageName};
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

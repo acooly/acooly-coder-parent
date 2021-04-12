@@ -25,7 +25,7 @@ public class NameBlock {
     /**
      * 模块名称
      */
-    private String moduleName;
+    private String module;
 
     /**
      * 包名
@@ -47,7 +47,7 @@ public class NameBlock {
     }
 
     public String getPath() {
-        return this.moduleName + "/" + getPackagePath();
+        return this.module + "/" + getPackagePath();
     }
 
     public void add(String key, String val) {

@@ -56,7 +56,10 @@ public class GenerateConstants extends ConfigurableConstants {
 
     public static final String GENERATOR_PERSISTENT_SOLUTION = getProperty("generator.persistent.solution", "mybatis");
     public static final boolean GENERATOR_ENUM_NAME_ASSEMBLE = Boolean.valueOf(getProperty("generator.enumName.assemble", "false"));
+
     public static final boolean GENERATOR_ENUM_ENABLE = Boolean.valueOf(getProperty("generator.enum.enable", "true"));
+
+    public static final boolean GENERATOR_MULTI_MODULE_ENABLE = Boolean.valueOf(getProperty("generator.multiModule.enable", "false"));
 
     /**
      * 单点登录
@@ -71,7 +74,6 @@ public class GenerateConstants extends ConfigurableConstants {
     public static final String DTO_INFO_POSTFIX = "Info";
 
     public static final String DTO_MODULE_POSTFIX_DEF = getProperty("generator.dto.module.postfix", "common");
-
 
 
     public static Set<GenerateModule> getConfigGeneratorModules() {

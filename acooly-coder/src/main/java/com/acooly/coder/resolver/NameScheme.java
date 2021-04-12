@@ -17,10 +17,13 @@ public class NameScheme {
 
     private NameBlock dto = new NameBlock();
 
+    private NameBlock enums = new NameBlock();
+
     private String domainClassName;
 
     private String domainPackage;
 
+    @Deprecated
     private String enumPackage;
 
     private String daoClassName;

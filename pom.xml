@@ -12,8 +12,23 @@
 
     <name>acooly-coder Projects</name>
     <packaging>pom</packaging>
+
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>com.acooly</groupId>
+                <artifactId>acooly-coder-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+
     <modules>
         <module>acooly-coder</module>
         <module>acooly-coder-test</module>
+        <module>acooly-coder-common</module>
     </modules>
 </project>

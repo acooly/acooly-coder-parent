@@ -16,6 +16,12 @@
 
         <dependency>
             <groupId>com.acooly</groupId>
+            <artifactId>acooly-coder-common</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.acooly</groupId>
             <artifactId>acooly-component-security</artifactId>
         </dependency>
         <dependency>

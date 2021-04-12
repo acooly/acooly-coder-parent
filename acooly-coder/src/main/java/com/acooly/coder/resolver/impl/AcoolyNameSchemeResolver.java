@@ -2,9 +2,13 @@ package com.acooly.coder.resolver.impl;
 
 import com.acooly.coder.config.GenerateConfig;
 import com.acooly.coder.config.GenerateConstants;
+import com.acooly.coder.enums.ProjectModule;
+import com.acooly.coder.resolver.NameBlock;
 import com.acooly.coder.resolver.NameScheme;
 import com.acooly.coder.resolver.NameSchemeResolver;
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.File;
 
 /**
  * acooly 命名解析器
@@ -32,6 +36,7 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
     private String showPagePostfit = "Show";
     private String importPagePostfit = "Import";
 
+
     @Override
     public NameScheme resolve(String tableName) {
         NameScheme namesHold = new NameScheme();
@@ -40,15 +45,11 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
         String rootPackage = getGenerateConfiguration().getRootPackage();
         namesHold.setDomainClassName(StringUtils.capitalize(baseName));
         namesHold.setDomainPackage(rootPackage + ".entity");
-        namesHold.setEnumPackage(rootPackage + ".enums");
 
+        // enum
+        doEnum(namesHold);
         // dto
-        namesHold.getDto().setModuleName(getGenerateConfiguration().getDtoModulePath());
-        namesHold.getDto().setPackageName(rootPackage + ".dto");
-        namesHold.getDto().add(GenerateConstants.DTO_INFO_POSTFIX,
-                namesHold.getDomainClassName() + GenerateConstants.DTO_INFO_POSTFIX);
-        namesHold.getDto().add(GenerateConstants.DTO_LIST_INFO_POSTFIX,
-                namesHold.getDomainClassName() + GenerateConstants.DTO_LIST_INFO_POSTFIX);
+        doDto(namesHold);
 
         namesHold.setOpenApiMessagePackage(rootPackage + ".message");
         namesHold.setOpenApiMessageClassName(StringUtils.capitalize(baseName) + "ApiRequest");
@@ -81,6 +82,45 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
         namesHold.setImportPageName(baseName + importPagePostfit + getGenerateConfiguration().getViewSuffix());
         return namesHold;
     }
+
+
+    /**
+     * Dto
+     *
+     * @param namesHold
+     */
+    protected void doDto(NameScheme namesHold) {
+        String rootPackage = getConfig().getRootPackage();
+        namesHold.getDto().setModule(getConfig().getWorkspace());
+        namesHold.getDto().setPackageName(rootPackage + ".dto");
+
+        File file = getConfig().getModulePath(ProjectModule.common);
+        if (getConfig().isMultiModule() && file.exists()) {
+            namesHold.getDto().setModule(file.getPath());
+            namesHold.getDto().setPackageName(rootPackage + "." + ProjectModule.common + ".dto");
+        }
+        namesHold.getDto().add(GenerateConstants.DTO_INFO_POSTFIX,
+                namesHold.getDomainClassName() + GenerateConstants.DTO_INFO_POSTFIX);
+        namesHold.getDto().add(GenerateConstants.DTO_LIST_INFO_POSTFIX,
+                namesHold.getDomainClassName() + GenerateConstants.DTO_LIST_INFO_POSTFIX);
+    }
+
+    /**
+     * enum
+     *
+     * @param namesHold
+     */
+    protected void doEnum(NameScheme namesHold) {
+        NameBlock block = namesHold.getEnums();
+        block.setModule(getConfig().getWorkspace());
+        block.setPackageName(getConfig().getRootPackage() + ".enums");
+        File file = getConfig().getModulePath(ProjectModule.common);
+        if (getConfig().isMultiModule() && file.exists()) {
+            block.setModule(file.getPath());
+            block.setPackageName(getConfig().getRootPackage() + "." + ProjectModule.common + ".enums");
+        }
+    }
+
 
     /**
      * 表名转换为基础变量名称
@@ -179,6 +219,10 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
 
     public GenerateConfig getGenerateConfiguration() {
         return generateConfiguration;
+    }
+
+    public GenerateConfig getConfig() {
+        return this.generateConfiguration;
     }
 
     public void setGenerateConfiguration(GenerateConfig generateConfiguration) {
