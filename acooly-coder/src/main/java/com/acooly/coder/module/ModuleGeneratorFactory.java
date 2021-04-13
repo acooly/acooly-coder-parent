@@ -71,6 +71,7 @@ public class ModuleGeneratorFactory {
 
     private static void registerFacade() {
         register(GenerateKeys.dto.name(), new DtoModuleGenerator());
+        register(GenerateKeys.facade.name(), new FacadeModuleGenerator());
     }
 
     private static void registerOpenApi() {

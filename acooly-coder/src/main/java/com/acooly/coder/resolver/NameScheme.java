@@ -19,6 +19,10 @@ public class NameScheme {
 
     private NameBlock enums = new NameBlock();
 
+    private NameBlock facade = new NameBlock();
+
+    private NameBlock facadeImpl = new NameBlock();
+
     private String domainClassName;
 
     private String domainPackage;

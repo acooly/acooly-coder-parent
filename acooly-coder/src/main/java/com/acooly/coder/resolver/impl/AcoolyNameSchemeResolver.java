@@ -50,6 +50,8 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
         doEnum(namesHold);
         // dto
         doDto(namesHold);
+        // facade
+        doFacade(namesHold);
 
         namesHold.setOpenApiMessagePackage(rootPackage + ".message");
         namesHold.setOpenApiMessageClassName(StringUtils.capitalize(baseName) + "ApiRequest");
@@ -93,16 +95,11 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
         String rootPackage = getConfig().getRootPackage();
         namesHold.getDto().setModule(getConfig().getWorkspace());
         namesHold.getDto().setPackageName(rootPackage + ".dto");
-
         File file = getConfig().getModulePath(ProjectModule.common);
         if (getConfig().isMultiModule() && file.exists()) {
             namesHold.getDto().setModule(file.getPath());
             namesHold.getDto().setPackageName(rootPackage + "." + ProjectModule.common + ".dto");
         }
-        namesHold.getDto().add(GenerateConstants.DTO_INFO_POSTFIX,
-                namesHold.getDomainClassName() + GenerateConstants.DTO_INFO_POSTFIX);
-        namesHold.getDto().add(GenerateConstants.DTO_LIST_INFO_POSTFIX,
-                namesHold.getDomainClassName() + GenerateConstants.DTO_LIST_INFO_POSTFIX);
     }
 
     /**
@@ -121,6 +118,22 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
         }
     }
 
+    protected void doFacade(NameScheme namesHold) {
+        // interface
+        NameBlock block = namesHold.getFacade();
+        block.setModule(getConfig().getWorkspace());
+        block.setClassName(namesHold.getDomainClassName() + "RemoteService");
+        block.setPackageName(getConfig().getRootPackage() + "." + ProjectModule.facade.getPackageName() + ".api");
+        File file = getConfig().getModulePath(ProjectModule.facade);
+        if (getConfig().isMultiModule() && file.exists()) {
+            block.setModule(file.getPath());
+        }
+        // implements
+        NameBlock facadeImpl = namesHold.getFacadeImpl();
+        facadeImpl.setModule(getConfig().getWorkspace());
+        facadeImpl.setClassName(namesHold.getDomainClassName() + "RemoteServiceImpl");
+        facadeImpl.setPackageName(getConfig().getRootPackage() + "." + ProjectModule.facade.getPackageName());
+    }
 
     /**
      * 表名转换为基础变量名称

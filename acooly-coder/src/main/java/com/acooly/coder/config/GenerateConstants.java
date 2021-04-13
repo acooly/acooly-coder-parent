@@ -70,8 +70,10 @@ public class GenerateConstants extends ConfigurableConstants {
     /**
      * DTO
      */
-    public static final String DTO_LIST_INFO_POSTFIX = "ListInfo";
+    public static final String DTO_LIST_POSTFIX = "ListInfo";
     public static final String DTO_INFO_POSTFIX = "Info";
+    public static final String DTO_CREATE_POSTFIX = "CreateInfo";
+    public static final String DTO_UPDATE_POSTFIX = "UpdateInfo";
 
     public static final String DTO_MODULE_POSTFIX_DEF = getProperty("generator.dto.module.postfix", "common");
 

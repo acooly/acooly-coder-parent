@@ -47,6 +47,10 @@ public enum ProjectModule implements Messageable {
         return message;
     }
 
+    public String getPackageName() {
+        return packageName;
+    }
+
     @Override
     public String code() {
         return code;

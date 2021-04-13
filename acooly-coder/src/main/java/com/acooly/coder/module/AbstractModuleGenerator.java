@@ -41,7 +41,7 @@ public abstract class AbstractModuleGenerator implements ModuleGenerator {
             }
             logger.info("success generated [" + this.getGenerateKey() + "] to " + outputFiles);
         } catch (Exception e) {
-            logger.warning("Generate Module fail: " + e.getMessage());
+            logger.warning("Generate Module [" + this.getGenerateKey() + "] fail: " + e.getMessage());
         }
     }
 
