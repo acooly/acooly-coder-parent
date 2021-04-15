@@ -14,11 +14,25 @@
     </properties>
     <dependencies>
 
+        <!-- 模块依赖 -->
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-coder-openapi-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-coder-facade</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>acooly-coder-common</artifactId>
         </dependency>
 
+        <!-- 组件: appservice -->
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-appservice</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.acooly</groupId>
@@ -32,10 +46,18 @@
             <groupId>com.acooly</groupId>
             <artifactId>acooly-component-ofile</artifactId>
         </dependency>
+
+
+        <!-- openapi -->
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>openapi-framework-apidoc</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-common</artifactId>
         </dependency>
+
 
         <dependency>
             <groupId>com.acooly</groupId>

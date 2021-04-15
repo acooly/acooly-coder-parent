@@ -1,0 +1,44 @@
+<div style="padding: 5px;font-family:微软雅黑;">
+<table class="tableForm" width="100%">
+	<tr>
+		<th>id:</th>
+		<td>${docScheme.id}</td>
+	</tr>					
+	<tr>
+		<th width="25%">创建时间:</th>
+		<td>${docScheme.createTime}</td>
+	</tr>					
+	<tr>
+		<th>修改时间:</th>
+		<td>${docScheme.updateTime}</td>
+	</tr>					
+	<tr>
+		<th>author:</th>
+		<td>${docScheme.author}</td>
+	</tr>					
+	<tr>
+		<th>comments:</th>
+		<td>${docScheme.comments}</td>
+	</tr>					
+	<tr>
+		<th>note:</th>
+		<td>${docScheme.note}</td>
+	</tr>					
+	<tr>
+		<th>scheme_no:</th>
+		<td>${docScheme.schemeNo}</td>
+	</tr>					
+	<tr>
+		<th>scheme_type:</th>
+		<td>${docScheme.schemeType}</td>
+	</tr>					
+	<tr>
+		<th>sort_time:</th>
+		<td>${docScheme.sortTime}</td>
+	</tr>					
+	<tr>
+		<th>title:</th>
+		<td>${docScheme.title}</td>
+	</tr>					
+</table>
+</div>

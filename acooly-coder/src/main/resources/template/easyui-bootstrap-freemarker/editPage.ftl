@@ -41,12 +41,12 @@
                     <#-- 文件上传 -->
 						<${r"#"}if ${entityVariable} != null && ${entityVariable}.${entity.propertyName} != ''>
 							<div class="row col-form-content">
-								<div class="col-sm-6"><a href="javascript:;" onclick="$.acooly.framework.play('${r"$"}{serverRoot}${r"$"}{${entityVariable}.${entity.propertyName}}');">查看合同</a></div>
+								<div class="col-sm-6"><a href="javascript:;" onclick="$.acooly.framework.play('${r"$"}{serverRoot}${r"$"}{${entityVariable}.${entity.propertyName}}');">查看</a></div>
 								<div class="col-sm-6" style="text-align: right;"><a href="javascript:;" onclick="$('#manage_${entityVariable}_${entity.propertyName}_container').toggle();">重新上传</a></div>
 							</div>
 						</${r"#"}if>
 						<div class="custom-file" id="manage_${entityVariable}_${entity.propertyName}_container" <${r"#"}if ${entityVariable} != null && ${entityVariable}.${entity.propertyName} != ''>style="display: none;"</${r"#"}if>>
-							<input type="file" name="${entity.propertyName}File" class="custom-file-input">
+							<input type="file" name="${entity.propertyName}_uploadFile" class="custom-file-input">
 							<label class="custom-file-label">请选择上传的文件</label>
 						</div>
                     <#else>

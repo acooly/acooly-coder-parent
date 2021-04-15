@@ -1,0 +1,64 @@
+<div style="padding: 5px;font-family:微软雅黑;">
+<table class="tableForm" width="100%">
+	<tr>
+		<th>id:</th>
+		<td>${docService.id}</td>
+	</tr>					
+	<tr>
+		<th width="25%">服务编号:</th>
+		<td>${docService.serviceNo}</td>
+	</tr>					
+	<tr>
+		<th>服务名称:</th>
+		<td>${docService.name}</td>
+	</tr>					
+	<tr>
+		<th>服务版本:</th>
+		<td>${docService.version}</td>
+	</tr>					
+	<tr>
+		<th>服务标题:</th>
+		<td>${docService.title}</td>
+	</tr>					
+	<tr>
+		<th>所属系统:</th>
+		<td>${docService.owner}</td>
+	</tr>					
+	<tr>
+		<th>服务说明:</th>
+		<td>${docService.note}</td>
+	</tr>					
+	<tr>
+		<th>手工说明:</th>
+		<td>${docService.manualNote}</td>
+	</tr>					
+	<tr>
+		<th>服务类型:</th>
+		<td>${docService.serviceType.message()}</td>
+	</tr>					
+	<tr>
+		<th>业务类型:</th>
+		<td>${docService.busiType.message()}</td>
+	</tr>					
+	<tr>
+		<th>排序值:</th>
+		<td>${docService.sortTime}</td>
+	</tr>					
+	<tr>
+		<th>备注:</th>
+		<td>${docService.comments}</td>
+	</tr>					
+	<tr>
+		<th>创建时间:</th>
+		<td>${docService.createTime}</td>
+	</tr>					
+	<tr>
+		<th>修改时间:</th>
+		<td>${docService.updateTime}</td>
+	</tr>					
+	<tr>
+		<th>签名:</th>
+		<td>${docService.signature}</td>
+	</tr>					
+</table>
+</div>

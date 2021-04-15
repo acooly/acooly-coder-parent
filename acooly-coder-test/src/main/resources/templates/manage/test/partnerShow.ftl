@@ -1,0 +1,40 @@
+<div style="padding: 5px;font-family:微软雅黑;">
+<table class="tableForm" width="100%">
+	<tr>
+		<th>ID:</th>
+		<td>${partner.id}</td>
+	</tr>					
+	<tr>
+		<th width="25%">合作方编码:</th>
+		<td>${partner.partnerId}</td>
+	</tr>					
+	<tr>
+		<th>合作方名称:</th>
+		<td>${partner.partnerName}</td>
+	</tr>					
+	<tr>
+		<th>安全方案:</th>
+		<td>${partner.secretType.message()}</td>
+	</tr>					
+	<tr>
+		<th>签名类型:</th>
+		<td>${partner.signType.message()}</td>
+	</tr>					
+	<tr>
+		<th>秘钥:</th>
+		<td>${partner.secretKey}</td>
+	</tr>					
+	<tr>
+		<th>创建时间:</th>
+		<td>${partner.createTime}</td>
+	</tr>					
+	<tr>
+		<th>修改时间:</th>
+		<td>${partner.updateTime}</td>
+	</tr>					
+	<tr>
+		<th>备注:</th>
+		<td>${partner.comments}</td>
+	</tr>					
+</table>
+</div>

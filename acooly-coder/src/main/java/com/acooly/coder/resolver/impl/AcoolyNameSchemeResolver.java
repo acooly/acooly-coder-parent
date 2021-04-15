@@ -53,8 +53,7 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
         // facade
         doFacade(namesHold);
 
-        namesHold.setOpenApiMessagePackage(rootPackage + ".message");
-        namesHold.setOpenApiMessageClassName(StringUtils.capitalize(baseName) + "ApiRequest");
+        doOpenApi(namesHold);
 
         namesHold.setDaoPackage(rootPackage + ".dao");
         namesHold.setDaoClassName(namesHold.getDomainClassName() + daoPostfit);
@@ -133,6 +132,38 @@ public class AcoolyNameSchemeResolver implements NameSchemeResolver {
         facadeImpl.setModule(getConfig().getWorkspace());
         facadeImpl.setClassName(namesHold.getDomainClassName() + "RemoteServiceImpl");
         facadeImpl.setPackageName(getConfig().getRootPackage() + "." + ProjectModule.facade.getPackageName());
+    }
+
+
+    protected void doOpenApi(NameScheme namesHold) {
+        GenerateConfig config = getConfig();
+        File file = getConfig().getModulePath(ProjectModule.openapi);
+        // openapi-message
+        NameBlock openapiMessage = namesHold.getOpenapiMessage();
+        openapiMessage.setModule(config.getWorkspace());
+        openapiMessage.setPackageName(config.getRootPackage() + "." + ProjectModule.openapi_message.getPackageName());
+        File fileMessage = new File(file, config.getProjectName() + "-" + ProjectModule.openapi_message.code());
+        if (getConfig().isMultiModule() && fileMessage.exists()) {
+            openapiMessage.setModule(fileMessage.getPath());
+        }
+
+        // openapi-service
+        NameBlock openapiService = namesHold.getOpenapiService();
+        openapiService.setModule(config.getWorkspace());
+        openapiService.setPackageName(config.getRootPackage() + "." + ProjectModule.openapi_service.getPackageName());
+        File fileService = new File(file, config.getProjectName() + "-" + ProjectModule.openapi_service.code());
+        if (getConfig().isMultiModule() && fileService.exists()) {
+            openapiService.setModule(fileService.getPath());
+        }
+
+        // openapi-service
+        NameBlock openapiTest = namesHold.getOpenapiTest();
+        openapiTest.setModule(config.getWorkspace());
+        openapiTest.setPackageName(config.getRootPackage() + "." + ProjectModule.openapi_test.getPackageName());
+        File fileTest = new File(file, config.getProjectName() + "-" + ProjectModule.openapi_test.code());
+        if (getConfig().isMultiModule() && fileTest.exists()) {
+            openapiTest.setModule(fileTest.getPath());
+        }
     }
 
     /**

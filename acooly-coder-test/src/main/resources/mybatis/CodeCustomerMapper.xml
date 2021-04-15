@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acooly.coder.test.dao.CodeCustomerDao">
+
+    <resultMap id="codeCustomerResultMap" type="com.acooly.coder.test.entity.CodeCustomer">
+        <id property="id" column="codeCustomer_id"/>
+        <result property="username" column="codeCustomer_username"/>
+        <result property="age" column="codeCustomer_age"/>
+        <result property="birthday" column="codeCustomer_birthday"/>
+        <result property="gender" column="codeCustomer_gender"/>
+        <result property="animal" column="codeCustomer_animal"/>
+        <result property="realName" column="codeCustomer_real_name"/>
+        <result property="idcardType" column="codeCustomer_idcard_type"/>
+        <result property="idcardNo" column="codeCustomer_idcard_no"/>
+        <result property="mobileNo" column="codeCustomer_mobile_no"/>
+        <result property="mail" column="codeCustomer_mail"/>
+        <result property="customerType" column="codeCustomer_customer_type"/>
+        <result property="subject" column="codeCustomer_subject"/>
+        <result property="content" column="codeCustomer_content"/>
+        <result property="doneRatio" column="codeCustomer_done_ratio"/>
+        <result property="salary" column="codeCustomer_salary"/>
+        <result property="registryChannel" column="codeCustomer_registry_channel"/>
+        <result property="pushAdv" column="codeCustomer_push_adv"/>
+        <result property="numStatus" column="codeCustomer_num_status"/>
+        <result property="website" column="codeCustomer_website"/>
+        <result property="photoPath" column="codeCustomer_photo_path"/>
+        <result property="status" column="codeCustomer_status"/>
+        <result property="createTime" column="codeCustomer_create_time"/>
+        <result property="updateTime" column="codeCustomer_update_time"/>
+        <result property="comments" column="codeCustomer_comments"/>
+    </resultMap>
+
+    <sql id="codeCustomerSqlSelect">
+            codeCustomer.id as codeCustomer_id,
+            codeCustomer.username as codeCustomer_username,
+            codeCustomer.age as codeCustomer_age,
+            codeCustomer.birthday as codeCustomer_birthday,
+            codeCustomer.gender as codeCustomer_gender,
+            codeCustomer.animal as codeCustomer_animal,
+            codeCustomer.real_name as codeCustomer_real_name,
+            codeCustomer.idcard_type as codeCustomer_idcard_type,
+            codeCustomer.idcard_no as codeCustomer_idcard_no,
+            codeCustomer.mobile_no as codeCustomer_mobile_no,
+            codeCustomer.mail as codeCustomer_mail,
+            codeCustomer.customer_type as codeCustomer_customer_type,
+            codeCustomer.subject as codeCustomer_subject,
+            codeCustomer.content as codeCustomer_content,
+            codeCustomer.done_ratio as codeCustomer_done_ratio,
+            codeCustomer.salary as codeCustomer_salary,
+            codeCustomer.registry_channel as codeCustomer_registry_channel,
+            codeCustomer.push_adv as codeCustomer_push_adv,
+            codeCustomer.num_status as codeCustomer_num_status,
+            codeCustomer.website as codeCustomer_website,
+            codeCustomer.photo_path as codeCustomer_photo_path,
+            codeCustomer.status as codeCustomer_status,
+            codeCustomer.create_time as codeCustomer_create_time,
+            codeCustomer.update_time as codeCustomer_update_time,
+            codeCustomer.comments as codeCustomer_comments
+    </sql>
+
+</mapper>

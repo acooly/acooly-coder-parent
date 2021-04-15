@@ -46,10 +46,6 @@ public class NameBlock {
         return packageName.replaceAll("\\.", "\\/");
     }
 
-    public String getPath() {
-        return this.module + "/" + getPackagePath();
-    }
-
     public void add(String key, String val) {
         this.data.put(key, val);
     }

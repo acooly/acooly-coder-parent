@@ -11,13 +11,12 @@
 
     <artifactId>acooly-coder-common</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-common</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-common-util</artifactId>

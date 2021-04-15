@@ -21,10 +21,11 @@ import java.util.Map;
 
 public enum ProjectModule implements Messageable {
     common("common", "common", "公共"),
-    openapi_message("openapi_message", "message", "OpenApi消息"),
-    openapi_service("openapi_service", "service", "OpenApi服务"),
-    openapi_test("openapi_test", "test", "OpenApi测试"),
     facade("facade", "facade", "远程接口"),
+    openapi("openapi", "openapi", "OpenApi"),
+    openapi_message("openapi-message", "openapi.message", "OpenApi消息"),
+    openapi_service("openapi-service", "openapi.service", "OpenApi服务"),
+    openapi_test("openapi-test", "openapi.test", "OpenApi测试"),
     ;
 
 

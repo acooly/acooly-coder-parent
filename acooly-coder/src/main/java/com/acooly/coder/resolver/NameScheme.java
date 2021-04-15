@@ -23,6 +23,10 @@ public class NameScheme {
 
     private NameBlock facadeImpl = new NameBlock();
 
+    private NameBlock openapiMessage = new NameBlock();
+    private NameBlock openapiService = new NameBlock();
+    private NameBlock openapiTest = new NameBlock();
+
     private String domainClassName;
 
     private String domainPackage;

@@ -1,0 +1,64 @@
+<div style="padding: 5px;font-family:微软雅黑;">
+<table class="tableForm" width="100%">
+	<tr>
+		<th>id:</th>
+		<td>${docService.id}</td>
+	</tr>					
+	<tr>
+		<th width="25%">创建时间:</th>
+		<td>${docService.createTime}</td>
+	</tr>					
+	<tr>
+		<th>修改时间:</th>
+		<td>${docService.updateTime}</td>
+	</tr>					
+	<tr>
+		<th>busi_type:</th>
+		<td>${docService.busiType}</td>
+	</tr>					
+	<tr>
+		<th>comments:</th>
+		<td>${docService.comments}</td>
+	</tr>					
+	<tr>
+		<th>manual_note:</th>
+		<td>${docService.manualNote}</td>
+	</tr>					
+	<tr>
+		<th>name:</th>
+		<td>${docService.name}</td>
+	</tr>					
+	<tr>
+		<th>服务介绍:</th>
+		<td>${docService.note}</td>
+	</tr>					
+	<tr>
+		<th>owner:</th>
+		<td>${docService.owner}</td>
+	</tr>					
+	<tr>
+		<th>service_no:</th>
+		<td>${docService.serviceNo}</td>
+	</tr>					
+	<tr>
+		<th>service_type:</th>
+		<td>${docService.serviceType}</td>
+	</tr>					
+	<tr>
+		<th>signature:</th>
+		<td>${docService.signature}</td>
+	</tr>					
+	<tr>
+		<th>sort_time:</th>
+		<td>${docService.sortTime}</td>
+	</tr>					
+	<tr>
+		<th>title:</th>
+		<td>${docService.title}</td>
+	</tr>					
+	<tr>
+		<th>version:</th>
+		<td>${docService.version}</td>
+	</tr>					
+</table>
+</div>

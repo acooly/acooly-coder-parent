@@ -1,0 +1,48 @@
+<div style="padding: 5px;font-family:微软雅黑;">
+<table class="tableForm" width="100%">
+	<tr>
+		<th>id:</th>
+		<td>${docMessage.id}</td>
+	</tr>					
+	<tr>
+		<th width="25%">创建时间:</th>
+		<td>${docMessage.createTime}</td>
+	</tr>					
+	<tr>
+		<th>修改时间:</th>
+		<td>${docMessage.updateTime}</td>
+	</tr>					
+	<tr>
+		<th>comments:</th>
+		<td>${docMessage.comments}</td>
+	</tr>					
+	<tr>
+		<th>manual_note:</th>
+		<td>${docMessage.manualNote}</td>
+	</tr>					
+	<tr>
+		<th>message_no:</th>
+		<td>${docMessage.messageNo}</td>
+	</tr>					
+	<tr>
+		<th>message_type:</th>
+		<td>${docMessage.messageType}</td>
+	</tr>					
+	<tr>
+		<th>note:</th>
+		<td>${docMessage.note}</td>
+	</tr>					
+	<tr>
+		<th>service_no:</th>
+		<td>${docMessage.serviceNo}</td>
+	</tr>					
+	<tr>
+		<th>signatrue:</th>
+		<td>${docMessage.signatrue}</td>
+	</tr>					
+	<tr>
+		<th>sort_time:</th>
+		<td>${docMessage.sortTime}</td>
+	</tr>					
+</table>
+</div>
