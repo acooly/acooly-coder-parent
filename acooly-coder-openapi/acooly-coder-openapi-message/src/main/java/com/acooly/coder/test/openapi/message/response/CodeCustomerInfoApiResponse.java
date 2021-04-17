@@ -2,7 +2,7 @@
 * acooly.cn Inc.
 * Copyright (c) 2021 All Rights Reserved.
 * create by acooly
-* date:2021-04-15
+* date:2021-04-18
 */
 package com.acooly.coder.test.openapi.message.response;
 
@@ -16,7 +16,7 @@ import lombok.Setter;
  * acoolycoder测试 详情查询 响应报文
  *
  * @author acooly
- * Date: 2021-04-15 17:29:16
+ * Date: 2021-04-18 00:31:50
  */
 @Getter
 @Setter

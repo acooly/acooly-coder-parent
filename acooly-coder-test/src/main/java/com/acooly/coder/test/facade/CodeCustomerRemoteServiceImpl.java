@@ -2,7 +2,7 @@
  * acooly.cn Inc.
  * Copyright (c) 2021 All Rights Reserved.
  * create by acooly
- * date:2021-04-15
+ * date:2021-04-18
  *
  */
 package com.acooly.coder.test.facade;
@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
  * 注意：这你采用@Component本地服务化，可替换为dubbo的@Service
  *
  * @author acooly
- * @date 2021-04-15 17:29:17
+ * @date 2021-04-18 00:31:50
  */
 @Slf4j
 @Component

@@ -42,6 +42,7 @@ public class ModuleGeneratorFactory {
             registerFacade();
         }
         if (config.getGeneratorModules().contains(GenerateModule.OpenApi)) {
+            registerFacade();
             registerOpenApi();
         }
         return modules;

@@ -72,6 +72,7 @@ public class ${nameScheme.controllerClassName} extends AbstractJsonEntityControl
         // 设置上传文件的根存储路径
 		UploadConfig uploadConfig = getUploadConfig();
         uploadConfig.setStorageRoot(oFileProperties.getStorageRoot());
+		uploadConfig.setUseMemery(false);
 		// 上传文件，相对路径绑定到对应的属性
         doUpload(request, entity);
         return super.onSave(request, response, model, entity, isCreate);

@@ -137,7 +137,7 @@
 				<div class="col-sm-9">
 						<#if codeCustomer != null && codeCustomer.photoPath != ''>
 							<div class="row col-form-content">
-								<div class="col-sm-6"><a href="javascript:;" onclick="$.acooly.framework.play('${serverRoot}${codeCustomer.photoPath}');">查看合同</a></div>
+								<div class="col-sm-6"><a href="javascript:;" onclick="$.acooly.file.play('${serverRoot}${codeCustomer.photoPath}');">查看</a></div>
 								<div class="col-sm-6" style="text-align: right;"><a href="javascript:;" onclick="$('#manage_codeCustomer_photoPath_container').toggle();">重新上传</a></div>
 							</div>
 						</#if>

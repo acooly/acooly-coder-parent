@@ -41,7 +41,7 @@
                     <#-- 文件上传 -->
 						<${r"#"}if ${entityVariable} != null && ${entityVariable}.${entity.propertyName} != ''>
 							<div class="row col-form-content">
-								<div class="col-sm-6"><a href="javascript:;" onclick="$.acooly.framework.play('${r"$"}{serverRoot}${r"$"}{${entityVariable}.${entity.propertyName}}');">查看</a></div>
+								<div class="col-sm-6"><a href="javascript:;" onclick="$.acooly.file.play('${r"$"}{serverRoot}${r"$"}{${entityVariable}.${entity.propertyName}}');">查看</a></div>
 								<div class="col-sm-6" style="text-align: right;"><a href="javascript:;" onclick="$('#manage_${entityVariable}_${entity.propertyName}_container').toggle();">重新上传</a></div>
 							</div>
 						</${r"#"}if>

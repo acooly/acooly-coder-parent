@@ -2,7 +2,7 @@
 * acooly.cn Inc.
 * Copyright (c) 2021 All Rights Reserved.
 * create by acooly
-* date:2021-04-15
+* date:2021-04-18
 */
 package com.acooly.coder.test.common.dto;
 
@@ -30,7 +30,7 @@ import com.acooly.core.common.enums.Gender;
 * For facade and openApi
 *
 * @author acooly
-* @date 2021-04-15 17:29:17
+* @date 2021-04-18 00:31:50
 */
 @Getter
 @Setter
@@ -45,13 +45,13 @@ public class CodeCustomerCreateInfo extends InfoBase {
     /**
      * 年龄
      */
-    @OpenApiField(desc = "age", constraint = "年龄", demo = "2", ordinal = 2)
+    @OpenApiField(desc = "age", constraint = "年龄", demo = "0", ordinal = 2)
     private Integer age;
     /**
      * 生日
      */
     @NotNull
-    @OpenApiField(desc = "birthday", constraint = "生日", demo = "2021-04-15", ordinal = 3)
+    @OpenApiField(desc = "birthday", constraint = "生日", demo = "2021-04-18", ordinal = 3)
     private Date birthday;
     /**
      * 性别
@@ -105,7 +105,7 @@ public class CodeCustomerCreateInfo extends InfoBase {
      * 摘要
      */
     @Size(max = 128)
-    @OpenApiField(desc = "subject", constraint = "摘要", demo = "TfRxBI7jWC", ordinal = 12)
+    @OpenApiField(desc = "subject", constraint = "摘要", demo = "AGPFbFW0ze", ordinal = 12)
     private String subject;
     /**
      * 详情
@@ -159,6 +159,6 @@ public class CodeCustomerCreateInfo extends InfoBase {
      * 备注
      */
     @Size(max = 255)
-    @OpenApiField(desc = "comments", constraint = "备注", demo = "xdqygXxCyd", ordinal = 22)
+    @OpenApiField(desc = "comments", constraint = "备注", demo = "Nvy4CXpmme", ordinal = 22)
     private String comments;
 }

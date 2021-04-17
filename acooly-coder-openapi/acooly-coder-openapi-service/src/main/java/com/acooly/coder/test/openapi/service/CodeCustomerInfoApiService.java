@@ -2,7 +2,7 @@
 * acooly.cn Inc.
 * Copyright (c) 2021 All Rights Reserved.
 * create by acooly
-* date:2021-04-15
+* date:2021-04-18
 */
 package com.acooly.coder.test.openapi.service;
 
@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 * acoolycoder测试 详情 接口服务
 *
 * @author acooly
-* Date: 2021-04-15 17:29:16
+* Date: 2021-04-18 00:31:50
 */
 @Slf4j
 @ApiDocType(code = "acoolyCoder", name = "代码生成")

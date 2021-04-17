@@ -12,18 +12,18 @@
                         <input type="text" class="form-control form-control-sm" name="search_EQ_age"/>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">生日: </label>
+                        <label class="col-form-label">生日：</label>
                         <input type="text" class="form-control form-control-sm" id="search_GTE_birthday" name="search_GTE_birthday" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                         <span class="mr-1 ml-1">至</span> <input type="text" class="form-control form-control-sm" id="search_LTE_birthday" name="search_LTE_birthday" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">性别:</label>
+                        <label class="col-form-label">性别：</label>
                         <select name="search_EQ_gender" class="form-control input-sm select2bs4">
                             <option value="">所有</option><#list allGenders as k,v><option value="${k}">${v}</option></#list>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">生肖:</label>
+                        <label class="col-form-label">生肖：</label>
                         <select name="search_EQ_animal" class="form-control input-sm select2bs4">
                             <option value="">所有</option><#list allAnimals as k,v><option value="${k}">${v}</option></#list>
                         </select>
@@ -33,7 +33,7 @@
                         <input type="text" class="form-control form-control-sm" name="search_EQ_realName"/>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">证件类型:</label>
+                        <label class="col-form-label">证件类型：</label>
                         <select name="search_EQ_idcardType" class="form-control input-sm select2bs4">
                             <option value="">所有</option><#list allIdcardTypes as k,v><option value="${k}">${v}</option></#list>
                         </select>
@@ -51,54 +51,42 @@
                         <input type="text" class="form-control form-control-sm" name="search_EQ_mail"/>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">客户类型:</label>
+                        <label class="col-form-label">客户类型：</label>
                         <select name="search_EQ_customerType" class="form-control input-sm select2bs4">
                             <option value="">所有</option><#list allCustomerTypes as k,v><option value="${k}">${v}</option></#list>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">摘要：</label>
-                        <input type="text" class="form-control form-control-sm" name="search_EQ_subject"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">注册渠道:</label>
+                        <label class="col-form-label">注册渠道：</label>
                         <select name="search_EQ_registryChannel" class="form-control input-sm select2bs4">
                             <option value="">所有</option><#list allRegistryChannels as k,v><option value="${k}">${v}</option></#list>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">推送广告:</label>
+                        <label class="col-form-label">推送广告：</label>
                         <select name="search_EQ_pushAdv" class="form-control input-sm select2bs4">
                             <option value="">所有</option><#list allPushAdvs as k,v><option value="${k}">${v}</option></#list>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">数字类型:</label>
+                        <label class="col-form-label">数字类型：</label>
                         <select name="search_EQ_numStatus" class="form-control input-sm select2bs4">
                             <option value="">所有</option><#list allNumStatuss as k,v><option value="${k}">${v}</option></#list>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">网址：</label>
-                        <input type="text" class="form-control form-control-sm" name="search_EQ_website"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">照片：</label>
-                        <input type="text" class="form-control form-control-sm" name="search_EQ_photoPath"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">状态:</label>
+                        <label class="col-form-label">状态：</label>
                         <select name="search_EQ_status" class="form-control input-sm select2bs4">
                             <option value="">所有</option><#list allStatuss as k,v><option value="${k}">${v}</option></#list>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">创建时间: </label>
+                        <label class="col-form-label">创建时间：</label>
                         <input type="text" class="form-control form-control-sm" id="search_GTE_createTime" name="search_GTE_createTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                         <span class="mr-1 ml-1">至</span> <input type="text" class="form-control form-control-sm" id="search_LTE_createTime" name="search_LTE_createTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">更新时间: </label>
+                        <label class="col-form-label">更新时间：</label>
                         <input type="text" class="form-control form-control-sm" id="search_GTE_updateTime" name="search_GTE_updateTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                         <span class="mr-1 ml-1">至</span> <input type="text" class="form-control form-control-sm" id="search_LTE_updateTime" name="search_LTE_updateTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                     </div>
@@ -135,7 +123,7 @@
 			<th field="pushAdv" formatter="mappingFormatter">推送广告</th>
 			<th field="numStatus" formatter="mappingFormatter">数字类型</th>
 			<th field="website" formatter="contentFormatter">网址</th>
-			<th field="photoPath" formatter="contentFormatter">照片</th>
+            <th field="photoPath" formatter="fileFormatter">照片</th>
 			<th field="status" formatter="mappingFormatter">状态</th>
 		    <th field="createTime" formatter="dateTimeFormatter">创建时间</th>
 		    <th field="updateTime" formatter="dateTimeFormatter">更新时间</th>

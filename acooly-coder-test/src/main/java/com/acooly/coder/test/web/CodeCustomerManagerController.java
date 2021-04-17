@@ -2,7 +2,7 @@
 * acooly.cn Inc.
 * Copyright (c) 2021 All Rights Reserved.
 * create by acooly
-* date:2021-04-15
+* date:2021-04-18
 */
 package com.acooly.coder.test.web;
 
@@ -33,7 +33,7 @@ import com.google.common.collect.Maps;
  * acoolycoder测试 管理控制器
  *
  * @author acooly
- * @date 2021-04-15 17:29:16
+ * @date 2021-04-18 00:31:50
  */
 @Controller
 @RequestMapping(value = "/manage/coder/codeCustomer")
@@ -61,8 +61,8 @@ public class CodeCustomerManagerController extends AbstractJsonEntityController<
     protected CodeCustomer onSave(HttpServletRequest request, HttpServletResponse response, Model model, CodeCustomer entity, boolean isCreate) throws Exception {
         // 设置上传文件的根存储路径
 		UploadConfig uploadConfig = getUploadConfig();
-		uploadConfig.setUseMemery(false);
         uploadConfig.setStorageRoot(oFileProperties.getStorageRoot());
+		uploadConfig.setUseMemery(false);
 		// 上传文件，相对路径绑定到对应的属性
         doUpload(request, entity);
         return super.onSave(request, response, model, entity, isCreate);

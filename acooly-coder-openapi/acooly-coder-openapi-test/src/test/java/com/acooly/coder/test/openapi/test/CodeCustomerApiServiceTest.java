@@ -2,7 +2,7 @@
  * acooly.cn Inc.
  * Copyright (c) 2021 All Rights Reserved.
  * create by acooly
- * date:2021-04-15
+ * date:2021-04-18
  */
 package com.acooly.coder.test.openapi.test;
 
@@ -17,7 +17,7 @@ import org.junit.Test;
  * acoolycoder测试 OpenApi单元测试
  *
  * @author acooly
- * Date: 2021-04-15 17:29:16
+ * Date: 2021-04-18 00:31:50
  */
 @Slf4j
 public class CodeCustomerApiServiceTest extends AbstractApiServieTests {

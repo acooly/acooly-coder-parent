@@ -2,7 +2,7 @@
 * acooly.cn Inc.
 * Copyright (c) 2021 All Rights Reserved.
 * create by acooly
-* date:2021-04-15
+* date:2021-04-18
 */
 package com.acooly.coder.test.common.dto;
 
@@ -29,7 +29,7 @@ import com.acooly.core.common.enums.Gender;
 * For facade and openApi
 *
 * @author acooly
-* @date 2021-04-15 17:29:17
+* @date 2021-04-18 00:31:50
 */
 @Getter
 @Setter
@@ -52,7 +52,7 @@ public class CodeCustomerInfo extends CodeCustomerListInfo {
      * 生日
      */
     @NotNull
-    @OpenApiField(desc = "birthday", constraint = "生日", demo = "2021-04-15", ordinal = 4)
+    @OpenApiField(desc = "birthday", constraint = "生日", demo = "2021-04-18", ordinal = 4)
     private Date birthday;
 
     /**
@@ -143,7 +143,7 @@ public class CodeCustomerInfo extends CodeCustomerListInfo {
      * 摘要
      */
     @Size(max = 128)
-    @OpenApiField(desc = "subject", constraint = "摘要", demo = "OwCOIwaSDz", ordinal = 17)
+    @OpenApiField(desc = "subject", constraint = "摘要", demo = "ZOQO7Wl7az", ordinal = 17)
     private String subject;
 
     /**
@@ -228,21 +228,21 @@ public class CodeCustomerInfo extends CodeCustomerListInfo {
      * 创建时间
      */
     @NotNull
-    @OpenApiField(desc = "createTime", constraint = "创建时间", demo = "2021-04-15 17:29:17", ordinal = 30)
+    @OpenApiField(desc = "createTime", constraint = "创建时间", demo = "2021-04-18 00:31:50", ordinal = 30)
     private Date createTime;
 
     /**
      * 更新时间
      */
     @NotNull
-    @OpenApiField(desc = "updateTime", constraint = "更新时间", demo = "2021-04-15 17:29:17", ordinal = 31)
+    @OpenApiField(desc = "updateTime", constraint = "更新时间", demo = "2021-04-18 00:31:50", ordinal = 31)
     private Date updateTime;
 
     /**
      * 备注
      */
     @Size(max = 255)
-    @OpenApiField(desc = "comments", constraint = "备注", demo = "FgTtWDY9Op", ordinal = 32)
+    @OpenApiField(desc = "comments", constraint = "备注", demo = "SXLQALrOLn", ordinal = 32)
     private String comments;
 
 }

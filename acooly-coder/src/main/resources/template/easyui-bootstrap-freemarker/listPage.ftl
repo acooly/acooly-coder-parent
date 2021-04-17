@@ -6,10 +6,10 @@
   <div data-options="region:'north',border:false" style="padding:5px; overflow: hidden;" align="left">
     <form id="manage_${entityVariable}_searchform" class="form-inline ac-form-search" onsubmit="return false">
 			<#list table.columns as entity>
-				<#if entity.name?lower_case != 'id' && entity.length <= 128>
+				<#if entity.name?lower_case != 'id' && entity.length < 128>
 				<#if entity.options?? || entity.dataType.enum>
                     <div class="form-group">
-                        <label class="col-form-label">${entity.common}:</label>
+                        <label class="col-form-label">${entity.common}：</label>
                         <select name="search_EQ_${entity.propertyName}" class="form-control input-sm select2bs4">
                             <option value="">所有</option>${r"<#list"} all${entity.propertyName?cap_first}s as k,v><option value="${r"${"}k}">${r"${"}v}</option>${r"</#list>"}
                         </select>
@@ -17,7 +17,7 @@
 				<#else>
 				<#if entity.dataType.date || entity.dataType.dateTime>
                     <div class="form-group">
-                        <label class="col-form-label">${entity.common}: </label>
+                        <label class="col-form-label">${entity.common}：</label>
                         <input type="text" class="form-control form-control-sm" id="search_GTE_${entity.propertyName}" name="search_GTE_${entity.propertyName}" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                         <span class="mr-1 ml-1">至</span> <input type="text" class="form-control form-control-sm" id="search_LTE_${entity.propertyName}" name="search_LTE_${entity.propertyName}" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                     </div>
@@ -54,7 +54,11 @@
         <#elseif entity.dataType.number>
             <th field="${entity.propertyName}"<#if entity.columnType == 'money'> formatter="centMoneyFormatter"<#elseif entity.columnType == 'percent'> formatter="percentFormatter"</#if> sortable="true" <#if entity.propertyName != 'id'>sum="true"</#if>>${entity.common}</th>
 		<#else>
+            <#if entity.columnType=='file'>
+            <th field="${entity.propertyName}" formatter="fileFormatter">${entity.common}</th>
+            <#else>
 			<th field="${entity.propertyName}"<#if entity.length gte 128> formatter="contentFormatter"</#if>>${entity.common}</th>
+			</#if>
 		</#if>
 		</#if>
 		</#list>
