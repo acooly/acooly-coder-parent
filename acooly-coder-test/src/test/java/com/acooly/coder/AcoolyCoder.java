@@ -38,15 +38,13 @@ public class AcoolyCoder {
     public static void main(String[] args) {
         CodeGenerateService service = Generator.getGenerator();
         GenerateConfig config = GenerateConfig.INSTANCE();
+
         config.setWorkspace(getProjectPath() + MODULE_NAME);
         config.setManagePath(MANAGE_VIEW_PATH);
         config.setTableToEntityIgnorPrefix(TABLE_IGNOR_PREFIX);
         config.setRootPackage(ROOT_PACKAGE);
         Set<GenerateModule> modules = Sets.newLinkedHashSet(GenerateModule.Manage, GenerateModule.Facade, GenerateModule.OpenApi);
         config.setGeneratorModules(modules);
-//        service.generateTable(e -> {
-//            log.info("生成进度: {}", e.getProgress());
-//        }, TABLES);
         service.generateTable(TABLES);
     }
 
