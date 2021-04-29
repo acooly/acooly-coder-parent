@@ -6,8 +6,6 @@ import com.acooly.coder.generate.event.AcoolyCoderListener;
  * 代码生成服务接口
  *
  * @author zhangpu
- * TODO: BUG:采用alisa方式的选项没有在controler中设置mapping
- * TODO: 完整的生成facade和OpenApi
  */
 public interface CodeGenerateService {
 
