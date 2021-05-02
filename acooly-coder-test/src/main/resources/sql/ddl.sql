@@ -8,6 +8,7 @@ CREATE TABLE `acooly_coder_customer` (
     `real_name` varchar(16) NOT NULL COMMENT '{title:’姓名’,type:’chinese’}',
     `idcard_type` varchar(18) NOT NULL COMMENT '{title:’证件类型’, type:’option’,options:{cert:’身份证‘,pass:’护照‘,other:’其他‘}}',
     `idcard_no` varchar(48) NOT NULL COMMENT '{title:’身份证号码’,type:’idcard’}',
+    `bank_card_no` varchar(48) NOT NULL COMMENT '{title:’银行卡卡号’,type:’bankcard’}',
     `mobile_no` varchar(11) DEFAULT NULL COMMENT '{title:’手机号码’,type:’mobile’}',
     `mail` varchar(64) DEFAULT NULL COMMENT '{title:’邮件’,type:’email’}',
     `customer_type` varchar(16) DEFAULT NULL COMMENT '{title:’客户类型’, type:’option’,options:{normal:’普通‘,vip:’重要‘,sepc:’特别‘}}',
