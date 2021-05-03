@@ -27,7 +27,8 @@ public enum ColumnType implements Messageable {
 
     integer("integer", "整数", RandomStringUtils.randomNumeric(1)),
     money("money", "货币", "100.00"),
-    percent("percent", "百分数", "10.20"),
+    percent("percent", "百分整数", "10"),
+    centPercent("centPercent", "百分小数", "90.50"),
     mobile("mobile", "手机号码", "13787655390"),
     email("email", "邮箱", "demo@acooly.cn"),
     idcard("idcard", "身份证号码", "130928198905281793"),

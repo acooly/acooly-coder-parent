@@ -28,6 +28,11 @@
             </dependency>
             <dependency>
                 <groupId>com.acooly</groupId>
+                <artifactId>acooly-coder-platform-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acooly</groupId>
                 <artifactId>acooly-coder-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -36,6 +41,7 @@
                 <artifactId>acooly-coder-facade</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
 
 
             <!-- openapi -->
@@ -97,6 +103,8 @@
                 <version>${openapi.version}</version>
             </dependency>
 
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -107,5 +115,6 @@
         <module>acooly-coder-common</module>
         <module>acooly-coder-facade</module>
         <module>acooly-coder-openapi</module>
+        <module>acooly-coder-platform</module>
     </modules>
 </project>

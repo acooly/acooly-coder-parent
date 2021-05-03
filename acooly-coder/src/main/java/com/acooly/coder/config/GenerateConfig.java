@@ -3,6 +3,7 @@ package com.acooly.coder.config;
 import com.acooly.coder.enums.ProjectModule;
 import com.acooly.coder.enums.ViewType;
 import com.acooly.coder.module.GenerateModule;
+import com.acooly.coder.support.Projects;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
@@ -134,42 +135,13 @@ public class GenerateConfig {
      * @return
      */
     public String getProjectPath() {
-        File file = new File(this.getWorkspace());
-        if (file.exists()) {
-            File parent = file.getParentFile();
-            File[] poms = parent.listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.equals("pom.xml");
-                }
-            });
-            if (poms != null && poms.length > 0) {
-                // 多模块工程
-                return parent.getPath();
-            }
-        }
-        return this.workspace;
+        return Projects.getProjectPath(this.workspace);
     }
 
     public String getProjectName() {
-        File file = new File(this.getWorkspace());
-        String fileName = file.getName();
-        if (fileName != null && fileName.indexOf("-") != 0) {
-            return StringUtils.substringBeforeLast(fileName, "-");
-        }
-        return fileName;
+        return Projects.getProjectName(this.workspace);
     }
 
-    public String getDtoModulePath() {
-        String dtoModulePath = getGenerateConfiguration().getProjectPath() + "/" +
-                getGenerateConfiguration().getProjectName() + "-" + getGenerateConfiguration().getDtoModulePostfix();
-        File file = new File(dtoModulePath);
-        if (file.exists()) {
-            return file.getPath();
-        } else {
-            return this.getWorkspace();
-        }
-    }
 
     public File getModulePath(ProjectModule projectModule) {
         String dtoModulePath = getGenerateConfiguration().getProjectPath() + "/" +

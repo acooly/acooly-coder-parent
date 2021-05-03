@@ -21,11 +21,7 @@
         </dependency>
         <dependency>
             <groupId>com.acooly</groupId>
-            <artifactId>acooly-coder-facade</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.acooly</groupId>
-            <artifactId>acooly-coder-common</artifactId>
+            <artifactId>acooly-coder-platform-core</artifactId>
         </dependency>
 
         <!-- 组件: appservice -->

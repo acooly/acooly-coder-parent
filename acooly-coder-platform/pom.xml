@@ -9,8 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>acooly-coder-openapi</artifactId>
+    <artifactId>acooly-coder-platform</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>acooly-coder-platform-common</module>
+        <module>acooly-coder-platform-core</module>
+        <module>acooly-coder-platform-feature1</module>
+        <module>acooly-coder-platform-feature2</module>
+    </modules>
 
     <properties>
         <deploy.skip>true</deploy.skip>
@@ -20,21 +26,25 @@
         <dependencies>
             <dependency>
                 <groupId>com.acooly</groupId>
-                <artifactId>acooly-coder-openapi-message</artifactId>
+                <artifactId>acooly-coder-platform-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.acooly</groupId>
-                <artifactId>acooly-coder-openapi-service</artifactId>
+                <artifactId>acooly-coder-platform-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acooly</groupId>
+                <artifactId>acooly-coder-platform-feature1</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acooly</groupId>
+                <artifactId>acooly-coder-platform-feature2</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <modules>
-        <module>acooly-coder-openapi-message</module>
-        <module>acooly-coder-openapi-service</module>
-        <module>acooly-coder-openapi-test</module>
-    </modules>
 
 </project>

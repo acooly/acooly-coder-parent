@@ -59,7 +59,7 @@ public class GenerateConstants extends ConfigurableConstants {
 
     public static final boolean GENERATOR_ENUM_ENABLE = Boolean.valueOf(getProperty("generator.enum.enable", "true"));
 
-    public static final boolean GENERATOR_MULTI_MODULE_ENABLE = Boolean.valueOf(getProperty("generator.multiModule.enable", "false"));
+    public static final boolean GENERATOR_MULTI_MODULE_ENABLE = Boolean.valueOf(getProperty("generator.multiModule.enable", "true"));
 
     /**
      * 单点登录
