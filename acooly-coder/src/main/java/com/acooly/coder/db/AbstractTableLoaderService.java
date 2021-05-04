@@ -40,7 +40,8 @@ public abstract class AbstractTableLoaderService implements TableLoaderService {
         }
 
         // 特别处理Money
-        if (column.getColumnType() == ColumnType.money) {
+        if (column.getColumnType() == ColumnType.money
+                || column.getColumnType() == ColumnType.centPercent) {
             return new ColumnDataType(databaseType, JavaType.Money, "com.acooly.core.utils.Money",
                     "Money");
         }
