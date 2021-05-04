@@ -25,6 +25,8 @@
 					<input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-validatebox form-control" data-inputmask="'alias':'money','min':0,'max':${entity.length?c}" data-mask data-options="validType:['money[0,${entity.length?c}]']<#if !entity.nullable>,required:true</#if>"/>
 					<#elseif entity.columnType == 'percent'>
 					<input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-validatebox form-control" data-inputmask="'alias':'percent'" data-mask data-options="validType:['percent']<#if !entity.nullable>,required:true</#if>"/>
+					<#elseif entity.columnType == 'centPercent'>
+					<input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-validatebox form-control" data-inputmask="'alias':'centPercent'" data-mask data-options="validType:['percent']<#if !entity.nullable>,required:true</#if>"/>
 					<#else>
 					<input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-validatebox form-control" data-options="validType:['number[0,${entity.length?c}]']<#if !entity.nullable>,required:true</#if>"/>
 					</#if>

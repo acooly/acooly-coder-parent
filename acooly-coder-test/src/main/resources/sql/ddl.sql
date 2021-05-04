@@ -15,6 +15,7 @@ CREATE TABLE `acooly_coder_customer` (
     `subject` varchar(128) DEFAULT NULL COMMENT '摘要',
     `content` text COMMENT '详情',
     `done_ratio` int(11) DEFAULT NULL COMMENT '{title:’完成度‘,type:’percent’}',
+    `pay_rate` int(11) DEFAULT NULL COMMENT '{title:’付款率‘,type:’centPercent’}',
     `salary` int(11) DEFAULT NULL COMMENT '{title:’薪水’,type:’money’}',
     `registry_channel` varchar(16) DEFAULT NULL COMMENT '{title:’注册渠道’, alias: ‘channel’}',
     `push_adv` varchar(16) DEFAULT NULL COMMENT '{title:’推送广告’, alias:’whether’}',
@@ -26,4 +27,4 @@ CREATE TABLE `acooly_coder_customer` (
     `update_time` datetime NOT NULL COMMENT '更新时间',
     `comments` varchar(255) DEFAULT NULL COMMENT '备注',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='acoolycoder测试';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='acoolycoder测试';

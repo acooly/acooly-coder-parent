@@ -52,7 +52,7 @@
         <#elseif entity.dataType.date>
 		    <th field="${entity.propertyName}" formatter="dateFormatter">${entity.common}</th>
         <#elseif entity.dataType.number>
-            <th field="${entity.propertyName}"<#if entity.columnType == 'money'> formatter="centMoneyFormatter"<#elseif entity.columnType == 'percent'> formatter="percentFormatter"</#if> sortable="true" <#if entity.propertyName != 'id'>sum="true"</#if>>${entity.common}</th>
+            <th field="${entity.propertyName}"<#if entity.columnType == 'money'> formatter="centMoneyFormatter"<#elseif entity.columnType == 'percent'> formatter="percentFormatter"<#elseif entity.columnType == 'centPercent'>formatter="centPercentFormatter"</#if> sortable="true" <#if entity.propertyName != 'id'>sum="true"</#if>>${entity.common}</th>
 		<#else>
             <#if entity.columnType=='file'>
             <th field="${entity.propertyName}" formatter="fileFormatter">${entity.common}</th>

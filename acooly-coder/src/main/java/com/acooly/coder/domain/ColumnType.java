@@ -22,6 +22,7 @@ import java.util.Map;
 
 /**
  * 列业务类型
+ * @author zhangpu
  */
 public enum ColumnType implements Messageable {
 
