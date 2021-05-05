@@ -9,7 +9,11 @@
 		<#list table.columns as entity>
 		<#if entity.name?lower_case != 'id' && entity.name?lower_case != 'create_time' && entity.name?lower_case != 'update_time'>
 			<div class="form-group row">
+				<#if entity.tip??>
+				<label class="col-sm-3 col-form-label">${entity.common} <a href="javascript:;" data-toggle="tooltip" data-placement="right" title="${entity.tip}"><i class="fa fa-info-circle" aria-hidden="true"></i></a></label>
+				<#else>
 				<label class="col-sm-3 col-form-label">${entity.common}</label>
+				</#if>
 				<div class="col-sm-9">
 					<#if entity.options?? || entity.dataType.enum>
 					<#--下拉选项-->

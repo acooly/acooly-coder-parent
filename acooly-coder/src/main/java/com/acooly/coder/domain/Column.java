@@ -77,9 +77,15 @@ public class Column {
      */
     private Object defaultValue;
     /**
-     * 列备注
+     * 列备注(label)
      */
     private String common;
+
+    /**
+     * 列提示
+     */
+    private String tip;
+
     /**
      * 常用数字分类字段可选值
      */
@@ -217,5 +223,13 @@ public class Column {
 
     public String getOptionValueDemo() {
         return Demos.firstEnumValue(this);
+    }
+
+    public String getTip() {
+        return tip;
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
     }
 }

@@ -26,6 +26,7 @@ public class ColumnComment {
     private ColumnType type = ColumnType.text;
     private ColumnAlias alias;
     private Map<String, String> options;
+    private String tip;
 
     public ColumnComment() {
     }

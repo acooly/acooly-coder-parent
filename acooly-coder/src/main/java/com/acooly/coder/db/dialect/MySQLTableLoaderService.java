@@ -100,6 +100,7 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
                 columnMetadata.setColumnType(columnComment.getType());
                 columnMetadata.setColumnAlias(columnComment.getAlias());
                 columnMetadata.setOptions(columnComment.getOptions());
+                columnMetadata.setTip(columnComment.getTip());
                 comment = columnComment.getTitle();
                 columnMetadata.setCommon(StringUtils.isBlank(comment) ? name : comment);
                 Object defaultValue = rs.getObject("defaultValue");
