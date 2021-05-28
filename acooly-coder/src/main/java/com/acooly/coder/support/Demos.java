@@ -66,7 +66,7 @@ public class Demos {
         if (dataType.isNumber()) {
             return RandomStringUtils.randomNumeric(1);
         }
-        int max = column.getLength() == 0 || column.getLength() > 10 ? 10 : column.getMax().intValue();
+        int max = column.getLength() == 0 || column.getLength() > 32 ? 32 : column.getLength();
         return RandomStringUtils.random(max, true, true);
     }
 
