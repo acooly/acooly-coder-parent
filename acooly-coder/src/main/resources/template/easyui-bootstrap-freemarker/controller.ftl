@@ -62,22 +62,44 @@ public class ${nameScheme.controllerClassName} extends AbstractJsonEntityControl
 	@Autowired
 	private ${nameScheme.serviceClassName} ${nameScheme.serviceClassName?uncap_first};
 
-	<#-- 如果有文件上传 -->
-	<#if data.includeFile>
+<#-- 如果有文件上传 -->
+<#if data.includeFile>
     @Autowired
     private OFileProperties oFileProperties;
+</#if>
 
+
+<#if data.includeFile || table.moveFunc>
     @Override
     protected ${nameScheme.domainClassName} onSave(HttpServletRequest request, HttpServletResponse response, Model model, ${nameScheme.domainClassName} entity, boolean isCreate) throws Exception {
-        // 设置上传文件的根存储路径
+    <#if data.includeFile>
+		// 上传文件：设置上传文件的根存储路径，相对路径绑定到对应的属性；
 		UploadConfig uploadConfig = getUploadConfig();
         uploadConfig.setStorageRoot(oFileProperties.getStorageRoot());
 		uploadConfig.setUseMemery(false);
-		// 上传文件，相对路径绑定到对应的属性
-        doUpload(request, entity);
+		doUpload(request, entity);
+	</#if>
+	<#if table.moveFunc>
+		// 设置新增数据默认的sortTime为当前时间戳（排序到顶部）
+		if (isCreate) {
+			entity.setSortTime(System.currentTimeMillis());
+		}
+	</#if>
         return super.onSave(request, response, model, entity, isCreate);
     }
-	</#if>
+</#if>
+
+<#if table.moveFunc>
+	/**
+	* 实体实现了Sortable接口，启用了移动功能，则需要固定排序方式为按sortTime倒叙排序
+	*/
+	@Override
+	protected Map<String, Boolean> getSortMap(HttpServletRequest request) {
+		Map<String, Boolean> sortMap = Maps.newHashMap();
+		sortMap.put("sortTime", false);
+		return sortMap;
+	}
+</#if>
 
 
 <#if existOptions>

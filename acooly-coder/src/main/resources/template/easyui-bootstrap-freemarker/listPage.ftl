@@ -31,7 +31,7 @@
 				</#if>
 			</#list>
             <div class="form-group">
-                <button class="btn btn-sm btn-primary" type="button" onclick="$.acooly.framework.search('manage_${entityVariable}_searchform','manage_${entityVariable}_datagrid');"><i class="fa fa-search fa-lg fa-fw fa-col"></i> 查询</button>
+                <button class="btn btn-sm btn-primary" type="button" onclick="$.acooly.framework.search('manage_${entityVariable}_searchform','manage_${entityVariable}_datagrid');"><i class="fa fa-search fa-fw fa-col"></i> 查询</button>
             </div>
     </form>
   </div>
@@ -67,24 +67,30 @@
       </thead>
     </table>
 
-    <!-- 每行的Action动作模板 -->
-    <div id="manage_${entityVariable}_action" style="display: none;">
-      <a onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:500});" href="#" title="编辑"><i class="fa fa-pencil fa-lg fa-fw fa-col"></i></a>
-      <a onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,500);" href="#" title="查看"><i class="fa fa-file-o fa-lg fa-fw fa-col"></i></a>
-      <a onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" href="#" title="删除"><i class="fa fa-trash-o fa-lg fa-fw fa-col"></i></a>
-    </div>
-
-    <!-- 表格的工具栏 -->
-    <div id="manage_${entityVariable}_toolbar">
-      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'${entityContextPath}/create.html',entity:'${entityVariable}',width:500,height:500})"><i class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>添加</a>
-      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.removes('${entityContextPath}/deleteJson.html','manage_${entityVariable}_datagrid')"><i class="fa fa-trash-o fa-lg fa-fw fa-col"></i>批量删除</a>
-      <a href="#" class="easyui-menubutton" data-options="menu:'#manage_${entityVariable}_exports_menu'"><i class="fa fa-arrow-circle-o-down fa-lg fa-fw fa-col"></i>批量导出</a>
-      <div id="manage_${entityVariable}_exports_menu" style="width:150px;">
-        <div onclick="$.acooly.framework.exports('${entityContextPath}/exportXls.html','manage_${entityVariable}_searchform','${table.comment}')"><i class="fa fa-file-excel-o fa-lg fa-fw fa-col"></i>Excel</div>
-        <div onclick="$.acooly.framework.exports('${entityContextPath}/exportCsv.html','manage_${entityVariable}_searchform','${table.comment}')"><i class="fa fa-file-text-o fa-lg fa-fw fa-col"></i>CSV</div>
+      <!-- 每行的Action动作模板 -->
+      <div id="manage_${entityVariable}_action" style="display: none;">
+          <div class="btn-group btn-group-xs">
+              <button onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,500);" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-info fa-fw fa-col"></i>查看</button>
+              <button onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:500});" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-pencil fa-fw fa-col"></i>编辑</button>
+              <#if table.moveFunc>
+              <button onclick="$.acooly.framework.move('/manage/coder/demo/coderCustomer/upJson.html','{0}','manage_coderCustomer_datagrid');" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-arrow-up fa-fw fa-col"></i>上移</button>
+              <button onclick="$.acooly.framework.move('/manage/coder/demo/coderCustomer/topJson.html','{0}','manage_coderCustomer_datagrid');" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-step-forward fa-rotate-270 fa-fw fa-col"></i>置顶</button>
+              </#if>
+              <button onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-trash fa-fw fa-col"></i>删除</button>
+          </div>
       </div>
-      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.imports({url:'${entityContextPath}/importView.html',uploader:'manage_${entityVariable}_import_uploader_file'});"><i class="fa fa-arrow-circle-o-up fa-lg fa-fw fa-col"></i>批量导入</a>
-    </div>
+
+      <!-- 表格的工具栏 -->
+      <div id="manage_${entityVariable}_toolbar">
+          <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'${entityContextPath}/create.html',entity:'${entityVariable}',width:500,height:500})"><i class="fa fa-plus-circle fa-fw fa-col"></i>添加</a>
+          <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.removes('${entityContextPath}/deleteJson.html','manage_${entityVariable}_datagrid')"><i class="fa fa-trash fa-fw fa-col"></i>批量删除</a>
+          <a href="#" class="easyui-menubutton" data-options="menu:'#manage_${entityVariable}_exports_menu'"><i class="fa fa-cloud-download fa-fw fa-col"></i>批量导出</a>
+          <div id="manage_${entityVariable}_exports_menu" style="width:150px;">
+              <div onclick="$.acooly.framework.exports('${entityContextPath}/exportXls.html','manage_${entityVariable}_searchform','${table.comment}')"><i class="fa fa-file-excel-o fa-lg fa-fw fa-col"></i>Excel</div>
+              <div onclick="$.acooly.framework.exports('${entityContextPath}/exportCsv.html','manage_${entityVariable}_searchform','${table.comment}')"><i class="fa fa-file-text-o fa-lg fa-fw fa-col"></i>CSV</div>
+          </div>
+          <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.imports({url:'${entityContextPath}/importView.html',uploader:'manage_${entityVariable}_import_uploader_file'});"><i class="fa fa-cloud-upload fa-fw fa-col"></i>批量导入</a>
+      </div>
   </div>
     <script type="text/javascript">
         $(function () {

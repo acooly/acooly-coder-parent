@@ -3,6 +3,7 @@ package com.acooly.coder.db.dialect;
 import com.acooly.coder.config.Database;
 import com.acooly.coder.db.AbstractTableLoaderService;
 import com.acooly.coder.db.TableLoaderService;
+import com.acooly.coder.db.TableProperties;
 import com.acooly.coder.domain.*;
 import com.acooly.coder.support.LogManager;
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +24,9 @@ import java.util.logging.Logger;
  */
 public class MySQLTableLoaderService extends AbstractTableLoaderService implements TableLoaderService {
     protected static Logger logger = LogManager.getLogger(MySQLTableLoaderService.class);
+
+    public static final String MOVE_COLUMN_NAME = "sort_time";
+
     /**
      * 列相关元数据SQL
      */
@@ -89,10 +93,15 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
             List<Column> columnMetadatas = new LinkedList<Column>();
             Column columnMetadata = null;
             String databaseType = null;
+            Boolean needMoveFunc = false;
             while (rs.next()) {
                 columnMetadata = new Column();
                 String name = rs.getString("name");
                 columnMetadata.setName(name);
+                // 是否MOVE排序列判断
+                if (!needMoveFunc && StringUtils.equalsIgnoreCase(MOVE_COLUMN_NAME, name)) {
+                    needMoveFunc = true;
+                }
                 columnMetadata.setNullable(rs.getString("nullable").equalsIgnoreCase("YES"));
                 String comment = rs.getString("comments");
                 ColumnComment columnComment = parseComment(comment);
@@ -116,6 +125,7 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
                 throw new RuntimeException("表不存在或没有正确定义");
             }
             tableMetadata.setColumns(columnMetadatas);
+            tableMetadata.addProperty(TableProperties.MOVE_FUNC_REQUIRED.code(), needMoveFunc);
             String tableComment = getTableComment(tableName);
             tableMetadata.setComment(StringUtils.isBlank(tableComment) ? tableName : tableComment);
             logger.info("Load metadata of table : " + tableName);

@@ -28,6 +28,9 @@ import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import com.acooly.core.common.domain.AbstractEntity;
+<#if table.moveFunc>
+import com.acooly.core.common.domain.Sortable;
+</#if>
 <#list table.importDeclares as declare>
 import ${declare};
 </#list>
@@ -42,7 +45,7 @@ import ${declare};
 @Table(name = "${table.name}")
 @Getter
 @Setter
-public class ${nameScheme.domainClassName} extends AbstractEntity {
+public class ${nameScheme.domainClassName} extends AbstractEntity<#if table.moveFunc> implements Sortable</#if> {
 
 <#list table.columns as entity>
 	<#assign javaDataType="${entity.dataType.javaTypeName}">
