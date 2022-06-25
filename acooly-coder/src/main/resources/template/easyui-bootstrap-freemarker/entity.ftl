@@ -50,8 +50,9 @@ public class ${nameScheme.domainClassName} extends AbstractEntity {
 	<#if entity.name?lower_case != 'id' && entity.name?lower_case != 'create_time' && entity.name?lower_case != 'update_time'>
     /**
      * ${entity.common}
-<#if entity.tip??>     * ${entity.tip}</#if>
-     */
+<#if entity.tip??>
+     * ${entity.tip}
+     */<#else>     */</#if>
 	<#if entity.dataType.enum>
     @Enumerated(EnumType.STRING)
     </#if>
