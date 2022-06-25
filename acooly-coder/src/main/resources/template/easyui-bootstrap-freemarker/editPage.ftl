@@ -22,7 +22,7 @@
 					</select>
 					<#elseif entity.dataType.date || entity.dataType.dateTime>
 					<#--日期或日期时间-->
-					<input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-validatebox form-control" value="<${r"#"}if ${entityVariable}.${entity.propertyName}??>${r"${"}${entityVariable}.${entity.propertyName}?string('yyyy-MM-dd<#if entity.dataType.dateTime> HH:mm:ss</#if>')}</${r"#"}if>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd<#if entity.dataType.dateTime> HH:mm:ss</#if>'})" <#if !entity.nullable>data-options="required:true"</#if> />
+					<input type="text" name="${entity.propertyName}" placeholder="请输入${entity.common}..." class="easyui-validatebox form-control" value="<${r"#"}if ${entityVariable}.${entity.propertyName}??>${r"${"}${entityVariable}.${entity.propertyName}?string('yyyy-MM-dd<#if entity.dataType.dateTime> HH:mm:ss</#if>')}</${r"#"}if>" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd<#if entity.dataType.dateTime> HH:mm:ss</#if>'})" onblur="$(this).validatebox('isValid');" <#if !entity.nullable>data-options="required:true"</#if> />
 					<#elseif entity.dataType.number>
 					<#--数字类型-->
 					<#if entity.columnType == 'money'>
