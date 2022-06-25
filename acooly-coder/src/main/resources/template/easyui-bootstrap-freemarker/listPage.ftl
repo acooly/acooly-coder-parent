@@ -62,9 +62,14 @@
 		</#if>
 		</#if>
 		</#list>
-          	<th field="rowActions" data-options="formatter:function(value, row, index){return formatAction('manage_${entityVariable}_action',value,row)}">动作</th>
         </tr>
       </thead>
+      <thead frozen="true">
+        <tr>
+            <th field="rowActions" data-options="formatter:function(value, row, index){return formatAction('manage_${entityVariable}_action',value,row)}">动作</th>
+        </tr>
+      </thead>
+
     </table>
 
       <!-- 每行的Action动作模板 -->
