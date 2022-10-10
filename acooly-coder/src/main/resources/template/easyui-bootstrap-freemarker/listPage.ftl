@@ -78,8 +78,8 @@
               <button onclick="$.acooly.framework.show('${entityContextPath}/show.html?id={0}',500,500);" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-info fa-fw fa-col"></i>查看</button>
               <button onclick="$.acooly.framework.edit({url:'${entityContextPath}/edit.html',id:'{0}',entity:'${entityVariable}',width:500,height:500});" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-pencil fa-fw fa-col"></i>编辑</button>
               <#if table.moveFunc>
-              <button onclick="$.acooly.framework.move('/manage/coder/demo/coderCustomer/upJson.html','{0}','manage_coderCustomer_datagrid');" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-arrow-up fa-fw fa-col"></i>上移</button>
-              <button onclick="$.acooly.framework.move('/manage/coder/demo/coderCustomer/topJson.html','{0}','manage_coderCustomer_datagrid');" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-step-forward fa-rotate-270 fa-fw fa-col"></i>置顶</button>
+              <button onclick="$.acooly.framework.move('${entityContextPath}/upJson.html','{0}','manage_${entityVariable}_datagrid');" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-arrow-up fa-fw fa-col"></i>上移</button>
+              <button onclick="$.acooly.framework.move('${entityContextPath}/topJson.html','{0}','manage_${entityVariable}_datagrid');" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-step-forward fa-rotate-270 fa-fw fa-col"></i>置顶</button>
               </#if>
               <button onclick="$.acooly.framework.remove('${entityContextPath}/deleteJson.html','{0}','manage_${entityVariable}_datagrid');" class="btn btn-outline-primary btn-xs" type="button"><i class="fa fa-trash fa-fw fa-col"></i>删除</button>
           </div>
