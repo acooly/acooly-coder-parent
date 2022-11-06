@@ -13,11 +13,11 @@ import java.util.List;
  *
  * @author zhangpu
  * <p>
- * ok:支持sortTime的排序功能生成
- * ok:解决实体生成的javadoc多了一个空行问题
- * ok:优化easyui的默认功能的图标（去除lg）
+ * ok: 支持sortTime的排序功能生成
+ * ok: 解决实体生成的javadoc多了一个空行问题
+ * ok: 优化easyui的默认功能的图标（去除lg）
  * OK: 优化日期字段的实时验证（失去焦点时）
- * todo: 增加excel到处的实体Annotation模式
+ * OK: 增加excel到处的实体Annotation模式
  * OK: 解决解析备注中中文引号问题
  */
 public class Generator {
