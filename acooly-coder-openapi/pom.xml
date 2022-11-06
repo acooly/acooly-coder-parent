@@ -16,21 +16,6 @@
         <deploy.skip>true</deploy.skip>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.acooly</groupId>
-                <artifactId>acooly-coder-openapi-message</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.acooly</groupId>
-                <artifactId>acooly-coder-openapi-service</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <modules>
         <module>acooly-coder-openapi-message</module>
         <module>acooly-coder-openapi-service</module>
