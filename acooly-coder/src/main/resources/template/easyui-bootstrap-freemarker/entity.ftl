@@ -22,6 +22,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 </#if>
+import com.acooly.core.utils.ie.anno.ExportColumn;
+import com.acooly.core.utils.ie.anno.ExportModel;
 import org.hibernate.validator.constraints.*;
 import javax.validation.constraints.*;
 import javax.validation.constraints.NotBlank;
@@ -45,6 +47,7 @@ import ${declare};
 @Table(name = "${table.name}")
 @Getter
 @Setter
+@ExportModel(name = "${table.comment}", border = true, headerShow = true)
 public class ${nameScheme.domainClassName} extends AbstractEntity<#if table.moveFunc> implements Sortable</#if> {
 
 <#list table.columns as entity>
@@ -65,6 +68,7 @@ public class ${nameScheme.domainClassName} extends AbstractEntity<#if table.move
 	<#if entity.length != 0 && !entity.dataType.bigObject && entity.dataType.string>
 	@Size(max = ${entity.length?c})
 	</#if>
+    @ExportColumn(header = "${entity.common}", order = ${entity_index})
     private ${javaDataType} ${entity.propertyName};
 
 	</#if>
