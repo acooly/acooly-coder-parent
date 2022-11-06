@@ -118,6 +118,8 @@ public abstract class AbstractTableLoaderService implements TableLoaderService {
                 return new ColumnComment(comment);
             }
         } else {
+            similarJson = StringUtils.replace(similarJson, "’", "");
+            similarJson = StringUtils.replace(similarJson, "‘", "");
             ColumnComment columnComment = new ColumnComment(parseCanonicalComment(similarJson));
             Map<String, String> options = GenerateUtils.parseSimilarJson(similarJson);
             columnComment.setOptions(options);
