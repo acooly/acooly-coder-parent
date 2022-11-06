@@ -17,16 +17,15 @@ import com.acooly.core.utils.enums.Messageable;
 <#assign enumName=data.enumColumn.dataType.javaName?cap_first>
 /**
  * ${table.comment} ${enumName} 枚举定义
- * 
+ *
  * @author ${configuration.codeAuthor}
  * @date ${datetime("yyyy-MM-dd HH:mm:ss")}
  */
 public enum ${enumName} implements Messageable {
 
 	<#list data.enumColumn.options?keys as key>
-	${key}("${key}", "${data.enumColumn.options[key]}")<#if key_index < data.enumColumn.options?size>,</#if>
+	${key}("${key}", "${data.enumColumn.options[key]}")<#if key_index < data.enumColumn.options?size-1>,<#else>;</#if>
 	</#list>
-	;
 
 	private final String code;
 	private final String message;
@@ -65,7 +64,7 @@ public enum ${enumName} implements Messageable {
 
 	/**
 	 * 通过枚举值码查找枚举值。
-	 * 
+	 *
 	 * @param code
 	 *            查找枚举值的枚举值码。
 	 * @return 枚举值码对应的枚举值。
@@ -83,7 +82,7 @@ public enum ${enumName} implements Messageable {
 
 	/**
 	 * 获取全部枚举值。
-	 * 
+	 *
 	 * @return 全部枚举值。
 	 */
 	public static List<${enumName}> getAll() {
@@ -96,7 +95,7 @@ public enum ${enumName} implements Messageable {
 
 	/**
 	 * 获取全部枚举值码。
-	 * 
+	 *
 	 * @return 全部枚举值码。
 	 */
 	public static List<String> getAllCode() {
