@@ -37,7 +37,7 @@
 					<#elseif entity.dataType.string>
 					<#--文本类型-->
 					<#if entity.length gt 128>
-					<textarea rows="3" cols="40" placeholder="请输入${entity.common}..." name="${entity.propertyName}" class="easyui-validatebox form-control" <#if !entity.nullable>data-options="required:true"</#if>></textarea>
+					<textarea rows="3" cols="40" placeholder="请输入${entity.common}..." name="${entity.propertyName}" class="easyui-validatebox form-control form-words" data-words="${entity.length}" <#if !entity.nullable>data-options="required:true"</#if>></textarea>
 					<#else>
 					<#-- 针对自定义类型进行分类处理 -->
 					<#if entity.columnType=='chinese'>
