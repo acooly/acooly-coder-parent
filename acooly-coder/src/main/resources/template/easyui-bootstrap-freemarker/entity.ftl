@@ -68,7 +68,9 @@ public class ${nameScheme.domainClassName} extends AbstractEntity<#if table.move
 	<#if entity.length != 0 && !entity.dataType.bigObject && entity.dataType.string>
 	@Size(max = ${entity.length?c})
 	</#if>
+    <#if entity.export>
     @ExportColumn(header = "${entity.common}", order = ${entity_index})
+    </#if>
     private ${javaDataType} ${entity.propertyName};
 
 	</#if>

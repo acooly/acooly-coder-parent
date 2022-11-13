@@ -1,5 +1,7 @@
 package com.acooly.coder.domain;
 
+import com.acooly.coder.enums.Func;
+import com.acooly.coder.support.BitPermissions;
 import com.acooly.coder.support.Demos;
 import org.apache.commons.lang3.StringUtils;
 
@@ -231,5 +233,26 @@ public class Column {
 
     public void setTip(String tip) {
         this.tip = tip;
+    }
+
+
+    public boolean isSearch() {
+        return BitPermissions.hasPerm(this.columnComment.getFunc(), Func.Search.getBit());
+    }
+
+    public boolean isList() {
+        return BitPermissions.hasPerm(this.columnComment.getFunc(), Func.List.getBit());
+    }
+
+    public boolean isSave() {
+        return BitPermissions.hasPerm(this.columnComment.getFunc(), Func.Save.getBit());
+    }
+
+    public boolean isShow() {
+        return BitPermissions.hasPerm(this.columnComment.getFunc(), Func.Show.getBit());
+    }
+
+    public boolean isExport() {
+        return BitPermissions.hasPerm(this.columnComment.getFunc(), Func.Export.getBit());
     }
 }

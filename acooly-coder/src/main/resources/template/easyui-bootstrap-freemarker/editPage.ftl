@@ -7,7 +7,7 @@
         <input name="id" type="hidden" />
 		<div class="card-body">
 		<#list table.columns as entity>
-		<#if entity.name?lower_case != 'id' && entity.name?lower_case != 'create_time' && entity.name?lower_case != 'update_time'>
+		<#if entity.name?lower_case != 'id' && entity.name?lower_case != 'create_time' && entity.name?lower_case != 'update_time' && entity.save>
 			<div class="form-group row">
 				<#if entity.tip??>
 				<label class="col-sm-3 col-form-label">${entity.common} <a href="javascript:;" data-toggle="tooltip" data-placement="right" title="${entity.tip}"><i class="fa fa-info-circle" aria-hidden="true"></i></a></label>

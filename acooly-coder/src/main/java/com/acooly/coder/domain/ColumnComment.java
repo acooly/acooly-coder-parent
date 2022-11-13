@@ -25,6 +25,13 @@ public class ColumnComment {
     private String title;
     private ColumnType type = ColumnType.text;
     private ColumnAlias alias;
+    /**
+     * 功能
+     * 默认全功能
+     *
+     * @see com.acooly.coder.enums.Func
+     */
+    private int func = 31;
     private Map<String, String> options;
     private String tip;
 

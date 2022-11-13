@@ -6,7 +6,7 @@
     <div data-options="region:'north',border:false" style="padding:5px; overflow: hidden;">
         <form id="manage_${entityVariable}_searchform" class="form-inline ac-form-search" onsubmit="return false">
         <#list table.columns as entity>
-        <#if entity.name?lower_case != 'id' && entity.length < 128>
+        <#if entity.name?lower_case != 'id' && entity.length < 128 && entity.search>
         <#if entity.options?? || entity.dataType.enum>
             <div class="form-group">
                 <label class="col-form-label">${entity.common}：</label>
@@ -44,6 +44,7 @@
             <tr>
                 <th field="showCheckboxWithId" checkbox="true" formatter="idFormatter">编号</th>
             <#list table.columns as entity>
+            <#if entity.list>
             <#if entity.options?? || entity.dataType.enum>
                 <th field="${entity.propertyName}" formatter="mappingFormatter">${entity.common}</th>
             <#else>
@@ -59,6 +60,7 @@
                 <#else>
                 <th field="${entity.propertyName}"<#if entity.length gte 128> formatter="contentFormatter"</#if>>${entity.common}</th>
                 </#if>
+            </#if>
             </#if>
             </#if>
             </#list>

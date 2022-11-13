@@ -3,6 +3,7 @@
 <div class="card-body">
 	<dl class="row">
 <#list table.columns as entity>
+	<#if entity.show>
 		<dt class="col-sm-3">${entity.common}:</dt>
 	<#if entity.dataType.date>
 		<dd class="col-sm-9">${r"${"}(${entityVariable}.${entity.propertyName}?string('yyyy-MM-dd'))!}</dd>
@@ -14,6 +15,7 @@
 		<dd class="col-sm-9">${r"${"}all${entity.propertyName?cap_first}s?api.get(${entityVariable}.${entity.propertyName})}</dd>
 	<#else>
 		<dd class="col-sm-9">${r"${"}${entityVariable}.${entity.propertyName}}</dd>
+	</#if>
 	</#if>
 </#list>
 	</dl>
