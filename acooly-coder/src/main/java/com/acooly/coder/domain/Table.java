@@ -24,11 +24,17 @@ public class Table {
     /**
      * 扩展信息
      */
-    private Map<String, Object> properties = new HashMap<String, Object>();
+    private Map<String, Object> properties = new HashMap<>();
+
     /**
      * 列信息
      */
-    private List<Column> columns = new LinkedList<Column>();
+    private List<Column> columns = new LinkedList<>();
+
+    /**
+     * 唯一索引
+     */
+    private List<Index> indexes = new LinkedList<>();
 
     public String getName() {
         return name;
@@ -84,4 +90,11 @@ public class Table {
         return getProperty(TableProperties.MOVE_FUNC_REQUIRED.code());
     }
 
+    public List<Index> getIndexes() {
+        return indexes;
+    }
+
+    public void setIndexes(List<Index> indexes) {
+        this.indexes = indexes;
+    }
 }

@@ -23,10 +23,7 @@ import java.util.logging.Logger;
  * @author zhangpu
  */
 public class MySQLTableLoaderService extends AbstractTableLoaderService implements TableLoaderService {
-    protected static Logger logger = LogManager.getLogger(MySQLTableLoaderService.class);
-
     public static final String MOVE_COLUMN_NAME = "sort_time";
-
     /**
      * 列相关元数据SQL
      */
@@ -39,7 +36,14 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
      * 获取所有的表名SQL
      */
     protected final static String SELECT_ALL_TABLES = "select TABLE_NAME from information_schema.tables where table_schema=? ORDER BY TABLE_NAME";
+    /**
+     * 查询表唯一索引SQL
+     */
+    protected final static String TABLE_INDEXES_SQL = "SELECT a.index_name, GROUP_CONCAT(column_name ORDER BY seq_in_index) AS `columns` FROM information_schema.statistics a " +
+            "where a.TABLE_SCHEMA = ?  and a.TABLE_NAME = ? and a.Non_unique = 0 and a.index_name != 'PRIMARY' " +
+            "GROUP BY a.TABLE_SCHEMA,a.TABLE_NAME,a.index_name";
 
+    protected static Logger logger = LogManager.getLogger(MySQLTableLoaderService.class);
     private String schema;
 
     private DataSource dataSource;
@@ -125,6 +129,10 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
                 throw new RuntimeException("表不存在或没有正确定义");
             }
             tableMetadata.setColumns(columnMetadatas);
+
+            // 解析索引
+            List<Index> indexes = getTableIndexes(tableName, columnMetadatas);
+            tableMetadata.setIndexes(indexes);
             tableMetadata.addProperty(TableProperties.MOVE_FUNC_REQUIRED.code(), needMoveFunc);
             String tableComment = getTableComment(tableName);
             tableMetadata.setComment(StringUtils.isBlank(tableComment) ? tableName : tableComment);
@@ -144,6 +152,47 @@ public class MySQLTableLoaderService extends AbstractTableLoaderService implemen
             }
         }
     }
+
+    protected List<Index> getTableIndexes(String tableName, List<Column> columns) {
+        Connection conn = null;
+        try {
+            List<Index> indexes = new LinkedList<>();
+            conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(TABLE_INDEXES_SQL);
+            stmt.setString(1, schema);
+            stmt.setString(2, tableName);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Index index = new Index();
+                index.setName(rs.getString(1));
+                String indexCols = rs.getString(2);
+                if (StringUtils.isNotBlank(indexCols)) {
+                    for (String indexColName : StringUtils.split(indexCols, ",")) {
+                        columns.forEach(c -> {
+                            if (StringUtils.equalsIgnoreCase(c.getName(), indexColName)) {
+                                index.addColumn(c);
+                            }
+                        });
+                    }
+                }
+                indexes.add(index);
+            }
+            rs.close();
+            stmt.close();
+            return indexes;
+        } catch (Exception e) {
+            throw new RuntimeException("获取表名失败：" + e.getMessage());
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e2) {
+                    // ig
+                }
+            }
+        }
+    }
+
 
     protected int doLength(ColumnDataType dataType, int length) {
         int size = length;

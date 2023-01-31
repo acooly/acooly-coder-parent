@@ -109,6 +109,16 @@ public class Column {
         return propertyName;
     }
 
+    /**
+     * 大驼峰命名方式的属性名
+     *
+     * @return
+     */
+    public String getPascalName() {
+        return StringUtils.capitalize(getPropertyName());
+    }
+
+
     public Long getMax() {
         return Double.valueOf(Math.pow(10d, getLength())).longValue();
     }
