@@ -60,15 +60,25 @@
             <artifactId>acooly-component-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>acooly-coder</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.15.4</version>
         </dependency>
     </dependencies>
     <build>

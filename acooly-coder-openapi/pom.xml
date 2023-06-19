@@ -21,5 +21,12 @@
         <module>acooly-coder-openapi-service</module>
         <module>acooly-coder-openapi-test</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.15.4</version>
+        </dependency>
+    </dependencies>
 
 </project>
