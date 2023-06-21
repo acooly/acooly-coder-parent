@@ -20,7 +20,9 @@ public class BossView5UpgraderTest {
 
     @Test
     public void testUpgradeList() {
-        BossView5Upgrader.upgradeList("classpath:templates/manage/coder/demo1/customer1.ftl");
+        BossView5Upgrader.upgradeList(
+                "classpath:templates/manage/coder/demo1/customer1.ftl",
+                "/Users/zhangpu/workspace/acooly/v5.2/acooly-coder-parent/acooly-coder-platform/acooly-coder-platform-core/src/main/resources/templates/manage/coder/demo1/customer.ftl");
     }
 
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acooly.coder.demo.dao.CoderCustomerDao">
+
+    <resultMap id="coderCustomerResultMap" type="com.acooly.coder.demo.entity.CoderCustomer">
+        <id property="id" column="coderCustomer_id"/>
+        <result property="username" column="coderCustomer_username"/>
+        <result property="birthday" column="coderCustomer_birthday"/>
+        <result property="age" column="coderCustomer_age"/>
+        <result property="gender" column="coderCustomer_gender"/>
+        <result property="animal" column="coderCustomer_animal"/>
+        <result property="realName" column="coderCustomer_real_name"/>
+        <result property="idcardType" column="coderCustomer_idcard_type"/>
+        <result property="idcardNo" column="coderCustomer_idcard_no"/>
+        <result property="bankCardNo" column="coderCustomer_bank_card_no"/>
+        <result property="mobileNo" column="coderCustomer_mobile_no"/>
+        <result property="mail" column="coderCustomer_mail"/>
+        <result property="customerType" column="coderCustomer_customer_type"/>
+        <result property="subject" column="coderCustomer_subject"/>
+        <result property="content" column="coderCustomer_content"/>
+        <result property="doneRatio" column="coderCustomer_done_ratio"/>
+        <result property="payRate" column="coderCustomer_pay_rate"/>
+        <result property="salary" column="coderCustomer_salary"/>
+        <result property="registryChannel" column="coderCustomer_registry_channel"/>
+        <result property="pushAdv" column="coderCustomer_push_adv"/>
+        <result property="numStatus" column="coderCustomer_num_status"/>
+        <result property="website" column="coderCustomer_website"/>
+        <result property="photoPath" column="coderCustomer_photo_path"/>
+        <result property="status" column="coderCustomer_status"/>
+        <result property="createTime" column="coderCustomer_create_time"/>
+        <result property="updateTime" column="coderCustomer_update_time"/>
+        <result property="comments" column="coderCustomer_comments"/>
+    </resultMap>
+
+    <sql id="coderCustomerSqlSelect">
+            coderCustomer.id as coderCustomer_id,
+            coderCustomer.username as coderCustomer_username,
+            coderCustomer.birthday as coderCustomer_birthday,
+            coderCustomer.age as coderCustomer_age,
+            coderCustomer.gender as coderCustomer_gender,
+            coderCustomer.animal as coderCustomer_animal,
+            coderCustomer.real_name as coderCustomer_real_name,
+            coderCustomer.idcard_type as coderCustomer_idcard_type,
+            coderCustomer.idcard_no as coderCustomer_idcard_no,
+            coderCustomer.bank_card_no as coderCustomer_bank_card_no,
+            coderCustomer.mobile_no as coderCustomer_mobile_no,
+            coderCustomer.mail as coderCustomer_mail,
+            coderCustomer.customer_type as coderCustomer_customer_type,
+            coderCustomer.subject as coderCustomer_subject,
+            coderCustomer.content as coderCustomer_content,
+            coderCustomer.done_ratio as coderCustomer_done_ratio,
+            coderCustomer.pay_rate as coderCustomer_pay_rate,
+            coderCustomer.salary as coderCustomer_salary,
+            coderCustomer.registry_channel as coderCustomer_registry_channel,
+            coderCustomer.push_adv as coderCustomer_push_adv,
+            coderCustomer.num_status as coderCustomer_num_status,
+            coderCustomer.website as coderCustomer_website,
+            coderCustomer.photo_path as coderCustomer_photo_path,
+            coderCustomer.status as coderCustomer_status,
+            coderCustomer.create_time as coderCustomer_create_time,
+            coderCustomer.update_time as coderCustomer_update_time,
+            coderCustomer.comments as coderCustomer_comments
+    </sql>
+
+</mapper>

@@ -1,42 +1,94 @@
 
 <script type="text/javascript">
 $(function() {
-	$.acooly.framework.registerKeydown('manage_customer_searchform','manage_customer_datagrid');
+	$.acooly.framework.initPage('manage_customer_searchform','manage_customer_datagrid');
 });
 
 </script>
 <div class="easyui-layout" data-options="fit : true,border : false">
   <!-- 查询条件 -->
   <div data-options="region:'north',border:false" style="padding:5px; overflow: hidden;" align="left">
-    <form id="manage_customer_searchform" onsubmit="return false">
-      <table class="tableForm" width="100%">
-        <tr>
-          <td align="left">
-          	<div>
-					用户名: <input type="text" class="text" size="15" name="search_LIKE_username"/>
-					生日: <input size="15" class="text" id="search_GTE_birthday" name="search_GTE_birthday" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
-					至<input size="15" class="text" id="search_LTE_birthday" name="search_LTE_birthday" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
-					年龄: <input type="text" class="text" size="15" name="search_EQ_age"/>
-					性别: <input type="text" class="text" size="15" name="search_LIKE_gender"/>
-					生肖: <input type="text" class="text" size="15" name="search_LIKE_animal"/>
-					姓名: <input type="text" class="text" size="15" name="search_LIKE_realName"/>
-				证件类型: <select style="width:80px;height:27px;" name="search_EQ_idcardType" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><#list allIdcardTypes as k,v><option value="${k}">${v}</option></#list></select>
-					身份证号码: <input type="text" class="text" size="15" name="search_LIKE_idcardNo"/>
-					银行卡卡号: <input type="text" class="text" size="15" name="search_LIKE_bankCardNo"/>
-					手机号码: <input type="text" class="text" size="15" name="search_LIKE_mobileNo"/>
-					邮件: <input type="text" class="text" size="15" name="search_LIKE_mail"/>
-				客户类型: <select style="width:80px;height:27px;" name="search_EQ_customerType" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><#list allCustomerTypes as k,v><option value="${k}">${v}</option></#list></select>
-					注册渠道: <input type="text" class="text" size="15" name="search_LIKE_registryChannel"/>
-					推送广告: <input type="text" class="text" size="15" name="search_LIKE_pushAdv"/>
-				数字类型: <select style="width:80px;height:27px;" name="search_EQ_numStatus" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><#list allNumStatuss as k,v><option value="${k}">${v}</option></#list></select>
-					状态: <input type="text" class="text" size="15" name="search_LIKE_status"/>
-					创建时间: <input type="text" class="text" size="15" name="search_LIKE_createTime"/>
-					更新时间: <input type="text" class="text" size="15" name="search_LIKE_updateTime"/>
-          	<a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:false" onclick="$.acooly.framework.search('manage_customer_searchform','manage_customer_datagrid');"><i class="fa fa-search fa-lg fa-fw fa-col"></i>查询</a>
-          	</div>
-          </td>
-        </tr>
-      </table>
+    <form id="manage_customer_searchform" onsubmit="return false" class="form-inline ac-form-search">
+            <div class="form-group">
+                <label class="col-form-label">用户名：</label>
+                <input type="text" name="search_LIKE_username" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">生日：</label>
+                <input size="15" class="text" id="search_GTE_birthday" name="search_GTE_birthday" onfocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">至：</label>
+                <input size="15" class="text" id="search_LTE_birthday" name="search_LTE_birthday" onfocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">年龄：</label>
+                <input type="text" name="search_EQ_age" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">性别：</label>
+                <input type="text" name="search_LIKE_gender" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">生肖：</label>
+                <input type="text" name="search_LIKE_animal" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">姓名：</label>
+                <input type="text" name="search_LIKE_realName" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">证件类型：</label>
+                <select name="search_EQ_idcardType" class="form-control form-control-sm"><option value="">所有</option><#list allIdcardTypes as k,v><option value="${k}">${v}</option></#list></select>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">身份证号码：</label>
+                <input type="text" name="search_LIKE_idcardNo" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">银行卡卡号：</label>
+                <input type="text" name="search_LIKE_bankCardNo" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">手机号码：</label>
+                <input type="text" name="search_LIKE_mobileNo" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">邮件：</label>
+                <input type="text" name="search_LIKE_mail" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">客户类型：</label>
+                <select name="search_EQ_customerType" class="form-control form-control-sm"><option value="">所有</option><#list allCustomerTypes as k,v><option value="${k}">${v}</option></#list></select>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">注册渠道：</label>
+                <input type="text" name="search_LIKE_registryChannel" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">推送广告：</label>
+                <input type="text" name="search_LIKE_pushAdv" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">数字类型：</label>
+                <select name="search_EQ_numStatus" class="form-control form-control-sm"><option value="">所有</option><#list allNumStatuss as k,v><option value="${k}">${v}</option></#list></select>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">状态：</label>
+                <input type="text" name="search_LIKE_status" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">创建时间：</label>
+                <input type="text" name="search_LIKE_createTime" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">更新时间：</label>
+                <input type="text" name="search_LIKE_updateTime" class="form-control form-control-sm">
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-sm btn-primary" type="button" onclick="$.acooly.framework.search('manage_customer_searchform','manage_customer_datagrid');"><i class="fa fa-search fa-fw fa-col"></i> 查询</button>
+            </div>
     </form>
   </div>
 
@@ -81,9 +133,11 @@ $(function() {
 
     <!-- 每行的Action动作模板 -->
     <div id="manage_customer_action" style="display: none;">
-      <a onclick="$.acooly.framework.edit({url:'/manage/coder/demo1/customer/edit.html',id:'{0}',entity:'customer',width:500,height:500});" href="#" title="编辑"><i class="fa fa-pencil fa-lg fa-fw fa-col"></i></a>
-      <a onclick="$.acooly.framework.show('/manage/coder/demo1/customer/show.html?id={0}',500,500);" href="#" title="查看"><i class="fa fa-file-o fa-lg fa-fw fa-col"></i></a>
-      <a onclick="$.acooly.framework.remove('/manage/coder/demo1/customer/deleteJson.html','{0}','manage_customer_datagrid');" href="#" title="删除"><i class="fa fa-trash-o fa-lg fa-fw fa-col"></i></a>
+      <div class="btn-group btn-group-xs">
+        <button class="btn btn-outline-primary btn-xs" type="button" onclick="$.acooly.framework.edit({url:'/manage/coder/demo1/customer/edit.html',id:'{0}',entity:'customer',width:500,height:500});"><i class="fa fa-pencil fa-fw fa-col"></i> 编辑</button>
+        <button class="btn btn-outline-primary btn-xs" type="button" onclick="$.acooly.framework.show('/manage/coder/demo1/customer/show.html?id={0}',500,500);"><i class="fa fa-info fa-fw fa-col"></i> 查看</button>
+        <button class="btn btn-outline-primary btn-xs" type="button" onclick="$.acooly.framework.remove('/manage/coder/demo1/customer/deleteJson.html','{0}','manage_customer_datagrid');"><i class="fa fa-trash fa-fw fa-col"></i> 删除</button>
+      </div>
     </div>
 
     <!-- 表格的工具栏 -->
