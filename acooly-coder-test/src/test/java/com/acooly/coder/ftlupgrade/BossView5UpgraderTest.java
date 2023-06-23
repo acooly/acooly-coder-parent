@@ -25,4 +25,10 @@ public class BossView5UpgraderTest {
                 "/Users/zhangpu/workspace/acooly/v5.2/acooly-coder-parent/acooly-coder-platform/acooly-coder-platform-core/src/main/resources/templates/manage/coder/demo1/customer.ftl");
     }
 
+    @Test
+    public void testUpgradeEdit() {
+        BossView5Upgrader.upgradeEdit("classpath:templates/manage/coder/demo1/customerEdit1.ftl",
+                "/Users/zhangpu/workspace/acooly/v5.2/acooly-coder-parent/acooly-coder-platform/acooly-coder-platform-core/src/main/resources/templates/manage/coder/demo1/customerEdit.ftl");
+    }
+
 }

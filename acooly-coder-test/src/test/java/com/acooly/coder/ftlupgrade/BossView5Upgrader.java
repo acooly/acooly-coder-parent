@@ -44,11 +44,32 @@ public class BossView5Upgrader {
             "                <button class=\"btn btn-sm btn-primary\" type=\"button\" onclick=\"${searchFunction}\"><i class=\"fa fa-search fa-fw fa-col\"></i> 查询</button>\n" +
             "            </div>";
 
+
+    static String editForm2ColRowTemplate = "\t\t\t<div class=\"form-group row\">\n" +
+            "\t\t\t\t<label class=\"col-sm-3 col-form-label\">${label}</label>\n" +
+            "\t\t\t\t<div class=\"col-sm-9\">\n" +
+            "\t\t\t\t\t${content}\n" +
+            "\t\t\t\t</div>\n" +
+            "\t\t\t</div>\n";
+
+    static String editForm4ColRowTemplate = "\t\t\t<div class=\"form-group row\">\n" +
+            "\t\t\t\t<label class=\"col-sm-2 col-form-label\">${label1}</label>\n" +
+            "\t\t\t\t<div class=\"col-sm-4\">\n" +
+            "\t\t\t\t\t${content1}\n" +
+            "\t\t\t\t</div>\n" +
+            "\t\t\t\t<label class=\"col-sm-2 col-form-label\">${label2}</label>\n" +
+            "\t\t\t\t<div class=\"col-sm-4\">\n" +
+            "\t\t\t\t\t${content2}\n" +
+            "\t\t\t\t</div>\n" +
+            "\t\t\t</div>\n";
+
     public static final String LIST_SEARCH_FORM_REGEX = "<form[^>]*?id=\"manage_[\\s\\S]*?_searchform\"[^>]*?>[\\s\\S]*?<\\/form>";
 
     public static final String LIST_ROW_ACTION_REGEX = "<div[^>]*?id=\"manage_[\\s\\S]*?_action\"[^>]*?>[\\s\\S]*?<\\/div>";
 
-    public static final String EASYUI_SELECT_REGEX = "<select[^>]*?\"class=easyui-combobox\"[^>]*?>[\\s\\S]*?<\\/select>";
+    public static final String EASYUI_SELECT_REGEX = "<select[^>]*?class=\"easyui-combobox\"[^>]*?>[\\s\\S]*?<\\/select>";
+
+    public static final String EDIT_TABLE_FORM_REGEX = "<table[^>]*?class=\"tableForm\"[^>]*?>[\\s\\S]*?<\\/table>";
 
     public static void upgrade(String v4FilePath, String v5FilePath) {
 
@@ -218,82 +239,88 @@ public class BossView5Upgrader {
         try {
             String html = Files.readFileToString(resource.getFile(), "UTF-8");
 
-            html = doUpgradeListSearchForm(html);
-            html = doUpgradeListScript(html);
-            html = doUpgradeListAction(html);
+            html = doUpgradeEditForm(html);
 
             log.debug("html: \n{}", html);
             File distFile = new File(v5FilePath);
             Files.write(distFile, html, "UTF-8");
         } catch (Exception e) {
+            e.printStackTrace();
             throw new BusinessException("UPGRADE_V4_LIST_ERROR", "升级列表页面失败", e.getMessage());
         }
     }
 
     protected static String doUpgradeEditForm(String html) {
-
         Document doc = Jsoup.parse(html);
+
         Element tableForm = doc.selectFirst("table.tableForm");
         if (tableForm == null) {
             return html;
         }
         // 1、增加form标签新样式
-        Element form = tableForm.parent();
-        form.addClass("form-horizontal");
+        html = Strings.replace(html, "action=", " class=\"form-horizontal\" action=");
 
         // 2、解析和转换tableForm内的所有表单
+        Element card = new Element("div");
+        card.addClass("card-body");
+        String cardHtml = "<div class=\"card-body\">\n";
         Elements trs = tableForm.select("tr");
         for (Element tr : trs) {
             Elements tds = tr.select("th,td");
+            // 没有td的情况，跳过
             if (tds.size() == 0) {
                 continue;
             }
-
+            String rowHtml = "";
             // 常见情况：一行一个表单模式
             if (tds.size() == 2) {
                 String label = tds.get(0).html();
-                String content = tds.get(1).html();
-                // 针对easyui文本域的样式进行转换
-                content = Strings.replace(content, "class=\"easyui-validatebox\"", "class=\"easyui-validatebox form-control\"");
-                content = Strings.replace(content, "class=\"easyui-numberbox\"", "class=\"easyui-numberbox form-control\"");
-                // 对select处理
-                Element td = tds.get(1);
-                Element select = td.selectFirst("select.easyui-combobox");
-                if (select == null) {
-
-                }
-
-
-                continue;
+                String content = doOneEditFormItem(tds.get(1));
+                rowHtml = editForm2ColRowTemplate.replace("${label}", label).replace("${content}", content);
+            } else if (tds.size() == 4) {
+                // 一行两个表单
+                String label1 = tds.get(0).html();
+                String content1 = doOneEditFormItem(tds.get(1));
+                String label2 = tds.get(2).html();
+                String content2 = doOneEditFormItem(tds.get(3));
+                rowHtml = editForm4ColRowTemplate.replace("${label1}", label1).replace("${content1}", content1)
+                        .replace("${label2}", label2).replace("${content2}", content2);
+            } else if (tds.size() == 1) {
+                // 单独一行的表单，情况复杂，如果无表单，则为label，否则为表单比如：多媒体框
             }
-
-            // 一行两个表单
-            if (tds.size() == 4) {
-
-            }
-
-            // 单独一行的表单，比如：多媒体框
-            if (tds.size() == 1) {
-
-            }
-
-
-            if (tds.size() != 2) {
-                continue;
-            }
-            Element td1 = tds.get(0);
-            Element td2 = tds.get(1);
-            Element label = td1.selectFirst("label");
-            Element input = td2.selectFirst("input");
-            if (label == null || input == null) {
-                continue;
-            }
-            String labelHtml = label.html();
-            String inputHtml = input.outerHtml();
+            cardHtml = cardHtml + rowHtml;
         }
+        cardHtml = cardHtml + "\t\t</div>";
 
-
+        // 3、替换table.tableForm为新的div.card-body
+        doc.outputSettings().prettyPrint(false);
+        cardHtml = Parser.unescapeEntities(cardHtml, false);
+        cardHtml = Strings.replace(cardHtml, "<!--/#list-->", "</#list>");
+        html = Strings.replacePattern(html, EDIT_TABLE_FORM_REGEX, Matcher.quoteReplacement(cardHtml));
         return html;
+    }
+
+    /**
+     * 处理一个表单项
+     *
+     * @param td
+     */
+    protected static String doOneEditFormItem(Element td) {
+        String content = td.html();
+        // 针对easyui文本域的样式进行转换
+        content = Strings.replace(content, "class=\"easyui-validatebox\"", "class=\"easyui-validatebox form-control\"");
+        content = Strings.replace(content, "class=\"easyui-numberbox\"", "class=\"easyui-numberbox form-control\"");
+        // 对select处理: 升级为select2后，通过正则只替换原来的select标签
+        Element select = td.selectFirst("select.easyui-combobox");
+        if (select != null) {
+            select.removeClass("easyui-combobox").addClass("form-control select2bs4")
+                    .removeAttr("editable").removeAttr("panelHeight").removeAttr("style")
+                    .removeAttr("data-options");
+            String newSelectHtml = select.outerHtml();
+            log.info("newSelectHtml: {}", newSelectHtml);
+            content = Strings.replacePattern(content, EASYUI_SELECT_REGEX, Matcher.quoteReplacement(newSelectHtml));
+        }
+        return content;
     }
 
 
@@ -309,12 +336,4 @@ public class BossView5Upgrader {
     public static void upgradeImport(String v4FilePath, String v5FilePath) {
 
     }
-
-
-    private class FormItem {
-        private String label;
-        private String formItem;
-    }
-
-
 }

@@ -31,16 +31,14 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">证件类型</label>
-				<div class="col-sm-9">
+				<label class="col-sm-2 col-form-label">证件类型</label>
+				<div class="col-sm-4">
 					<select name="idcardType" class="form-control select2bs4" data-options="required:true">
 						<#list allIdcardTypes as k,v><option value="${k}">${v}</option></#list>
 					</select>
 				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">身份证号码 <a href="javascript:;" data-toggle="tooltip" data-placement="right" title="请使用真实的18位身份证号码"><i class="fa fa-info-circle" aria-hidden="true"></i></a></label>
-				<div class="col-sm-9">
+				<label class="col-sm-2 col-form-label">身份证号码 <a href="javascript:;" data-toggle="tooltip" data-placement="right" title="请使用真实的18位身份证号码"><i class="fa fa-info-circle" aria-hidden="true"></i></a></label>
+				<div class="col-sm-4">
 					<input type="text" name="idcardNo" placeholder="请输入身份证号码..." class="easyui-validatebox form-control" data-inputmask="'alias':'idcard'" data-mask data-options="validType:['idcard','length[1,48]']" required="true"/>
 				</div>
 			</div>
