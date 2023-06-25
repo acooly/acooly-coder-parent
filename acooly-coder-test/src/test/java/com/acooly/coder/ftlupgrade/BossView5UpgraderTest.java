@@ -8,6 +8,7 @@
  */
 package com.acooly.coder.ftlupgrade;
 
+import com.acooly.coder.upgrade.BossFtl5Upgrader;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -18,17 +19,19 @@ import org.junit.Test;
 @Slf4j
 public class BossView5UpgraderTest {
 
+    String testPath = "/Users/zhangpu/workspace/acooly/v5.2/acooly-coder-parent/acooly-coder-platform/acooly-coder-platform-core/src/main/resources/templates/manage/coder/demo1/";
+
     @Test
     public void testUpgradeList() {
-        BossView5Upgrader.upgradeList(
-                "classpath:templates/manage/coder/demo1/customer1.ftl",
-                "/Users/zhangpu/workspace/acooly/v5.2/acooly-coder-parent/acooly-coder-platform/acooly-coder-platform-core/src/main/resources/templates/manage/coder/demo1/customer.ftl");
+        BossFtl5Upgrader.upgradeList(
+                testPath + "customer1.ftl",
+                testPath + "customer.ftl");
     }
 
     @Test
     public void testUpgradeEdit() {
-        BossView5Upgrader.upgradeEdit("classpath:templates/manage/coder/demo1/customerEdit1.ftl",
-                "/Users/zhangpu/workspace/acooly/v5.2/acooly-coder-parent/acooly-coder-platform/acooly-coder-platform-core/src/main/resources/templates/manage/coder/demo1/customerEdit.ftl");
+        BossFtl5Upgrader.upgradeEdit(testPath + "customerEdit1.ftl",
+                testPath + "customerEdit.ftl");
     }
 
 }

@@ -15,11 +15,11 @@ $(function() {
             </div>
             <div class="form-group">
                 <label class="col-form-label">生日：</label>
-                <input size="15" class="text" id="search_GTE_birthday" name="search_GTE_birthday" onfocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})">
+                <input id="search_GTE_birthday" name="search_GTE_birthday" onfocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" class="form-control form-control-sm">
             </div>
             <div class="form-group">
                 <label class="col-form-label">至：</label>
-                <input size="15" class="text" id="search_LTE_birthday" name="search_LTE_birthday" onfocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})">
+                <input id="search_LTE_birthday" name="search_LTE_birthday" onfocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" class="form-control form-control-sm">
             </div>
             <div class="form-group">
                 <label class="col-form-label">年龄：</label>
@@ -39,7 +39,7 @@ $(function() {
             </div>
             <div class="form-group">
                 <label class="col-form-label">证件类型：</label>
-                <select name="search_EQ_idcardType" class="form-control form-control-sm"><option value="">所有</option><#list allIdcardTypes as k,v><option value="${k}">${v}</option></#list></select>
+                <select name="search_EQ_idcardType" class="form-control input-sm select2bs4"><option value="">所有</option><#list allIdcardTypes as k,v><option value="${k}">${v}</option></#list></select>
             </div>
             <div class="form-group">
                 <label class="col-form-label">身份证号码：</label>
@@ -59,7 +59,7 @@ $(function() {
             </div>
             <div class="form-group">
                 <label class="col-form-label">客户类型：</label>
-                <select name="search_EQ_customerType" class="form-control form-control-sm"><option value="">所有</option><#list allCustomerTypes as k,v><option value="${k}">${v}</option></#list></select>
+                <select name="search_EQ_customerType" class="form-control input-sm select2bs4"><option value="">所有</option><#list allCustomerTypes as k,v><option value="${k}">${v}</option></#list></select>
             </div>
             <div class="form-group">
                 <label class="col-form-label">注册渠道：</label>
@@ -71,7 +71,7 @@ $(function() {
             </div>
             <div class="form-group">
                 <label class="col-form-label">数字类型：</label>
-                <select name="search_EQ_numStatus" class="form-control form-control-sm"><option value="">所有</option><#list allNumStatuss as k,v><option value="${k}">${v}</option></#list></select>
+                <select name="search_EQ_numStatus" class="form-control input-sm select2bs4"><option value="">所有</option><#list allNumStatuss as k,v><option value="${k}">${v}</option></#list></select>
             </div>
             <div class="form-group">
                 <label class="col-form-label">状态：</label>
@@ -142,14 +142,14 @@ $(function() {
 
     <!-- 表格的工具栏 -->
     <div id="manage_customer_toolbar">
-      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'/manage/coder/demo1/customer/create.html',entity:'customer',width:500,height:500})"><i class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>添加</a>
-      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.removes('/manage/coder/demo1/customer/deleteJson.html','manage_customer_datagrid')"><i class="fa fa-trash-o fa-lg fa-fw fa-col"></i>批量删除</a>
-      <a href="#" class="easyui-menubutton" data-options="menu:'#manage_customer_exports_menu'"><i class="fa fa-arrow-circle-o-down fa-lg fa-fw fa-col"></i>批量导出</a>
+      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'/manage/coder/demo1/customer/create.html',entity:'customer',width:500,height:500})"><i class="fa fa-plus-circle fa-fw fa-col"></i>添加</a>
+      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.removes('/manage/coder/demo1/customer/deleteJson.html','manage_customer_datagrid')"><i class="fa fa-trash fa-fw fa-col"></i>批量删除</a>
+      <a href="#" class="easyui-menubutton" data-options="menu:'#manage_customer_exports_menu'"><i class="fa fa-cloud-download fa-fw fa-col"></i>批量导出</a>
       <div id="manage_customer_exports_menu" style="width:150px;">
-        <div onclick="$.acooly.framework.exports('/manage/coder/demo1/customer/exportXls.html','manage_customer_searchform','代码生成客户信息')"><i class="fa fa-file-excel-o fa-lg fa-fw fa-col"></i>Excel</div>
-        <div onclick="$.acooly.framework.exports('/manage/coder/demo1/customer/exportCsv.html','manage_customer_searchform','代码生成客户信息')"><i class="fa fa-file-text-o fa-lg fa-fw fa-col"></i>CSV</div>
+        <div onclick="$.acooly.framework.exports('/manage/coder/demo1/customer/exportXls.html','manage_customer_searchform','代码生成客户信息')"><i class="fa fa-file-excel-o fa-fw fa-col"></i>Excel</div>
+        <div onclick="$.acooly.framework.exports('/manage/coder/demo1/customer/exportCsv.html','manage_customer_searchform','代码生成客户信息')"><i class="fa fa-file-text-o fa-fw fa-col"></i>CSV</div>
       </div>
-      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.imports({url:'/manage/coder/demo1/customer/importView.html',uploader:'manage_customer_import_uploader_file'});"><i class="fa fa-arrow-circle-o-up fa-lg fa-fw fa-col"></i>批量导入</a>
+      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.imports({url:'/manage/coder/demo1/customer/importView.html',uploader:'manage_customer_import_uploader_file'});"><i class="fa fa-cloud-upload fa-fw fa-col"></i>批量导入</a>
     </div>
   </div>
 

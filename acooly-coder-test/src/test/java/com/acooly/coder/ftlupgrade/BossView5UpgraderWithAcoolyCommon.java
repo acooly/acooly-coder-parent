@@ -33,7 +33,7 @@ import java.util.regex.Matcher;
  * @date 2023-06-17 23:03
  */
 @Slf4j
-public class BossView5Upgrader {
+public class BossView5UpgraderWithAcoolyCommon {
 
     static String searchFormItemTemplate = "            <div class=\"form-group\">\n" +
             "                <label class=\"col-form-label\">${label}：</label>\n" +
