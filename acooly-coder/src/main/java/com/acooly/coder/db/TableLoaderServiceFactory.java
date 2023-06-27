@@ -1,10 +1,10 @@
 package com.acooly.coder.db;
 
+import com.acooly.coder.config.DatabaseConfig;
 import com.acooly.coder.config.GenerateConfig;
 import com.acooly.coder.db.dialect.MySQLTableLoaderService;
 import com.acooly.coder.db.dialect.OracleTableLoaderService;
 import com.acooly.coder.support.SimpleDataSource;
-import com.acooly.coder.config.DatabaseConfig;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.sql.DataSource;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 /**
  * 数据库库元数据loader工厂
- * 
+ *
  * @author zhangpu
  * @date 2015年8月30日
  */
@@ -40,11 +40,8 @@ public class TableLoaderServiceFactory {
 	}
 
 	private static String getMysqlschema(String jdbcUrl) {
-		String scheme = StringUtils.substringAfterLast(jdbcUrl, "/");
-		if (StringUtils.contains(scheme, "?")) {
-			scheme = StringUtils.substringBefore(scheme, "?");
-		}
-		return scheme;
+		String scheme = StringUtils.substringBeforeLast(jdbcUrl, "?");
+		return StringUtils.substringAfterLast(scheme, "/");
 	}
 
 	private static String getJdbcUrlFromDataSource(DataSource dataSource) {

@@ -38,7 +38,6 @@ public class AcoolyCoder1 {
     public static void main(String[] args) {
         CodeGenerateService service = Generator.getGenerator();
         GenerateConfig config = GenerateConfig.INSTANCE();
-
         config.setWorkspace(getProjectPath() + MODULE_NAME);
         config.setManagePath(MANAGE_VIEW_PATH);
         config.setTableToEntityIgnorPrefix(TABLE_IGNOR_PREFIX);
