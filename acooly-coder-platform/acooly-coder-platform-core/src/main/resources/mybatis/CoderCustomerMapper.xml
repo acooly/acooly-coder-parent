@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.acooly.coder.demo.dao.CoderCustomerDao">
+<mapper namespace="com.acooly.coder.demo2.dao.CoderCustomerDao">
 
-    <resultMap id="coderCustomerResultMap" type="com.acooly.coder.demo.entity.CoderCustomer">
+    <resultMap id="coderCustomerResultMap" type="com.acooly.coder.demo2.entity.CoderCustomer">
         <id property="id" column="coderCustomer_id"/>
         <result property="username" column="coderCustomer_username"/>
-        <result property="birthday" column="coderCustomer_birthday"/>
         <result property="age" column="coderCustomer_age"/>
+        <result property="birthday" column="coderCustomer_birthday"/>
         <result property="gender" column="coderCustomer_gender"/>
         <result property="animal" column="coderCustomer_animal"/>
         <result property="realName" column="coderCustomer_real_name"/>
@@ -36,8 +36,8 @@
     <sql id="coderCustomerSqlSelect">
             coderCustomer.id as coderCustomer_id,
             coderCustomer.username as coderCustomer_username,
-            coderCustomer.birthday as coderCustomer_birthday,
             coderCustomer.age as coderCustomer_age,
+            coderCustomer.birthday as coderCustomer_birthday,
             coderCustomer.gender as coderCustomer_gender,
             coderCustomer.animal as coderCustomer_animal,
             coderCustomer.real_name as coderCustomer_real_name,
