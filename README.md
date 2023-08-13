@@ -29,7 +29,7 @@ Acooly Coder是为Acooly框架配套的专用代码生成工具，设计目的�
 * 打开IDEA的Settings(windows：File -> Settings，Mac：command+.), 选择`Plugin`菜单
 * 在你的界面上找到`Manage Plugin Repositories`菜单。（不同平台和版本位置不同，找下），下图是2021版本的位置。
 
-<div><img width="90%" src="/docs/res/coder/plugin_repos_install.jpg"></div>
+<div><img width="90%" src="https://acooly.cn/docs/res/coder/plugin_repos_install.jpg"></div>
 
 * 点击进入后，添加acooly插件私有仓库地址：`http://plugin.acooly.cn/`
 * 选择插件界面的`Marketplace`选项卡，然后再查下框输入：`acooly` 搜索出插件安装即可
@@ -38,15 +38,15 @@ Acooly Coder是为Acooly框架配套的专用代码生成工具，设计目的�
 
 #### 2.1.2 下线安装
 
-点击这里下载IDEA的AcoolyCoder插件: [acooly-coder-plugin-1.1.1-release.zip](http://acooly.cn/nexus/service/local/repositories/releases/content/cn/acooly/acooly-coder-plugin/1.1.1/acooly-coder-plugin-1.1.1-release.zip)
+点击这里下载IDEA的AcoolyCoder插件: [acooly-coder-plugin-1.3.1-release.zip](http://acooly.cn/nexus/service/local/repositories/releases/content/cn/acooly/acooly-coder-plugin/1.3.1/acooly-coder-plugin-1.3.1-release.zip)
 下载到本地后，拖动zip文件到你Idea的编辑区即可自动完成安装，重新启动IDEA后，在你工程任何需要生成代码的包(package)上，右键菜单底部：Acooly -> AcoolyCoder
 
 #### 2.1.3 插件截图
 <div>
-<div style="display:inline;"><img width="45%" src="/docs/res/coder/2.conn.jpg"></div>
-<div style="display:inline;"><img width="45%" src="/docs/res/coder/3.db.jpg"></div>
-<div style="display:inline;"><img width="45%" src="/docs/res/coder/4.table.png"></div>
-<div style="display:inline;"><img width="45%" src="/docs/res/coder/5.generate.png"></div>
+<div style="display:inline;"><img width="45%" src="https://acooly.cn/docs/res/coder/2.conn.jpg"></div>
+<div style="display:inline;"><img width="45%" src="https://acooly.cn/docs/res/coder/3.db.jpg"></div>
+<div style="display:inline;"><img width="45%" src="https://acooly.cn/docs/res/coder/4.table.png"></div>
+<div style="display:inline;"><img width="45%" src="https://acooly.cn/docs/res/coder/5.generate.png"></div>
 </div>
 
 
